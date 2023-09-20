@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+
+}
+
+@font-face {
+  font-family: MontHeavy;
+  src: url(./assets/Fonts/Fontfabric---Mont-Heavy.otf) format(opentype);
+}
+
+@font-face {
+  font-family: MontSemi;
+  src: url(./assets/Fonts/Fontfabric---Mont-SemiBold.otf) format(opentype);
+}
+
+@font-face {
+  font-family: MontBold;
+  src: url(./assets/Fonts/Fontfabric---Mont-Bold.otf) format(opentype);
+}
+
+@font-face {
+  font-family: MontRegular;
+  src: url(./assets/Fonts/Fontfabric---Mont-Regular.otf) format(opentype);
+}
+
+@font-face {
+  font-family: MontLight;
+  src: url(./assets/Fonts/Fontfabric---Mont-ExtraLight.otf) format(opentype);
+}
+
+
+
+
