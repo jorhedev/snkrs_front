@@ -4,6 +4,7 @@ import { SESSION_NAME, URL_SNKRS } from '../const/const';
 
 const axiosInstance = axios.create({
     baseURL: URL_SNKRS, // Replace with your API base URL
+
 });
 
 // Request interceptor
@@ -17,6 +18,7 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     (error) => {
+
         return Promise.reject(error);
     }
 );
@@ -33,10 +35,11 @@ axiosInstance.interceptors.response.use(
         // Simplificar la lectura de response.data
         response.data = response.data.data; // Suponiendo que los datos reales están en response.data.data
 
+
         return response;
     },
     (error) => {
-        // Maneja los errores de la respuesta aquí
+
 
         return Promise.reject(error);
     }
