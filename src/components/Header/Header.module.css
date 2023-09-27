@@ -1,0 +1,40 @@
+
+.container{
+    height: 950px;
+    width: 100%;
+}
+
+.slide{
+    display: flex;
+    justify-content: center;
+}
+
+.slide img{
+    height: 950px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+    position: absolute;
+    z-index: 999;
+    width: 472px;
+    height: 950px;
+    margin-left: 178px;
+}
+
+.info h1{
+    font-family: MontHeavy;
+    line-height: 90px;
+    font-size: 96px;
+    margin: 0;
+}
+
+.info h2{
+    font-family: MontLight;
+    font-size: 40px;
+    letter-spacing: 20px;
+    margin: 0;
+}
