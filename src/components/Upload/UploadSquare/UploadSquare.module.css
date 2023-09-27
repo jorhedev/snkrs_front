@@ -1,0 +1,86 @@
+.UploadSquare {
+    display: grid;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch;
+    align-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 5px;
+    padding: 1%;
+    justify-items: center;
+}
+
+.Image {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.newImage {
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+}
+
+
+.imageInput {
+    display: none;
+}
+
+.plus {
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.viewImages {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.viewImages img {
+    border: none;
+    width: 100%;
+    height: 100%;
+
+}
+
+.RemoveButton {
+    position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.ImageZoom {
+    border-radius: 8px;
+    transform: scale(3) translate(0px, -20px);
+    transition: transform 0.8s ease-in-out;
+    -webkit-box-shadow: 1px 4px 28px 9px rgba(0, 0, 0, 0.41);
+    box-shadow: 1px 4px 28px 9px rgba(0, 0, 0, 0.41);
+    z-index: 20;
+}
+
+.RemoveButton:hover {
+    background-color: rgb(44, 194, 180);
+
+    IconSelector {
+        color: aliceblue
+    }
+}

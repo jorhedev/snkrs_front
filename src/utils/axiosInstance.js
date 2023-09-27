@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { readCookieSession } from '../services'
-import { URL_FINDHOTEL } from '../const/const';
+import { SESSION_NAME, URL_SNKRS } from '../const/const';
 
 const axiosInstance = axios.create({
-    baseURL: URL_FINDHOTEL, // Replace with your API base URL
+    baseURL: URL_SNKRS, // Replace with your API base URL
+
 });
 
 // Request interceptor
@@ -17,21 +18,28 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     (error) => {
-        // Handle request errors here
 
         return Promise.reject(error);
     }
 );
 
-// Response interceptor
+// Interceptor de respuesta
 axiosInstance.interceptors.response.use(
     (response) => {
-        // Modify the response data here (e.g., parse, transform)
+        // Verificar si la cabecera personalizada existe en la respuesta
+        const customHeader = response.headers[SESSION_NAME];
+        if (customHeader) {
+            // Haz algo con la cabecera personalizada, por ejemplo, almacénala en una variable global
+            console.log('Cabecera personalizada capturada:', customHeader);
+        }
+        // Simplificar la lectura de response.data
+        response.data = response.data.data; // Suponiendo que los datos reales están en response.data.data
+
 
         return response;
     },
     (error) => {
-        // Handle response errors here
+
 
         return Promise.reject(error);
     }
