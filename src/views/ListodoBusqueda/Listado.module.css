@@ -1,4 +1,12 @@
+.containerList{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
 .zapatilla{
-    position: absolute;
-    left: 80px;
+
+    margin-left: 80px;
 }
