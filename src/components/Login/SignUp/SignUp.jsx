@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { URL_FINDHOTEL } from '../../../const/const';
+import { URL_SNKRS } from '../../../const/const';
 import PropTypes from 'prop-types';
 import styles from './SignUp.module.css';
-import logo from '../../../assets/image/logoBlack2.png'
+import Logo from '../../Icons/Logo'
 import { MdLock, MdEmail, MdPerson } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import { signUpValidate } from '../../../services';
@@ -77,7 +77,7 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
       {viewSignUp && (<div className={styles.SignUpContainer} onClick={handlerExternalClick}>
         <div className={styles.SignUp} >
           <Link to="/">
-            <img src={logo} alt="Logo" className={styles.logo} />
+            <Logo width={'200px'} height={'70px'} />
           </Link>
           <h2 className={styles.h2}>Register and elevate your travel journey</h2>
           <form>
@@ -86,9 +86,9 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
               return (
                 <span className={styles.GroupInput} key={index}>
                   <div className={styles.inputGroup}>
-                    {['firstName', 'lastName'].includes(key) ? <MdPerson className={styles.inputIcon} /> :
-                      ['password', 'confirmPassword'].includes(key) ? <MdLock className={styles.inputIcon} /> :
-                        <MdEmail className={styles.inputIcon} />}
+                    {['firstName', 'lastName'].includes(key) ? <MdPerson size={30} className={styles.inputIcon} /> :
+                      ['password', 'confirmPassword'].includes(key) ? <MdLock size={30} className={styles.inputIcon} /> :
+                        <MdEmail size={30} className={styles.inputIcon} />}
                     <input
                       type={['password', 'confirmPassword'].includes(key) ? 'password' : 'text'}
                       placeholder={
@@ -123,8 +123,7 @@ const SignUp = ({ viewSignUp, onViewSignUp }) => {
   );
 };
 SignUp.propTypes = {
-
-  viewSignUp: PropTypes.boolean,
+  viewSignUp: PropTypes.bool.isRequired,
   onViewSignUp: PropTypes.func
 
 };
