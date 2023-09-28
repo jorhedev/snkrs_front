@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { readCookieSession } from '../services'
-import { SESSION_NAME, URL_SNKRS } from '../const/const';
+import { URL_SNKRS } from '../const/const';
 
 const axiosInstance = axios.create({
-    baseURL: URL_SNKRS, // Replace with your API base URL
-
+    baseURL: URL_SNKRS,
 });
 
 // Request interceptor
@@ -26,12 +25,6 @@ axiosInstance.interceptors.request.use(
 // Interceptor de respuesta
 axiosInstance.interceptors.response.use(
     (response) => {
-        const customHeader = response.headers[SESSION_NAME];
-        if (customHeader) {
-            // Haz algo con la cabecera personalizada, por ejemplo, almacénala en una variable global
-            console.log('Cabecera personalizada capturada:', customHeader);
-        }
-        // Simplificar la lectura de response.data
         return response.data;
     },
     (error) => {

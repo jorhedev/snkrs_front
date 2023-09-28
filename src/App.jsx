@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import ListadoBusqueda from './views/ListodoBusqueda/ListadoBusqueda'
+import ListadoBusqueda from './views/ListadoBusqueda/ListadoBusqueda'
 import Detail from './components/Detail/Detail'
 import Navbar from "./components/Navbar/Navbar";
 
