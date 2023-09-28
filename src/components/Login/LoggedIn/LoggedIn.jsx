@@ -7,7 +7,7 @@ import { signOut } from '../../../redux/user';
 import { MdPerson } from 'react-icons/md';
 import { FaHotel, FaUserTie } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import { AvatarSvg } from '../Avatar';
+import { AvatarSvg } from '../../Icons/Avatar';
 import { readCookieSession } from '../../../services';
 
 const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
@@ -32,31 +32,30 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
     }
   }, [setUser]);
 
-  console.log(imageUrl)
   const handlerLogOut = () => {
     dispatch(signOut())
   }
   return (
     <>
       <div className={`${styles.LoggedIn} ${isActiveLoggedIn ? styles.active : ''}`}>
-        <div className={styles.LoggedInHeader}>
-          <label htmlFor="">{user?.role}</label>
-          <div className={styles.Photo}>
-            <LoggedInPhoto imageSrc={
-              (imageUrl === '' || imageUrl === null || imageUrl === undefined) ? '' :
-                imageUrl} size={'100%'} />
+        <div className={styles.Header}>
+          <div className={styles.LoggedInHeader}>
+            <label htmlFor="">{user?.role}</label>
+            <div className={styles.Photo}>
+              <LoggedInPhoto imageSrc={
+                (imageUrl === '' || imageUrl === null || imageUrl === undefined) ? '' :
+                  imageUrl} size={'100%'} />
+            </div>
           </div>
         </div>
 
         <div className={styles.LoggedInForm}>
           <NavLink to={
             user?.role === 'user' ? "/user" :
-              user?.role === 'hotel' ? "/hotel" :
-                user?.role === 'admin' ? "/admin" : null}>
+              user?.role === 'admin' ? "/admin" : null}>
             <div className={styles.BodyLoggedIn}>
               {user?.role === 'user' ? <MdPerson className={styles.inputIcon} size={30} /> :
-                user?.role === 'hotel' ? <FaHotel className={styles.inputIcon} size={30} /> :
-                  user?.role === 'admin' ? <FaUserTie className={styles.inputIcon} size={30} /> : null}
+                user?.role === 'admin' ? <FaUserTie className={styles.inputIcon} size={30} /> : null}
               <label className={styles.Name} htmlFor="">{user?.firstName} {user?.lastName}</label>
             </div>
           </NavLink >

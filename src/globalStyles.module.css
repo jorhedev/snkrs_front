@@ -1,0 +1,7 @@
+/* globalStyles.module.css */
+.container {
+  background-color: lightgray;
+  color: blue;
+  font-family: Arial, sans-serif;
+  /* Agrega aquí más estilos globales */
+}

@@ -16,8 +16,8 @@ import { signIn as logIn } from '../../../redux/user';
 import SignUp from '../SignUp/SignUp';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
-import { InputPassword, InputText } from '../../Inputs';
-import { URL_FINDHOTEL } from '../../../const/const';
+import { InputPassword, InputText } from '../Inputs';
+import { URL_SNKRS } from '../../../const/const';
 
 import Swal from 'sweetalert2';
 
@@ -50,6 +50,8 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
         case 'twitter':
           await logOut();
           ({ _tokenResponse } = await signInWithTwitter());
+          console.log("🚀 ~ file: SignIn.jsx:53 ~ handlerLogin ~ _tokenResponse:", _tokenResponse)
+
           break;
         case 'login':
           await logOut();
@@ -83,9 +85,10 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const handlerChangeSignUp = () => { setShowSignUp(!showSignUp) }
   const handlerChangeForgotPass = () => { setViewForgotPass(!viewForgotPass) }
 
+
   return (
     <>
-      < div className={`${styles.SignIn} ${isActiveSignIn ? styles.active : ''}`
+      < div className={`${styles.SignIn} ${isActiveSignIn ? styles.active : styles.fadeOut}`
       }>
         <div className={styles.SignInForm}>
           <span className={styles.GroupInput}>
