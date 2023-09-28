@@ -1,0 +1,103 @@
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 700px;
+    margin-top: 80px;
+}
+
+.promo{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.promoInfo{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+
+.promoInfo .marca{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 700px;
+    border: 1px solid #9E9E9E;
+
+}
+
+.marca img{
+    min-width: 550px;
+    max-height: 140px;
+}
+
+.cardsPromo{
+    display: flex;
+    flex-direction: row;
+}
+
+.cardPromo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 400px;
+    width: 350px;
+    border: 1px solid #9E9E9E;
+    padding: 25px;
+}
+
+.cardPromoImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 270px;
+    background-color: #F7F7F7;
+}
+
+.cardPromoImage img{
+    width: 280px;
+    height: auto;
+}
+
+.cardPromo h2{
+    font-family: MontHeavy;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0;
+
+}
+
+.cardPromo h3{
+    margin: 0;
+    font-family: MontHeavy;
+    font-size: 24px;
+    font-style: normal;
+    margin-top: 10px;
+}
+
+.cardPromo p{
+    margin: 0;
+    font-family: MontLight;
+    font-size: 20px;
+}
+
+.cardPromoInfo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.image{
+    display: flex;
+    text-align: center ;
+    border: 1px solid #9E9E9E;
+    width: 700px;
+    background: url('../../assets/Image/image2.jpg'), lightgray 50% / cover no-repeat;
+}

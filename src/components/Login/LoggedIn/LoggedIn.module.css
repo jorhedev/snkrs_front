@@ -1,0 +1,155 @@
+.LoggedIn {
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    background: #D9D9D9;
+    width: 285px;
+    height: 380px;
+    border-radius: 40px;
+    border: 2px solid #2D2D2D;
+    opacity: 0;
+    visibility: hidden;
+    /* Oculta el componente */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+
+}
+
+.LoggedIn.active {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.LoggedInForm {
+    display: flex;
+    padding: 25px;
+    padding-top: 50px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    align-items: stretch;
+}
+
+.LoggedInForm a {
+    text-decoration: none;
+}
+
+.BodyLoggedIn {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.Name {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+}
+
+.Header {
+    width: 286px;
+    height: 197px;
+    flex-shrink: 0;
+}
+
+.LoggedInHeader {
+    border-radius: 30px 30px 0px 0px;
+    display: flex;
+    width: 100%;
+    height: 120px;
+    background-color: #2D2D2D;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+.LoggedInHeader label {
+    color: var(--Background, #FFF);
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: MontHeavy;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: 0.44px;
+}
+
+.PhotoWrapper {
+    background: #D9D9D9;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #2D2D2D;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.Photo {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 70px;
+}
+
+.BtnSignOut {
+    display: flex;
+    padding: 0px 10px 0px 10px;
+    gap: 8px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.BtnLogOut {
+
+    color: #2D2D2D;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: MontHeavy;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+
+    position: absolute;
+    right: 20px;
+    bottom: -19px;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    width: 130px !important;
+    height: 40px !important;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 25px;
+    border: 3px solid #2D2D2D;
+    background: #E0DDDD;
+    transition: 0.7s ease-in-out;
+    cursor: pointer;
+
+}
+
+.BtnLogOut:hover {
+    background: #2D2D2D;
+    color: #E0DDDD;
+}

@@ -1,0 +1,156 @@
+.SocialNetworks {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.SocialNetworks a {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.FaFacebook:hover {
+    transform: scale(1.1);
+    color: #4267B2;
+    background: #fff;
+    border-radius: 50%;
+    filter: drop-shadow(1px 5px 8px #201f1f);
+
+
+}
+
+.FaTwitter:hover {
+    color: #1DA1F2;
+    transform: scale(1.1);
+    filter: drop-shadow(1px 5px 8px #201f1f);
+}
+
+.FaInstagram:hover {
+    transform: scale(1.1);
+    box-shadow: #0288D1;
+    border-radius: 15%;
+    color: #fff;
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, .1);
+    filter: drop-shadow(1px 5px 8px #201f1f);
+}
+
+.FaLinkedin:hover {
+    transform: scale(1.1);
+    background: #fff;
+    color: #0288D1;
+    border-radius: 15%;
+    filter: drop-shadow(1px 5px 8px #201f1f);
+}
+
+.FaGithub:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #3876b4;
+    border-radius: 50%;
+}
+
+.FaWhatsapp:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #25D366;
+    border-radius: 50%;
+}
+
+.FaPinterest:hover {
+    transform: scale(1.1);
+    color: #E60023;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.FaYoutube:hover {
+    transform: scale(1.1);
+    color: #FF0000;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.FaApple:hover {
+    transform: scale(1.1);
+    color: black;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.FaMessenger:hover {
+    transform: scale(1.1);
+    color: #006AFF;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.FaDiscord:hover {
+    transform: scale(1.1);
+    color: #8c9eff;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+
+/** TIKTOK **/
+.Tiktok {
+    position: relative;
+}
+
+.TiktokIni {
+    color: #ffffff;
+    z-index: 3;
+}
+
+.TiktokMid,
+.TiktokEnd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.Tiktok:hover {
+    transform: scale(1.1);
+    border-top-color: transparent;
+}
+
+.Tiktok:hover .TiktokIni {
+    color: #fe2d52;
+    display: block;
+    opacity: 80%;
+}
+
+.Tiktok:hover .TiktokMid {
+    color: #ffffff;
+    top: 0px;
+    right: 3px;
+    z-index: 1;
+    display: block;
+    opacity: 80%;
+}
+
+.Tiktok:hover .TiktokEnd {
+    color: #28ffff;
+    top: -5px;
+    right: 5px;
+    z-index: 0;
+    display: block;
+    opacity: 80%;
+}
+
+
+.FaGoogle:hover {
+    transform: scale(1.1);
+    color: #ea4335;
+    background-color: transparent;
+    border-radius: 50%;
+}
