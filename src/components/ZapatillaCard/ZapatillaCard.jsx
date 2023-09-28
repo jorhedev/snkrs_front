@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
-
+import { addCartItemsById } from "../../redux/cartSlice";
 import { setProductCategory, setProductType, setSize, setColor } from '../../redux/filtersSlice';
-
+import Swal from 'sweetalert2';
 import logo from "../../assets/Image/Logo.png";
 import styles from "./ZapatillaCard.module.css";
 
@@ -18,6 +18,8 @@ const ZapatillaCard = ({ zapatilla }) => {
 
   const isFavorite = favorites.some((favorite) => favorite.id === zapatilla.id);
   const [isLiked, setIsLiked] = useState(isFavorite);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [selectedZapatilla, setSelectedZapatilla] = useState(null);
 
   const toggleLike = () => {
     if (isLiked) {
@@ -26,6 +28,15 @@ const ZapatillaCard = ({ zapatilla }) => {
       dispatch(addFavorite(zapatilla));
     }
     setIsLiked(!isLiked);
+  };
+    const addToCartHandler = () => {
+    dispatch(addCartItemsById(zapatilla));
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto Agregado al Carrito',
+      showConfirmButton: false,
+      timer: 1500, 
+    });
   };
   
   
@@ -53,6 +64,7 @@ const ZapatillaCard = ({ zapatilla }) => {
         🔴🟢🔵⚫️⚪️
         <img src={logo} alt="logo" width={70} />
       </p>
+      <button onClick={addToCartHandler}>Agregar al carrito</button>
     </div>
   );
 };
