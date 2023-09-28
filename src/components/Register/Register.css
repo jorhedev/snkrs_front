@@ -1,0 +1,116 @@
+.signup__container{
+    border: 1px solid #000;
+}
+
+a,
+[type="submit"] {transition: all .25s ease-in;}
+.signup__container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+    margin: 10px 30px;
+  transform: translateY(-50%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  
+  justify-content: center;
+  
+  border-radius: remy(3px);
+  box-shadow: 0px remy(3px) remy(7px) rgba(0,0,0,.25);
+}
+.signup__overlay {
+ 
+  top: 0;
+  left: 0;
+  width: 500;
+  height: 360px;
+  background-color: #fff;
+  color: #000;
+}
+.container__child {
+  width: 740px;
+  height: 560px;
+  color: #000;
+}
+.container__child h1{
+    color: #fff;
+    font-family: MontHeavy;
+}
+.signup__thumbnail {
+  position: relative;
+ 
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 580px;
+ 
+}
+.form-group{
+    display: flex;
+    margin: 16px 10px;
+    flex-direction: column;
+    color: #fff;
+    font-family: MontHeavy;
+}
+h1,
+h2 {
+  font-weight: 300;
+  color: #000;
+}
+.heading--primary {font-size: 1.999rem;}
+.heading--secondary {font-size: 1.414rem;}
+.thumbnail__links {
+  align-self: flex-end;
+  width: 100%;
+}
+.thumbnail__links a {
+  font-size: 1rem;
+  color: #fff;
+  &:focus,
+  &:hover {color: rgba(255,255,255,.5);}
+}
+.signup__form {
+ padding: 10px 20px;
+  background: #000;
+  
+  
+}
+
+.form-control {
+  background-color: transparent;
+  margin: 0px 0;
+  width: 450px;
+  height: 25px;
+  color: #fff;
+  border: 2px solid #fff;
+  &:focus {border-color: #111;}
+}
+[type="text"] {color: #fff;}
+[type="password"] {color: #fff;}
+.btn--form {
+  padding: .5rem 2.5rem;
+  font-size: .95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background: #111;
+  border: 2px solid #fff;
+  border-radius: remy(35px);
+  &:focus,
+  &:hover {background: lighten(#111, 13%);}
+}
+.signup__link {
+  font-size: .8rem;
+  text-decoration: none;
+  font-weight: 600;
+ 
+  color: #999;
+  &:focus,
+  &:hover {color: darken(#999, 13%);}
+}
+.m-t-lg{
+    margin-top : 7% !important ;
+    
+}
