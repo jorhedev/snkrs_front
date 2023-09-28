@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './ForgotPassword.module.css';
 import { Link } from "react-router-dom";
-import logo from '../../../assets/image/logoBlack2.png'
-import { MdLock, MdEmail, MdPerson } from 'react-icons/md';
+import Logo from '../../Icons/Logo'
+import { MdLock, MdEmail } from 'react-icons/md';
 
 const ForgotPassword = ({ viewForgot, onViewForgot }) => {
   const [forgotPass, setForgotPass] = useState({
@@ -40,20 +40,23 @@ const ForgotPassword = ({ viewForgot, onViewForgot }) => {
     <>
       {viewForgot && (<div className={styles.ForgotPasswordContainer} onClick={handlerExternalClick}>
         <div className={styles.ForgotPassword} >
-          <Link to="/">
-            <img src={logo} alt="Logo" className={styles.logo} />
-          </Link>
-          <h2 className={styles.h2}>
+          <div className={styles.Close} onClick={() => handlerCloseBox()}>x</div>
+          <div className={styles.Header}>
+            <Link to="/">
+              <Logo width={'200px'} height={'60px'} />
+            </Link>
+          </div>
+          {/* <h2 className={styles.h2}>
             <p>Magic Experience For Your Trip!</p>
             <p>Come home with us</p>
-          </h2>
+          </h2> */}
           <form onSubmit={handleSubmit}>
 
             {Object.keys(forgotPass).map((key, index) => {
               return (
                 <div className={styles.inputGroup} key={index}>
-                  {['password', 'confirmPassword'].includes(key) ? <MdLock className={styles.inputIcon} /> :
-                    <MdEmail className={styles.inputIcon} />}
+                  {['password', 'confirmPassword'].includes(key) ? <MdLock size={30} className={styles.inputIcon} /> :
+                    <MdEmail size={30} className={styles.inputIcon} />}
                   <input
                     type={['password', 'confirmPassword'].includes(key) ? 'password' : 'text'}
                     placeholder={
@@ -76,7 +79,7 @@ const ForgotPassword = ({ viewForgot, onViewForgot }) => {
             })}
             <div className={styles.BtnPass}>
               <button type="submit" className={styles.submitButton}>
-                Restore Password
+                Restore
               </button>
             </div>
           </form>
