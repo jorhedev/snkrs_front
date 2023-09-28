@@ -19,7 +19,7 @@ const Navbar = () => {
                 <Link to='/card'><h2>MEN</h2></Link>
                 <input type="text" name="" id="" placeholder="BUSCAR"/>
                 <h3><AiOutlineHeart/></h3>
-                <h3> <Link to= "/cart" > <BsCart2/> </Link></h3>
+                <h3> <Link to= "/user?view=shopping" > <BsCart2/> </Link></h3>
                 <h3><BsPerson/></h3>
                 </div>
             </div>

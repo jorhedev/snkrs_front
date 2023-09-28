@@ -1,0 +1,42 @@
+/* Estilo de la tabla */
+.cartTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Encabezado de la tabla */
+  .cartTable th {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    font-family: Montheavy;
+    border-bottom: 2px solid #555151; 
+  }
+  
+  /* Filas pares e impares con colores alternados */
+  .cartTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilo de las celdas de datos */
+  .cartTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Estilo para la imagen */
+  .cartTable .itemImage {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  
+  /* Estilo para el botón de eliminar */
+  .cartTable .deleteButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
