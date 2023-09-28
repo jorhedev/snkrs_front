@@ -2,20 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './LogIn.module.css';
-import InputText from '../../Inputs/InputText/InputText';
 import SignIn from '../SignIn/SignIn';
-import { AvatarSvg } from '../Avatar';
-import IconSelector from '../../IconSelector/IconSelector';
+import { FaRegUser } from 'react-icons/fa'
 import LoggedIn from '../LoggedIn/LoggedIn';
-import Cookies from 'js-cookie';
-import { SESSION_NAME } from '../../../const/const';
 import { viewFormLog } from '../../../redux/user';
-import { getCookieSession, readCookieSession } from '../../../services';
+import { readCookieSession } from '../../../services';
 
-const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }, sizeAvatar = '30' }) => {
+const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user)
-  const login = useSelector(state => state.user.login)
+  const user = useSelector(({ user }) => user.user)
+  const login = useSelector(({ user }) => user.login)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
 
   useEffect(() => {
@@ -40,7 +36,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '80px' }
         width: `${style.size}`, height: `${style.size}`
       }} onClick={handlerClickLogin}>
         {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
-          <AvatarSvg wsize={'200px'} fill={'#3A6561'} stroke={'#3A6561'} /> :
+          <FaRegUser size={sizeAvatar} /> :
           <img className={styles.Photo} src={imageUrl} alt='uploadImage' />}
       </span>
       {login.view && <SignIn isActiveSignIn={login.status} />}

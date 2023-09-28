@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './LoggedInPhoto.module.css';
-import { AvatarSvg } from '../Avatar';
+import { AvatarSvg } from '../../Icons/Avatar';
 import { useSelector } from 'react-redux';
 import { readCookieSession } from '../../../services';
 

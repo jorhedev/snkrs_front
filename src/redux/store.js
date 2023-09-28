@@ -1,13 +1,15 @@
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './rootReducer';
 import filtersReducer from './filtersSlice';
-import cardsReducer from './cardsSlice';
+import zapatillasReducer from './zapatillasSlice';
+import userReducer from './user';
 
 const store = configureStore({
-  reducer: rootReducer,
-  filters: filtersReducer,
-  cards: cardsReducer,
+  reducer: {
+    zapatillas: zapatillasReducer,
+    filters: filtersReducer,
+    user: userReducer,
+  }
 });
 
 export default store;

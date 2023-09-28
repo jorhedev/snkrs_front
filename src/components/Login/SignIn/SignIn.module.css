@@ -1,22 +1,26 @@
 .SignIn {
     position: absolute;
-    right: 25px;
-    top: 40px;
-    background: #447974;
+    right: 0px;
+    top: 60px;
+    background: #2D2D2D;
     width: 300px;
     min-height: 400px;
     border-radius: 30px;
     opacity: 0;
     visibility: hidden;
-    /* Oculta el componente */
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-
 .SignIn.active {
+    animation: fly 0.3s;
     opacity: 1;
     visibility: visible;
+}
 
+.SignIn.fadeOut {
+    animation: flyOut 0.5s;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .SignInForm {
@@ -36,7 +40,8 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
-    margin-bottom: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .BtnSignIn {
@@ -52,6 +57,7 @@
 
 
 .BtnLogIn {
+    font-family: MontHeavy;
     font-size: 22px;
     margin: 0;
     padding: 0;
@@ -67,7 +73,13 @@
     border: 2.5px solid white;
     background: transparent;
     color: white;
-    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.BtnLogIn:hover {
+    background: rgb(9, 88, 9);
+    font-size: 24px;
+    color: rgb(192, 192, 192);
 }
 
 .SocialNet {
@@ -92,6 +104,7 @@
 }
 
 .Links label {
+    font-family: Mont;
     cursor: pointer;
     display: flex;
     text-decoration: none;
@@ -99,7 +112,37 @@
     transition: 0.5s ease-in-out;
 }
 
+.Links label:hover {
+    color: rgb(66, 183, 66);
+    transition: 0.5s ease-in-out;
+}
+
 .errorText {
-    color: rgb(160, 157, 157);
-    font-size: 18px;
+    color: rgb(248 148 148);
+    font-size: 15px;
+    margin: 4px 0px 18px 0px;
+}
+
+@keyframes fly {
+    from {
+        transform: scale(0.7)
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes flyOut {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0);
+        opacity: 0;
+        visibility: hidden;
+    }
 }

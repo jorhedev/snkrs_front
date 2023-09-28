@@ -1,5 +1,5 @@
 .LogIn {
-    display: contents;
+    display: block;
     position: relative;
     width: 100%;
     height: 100%;
@@ -11,7 +11,6 @@
     position: relative;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid#3A6561;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-around;
@@ -26,6 +25,7 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
+    border: 4px solid black;
 }
 
 .Icon {

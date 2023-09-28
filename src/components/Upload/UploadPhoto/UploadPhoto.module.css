@@ -1,16 +1,15 @@
 .UploadPhoto {
     position: relative;
-
     display: grid;
-    justify-content: space-around;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
     align-content: center;
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-    gap: 10px;
+    gap: 0px;
     padding: 1.5%;
     width: 100%;
     height: 100%;
-
+    justify-items: center;
 }
 
 .PhotoWrapper {

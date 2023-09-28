@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const LogoSvg = ({
+const Logo = ({
     width = "2977.000000pt",
     height = "626.000000pt",
     fill = '#000000',
@@ -89,9 +89,11 @@ export const LogoSvg = ({
     );
 }
 
-LogoSvg.propTypes = {
+Logo.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
     fill: PropTypes.string,
     stroke: PropTypes.string
 };
+
+export default Logo
