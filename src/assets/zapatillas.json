@@ -1,0 +1,241 @@
+[{
+    "id": 1,
+    "name": "Yeezy Boost 350",
+    "price": 75.99,
+    "type": "SPLV-350",
+    "image": "./assets/image/foto1.png",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 2,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 3,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": [],
+    "category": "CLOTHES",
+    "size": "4"
+  },
+  {
+    "id": 4,
+    "name": "Yeezy",
+    "price": 75.99,
+    "type": "SPLV-350",
+    "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 5,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 6,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": [],
+    "category": "CLOTHES",
+    "size": "4"
+  },
+  {
+    "id": 7,
+    "name": "Yeezy",
+    "price": 75.99,
+    "type": "SPLV-350",
+    "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 8,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 9,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": [],
+    "category": "CLOTHES",
+    "size": "4"
+  },
+  {
+    "id": 10,
+    "name": "Yeezy",
+    "price": 75.99,
+    "type": "SPLV-350",
+    "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 11,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 12,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": [],
+    "category": "CLOTHES",
+    "size": "4"
+  },
+  {
+    "id": 13,
+    "name": "Yeezy",
+    "price": 75.99,
+    "type": "SPLV-350",
+    "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 14,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 15,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": [],
+    "category": "CLOTHES",
+    "size": "4"
+  },
+  {
+    "id": 16,
+    "name": "Yeezy",
+    "price": 75.99,
+    "type": "SPLV-350",
+    "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 17,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 18,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 19,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 20,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 21,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 22,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  },
+  {
+    "id": 23,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🟢",
+    "category": "CLOTHES",
+    "size": "6"
+  },
+  {
+    "id": 24,
+    "name": "Yeezy",
+    "price": 199.99,
+    "type": "SPLV-350",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+    "color": "🔴",
+    "category": "ACCESSORIES",
+    "size": "4"
+  }
+]
