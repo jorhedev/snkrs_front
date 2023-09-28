@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import styles from './LogIn.module.css';
 import SignIn from '../SignIn/SignIn';
 import { FaRegUser } from 'react-icons/fa'
-import { AvatarSvg } from '../../Icons/Avatar';
 import LoggedIn from '../LoggedIn/LoggedIn';
-import { SESSION_NAME } from '../../../const/const';
 import { viewFormLog } from '../../../redux/user';
-import { getCookieSession, readCookieSession } from '../../../services';
+import { readCookieSession } from '../../../services';
 
-const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '30' }) => {
+const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user.user)
   const login = useSelector(({ user }) => user.login)
@@ -38,7 +36,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
         width: `${style.size}`, height: `${style.size}`
       }} onClick={handlerClickLogin}>
         {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
-          <FaRegUser size={40} /> :
+          <FaRegUser size={sizeAvatar} /> :
           <img className={styles.Photo} src={imageUrl} alt='uploadImage' />}
       </span>
       {login.view && <SignIn isActiveSignIn={login.status} />}
