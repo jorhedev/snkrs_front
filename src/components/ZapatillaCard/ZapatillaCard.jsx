@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
 import { addCard, removeCard } from "../../redux/cardsSlice";
 import { NavLink } from "react-router-dom";
-
-
+import Swal from 'sweetalert2';
+import { addCartItemsById } from "../../redux/cartSlice";
 
 import {
   setProductCategory,
@@ -42,7 +42,15 @@ const ZapatillaCard = ({ zapatilla }) => {
     }
     setIsLiked(!isLiked);
   };
-
+  const addToCartHandler = () => {
+    dispatch(addCartItemsById(zapatilla));
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto Agregado al Carrito',
+      showConfirmButton: false,
+      timer: 1500, 
+    });
+  };
   return (
     <>
       
@@ -74,6 +82,7 @@ const ZapatillaCard = ({ zapatilla }) => {
         🔴🟢🔵⚫️⚪️
         <img src={logo} alt="logo" width={70} />
       </p>
+    <button onClick={addToCartHandler}>Agregar al carrito</button>
     </NavLink>
     </>
     

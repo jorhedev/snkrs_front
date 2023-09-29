@@ -7,7 +7,7 @@ import ListadoBusqueda from './views/ListadoBusqueda/ListadoBusqueda'
 import ListaBusqWomen from './views/ListodoBusqueda/ListaBusqWomen'
 import ListaBusqKids from './views/ListodoBusqueda/ListaBusqKids'
 import './App.css'
-
+import DashboardUser from "./components/DashboardUser/DashboardUser";
 import Home from './views/Home/Home'
 
 
@@ -23,6 +23,7 @@ function App() {
           <Route path="/cardk" element={<ListaBusqKids/>} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/user" element={<DashboardUser />} />
           </Routes>
       
     </>
