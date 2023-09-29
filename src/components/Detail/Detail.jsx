@@ -2,16 +2,17 @@
 
 // Detail.js
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BsHeart } from 'react-icons/bs';
 import PropTypes from "prop-types";
 import "./Detail.css";
-
-
+import { addCartItemsById } from "../../redux/cartSlice";
+import Swal from 'sweetalert2';
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   // Obtén el estado de Redux con las zapatillas
@@ -24,7 +25,15 @@ const Detail = () => {
   if (!zapatilla) {
     return <div>Zapatilla no encontrada.</div>;
   }
-
+  const addToCartHandler = () => {
+    dispatch(addCartItemsById(zapatilla));
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto Agregado al Carrito',
+      showConfirmButton: false,
+      timer: 1500, 
+    });
+  };
   return (
     <div className="detail-container">
       <div className="imagenes">
@@ -79,7 +88,7 @@ const Detail = () => {
           <div className="botones">
 
           <div className="btn">
-            <button >ADD TO CART</button>
+            <button onClick={addToCartHandler}>ADD TO CART</button>
           </div>
                 <p className="heart"><BsHeart/></p>
           </div>

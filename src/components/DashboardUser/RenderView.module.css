@@ -1,0 +1,8 @@
+
+.h1{
+    font-family: Montheavy;
+    font-size: 20px;
+    display:flex ;
+    justify-content: center;
+    color: rgb(110, 104, 104);
+}
