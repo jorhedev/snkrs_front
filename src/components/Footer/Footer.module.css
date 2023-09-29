@@ -1,0 +1,62 @@
+.Container {
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 300px;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin-top: 81px;
+}
+.section {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  margin-left: 100px;
+}
+
+  
+.sectionInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  gap: 100px;
+}
+.icon {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+.icon svg {
+    font-size: 30px;
+    color: rgb(130, 128, 128);
+    margin-right: 30px;
+}
+.copyright {
+    margin-top: 50px;
+    color: #fff;
+    font-family: MontHeavy;
+    margin-left: 200px;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.parts{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    font-family: MontHeavy;
+    
+}
+
+.parts .partsLight{
+  display: flex;
+  flex-direction: column;
+  font-family: MontLight;
+}
+
+.link{
+    color: #fff; 
+  text-decoration: none;
+}

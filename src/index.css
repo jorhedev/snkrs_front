@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -9,6 +10,18 @@ body {
   overflow-x: hidden;
 
 }
+
+
+body::-webkit-scrollbar{
+  width: 10px;
+  background-color: #f7f7f7;
+}
+
+body::-webkit-scrollbar-thumb{
+  background: linear-gradient(transparent, #00ccff);
+  border-radius: 6px;
+}
+
 
 @font-face {
   font-family: MontHeavy;
@@ -34,7 +47,3 @@ body {
   font-family: MontLight;
   src: url(./assets/Fonts/Fontfabric---Mont-ExtraLight.otf) format(opentype);
 }
-
-
-
-

@@ -1,0 +1,68 @@
+
+
+.containerEmail{
+    margin-top: 81px;
+    min-height: 300px;
+    background-color: #f7f7f7;
+}
+
+.infoEmail{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoEmail h4{
+    font-size: 70px;
+    line-height: 0;
+    margin: 0;
+}
+
+.infoEmail h1{
+    font-family: MontHeavy;
+    font-size: 50px;
+    margin: 0;
+}
+
+.infoEmail h2{
+    font-family: MontLight;
+    font-size: 18px;
+    margin: 0;
+}
+
+.send{
+    margin-top: 20px;
+    display: flex;
+    gap: 22px;
+}
+
+.send input{
+    width: 350px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #D9D9D9;
+    text-indent: 20px;
+    font-size: 24px;
+    font-family: MontBold;
+}
+
+.send button{
+    width: 100px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #101010;
+    color: #ffffff;
+    font-family: MontHeavy;
+    font-size: 24px;
+}
+
+.send button:hover{
+    background-color: #ffffff;
+    color: #101010;
+    border: 3px solid #101010;
+    cursor: pointer;
+}

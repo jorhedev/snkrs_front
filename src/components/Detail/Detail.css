@@ -1,0 +1,166 @@
+/**
+ * En tu archivo CSS para el componente Detail
+ *
+ * @format
+ */
+
+.detail-container {
+  display: flex;
+  position: relative;
+  left: 200px;
+  gap: 22px;
+  margin-top: 20px;
+}
+.product-images {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+}
+.product-images .img1 {
+  position: relative;
+  top: 30px;
+}
+.product-images .img2 {
+  margin: 0px 12px;
+  position: relative;
+  top: 30px;
+}
+.product-images .img3 {
+  margin: 0px 12px;
+  position: relative;
+  top: 30px;
+}
+.im1 {
+  background-color: #f7f7f7;
+  height: 170px;
+}
+.im2 {
+  background-color: #f7f7f7;
+  height: 170px;
+}
+.im3 {
+  background-color: #f7f7f7;
+  height: 170px;
+}
+.product-images .img2 {
+  margin: 10px 12px;
+  background-color: #f7f7f7;
+}
+.product-images .img3 {
+  margin: 10px 12px;
+  background-color: #f7f7f7;
+}
+.imagenes {
+  display: flex;
+  gap: 22px;
+}
+.product-images img {
+  display: flex;
+
+  width: 150px;
+}
+.product-main-image {
+  display: flex;
+  justify-content: center;
+  background-color: #f7f7f7;
+  height: 550px;
+}
+.product-main-image img {
+  width: auto;
+  height: 320px;
+  position: relative;
+  top: 80px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  width: auto;
+  margin: 0;
+}
+
+.product-info .name {
+  font-size: 38px;
+  margin-bottom: 10px;
+  margin: 0px;
+  font-family: MontHeavy;
+}
+.product-info h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: MontHeavy;
+}
+.product-info .type {
+  font-family: MontLight;
+  font-size: 20px;
+  margin: 0px 0px;
+}
+.product-info .price {
+  font-family: MontHeavy;
+  font-size: 26px;
+}
+.product-info img {
+  
+  max-width: 100%;
+}
+.size {
+  
+  display: grid;
+  width: 150px;
+  grid-template-columns: repeat(4, 1fr);
+ gap: 8px;
+}
+
+.size a {
+  padding: 5px 10px ;;
+  margin: 2px 0px;
+  width: 25px;
+  height: 15px;
+  
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #000;
+  display: block;
+  color: #000;
+  box-shadow: 0 5px 7px #0000003f;
+  font-size: 14px;
+  font-family: MontRegular;
+  
+  
+}
+.size a:hover{
+  background:#d9d9d9;
+}
+.add{
+  position: relative;
+  top: 41px;
+}
+.botones{
+  
+  display: flex;
+  gap: 6px;
+}
+.heart{
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px;
+  position: relative;
+  bottom: 17px;
+  background: #d9d9d9;
+  text-align: center;
+  font-size: 24px;
+}
+button{
+  background: #000;
+  padding: 8px 12px;
+  
+  color: #fff;
+  width: 250px;
+  font-family: MontHeavy;
+  border:none ;
+  font-size: 16px;
+  margin-top: 8px;
+  cursor: pointer;
+}
