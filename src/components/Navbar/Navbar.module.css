@@ -13,7 +13,7 @@
     width: 100%;
 }
 
-.BtnNavbar {
+.buttons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,20 +21,25 @@
     padding: 0 60px;
 }
 
-.BtnNavbar h2 {
+.buttons a{
+    text-decoration: none;
+    color: #101010;
+}
+
+.buttons h2 {
     margin: 0;
     font-size: 28px;
     font-family: MontHeavy;
 }
 
-.BtnNavbar h3 {
+.buttons h3 {
     margin: 0;
     font-size: 35px;
     font-family: MontHeavy;
     line-height: 0;
 }
 
-.BtnNavbar input {
+.buttons input {
     display: flex;
     height: 40px;
     width: 150px;
