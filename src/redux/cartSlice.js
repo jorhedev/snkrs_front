@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
         price: 75.99,
          type: "SPLV-350",
         image: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4d31131033b54e67b045ab2f017c6cda_9366/Tenis_Superstar_UNISEX_Blanco_FU7714_01_standard.jpg",
-         color: ["blue"],
+         color: ["🔴"],
          category: "ACCESSORIES",
           size: "4",
           gener: "women",
@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
         price: 75.99,
          type: "SPLV-350",
         image: "https://www.sportline.com.co/media/catalog/product/d/m/dm9922-200-phsrh000-2000.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700&format=jpeg",
-         color: ["blue"],
+         color: ["🟢"],
          category: "ACCESSORIES",
           size: "4",
           gener: "women",
@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
         price: 50.99,
          type: "SPLV-350",
         image: "https://i.ebayimg.com/images/g/4zEAAOSwHQpkGHw1/s-l1200.jpg",
-         color: ["black"],
+         color: ["⚫️"],
          category: "ACCESSORIES",
           size: "4",
           gener: "men",
@@ -53,11 +53,27 @@ export const cartSlice = createSlice({
       state.cartItems.push(action.payload);
     },
     removeFromCart: (state, action) => {
-      state.cartItems.filter(item => item.id !== action.payload.id);
+      const itemIdToRemove = action.payload.id;
+      state.cartItems = state.cartItems.filter(item => item.id !== itemIdToRemove);
+   
+    // removeFromCart: (state, action) => {
+    //   state.cartItems.filter(item => item.id !== action.payload.id);
     },
     clearCart: (state) => {
       state.cartItems = [];
     },
+    itemIncrement: (state, action) => {
+      const item = state.cartItems.find(item => item.id === action.payload.id);
+      if (item) {
+        item.quantity += 1;
+      }
+    },
+    itemDecrement:(state, action) => {
+      const item = state.cartItems.find(item => item.id === action.payload.id);
+      if (item && item.quantity > 1) {
+        item.quantity -= 1; 
+      }
+    }
   },
 });
 
@@ -97,5 +113,5 @@ export const clearCartCartItemsById = () => async (dispatch) => {
       // Manejo de errores si es necesario
   }
 };
-export const { getCart, addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const { getCart, addToCart, removeFromCart, clearCart,itemIncrement,itemDecrement } = cartSlice.actions;
 export default cartSlice.reducer;
