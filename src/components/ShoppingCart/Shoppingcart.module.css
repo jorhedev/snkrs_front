@@ -1,0 +1,36 @@
+.cartTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cartTable th {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+  font-family: Montheavy;
+  border-bottom: 2px solid #555151;
+}
+
+.cartTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.cartTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.cartTable .itemImage {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.cartTable .deleteButton {
+  background-color: #009f0d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
