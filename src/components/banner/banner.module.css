@@ -11,7 +11,7 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".
 
   text-align: center;
 }
-.men {
+.wom {
   position: absolute;
   width: 1050px;
   height: 70px;
@@ -24,15 +24,18 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".
 
   color: rgba(255, 255, 255, 0.301);
 }
-.banner1{
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/Image/banner1.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 300px;
-  position: relative;
-  top: 1530px;
-  text-align: center;
+.kids {
+  position: absolute;
+  width: 1050px;
+  height: 70px;
+  left: 200px;
+  top: 30px;
+    font-family: MontHeavy;
+  font-size: 200px;
+  line-height: 270px;
+  
+
+  color: rgba(255, 255, 255, 0.301);
 }
 .bann{
   color: #fff;
@@ -40,3 +43,54 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".
   font-size: 96px;
   line-height: 270px;
 }
+
+
+.bannerw {
+    
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/Image/foto2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 600px;
+  
+    text-align: center;
+  }
+  .bannerk {
+    
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/Image/Kids.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: 600px;
+    
+      text-align: center;
+  }
+  .men {
+    position: absolute;
+    width: 1050px;
+    height: 70px;
+    left: 200px;
+    top: 30px;
+      font-family: MontHeavy;
+    font-size: 200px;
+    line-height: 270px;
+    
+  
+    color: rgba(255, 255, 255, 0.301);
+  }
+  .banner1{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/Image/banner1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 300px;
+    position: relative;
+    top: 1530px;
+    text-align: center;
+  }
+  .bann{
+    color: #fff;
+    font-family: MontHeavy;
+    font-size: 96px;
+    line-height: 270px;
+  }
