@@ -12,25 +12,23 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".
   text-align: center;
 }
 .wom {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
   position: absolute;
-  width: 1050px;
-  height: 70px;
-  left: 200px;
-  top: 30px;
-    font-family: MontHeavy;
+  font-family: MontHeavy;
   font-size: 200px;
   line-height: 270px;
-  
-
   color: rgba(255, 255, 255, 0.301);
 }
 .kids {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
   position: absolute;
-  width: 1050px;
-  height: 70px;
-  left: 200px;
-  top: 30px;
-    font-family: MontHeavy;
+  font-family: MontHeavy;
   font-size: 200px;
   line-height: 270px;
   
@@ -56,7 +54,10 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".
     text-align: center;
   }
   .bannerk {
-    
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/Image/Kids.jpg");
       background-position: center;
       background-repeat: no-repeat;
@@ -66,12 +67,12 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".
       text-align: center;
   }
   .men {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
     position: absolute;
-    width: 1050px;
-    height: 70px;
-    left: 200px;
-    top: 30px;
-      font-family: MontHeavy;
+    font-family: MontHeavy;
     font-size: 200px;
     line-height: 270px;
     

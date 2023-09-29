@@ -2,7 +2,7 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import snkrs from '../../assets/Logo.png'
 import { AiOutlineHeart } from 'react-icons/ai';
-import { BsPerson, BsCart2 } from 'react-icons/bs';
+import { BsCart2 } from 'react-icons/bs';
 import { LogIn } from '../Login';
 
 const Navbar = () => {
@@ -11,11 +11,12 @@ const Navbar = () => {
         <div className={styles.container}>
             <div className={styles.nav}>
                 <div className={styles.logo}>
-                    <img src={snkrs} alt="" />
+                <Link to='/'><img src={snkrs} alt="" /></Link>                
                 </div>
-                <div className={styles.BtnNavbar}>
-                    <h2>WOMEN</h2>
-                    <h2>MEN</h2>
+                <div className={styles.buttons}>
+                    <Link to='/cardw'><h2>WOMEN</h2></Link>
+                    <Link to='/card'><h2>MEN</h2></Link>
+                    <Link to='/cardK'><h2>KIDS</h2></Link>
                     <input type="text" name="" id="" placeholder="BUSCAR" />
                     <h3><AiOutlineHeart /></h3>
                     <h3><BsCart2 /></h3>
