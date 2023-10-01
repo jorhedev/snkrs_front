@@ -6,7 +6,7 @@
 }
 
 .PhotoWrapper {
-    background-color: #ffffff;
+    background-color: transparent;
     display: flex;
     position: relative;
     border-radius: 50%;

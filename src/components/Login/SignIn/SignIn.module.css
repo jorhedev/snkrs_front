@@ -1,7 +1,21 @@
+.SignInContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+}
+
 .SignIn {
     position: absolute;
     right: 0px;
     top: 60px;
+    z-index: 100;
     background: #2D2D2D;
     width: 300px;
     min-height: 400px;

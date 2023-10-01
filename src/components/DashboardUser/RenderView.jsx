@@ -16,13 +16,13 @@ const RenderView = ({ selectedView }) => {
     case 'favorites':
       return (
         <div>
-         <h1>this is favorites</h1>
+          <h1>this is favorites</h1>
         </div>
       );
     case 'shopping':
       return (
         <div>
-          <ShoppingCart/>
+          <ShoppingCart />
         </div>
       );
     case 'record':
