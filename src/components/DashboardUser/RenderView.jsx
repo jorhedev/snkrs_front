@@ -79,7 +79,7 @@ const RenderView = ({ selectedView }) => {
     case 'shopping':
       return (
         <div>
-          <ShoppingCart/>
+          <ShoppingCart />
         </div>
       );
     case 'record':

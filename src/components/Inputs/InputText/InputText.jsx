@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './InputText.module.css';
 import { GiBroom } from 'react-icons/gi'
-import { handlerNames } from '../../../../services';
+import { handlerNames } from '../../../services';
 
 const InputText = ({ initInput = '', onChangeInput, errors, tag = '', buttonClear = false, namesFormat = false, style }) => {
   const [state, setState] = useState(initInput)

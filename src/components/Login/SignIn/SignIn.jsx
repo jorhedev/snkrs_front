@@ -3,6 +3,7 @@ import axiosInstance from '../../../utils/axiosInstance';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './SignIn.module.css';
 import { signInValidate } from '../../../services';
 import {
@@ -12,20 +13,18 @@ import {
   signInWithTwitter,
   signInWithFacebook
 } from '../../../services/firebase';
-import { signIn as logIn } from '../../../redux/user';
-import SignUp from '../SignUp/SignUp';
+import { signIn as logIn, setViewLogin } from '../../../redux/user';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
-import { InputPassword, InputText } from '../Inputs';
-import { URL_SNKRS } from '../../../const/const';
+import { InputPassword, InputText } from '../../Inputs';
 
 import Swal from 'sweetalert2';
 
 const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [login, setLogin] = useState({ email: null, password: null });
   const [error, setError] = useState({});
-  const [showSignUp, setShowSignUp] = useState(false);
   const [viewForgotPass, setViewForgotPass] = useState(false);
 
   const handleInputChange = (inputField, inputValue) => {
@@ -34,8 +33,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
     setError(signInValidate(currentState))
   };
 
-
-  const handlerLogin = async (Red) => {
+  const handlerSignIn = async (Red) => {
     let _tokenResponse;
     try {
       switch (Red) {
@@ -50,7 +48,6 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
         case 'twitter':
           await logOut();
           ({ _tokenResponse } = await signInWithTwitter());
-          console.log("🚀 ~ file: SignIn.jsx:53 ~ handlerLogin ~ _tokenResponse:", _tokenResponse)
 
           break;
         case 'login':
@@ -82,14 +79,21 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
     }
   };
 
-  const handlerChangeSignUp = () => { setShowSignUp(!showSignUp) }
+  const handlerChangeSignUp = () => {
+    dispatch(setViewLogin(false))
+    navigate('/signUp')
+  }
+
   const handlerChangeForgotPass = () => { setViewForgotPass(!viewForgotPass) }
 
+  const handlerExternalClick = (event) => {
+    if (event.target.classList.contains(styles.SignInContainer)) onChangeSignIn()
+  };
 
   return (
     <>
-      < div className={`${styles.SignIn} ${isActiveSignIn ? styles.active : styles.fadeOut}`
-      }>
+      <div className={styles.SignInContainer} onClick={handlerExternalClick}>      </div>
+      < div className={`${styles.SignIn} ${isActiveSignIn ? styles.active : styles.fadeOut}`}>
         <div className={styles.SignInForm}>
           <span className={styles.GroupInput}>
             <InputText
@@ -120,15 +124,15 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
             {error.password && <p className={styles.errorText} title={error.password}>{error.password}</p>}
           </span>
           <div className={styles.BtnSignIn}>
-            <button className={styles.BtnLogIn} onClick={() => { handlerLogin('login') }}>Login</button>
+            <button className={styles.BtnLogIn} onClick={() => { handlerSignIn('login') }}>Login</button>
             <div className={styles.SocialNet}>
-              <div onClick={() => { handlerLogin('facebook') }} >
+              <div onClick={() => { handlerSignIn('facebook') }} >
                 <SocialNetworks redSocial={{ facebook: '' }} />
               </div>
-              <span onClick={() => { handlerLogin('google') }} >
+              <span onClick={() => { handlerSignIn('google') }} >
                 <SocialNetworks redSocial={{ google: '' }} />
               </span>
-              <span onClick={() => { handlerLogin('twitter') }}>
+              <span onClick={() => { handlerSignIn('twitter') }}>
                 <SocialNetworks redSocial={{ twitter: '' }} />
               </span>
             </div>
@@ -139,8 +143,8 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           </div>
         </div>
       </div >
-      <SignUp viewSignUp={showSignUp} onViewSignUp={handlerChangeSignUp} />
       <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
+
     </>
   )
 }
