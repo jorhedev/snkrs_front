@@ -1,13 +1,13 @@
 /** @format */
 
 // ZapatillasCard.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ZapatillaCard from "./ZapatillaCard";
 import Detail from "../Detail/Detail";
 import Filter from "../Filter/Filter";
-import zapatillasData from '../../assets/zapatillas.json';
-
+// import zapatillasData from '../../assets/zapatillas.json';
+import axios from "axios";
 import styles from "./ZapatillaCard.module.css";
 
 
@@ -16,8 +16,22 @@ const ZapatillasCard = () => {
   const itemsPerPage = 9; // Cantidad de elementos por página
   const zapatillas = useSelector((state) => state.zapatillas); // Asegúrate de que el slice se llame 'zapatillas'
   console.log(zapatillas);
+  const [zapatillasData, setZapatillasData] = useState([]); 
 
   const totalPages = Math.ceil(zapatillasData.length / itemsPerPage);
+  console.log(zapatillasData)
+
+  useEffect(() => {
+   
+    axios.get("http://localhost:3001/products")
+      .then((response) => {
+        // Actualiza el estado con los datos de zapatillas obtenidos
+        setZapatillasData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los datos de zapatillas:", error);
+      });
+  }, []);
 
   // Función para generar los números de página
   const generatePageNumbers = () => {

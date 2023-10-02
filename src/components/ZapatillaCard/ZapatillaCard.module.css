@@ -5,7 +5,7 @@
     gap: 25px; 
     margin-top: 20px;
     margin-left: 30px;
-   
+  
   }
   
 
@@ -26,10 +26,12 @@
   }
 .product{
    display: flex;
-   flex-direction: row-reverse
+   flex-direction: row-reverse;
+   justify-content: flex-end;
 }
+
 .isPriceLessThan90::before {
-  content: '40%';
+  content: 'sale';
   position: absolute;
   width: 0px;
   height: 40px;
@@ -75,8 +77,11 @@
   z-index: -6;
 }
 .zapatilla .price p{
-  font-size: 18px;
-  padding: 4px 4px;
+  font-size: 16px;
+  padding: 16px auto;
+}
+.price{
+  text-align: center;
 }
 
   .zapatilla img {
@@ -174,3 +179,4 @@
   color: #fff;
   font-weight: bold;
 }
+

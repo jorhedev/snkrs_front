@@ -14,8 +14,9 @@ const Navbar = () => {
                     <img src={snkrs} alt="" />
                 </div>
                 <div className={styles.BtnNavbar}>
-                    <h2>WOMEN</h2>
-                    <h2>MEN</h2>
+                    <Link className={styles.btn} to={'/card'}>WOMEN</Link>
+                    <Link className={styles.btn} to={'/card'}>MEN</Link>
+                 
                     <input type="text" name="" id="" placeholder="BUSCAR" />
                     <h3><AiOutlineHeart /></h3>
                     <h3><BsCart2 /></h3>
