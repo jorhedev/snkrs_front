@@ -18,7 +18,7 @@ const Navbar = () => {
                     <Link to='/card'><h2>MEN</h2></Link>
                     <Link to='/cardK'><h2>KIDS</h2></Link>
                     <input type="text" name="" id="" placeholder="BUSCAR" />
-                    <h3><AiOutlineHeart /></h3>
+                   <Link to="/user?view=favorites"> <h3><AiOutlineHeart /></h3></Link>
                     <h3>
             {" "}
             <Link to="/user?view=shopping">

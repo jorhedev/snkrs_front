@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import "./Detail.css";
 import { addCartItemsById } from "../../redux/cartSlice";
 import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
@@ -90,7 +91,9 @@ const Detail = () => {
           <div className="btn">
             <button onClick={addToCartHandler}>ADD TO CART</button>
           </div>
+          <Link to="/user?view=favorites">
                 <p className="heart"><BsHeart/></p>
+          </Link>
           </div>
         </div>
       </div>
