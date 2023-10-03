@@ -3,6 +3,8 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
 import SignUp from './components/Login/SignUp/SignUp';
 import Detail from './components/Detail/Detail'
 import Navbar from "./components/Navbar/Navbar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import ListadoBusqueda from './views/ListadoBusqueda/ListadoBusqueda'
 import ListaBusqWomen from './views/ListodoBusqueda/ListaBusqWomen'
 import ListaBusqKids from './views/ListodoBusqueda/ListaBusqKids'

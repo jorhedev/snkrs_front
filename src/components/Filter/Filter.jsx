@@ -107,7 +107,7 @@ const Filter = () => {
         <a href="">Clear all</a>
       </div>
       <div className={styles.bar}></div>
-      <img className={styles.img} src={logo} alt="logo" width={65} />
+      <img className={styles.img} src={logo} alt="logo" width={60} />
       
       {/* Primer desplegable */}
       <div className={styles.dropdown}>
@@ -139,8 +139,8 @@ const Filter = () => {
 
       {/* Segundo desplegable */}
       <div className={styles.dropdown}>
-        <div className={styles.sort}>
-          <h4>Product Category</h4>
+        <div className={styles.cate}>
+          <h4>Category</h4>
           <button className={styles.dropbtn1} onClick={toggleDropdown2}>
           {iconoArriba2 ? <BsFillArrowDownCircleFill /> :  <BsFillArrowUpCircleFill />}
           </button>

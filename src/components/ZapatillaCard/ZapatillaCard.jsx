@@ -25,7 +25,7 @@ const ZapatillaCard = ({ zapatilla }) => {
   const card = useSelector((state) => state.cards);
   const filters = useSelector((state) => state.filters);
 
-  console.log(zapatilla);
+  console.log(favorites);
 
   const isFavorite = favorites.some((favorite) => favorite.id === zapatilla.id);
   const [isLiked, setIsLiked] = useState(isFavorite);
@@ -54,22 +54,19 @@ const ZapatillaCard = ({ zapatilla }) => {
   return (
     <>
       
-      <NavLink to={`/detail/${zapatilla.id}`}
+      <div
       className={`${styles.zapatilla} ${
         zapatilla.price < 90 ? styles.isPriceLessThan90 : ""
       }`}
     >
-      <a onClick={toggleLike}>
-        <span role="img" aria-label="Corazón">
-          {isLiked ? "❤️" : "🤍"}
-        </span>
-      </a>
+      
       
 
-      <img src={zapatilla.image} alt={zapatilla.name} />
+      <img src={zapatilla?.image[0]?.src} alt={zapatilla.brand} />
+      
      
       <div className={styles.name}>
-        <h2>{zapatilla.name}</h2>
+        <h2>{zapatilla.brand}</h2>
         <div className={styles.price}>
           <p>$ {zapatilla.price}</p>
 
@@ -77,13 +74,14 @@ const ZapatillaCard = ({ zapatilla }) => {
         </div>
       </div>
 
+      <p className={styles.type}>{zapatilla.model}</p>
       <p className={styles.type}>{zapatilla.type}</p>
       <p className={styles.circle}>
         🔴🟢🔵⚫️⚪️
         <img src={logo} alt="logo" width={70} />
       </p>
     <button onClick={addToCartHandler}>Agregar al carrito</button>
-    </NavLink>
+    </div>
     </>
     
   );
@@ -92,8 +90,9 @@ const ZapatillaCard = ({ zapatilla }) => {
 ZapatillaCard.propTypes = {
   zapatilla: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    brand: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,

@@ -12,6 +12,7 @@ const Home = () =>{
         <div className={styles.container}>
             <Header/>
             <Promo/>
+            
             <TopSales/>
             <BeMember/>
             <Newsletter/>

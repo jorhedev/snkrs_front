@@ -50,7 +50,7 @@
   },
   {
     "id": 6,
-    "name": "Yeezy",
+    "name": "adidas",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -60,7 +60,7 @@
   },
   {
     "id": 7,
-    "name": "Yeezy",
+    "name": "nike",
     "price": 75.99,
     "type": "SPLV-350",
     "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
@@ -80,7 +80,7 @@
   },
   {
     "id": 9,
-    "name": "Yeezy",
+    "name": "puma",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -100,7 +100,7 @@
   },
   {
     "id": 11,
-    "name": "Yeezy",
+    "name": "sol",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -120,7 +120,7 @@
   },
   {
     "id": 13,
-    "name": "Yeezy",
+    "name": "New Balance",
     "price": 75.99,
     "type": "SPLV-350",
     "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
@@ -150,7 +150,7 @@
   },
   {
     "id": 16,
-    "name": "Yeezy",
+    "name": "Puma",
     "price": 75.99,
     "type": "SPLV-350",
     "image": "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
@@ -160,7 +160,7 @@
   },
   {
     "id": 17,
-    "name": "Yeezy",
+    "name": "Nike",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -170,7 +170,7 @@
   },
   {
     "id": 18,
-    "name": "Yeezy",
+    "name": "adidas",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -190,7 +190,7 @@
   },
   {
     "id": 20,
-    "name": "Yeezy",
+    "name": "puma",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -200,7 +200,7 @@
   },
   {
     "id": 21,
-    "name": "Yeezy",
+    "name": "Nike",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -210,7 +210,7 @@
   },
   {
     "id": 22,
-    "name": "Yeezy",
+    "name": "adidas",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -220,7 +220,7 @@
   },
   {
     "id": 23,
-    "name": "Yeezy",
+    "name": "puma",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
@@ -230,7 +230,7 @@
   },
   {
     "id": 24,
-    "name": "Yeezy",
+    "name": "Nike",
     "price": 199.99,
     "type": "SPLV-350",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
