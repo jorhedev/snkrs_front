@@ -1,0 +1,25 @@
+.zapatilla{
+    position: absolute;
+    left: 70px;
+}
+.homediv{
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    border-bottom: 1px solid #000 ;
+    margin-bottom: 0;
+    margin-top: 25px;
+    margin-left: 30px;
+  }
+  .homebtn{
+    position: relative;
+    top: 10px;
+    margin: 0;
+    text-decoration: none;
+    color: #000;
+  }
+  .homediv img{
+    position: relative;
+    top: 28px;
+    margin: 0;
+  }

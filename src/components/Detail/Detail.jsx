@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from "react";
+/** @format */
+
+// Detail.js
+import React, {useEffect} from "react";
+import { useSelector, useDispatch, useState } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BsHeart } from "react-icons/bs";
 import PropTypes from "prop-types";
 import axios from "axios";
 import "./Detail.css";
+import { addCartItemsById } from "../../redux/cartSlice";
+import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [zapatilla, setZapatilla] = useState(null);
   console.log(zapatilla)
@@ -27,8 +35,15 @@ const Detail = () => {
   if (zapatilla === null) {
     return <div>Cargando...</div>;
   }
-
-
+  const addToCartHandler = () => {
+    dispatch(addCartItemsById(zapatilla));
+    Swal.fire({
+      icon: 'success',
+      title: 'Producto Agregado al Carrito',
+      showConfirmButton: false,
+      timer: 1500, 
+    });
+  };
   return (
     <div className="detail-container">
       <div className="imagenes">
@@ -58,12 +73,13 @@ const Detail = () => {
             {/* Renderiza las opciones de tamaño aquí */}
           </div>
           <div className="botones">
-            <div className="btn">
-              <button>ADD TO CART</button>
-            </div>
-            <p className="heart">
-              <BsHeart />
-            </p>
+
+          <div className="btn">
+            <button onClick={addToCartHandler}>ADD TO CART</button>
+          </div>
+          <Link to="/user?view=favorites">
+                <p className="heart"><BsHeart/></p>
+          </Link>
           </div>
         </div>
       </div>

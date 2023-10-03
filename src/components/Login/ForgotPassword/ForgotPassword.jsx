@@ -24,7 +24,6 @@ const ForgotPassword = ({ viewForgot, onViewForgot }) => {
   // Check if the click was outside the load dialog
   const handlerExternalClick = (event) => {
     if (event.target.classList.contains(styles.ForgotPasswordContainer)) handlerCloseBox();
-
   };
 
   const handlerInputChange = (event) => {

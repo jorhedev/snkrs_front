@@ -1,0 +1,7 @@
+export { default as Brands } from './Brands'
+export { default as Customer } from './Customer'
+export { default as Product } from './Product'
+export { default as Sales } from './Sales'
+export { default as Statistics } from './Statistics'
+export { default as Stock } from './Stock'
+export { default as TypesCategories } from './TypesCategories'
