@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from "react";
+import styleDashBoard from '../../DashBoard.module.css'
 
-function Sales() {
-    return (
-        <div>Sales</div>
-    )
-}
+const Sales = () => {
+
+};
+
 
 export default Sales

@@ -6,13 +6,14 @@ import { Link, useLocation } from 'react-router-dom';
 
 const LateralMenu = () => {
     const { pathname } = useLocation()
-    console.log("🚀 ~ file: LateralMenu.jsx:9 ~ LateralMenu ~ pathname:", pathname)
 
     let menu
     if (pathname.includes('/admin')) {
         menu = MENU_ADMIN
-    } else {
+    } else if (pathname.includes('/user')) {
         menu = MENU_USER
+    } else {
+        return
     }
     return (
         <>

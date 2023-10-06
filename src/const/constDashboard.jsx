@@ -71,3 +71,17 @@ export const MENU_ADMIN = {
         icon: <BiSolidCategoryAlt />,
     }
 }
+
+export const NAV_ALL = [
+    '/', '/home'
+]
+
+export const NAV_USER = [
+    ...NAV_ALL,
+    ...Object.values(MENU_USER).map(({ route }) => route)
+]
+
+export const NAV_ADMIN = [
+    ...NAV_ALL,
+    ...Object.values(MENU_ADMIN).map(({ route }) => route)
+]

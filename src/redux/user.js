@@ -35,7 +35,6 @@ export const userSlice = createSlice({
             }
         },
         setViewLogin: (state, action) => {
-            console.log("🚀 ~ file: user.js:37 ~ action:", action)
             if (action.payload === undefined)
                 state.login.view = !state.login.view
             else
@@ -67,11 +66,12 @@ export const signIn = (userCredentials) => async (dispatch) => {
 
 export const signOut = () => async (dispatch) => {
     try {
-        await axiosInstance.post(`/auth/sign-out`)
+        const data = await axiosInstance.post(`/auth/sign-out`)
+        console.log("🚀 ~ file: user.js:71 ~ signOut ~ data:", data)
         logOut()
         dispatch(setLogOut());
         removeCookieSession()
-        window.location.href = '/';
+        // window.location.href = '/';
     }
     catch (error) {
         console.error('Error:', error);

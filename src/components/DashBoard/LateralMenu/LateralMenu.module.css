@@ -2,11 +2,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 300px;
+    width: 250px;
     height: 100vh;
     background: #F7F7F7;
 }
-
 
 .LateralMenu {
     position: relative;
@@ -21,18 +20,18 @@
     top: 80px;
 }
 
-a {
+.LateralMenu a {
     text-decoration: none;
     color: #424242;
 }
 
-a:hover {
+.LateralMenu a:hover {
     color: #D9D9D9;
 }
 
 .MenuLink {
     display: flex;
-    width: 250px;
+    width: 230px;
     height: 100px;
     font-family: MontHeavy;
     border-radius: 50px 0px 0px 50px;
@@ -74,4 +73,5 @@ a:hover {
 
 .MenuInfo label {
     font-size: 22px;
+    cursor: pointer;
 }

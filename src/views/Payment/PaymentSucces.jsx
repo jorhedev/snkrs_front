@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { snkrsStorage } from '../../const/const';
+import React, { useState } from 'react'
+import { SESSION_NOT_COOKIE, PAYMENT_STORAGE } from '../../const/const';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/cartSlice';
@@ -8,13 +8,13 @@ import Confetti from 'react-confetti';
 import { Link } from 'react-router-dom';
 
 const PaymentSucces = () => {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        localStorage.removeItem(snkrsStorage);
-        dispatch(clearCart())
-        
+  const dispatch = useDispatch()
+  useEffect(() => {
+    localStorage.removeItem(PAYMENT_STORAGE);
+    dispatch(clearCart())
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+  }, [])
 
   return (
     <div className={styles.paymentSuccessContainer}>
@@ -22,10 +22,10 @@ const PaymentSucces = () => {
         <h1>WE RECEIVED YOUR ORDER </h1>
         <h3>We will get started on it right away and keep you up to date on our progress</h3>
         <h2>CHECK YOUR EMAIL</h2>
-        <Link to='/'><button className={styles.boton}>GO TO HOME</button></Link>
-        
+        <Link to={SESSION_NOT_COOKIE}><button className={styles.boton}>GO TO HOME</button></Link>
+
       </div>
-      <Confetti 
+      <Confetti
         width={window.innerWidth}
         height={window.innerHeight}
       />

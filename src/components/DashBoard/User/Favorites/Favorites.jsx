@@ -68,7 +68,7 @@ const Favorites = () => {
 
               <div className={styles.name}>
 
-                
+
                 <h2>{item?.brand}</h2>
                 <div className={styles.price}>
                   <p>$ {item?.price}</p>

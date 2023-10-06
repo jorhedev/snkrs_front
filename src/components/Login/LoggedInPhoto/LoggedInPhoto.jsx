@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './LoggedInPhoto.module.css';
-import { AvatarSvg } from '../../Icons/Avatar';
+import { Avatar } from '../../Icons/Avatar';
 import { useSelector } from 'react-redux';
 import { readCookieSession } from '../../../services';
 
@@ -33,7 +33,7 @@ function UploadPhoto({ imageSrc, onChangeImage, defaultImage, size = '200px', ba
     <div className={styles.UploadPhoto}>
       <span className={styles.PhotoWrapper} style={{ background: { background } }}>
         {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
-          <AvatarSvg wsize={'200px'} fill={'#2D2D2D'} stroke={'#3A6561'} /> :
+          <Avatar size={'200px'} fill={'#2D2D2D'} stroke={'#3A6561'} /> :
           <img className={styles.Photo} src={imageUrl} alt='uploadImage' />
         }
       </span>

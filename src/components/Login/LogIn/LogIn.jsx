@@ -6,33 +6,56 @@ import SignIn from '../SignIn/SignIn';
 import { FaRegUser } from 'react-icons/fa'
 import LoggedIn from '../LoggedIn/LoggedIn';
 import { setStatusLogin, setViewLogin, viewFormLog } from '../../../redux/user';
-import { readCookieSession } from '../../../services';
+import { checkCookieSession, getCookieSession, readCookieSession } from '../../../services';
+import { Navigate, useLocation } from 'react-router-dom';
+import { NAV_ALL, NAV_ADMIN, NAV_USER, SESSION_NOT_COOKIE } from '../../../const';
 
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
-  const user = useSelector(({ user }) => user.user)
+  const { pathname } = useLocation()
   const login = useSelector(({ user }) => user.login)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
 
+  const cookie = readCookieSession()
+  console.log('here')
   useEffect(() => {
-    const cookie = readCookieSession()
+    const interval = setInterval(() => {
+      if (!getCookieSession()) {
+        setImageUrl('')
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [cookie, setImageUrl]);
+
+  useEffect(() => {
     if (cookie) {
-      const { _id, ...data } = cookie
-      setImageUrl(data?.image)
+      const { image } = cookie
+      setImageUrl(image)
+    } else {
+      setImageUrl('')
     }
-  }, [setImageUrl, user]);
+  }, [cookie, setImageUrl]);
 
   const handlerClickLogin = () => {
     dispatch(viewFormLog())
   }
 
-  const handlerChangeLogin = (image) => {
-    setImageUrl(image);
-  }
-
   const handlerChangeSignIn = (status) => {
     dispatch(setViewLogin());
   }
+
+
+  if (!cookie) {
+    if ([NAV_ALL].some(nav => nav == pathname)) return (<Navigate to={SESSION_NOT_COOKIE} />)
+  } else {
+    if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname)) {
+      return (<Navigate to={SESSION_NOT_COOKIE} />)
+    }
+    if (cookie.role == 'admin' && !NAV_ADMIN.some(nav => nav == pathname)) {
+      return (<Navigate to={SESSION_NOT_COOKIE} />)
+    }
+  }
+
 
   return (
     <div className={styles.LogIn} >

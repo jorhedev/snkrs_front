@@ -1,8 +1,6 @@
 .InputDate {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
 }
 
 .InputDate h3 {
@@ -12,38 +10,31 @@
 .InputDate input {
     border: none;
     border-radius: 10px;
-    font-family: "Segoe UI ", Arial, sans-serif;
-    font-weight: 800;
-    font-size: 20px;
+    text-align: start;
     text-indent: 10px;
-    -webkit-text-stroke: 0.5px black;
-    margin-top: 0;
     padding-right: 5px;
     outline: none;
 }
 
-
 .InputDate input::placeholder {
-    font-family: CocoSharpBold;
+    color: #7d7d7d;
     opacity: 50%;
     font-size: 15px;
+    align-content: start;
+    text-align: start;
 }
 
 .DateFile {
+    width: calc(100%) !important;
     border: none;
     border-radius: 10px;
-    background: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: baseline;
-    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
 .InputDate button {
     display: flex;
-    color: black;
+    color: #D9D9D9;
     background: white;
     width: 15px;
     justify-content: center;

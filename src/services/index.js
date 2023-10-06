@@ -1,9 +1,10 @@
 export {
+    checkCookieSession,
     getCookieSession,
     readCookieSession,
     removeCookieSession,
     setCookieSession,
-    verifyCookieSession
+    updateCookieSession
 } from './auth'
 
 export {

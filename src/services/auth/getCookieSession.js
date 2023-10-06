@@ -7,7 +7,7 @@ const getCookieSession = (nameCookie = SESSION_NAME) => {
     if (cookie) {
         return cookie
     } else {
-        redirect('/')
+        return false
     }
 }
 

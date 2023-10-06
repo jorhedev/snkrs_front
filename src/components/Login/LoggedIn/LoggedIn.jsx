@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './LoggedIn.module.css';
 import LoggedInPhoto from '../LoggedInPhoto/LoggedInPhoto'
-import { signOut } from '../../../redux/user';
+import { signOut, viewFormLog } from '../../../redux/user';
 import { MdPerson } from 'react-icons/md';
 import { FaHotel, FaUserTie } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import { readCookieSession } from '../../../services';
+import { handlerNames, readCookieSession } from '../../../services';
 
 const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
   const dispatch = useDispatch()
@@ -31,6 +31,10 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
     }
   }, [setUser]);
 
+  const handlerCloseLoggedIn = () => {
+    dispatch(viewFormLog())
+  }
+
   const handlerSignOut = () => {
     dispatch(signOut())
   }
@@ -39,7 +43,7 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
       <div className={`${styles.LoggedIn} ${isActiveLoggedIn ? styles.active : ''}`}>
         <div className={styles.Header}>
           <div className={styles.LoggedInHeader}>
-            <label htmlFor="">{user?.role}</label>
+            <label htmlFor="">{user?.firstName?.split(' ')[0]} {user?.lastName?.split(' ')[0]}</label>
             <div className={styles.Photo}>
               <LoggedInPhoto imageSrc={
                 (imageUrl === '' || imageUrl === null || imageUrl === undefined) ? '' :
@@ -49,15 +53,17 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
         </div>
 
         <div className={styles.LoggedInForm}>
-          <NavLink to={
-            user?.role === 'user' ? "/user" :
-              user?.role === 'admin' ? "/admin" : null}>
-            <div className={styles.BodyLoggedIn}>
-              {user?.role === 'user' ? <MdPerson className={styles.inputIcon} size={30} /> :
-                user?.role === 'admin' ? <FaUserTie className={styles.inputIcon} size={30} /> : null}
-              <label className={styles.Name} htmlFor="">{user?.firstName} {user?.lastName}</label>
-            </div>
-          </NavLink >
+          <div className={styles.Role} onClick={handlerCloseLoggedIn}>
+            <NavLink to={
+              user?.role === 'user' ? "/user" :
+                user?.role === 'admin' ? "/admin" : null}>
+              <div className={styles.BodyLoggedIn}>
+                {user?.role === 'user' ? <MdPerson className={styles.inputIcon} size={30} /> :
+                  user?.role === 'admin' ? <FaUserTie className={styles.inputIcon} size={30} /> : null}
+                <label className={styles.Name} htmlFor="">{handlerNames(user?.role)}</label>
+              </div>
+            </NavLink >
+          </div>
         </div>
         <div className={styles.LoggedInFooter}>
           <div className={styles.BtnSignOut}>
