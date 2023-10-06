@@ -6,53 +6,37 @@
 
 .detail-container {
   display: flex;
-  position: relative;
-  left: 200px;
+  flex-direction: row;
+  justify-content: center;
+  height: auto;
   gap: 22px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .product-images {
   display: flex;
-  flex-direction: column-reverse;
-  gap: 20px;
+  flex-direction: column;
+  height: 500px;
+  
 }
-.product-images .img1 {
-  position: relative;
-  top: 30px;
-}
-.product-images .img2 {
-  margin: 0px 12px;
-  position: relative;
-  top: 30px;
-}
-.product-images .img3 {
-  margin: 0px 12px;
-  position: relative;
-  top: 30px;
-}
+
+
+
 .im1 {
-  background-color: #f7f7f7;
+ 
   height: 170px;
 }
 .im2 {
-  background-color: #f7f7f7;
+ 
   height: 170px;
 }
 .im3 {
-  background-color: #f7f7f7;
+  
   height: 170px;
 }
-.product-images .img2 {
-  margin: 10px 12px;
-  background-color: #f7f7f7;
-}
-.product-images .img3 {
-  margin: 10px 12px;
-  background-color: #f7f7f7;
-}
+
 .imagenes {
   display: flex;
-  gap: 22px;
+  gap: 10px;
 }
 .product-images img {
   display: flex;
@@ -63,7 +47,7 @@
   display: flex;
   justify-content: center;
   background-color: #f7f7f7;
-  height: 550px;
+  height: 485px;
 }
 .product-main-image img {
   width: auto;
@@ -75,25 +59,26 @@
 .product-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   
-  width: auto;
-  margin: 0;
+  height: 485px;
+ 
 }
-
+.info h2{
+  font-family: MontLight;
+}
 .product-info .name {
   font-size: 38px;
-  margin-bottom: 10px;
+  
   margin: 0px;
   font-family: MontHeavy;
 }
 .product-info h1 {
   font-size: 20px;
-  margin-bottom: 10px;
+  
   font-family: MontHeavy;
 }
 .product-info .type {
-  font-family: MontLight;
+  font-family:MontBold;
   font-size: 20px;
   margin: 0px 0px;
 }
@@ -101,23 +86,21 @@
   font-family: MontHeavy;
   font-size: 26px;
 }
-.product-info img {
-  
-  max-width: 100%;
-}
+
 .size {
   
   display: grid;
-  width: 150px;
+  margin: 6px;
+  gap: 5px;
   grid-template-columns: repeat(4, 1fr);
- gap: 8px;
+ width: 35px;
 }
 
 .size a {
-  padding: 5px 10px ;;
+  padding: 5px 10px ;
   margin: 2px 0px;
-  width: 25px;
-  height: 15px;
+  width: auto;
+  height: 30px;
   
   text-align: center;
   text-decoration: none;
@@ -126,41 +109,168 @@
   color: #000;
   box-shadow: 0 5px 7px #0000003f;
   font-size: 14px;
-  font-family: MontRegular;
+  font-family:  MontHeavy;
   
+  
+}
+.selected  {
+  background-color: #54535396;
+  color: #fff;
   
 }
 .size a:hover{
-  background:#d9d9d9;
-}
-.add{
-  position: relative;
-  top: 41px;
-}
-.botones{
+  background:#000;
   
-  display: flex;
-  gap: 6px;
 }
-.heart{
+
+
+.bo{
+  display: flex;
+  height: 35px;
+  margin-top: 29px;
+}
+.bo .heart{
   display: flex;
   justify-content: center;
-  padding: 8px 12px;
-  position: relative;
-  bottom: 17px;
+  padding: 5px 10px;
+ 
+  
+  margin-left: 5px;
   background: #d9d9d9;
   text-align: center;
   font-size: 24px;
 }
-button{
+.bo .boto{
   background: #000;
-  padding: 8px 12px;
+  padding: 6px 10px;
   
   color: #fff;
   width: 250px;
   font-family: MontHeavy;
   border:none ;
   font-size: 16px;
-  margin-top: 8px;
+  
   cursor: pointer;
 }
+.arrow{
+  display:flex;
+  width: 100%;
+}
+.arrow .homebtn{
+  margin-top: 100px;
+  margin-left: 50px;
+  font-weight: 700;
+  font-family: MontHeavy;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 65px;
+  margin-top: 106px;
+}
+
+.cardPromo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  border-radius: 20px;
+  margin: 0 8px;
+  height: 380px;
+  width: auto;
+  border: 1px solid #9E9E9E;
+  box-shadow: 0 3px 8px #00000072;
+  padding: 25px;
+  cursor: pointer;
+}
+
+.cardPromoImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 270px;
+ 
+}
+
+.cardPromoImage img{
+  width: 100%;
+  height: auto;
+}
+
+.cardPromo h2{
+  font-family: MontHeavy;
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0;
+
+}
+
+.cardPromo h3{
+  margin: 0;
+  font-family: MontHeavy;
+  font-size: 24px;
+  font-style: normal;
+  margin-top: 10px;
+}
+
+.cardPromo p{
+  margin: 8px;
+  font-family: MontLight;
+  font-size: 20px;
+}
+
+.cardPromoInfo{
+  display: flex;
+  flex-direction: row;
+ 
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+.title{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: MontHeavy;
+  font-size: 64px;
+  line-height: 0;
+  margin: 0;
+}
+
+
+.carouselContainer {
+  width: 100%;
+   margin-top: 150px;
+
+}
+
+.cardContainer {
+    display: flex;
+    margin: 0px 8px;
+    
+    margin-bottom: 20px;
+    width: auto;
+  }
+.ofe{
+      width: 1000px;
+     
+ 
+}
+
+

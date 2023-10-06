@@ -14,6 +14,7 @@ import Home from './views/Home/Home'
 import LateralMenu from './components/DashBoard/LateralMenu/LateralMenu';
 import { Brands, Customer, Product, Sales, Statistics, Stock, TypesCategories } from './views/Admin'
 import { Favorites, Profile, Record, Shopping } from './views/User'
+import HomeViews from './views/HomeViews/HomeViews';
 
 function App() {
   const { pathname } = useLocation();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/cardk" element={<ListaBusqKids />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/home" element={<HomeViews/>} />
         {/* <Route path="/user" element={<DashboardUser />} /> */}
 
 

@@ -13,9 +13,12 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    border-radius: 20px;
+    margin: 0 8px;
     height: 380px;
     width: auto;
     border: 1px solid #9E9E9E;
+    box-shadow: 0 3px 8px #00000072;
     padding: 25px;
     cursor: pointer;
 }
@@ -26,11 +29,11 @@
     align-items: center;
     width: 300px;
     height: 270px;
-    background-color: #F7F7F7;
+   
 }
 
 .cardPromoImage img{
-    width: 100%;
+    width: 150px;
     height: auto;
 }
 
@@ -51,7 +54,7 @@
 }
 
 .cardPromo p{
-    margin: 0;
+    margin: 8px;
     font-family: MontLight;
     font-size: 20px;
 }
@@ -59,6 +62,7 @@
 .cardPromoInfo{
     display: flex;
     flex-direction: row;
+   
     margin-top: 15px;
     justify-content: space-between;
 }
@@ -75,13 +79,15 @@
 
 
   .carouselContainer {
-    width: 100%;     
+    width: 100%;
+     
 
   }
 
   .cardContainer {
       display: flex;
-      margin: 0px 1px;
+      margin: 0px 8px;
+      
       margin-bottom: 20px;
       width: auto;
     }

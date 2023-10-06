@@ -9,8 +9,51 @@
 .title{
     font-family: MontHeavy;
     position: relative;
-    top: 100px;
-    margin-left: 680px;
+   
+}
+.name{
+  display: flex;
+  justify-content: space-between;
+}
+
+.price{
+  position: relative;
+  background: #080808;
+  color: #fff;
+  width: 86px;
+  height: 35px;
+  left: 25px;
+ padding: 4px 4px;
+ border: 1px solid #c1c1c171;
+ margin-bottom: 20px;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 2px 7px #000000f3;
+    font-family: MontHeavy;
+}
+.price div {
+  position: absolute;
+  bottom: -23px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  font-family: MontHeavy;
+  border-top: 13px solid #a2a2a2;
+  border-bottom: 10px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: -6;
+}
+.letra{
+  font-family: MontLight;
+}
+.name .price p{
+  font-size: 16px;
+  padding: 16px auto;
+}
+.name h2 {
+  font-size: 25px;
+  color: #000;
+ margin: 0;
+  font-family: MontHeavy;
 }
 .propa img{
     width: 100%;
@@ -58,9 +101,12 @@
       flex-direction: column;
      
     }
+    .container{
+      text-align: center;
+    }
     .type{
       display: flex;
-    justify-content: space-between;
+      flex-direction: column;
     
     }
     

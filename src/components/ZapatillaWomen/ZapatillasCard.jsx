@@ -318,7 +318,8 @@ const ZapatillasCard = () => {
               <ZapatillaCard key={zapatilla.id} zapatilla={zapatilla} />
             ))}
         </div>
-
+        <Filter/>
+          </div>
         
         <div className={styles.pagination}>
           <button
@@ -353,8 +354,7 @@ const ZapatillasCard = () => {
             Next
           </button>
         </div>
-      </div>
-      <Filter/>
+     
     </>
   );
 };

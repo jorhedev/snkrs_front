@@ -29,7 +29,20 @@
    flex-direction: row-reverse;
    justify-content: flex-end;
 }
-
+.b{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  width: 100%;
+}
+.boton{
+  display: flex;
+  justify-content: end;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  z-index: 1;
+}
 .isPriceLessThan90::before {
   content: 'sale';
   position: absolute;
@@ -166,7 +179,11 @@
   border-radius: 5px;
   outline: none;
 }
-
+.detail{
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+}
 
 /* Estilo para el botón activo */
 .buttonpagi.active {
@@ -179,4 +196,8 @@
   color: #fff;
   font-weight: bold;
 }
+.prod{
+  display: flex;
+  justify-content: space-between ;
 
+}

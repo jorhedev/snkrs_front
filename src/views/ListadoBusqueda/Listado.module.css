@@ -27,8 +27,6 @@
     text-decoration: none;
     color: #000;
   }
-  .homediv img{
-    position: relative;
-    top: 28px;
-    margin: 0;
-  }
+.homediv .men {
+  font-family: MontHeavy;
+}

@@ -1,6 +1,8 @@
 import React from 'react'
 import ZapatillaWomen from "../../components/ZapatillaKids/ZapatillasCardK";
-import Banner from "../../components/banner/bannerKids";
+import Footer from "../../components/Footer/Footer";
+import BeMember from '../../components/BeMember/BeMember'
+import Banner from "../../components/banner/bannerWomen";
 import Banner1 from "../../components/banner/banner1";
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Link } from "react-router-dom";
@@ -11,18 +13,18 @@ import styles from "./Listado.module.css";
 const ListaBusqWomen = () => {
   return (
     <>
-      <div className={styles.banner}>
+      <div className={styles.containerList}>
         <Banner />
-      </div>
-      <div className={styles.homediv}>
+        
+        <div className={styles.homediv}>
         <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
-        <img src={logo} alt="logo" width={50} height={20} />
+       <p className={styles.men}>MEN</p>
         </div>
-      <div className={styles.zapatilla}>
+        <div className={styles.zapatilla}>
         <ZapatillaWomen />
-      </div>
-      <div className={styles.banner1}>
-        <Banner1 />
+        </div>
+        <BeMember/>
+        <Footer/>
       </div>
     </>
   );

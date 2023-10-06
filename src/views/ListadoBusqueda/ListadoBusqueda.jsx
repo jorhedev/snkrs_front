@@ -14,9 +14,10 @@ const ListadoBusqueda = () => {
     <>
       <div className={styles.containerList}>
         <Banner />
+        
         <div className={styles.homediv}>
         <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
-        <img src={logo} alt="logo" width={50} height={20} />
+       <p className={styles.men}>MEN</p>
         </div>
         <div className={styles.zapatilla}>
         <ZapatillasCard />

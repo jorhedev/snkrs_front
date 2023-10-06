@@ -48,7 +48,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {MEN.includes(pathname) ? <Link to='/card'><h2>MEN</h2></Link> : null}
                     {KIDS.includes(pathname) ? <Link to='/cardK'><h2>KIDS</h2></Link> : null}
                     {KIDS.includes(pathname) ? <input type="text" name="" id="" placeholder="search" /> : null}
-                    {FAVORITE.includes(pathname) ? <h3 title='favorites'>{ICONS.WHITE_FAVORITE}</h3> : null}
+                    {FAVORITE.includes(pathname) ? <Link to="/user/favorites"> <h3 title='favorites'>{ICONS.WHITE_FAVORITE}</h3></Link> : null}
                     {TROLLEY.includes(pathname) ? <h3>
                         {" "}
                         <Link to="/user?view=shopping">
