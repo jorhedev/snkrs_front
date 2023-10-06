@@ -15,6 +15,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
   const { pathname } = useLocation()
   const login = useSelector(({ user }) => user.login)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
+  console.log("🚀 ~ file: LogIn.jsx:18 ~ LogIn ~ imageUrl:", imageUrl)
 
   const cookie = readCookieSession()
   console.log('here')
