@@ -1,0 +1,47 @@
+.paymentSuccessContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px; 
+    text-align: center;
+    
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00; 
+    animation: confetti-fall 2s linear infinite; 
+}
+  
+  .content {
+    text-align: center;
+    
+}
+
+.content h1 {
+      font-family: MontHeavy;
+      font-size: 70px;
+  }
+  .content h2 {
+    font-family: MontRegular;
+    font-size: 50px;
+}
+.content h3 {
+    font-family: MontRegular;
+    font-size: 30px;
+}
+.boton{
+    padding: 15px;
+    font-family: MontHeavy;
+    background-color: black;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: white;
+
+}
+.boton:hover {
+    transform: scale(1.1); 
+}
+
