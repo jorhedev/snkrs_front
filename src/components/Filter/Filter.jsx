@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import logo from "../../assets/Image/Logo.png";
-import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from "react-icons/bs";
-import { useDispatch, useSelector } from 'react-redux';
 import {
-  setSortBy,
-  setBrand,
-  setModel,
-  setSize,
-  setColor,
-} from '../../redux/filtersSlice';
+  BsFillArrowUpCircleFill,
+  BsFillArrowDownCircleFill,
+} from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterByBrand,
+  sortAscendant,
+  sortDescendant,
+} from "../../redux/resultsMen";
 
 import styles from "./Filter.module.css";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
 
   const dropdownData = [
     {
@@ -48,8 +48,26 @@ const Filter = () => {
       title: "Size (US)",
       stateKey: "size",
       options: [
-        "4", "6", "8", "10", "12", "4.5", "6.5", "8.5", "10.5", "12.5",
-        "5", "7", "11", "13", "5.5", "7.5", "9.5", "11.5", "13.5", "9",
+        "4",
+        "6",
+        "8",
+        "10",
+        "12",
+        "4.5",
+        "6.5",
+        "8.5",
+        "10.5",
+        "12.5",
+        "5",
+        "7",
+        "11",
+        "13",
+        "5.5",
+        "7.5",
+        "9.5",
+        "11.5",
+        "13.5",
+        "9",
       ],
     },
     {
@@ -63,7 +81,9 @@ const Filter = () => {
   const [selectedOptions, setSelectedOptions] = useState(
     dropdownData.map(() => null)
   );
-  const [iconoArriba, setIconoArriba] = useState(Array(dropdownData.length).fill(true));
+  const [iconoArriba, setIconoArriba] = useState(
+    Array(dropdownData.length).fill(true)
+  );
 
   const toggleDropdown = (index) => {
     const newIsOpen = [...isOpen];
@@ -76,27 +96,36 @@ const Filter = () => {
   };
 
   const handleOptionClick = (index, option) => {
-    const newSelectedOptions = [...selectedOptions];
-    newSelectedOptions[index] = option;
-    setSelectedOptions(newSelectedOptions);
-
     const { stateKey } = dropdownData[index];
+
     switch (stateKey) {
       case "sortBy":
-        dispatch(setSortBy(option));
+        switch (option) {
+          case "PRICE (LOWEST TO HIGHEST)":
+            // Llama a la acción de Redux para ordenar por precio ascendente
+            dispatch(sortAscendant());
+            break;
+          // case "NEWS":
+          //   // Llama a la acción de Redux para ordenar por noticias
+          //   dispatch(sortTopCategory());
+          //   break;
+          // case "BEST SELLERS":
+          //   // Llama a la acción de Redux para ordenar por los más vendidos
+          //   dispatch(sortLowCategory());
+          //   break;
+          case "PRICE (HIGHEST TO LOWEST)":
+            // Llama a la acción de Redux para ordenar por precio descendente
+            dispatch(sortDescendant());
+            break;
+          default:
+            break;
+        }
         break;
       case "brand":
-        dispatch(setBrand(option));
+        // Llama a la acción de Redux para filtrar por marca
+        dispatch(filterByBrand(option));
         break;
-      case "model":
-        dispatch(setModel(option));
-        break;
-      case "size":
-        dispatch(setSize(option));
-        break;
-      case "color":
-        dispatch(setColor(option));
-        break;
+      // Agrega más casos para otros filtros y acciones de ordenamiento si es necesario...
       default:
         break;
     }
@@ -118,8 +147,15 @@ const Filter = () => {
           <div key={index} className={styles.dropdown}>
             <div className={styles.sort}>
               <h4>{dropdown.title}</h4>
-              <button className={styles.dropbtn} onClick={() => toggleDropdown(index)}>
-                {iconoArriba[index] ? <BsFillArrowDownCircleFill /> : <BsFillArrowUpCircleFill />}
+              <button
+                className={styles.dropbtn}
+                onClick={() => toggleDropdown(index)}
+              >
+                {iconoArriba[index] ? (
+                  <BsFillArrowDownCircleFill />
+                ) : (
+                  <BsFillArrowUpCircleFill />
+                )}
               </button>
             </div>
             <div className={styles.punto}></div>

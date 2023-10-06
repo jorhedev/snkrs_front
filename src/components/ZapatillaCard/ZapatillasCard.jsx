@@ -1,37 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ZapatillaCard from "./ZapatillaCard"; // Importa el componente de ZapatillaCard
 import Filter from "../Filter/Filter";
 import axios from "axios";
 import styles from "./ZapatillaCard.module.css";
 
+import { fetchData } from '../../redux/resultsMen';
+
+
 const ZapatillasCard = () => {
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const itemsPerPage = 9; // Cantidad de elementos por página
-  const [zapatillasData, setZapatillasData] = useState([]); // Estado para los datos de zapatillas
-  console.log(zapatillasData)
+
+  const results = useSelector((state) => state.results.results)
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/products")
-      .then((response) => {
-        if (Array.isArray(response.data.products)) {
-          // Actualiza el estado con los datos de zapatillas obtenidos
-          setZapatillasData(response.data.products);
-        } else {
-          console.error(
-            "Los datos de zapatillas no son un arreglo válido:",
-            response.data
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos de zapatillas:", error);
-      });
+    dispatch(fetchData())
   }, []);
+
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3001/products")
+  //     .then((response) => {
+  //       if (Array.isArray(response.data.products)) {
+  //         // Actualiza el estado con los datos de zapatillas obtenidos
+  //         setZapatillasData(response.data.products);
+  //       } else {
+  //         console.error(
+  //           "Los datos de zapatillas no son un arreglo válido:",
+  //           response.data
+  //         );
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error al obtener los datos de zapatillas:", error);
+  //     });
+  // }, []);
  
 
   // Cálculo del total de páginas
-  const totalPages = Math.ceil(zapatillasData.length / itemsPerPage);
+  const totalPages = Math.ceil(results.length / itemsPerPage);
 
   // Función para generar los números de página
   const generatePageNumbers = () => {
@@ -46,7 +56,7 @@ const ZapatillasCard = () => {
     <>
       <div className={styles.product}>
         <div className={styles.cards}>
-          {zapatillasData
+          {results
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((zapatilla) => (
               <ZapatillaCard key={zapatilla.id} zapatilla={zapatilla} />
@@ -77,9 +87,9 @@ const ZapatillasCard = () => {
         ))}
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage * itemsPerPage >= zapatillasData.length}
+          disabled={currentPage * itemsPerPage >= results.length}
           className={`${styles.buttonpag} ${
-            currentPage * itemsPerPage >= zapatillasData.length
+            currentPage * itemsPerPage >= results.length
               ? ""
               : styles.active
           }`}

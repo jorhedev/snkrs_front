@@ -18,10 +18,12 @@ import HomeViews from './views/HomeViews/HomeViews';
 
 function App() {
   const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+
   return (
     <>
-      <Navbar />
-      {pathname.includes('/admin') || pathname.includes('/user') ? <Navbar NavColor='#F7F7F7' LogoColor='#424242' /> : <Navbar />}
+      {!isHomePage && <Navbar />}
+      {pathname.includes('/admin') || pathname.includes('/user') ? <Navbar NavColor='#F7F7F7' LogoColor='#424242' /> : null}
       {pathname.includes('/admin') || pathname.includes('/user') ? <LateralMenu /> : null}
       <Routes>
         <Route path="/" element={<Home />} />
