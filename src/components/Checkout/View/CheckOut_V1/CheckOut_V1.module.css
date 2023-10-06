@@ -4,38 +4,11 @@
   font-family: MontHeavy;
 }
 
-.h2 {
-  font-family: MontLight;
-  margin-left: 50px;
-  color: #ffffff;
-}
-
-.box {
-  margin-left: 50px;
-  margin-bottom: 20px;
-}
-
-.titlerigth {
-  font-family: MontHeavy;
-  font-size: 50px;
-  color: #ffffff;
-  margin-top: 100px;
-  color: black;
-}
-
-.title {
-  font-family: MontHeavy;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-}
-
 .leftPanel {
   background: black;
   color: white;
   padding: 20px;
   flex: 1;
-  /* height: 100vh; */
 }
 
 .rightPanel {
@@ -43,24 +16,110 @@
   color: black;
   padding: 20px;
   flex: 1;
-  /* height: 100vh */
+}
+
+.title {
+  font-family: MontHeavy;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.h2 {
+  font-family: MontLight;
+  color: #ffffff;
+  margin-left: 60px;
+  margin-bottom: 40px;
+}
+.payment{
+  font-family: MontLight;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+ 
+}
+.p{
+  font-family: MontLight;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+.formContainer {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.box {
+  margin-bottom: 20px;
 }
 
 .inputGroup {
   margin-bottom: 30px;
-  width: 100vh;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .input {
   font-family: MontHeavy;
-  width: 25%;
+  width: 45%;
   padding: 10px;
   border: 1px solid #ffffff;
   border-radius: 5px;
   background-color: #101010;
   color: white;
   margin-bottom: 10px;
-  margin-left: 50px;
+  margin-right: 10px;
+}
+
+.select {
+  font-family: MontHeavy;
+  width: 45%;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: #101010;
+  color: white;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-size: 20px;
+  padding-right: 30px;
+}
+
+.selectContainer {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.label {
+  margin-left: 20px;
+  font-family: MontHeavy;
+  width: 45%;
+  margin-right: 10px;
+}
+.errorInput {
+  border: 2px solid red; /* Cambia el borde a rojo en caso de error */
+}
+
+/* Estilo para el mensaje de error debajo del campo */
+.errorText {
+  color: red; /* Color de texto rojo para el mensaje de error */
+  font-size: 14px; /* Tamaño de fuente del mensaje de error */
+  margin-top: 4px; /* Espacio superior para separar el mensaje del campo */
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-right: 50px;
+}
+
+.titlerigth {
+  font-family: MontHeavy;
+  font-size: 50px;
+  color: black;
+  margin-top: 0;
+  text-align: center;
 }
 
 .button {
@@ -72,46 +131,10 @@
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   cursor: pointer;
-}
-
-.buttonContainer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
 }
 
 .img {
   width: 200px;
   height: auto;
-}
-
-.select {
-  font-family: MontHeavy;
-  width: 25%;
-  padding: 10px;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
-  background-color: #101010;
-  color: white;
-  margin-bottom: 10px;
-  margin-left: 50px;
-  background-size: 20px;
-  padding-right: 30px;
-
-}
-
-.selectContainer {
-  margin-bottom: 20px;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.label {
-  margin-left: 50px;
 }

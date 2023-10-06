@@ -21,12 +21,14 @@ import { SESSION_NOT_COOKIE } from './const';
 
 function App() {
   const { pathname } = useLocation();
+
   return (
     <>
       {/* //? Lateral Menu */}
       <LateralMenu />
       {/* //? Navbar */}
       {(pathname.includes('/admin') || pathname.includes('/user')) ? (<Navbar NavColor='#F7F7F7' LogoColor='#424242' />) : <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
 

@@ -1,37 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import ZapatillaCard from "./ZapatillaCardK"; // Importa el componente de ZapatillaCard
+import { useSelector, useDispatch } from "react-redux";
+import ZapatillaCard from "./ZapatillaCardK";
 import Filter from "../Filter/Filter";
 import axios from "axios";
 import styles from "./ZapatillaCard.module.css";
 
+import { fetchData } from "../../redux/resultsMen"; // Asegúrate de importar la acción fetchData
+
 const ZapatillasCardK = () => {
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const itemsPerPage = 9; // Cantidad de elementos por página
-  const [zapatillasData, setZapatillasData] = useState([]); // Estado para los datos de zapatillas
-  console.log(zapatillasData)
+
+  const filteredResults = useSelector((state) => state.results.results); // Obtén los resultados filtrados desde el estado de Redux
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/products")
-      .then((response) => {
-        if (Array.isArray(response.data.products)) {
-          // Actualiza el estado con los datos de zapatillas obtenidos
-          setZapatillasData(response.data.products);
-        } else {
-          console.error(
-            "Los datos de zapatillas no son un arreglo válido:",
-            response.data
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos de zapatillas:", error);
-      });
+    dispatch(fetchData());
   }, []);
- 
 
   // Cálculo del total de páginas
-  const totalPages = Math.ceil(zapatillasData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
 
   // Función para generar los números de página
   const generatePageNumbers = () => {
@@ -46,7 +34,7 @@ const ZapatillasCardK = () => {
     <>
       <div className={styles.product}>
         <div className={styles.cards}>
-          {zapatillasData
+          {filteredResults
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((zapatilla) => (
               <ZapatillaCard key={zapatilla.id} zapatilla={zapatilla} />
@@ -77,9 +65,9 @@ const ZapatillasCardK = () => {
         ))}
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage * itemsPerPage >= zapatillasData.length}
+          disabled={currentPage * itemsPerPage >= filteredResults.length}
           className={`${styles.buttonpag} ${
-            currentPage * itemsPerPage >= zapatillasData.length
+            currentPage * itemsPerPage >= filteredResults.length
               ? ""
               : styles.active
           }`}
