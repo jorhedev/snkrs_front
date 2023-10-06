@@ -12,7 +12,7 @@ export const cartSlice = createSlice({
   reducers: {
     getCart: (state, action) => {
       state.cartItems = action.payload;
-      console.log(action.payload[0]._id)
+      console.log(action.payload)
     },
     addToCart: (state, action) => {
       state.cartItems = [...state.cartItems, action.payload];
@@ -55,9 +55,11 @@ export const cartSlice = createSlice({
 export const getCartItems = () => async (dispatch) => {
   try {
     const { User_id } = readCookieSession();
+    console.log("🚀 ~ file: cartSlice.js:58 ~ getCartItems ~ User_id:", User_id)
+    
     if (User_id) {
       const response = await axiosInstance.get(`/trolley`);
-      dispatch(getCart(response.pickedProducts));
+      dispatch(getCart(response));
     } else {
       // Manejo de errores o redirección si no se encuentra el User_id 
     }
@@ -67,9 +69,9 @@ export const getCartItems = () => async (dispatch) => {
 };
 
 export const addCartItemsById = (item) => async (dispatch) => {
-  const response = (await axiosInstance.get(`/trolley/`))
-  const idTrolley = response._id
-  if(idTrolley){
+  // const response = (await axiosInstance.get(`/trolley`))
+  // const pickedProducts = response.length
+  // if(pickedProducts){
     try{ 
       const response = await axiosInstance.put("/trolley/add", {
         "Product_id": item._id,
@@ -85,7 +87,7 @@ export const addCartItemsById = (item) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
-} 
+// } 
   
 };
 
