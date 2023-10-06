@@ -5,14 +5,15 @@ import styles from "./ShoppingCart.module.css";
 import { MdClose } from "react-icons/md";
 import { FaPlusCircle, FaMinusCircle, FaTrashAlt } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import {itemIncrement,itemDecrement,removeFromCart,clearCart,
+import {
+  itemIncrement, itemDecrement, removeFromCart, clearCart,
 } from "../../redux/cartSlice";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axiosInstance from "../../utils/axiosInstance";
 import { Link } from "react-router-dom";
-import { snkrsStorage } from "../../const/const";
+import { PAYMENT_STORAGE } from "../../const/const";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 
 const ShoppingCart = () => {
@@ -42,7 +43,7 @@ const ShoppingCart = () => {
       const data = await axiosInstance.post("/shopping", {
         purchase: cartItems,
       });
-      localStorage.setItem(snkrsStorage, JSON.stringify(data));
+      localStorage.setItem(PAYMENT_STORAGE, JSON.stringify(data));
       setPayment(data);
     } catch (error) {
       console.log(error);
@@ -93,15 +94,7 @@ const ShoppingCart = () => {
   return (
     <div className={styles.cartContainer}>
       <div className={styles.tableContainer}>
-        <div className={styles.buttonHome}>
-          <Link to="/">
-            <button className={styles.home}>
-              <IoMdArrowRoundBack /> Home
-            </button>
-          </Link>
-        </div>
         <h2 className={styles.h2}>SHOPPING CART</h2>
-
         {cartItems.length > 0 ? (
           <div>
             <table className={styles.cartTable}>
@@ -168,7 +161,7 @@ const ShoppingCart = () => {
         ) : (
           <div className={styles.cartEmpty}><p >YOUR CART IS EMPTY</p>
           </div>
-        
+
         )}
 
         {showTable && cartItems.length > 0 && (

@@ -27,7 +27,7 @@ const InputNumber = ({ initInput, onChangeInput, errors, tag = '', buttonClear =
       {tag !== '' && <h3 style={{ fontFamily: 'CocoSharp', fontSize: '24px', ...style?.h3 }}>{tag}</h3>}
       <div className={styles.DateFile}>
         <input
-          style={{ width: '200px', height: '45px', ...style?.input }}
+          style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px;', fontFamily: 'MontHeavy', ...style?.input }}
           type='number'
           autoComplete="off"
           value={state || 0}

@@ -19,12 +19,15 @@ import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { InputPassword, InputText } from '../../Inputs';
 
 import Swal from 'sweetalert2';
+import NotRegister from '../../Alerts/NotRegister';
 
 const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [login, setLogin] = useState({ email: null, password: null });
-  const [error, setError] = useState({});
+  console.log("🚀 ~ file: SignIn.jsx:28 ~ SignIn ~ login:", login.email)
+  const [error, setError] = useState({ email: '', password: '' });
+  console.log("🚀 ~ file: SignIn.jsx:29 ~ SignIn ~ error:", error)
   const [viewForgotPass, setViewForgotPass] = useState(false);
 
   const handleInputChange = (inputField, inputValue) => {
@@ -48,13 +51,12 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
         case 'twitter':
           await logOut();
           ({ _tokenResponse } = await signInWithTwitter());
-
           break;
         case 'login':
           await logOut();
           ({ _tokenResponse } = await signIn(login.email, login.password));
+          console.log("🚀 ~ file: SignIn.jsx:56 ~ handlerSignIn ~ _tokenResponse:", _tokenResponse)
           if (_tokenResponse && !_tokenResponse.emailVerified) {
-            await axiosInstance.post(`/verify-email/:${_tokenResponse.email}`)
             Swal.fire(
               'Confirm Email',
               'An email confirmation email has been sent',
@@ -62,12 +64,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
             )
             return
           } else {
-            Swal.fire({
-              title: 'User Not Registered',
-              text: 'Please, register to continue with us',
-              icon: 'error',
-              confirmButtonText: 'OK',
-            })
+            NotRegister()
             return
           }
         default:
@@ -98,13 +95,14 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           <span className={styles.GroupInput}>
             <InputText
               tag={'email'}
+              placeHolder={'email'}
               onChangeInput={(input) => handleInputChange('email', input)}
               style={{
                 gap: '20px',
                 alignItems: 'start',
                 marginBottom: '4px',
                 h3: { fontSize: '20px' },
-                input: { width: '100%' },
+                input: { width: '100%', background: 'rgb(217, 217, 217)' },
               }}
             />
             {error.email && <p className={styles.errorText} title={error.email}>{error.email}</p>}
@@ -112,13 +110,14 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           <span className={styles.GroupInput}>
             <InputPassword
               tag={'password'}
+              placeHolder={'password'}
               onChangeInput={(input) => handleInputChange('password', input)}
               style={{
                 gap: '20px',
                 alignItems: 'start',
                 marginBottom: '4px',
                 h3: { fontSize: '20px' },
-                input: { width: '100%' }
+                input: { width: '100%', background: 'rgb(217, 217, 217)' }
 
               }} />
             {error.password && <p className={styles.errorText} title={error.password}>{error.password}</p>}
@@ -143,7 +142,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           </div>
         </div>
       </div >
-      <ForgotPassword viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
+      <ForgotPassword initEmail={error.email === '' ? login.email : ''} viewForgot={viewForgotPass} onViewForgot={handlerChangeForgotPass} />
 
     </>
   )

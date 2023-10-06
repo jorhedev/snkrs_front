@@ -14,16 +14,16 @@ const ListadoBusqueda = () => {
     <>
       <div className={styles.containerList}>
         <Banner />
-        
+
         <div className={styles.homediv}>
-        <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
-       <p className={styles.men}>MEN</p>
+          <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft /> Home</p></Link>
+          <p className={styles.men}>MEN</p>
         </div>
         <div className={styles.zapatilla}>
-        <ZapatillasCard />
+          <ZapatillasCard />
         </div>
-        <BeMember/>
-        <Footer/>
+        <BeMember />
+        <Footer />
       </div>
     </>
   );

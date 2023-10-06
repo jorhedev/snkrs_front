@@ -1,4 +1,5 @@
 import Cookies from "js-cookie"
+import { SESSION_NOT_COOKIE } from "../../const";
 
 const setCookieSession = (nameCookie, dataCookie) => {
     try {
@@ -9,10 +10,9 @@ const setCookieSession = (nameCookie, dataCookie) => {
         const timeSession = sessionExpires.getTime() - currentDate.getTime()
         const cookieExpires = (timeSession / (1000 * 60 * 60 * 24));
 
-
         Cookies.set(nameCookie, JSON.stringify({ _id, ...user }), {
             expires: cookieExpires,
-            path: '/',
+            path: SESSION_NOT_COOKIE,
         });
     } catch (error) {
         console.log(' No fue posible iniciar session')

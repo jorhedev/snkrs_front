@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './InputPassword.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-const InputPassword = ({ initInput = '', onChangeInput, errors, tag = '', style }) => {
+const InputPassword = ({ initInput = '', onChangeInput, errors, tag = '', placeHolder, style }) => {
   const [state, setState] = useState(initInput);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,7 +18,8 @@ const InputPassword = ({ initInput = '', onChangeInput, errors, tag = '', style 
     onChangeInput(value);
   };
 
-  const onChangePasswordView = () => {
+  const onChangePasswordView = (event) => {
+    event.preventDefault()
     setShowPassword(!showPassword);
   };
 
@@ -26,17 +27,17 @@ const InputPassword = ({ initInput = '', onChangeInput, errors, tag = '', style 
     <div className={styles.InputPassword}
       style={{ flexDirection: 'column', alignItems: 'center', gap: '30px', ...style }} >
       {tag !== '' && <h3 style={{ fontFamily: 'MontHeavy', color: 'white', fontSize: '24px', ...style?.h3 }}>{tag}: </h3>}
-      <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center' }}>
+      <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9' }}>
         <input
-          style={{ height: '45px', ...style?.input }}
+          style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px;', fontFamily: 'MontHeavy', ...style?.input }}
           type={showPassword ? 'text' : 'password'}
           autoComplete="off"
           value={state}
-          placeholder={`${tag}`}
+          placeholder={`${placeHolder}`}
           onChange={(event) => { handlerInputChange(event) }}
         />
         <button className={styles.ViewPassword} onClick={onChangePasswordView} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
-          {showPassword ? <div style={{ display: 'flex' }}><FaEyeSlash color='rgb(44, 194, 180)' size={20} /></div> : <div style={{ display: 'flex' }}><FaEye size={20} /></div>}
+          {showPassword ? <div style={{ display: 'flex', alignItems: 'start' }}><FaEyeSlash color='rgb(44, 194, 180)' size={20} /></div> : <div style={{ display: 'flex' }}><FaEye className={styles.Icon} size={20} /></div>}
         </button>
 
       </div>
@@ -50,6 +51,7 @@ InputPassword.propTypes = {
   onChangeInput: PropTypes.func,
   errors: PropTypes.string,
   tag: PropTypes.string,
+  placeHolder: PropTypes.string,
   style: PropTypes.object,
 
 };

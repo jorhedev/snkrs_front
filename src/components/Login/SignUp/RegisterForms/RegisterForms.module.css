@@ -1,0 +1,106 @@
+.GroupInput {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px auto;
+}
+
+.inputGroup {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+.inputGroup input {
+    font-family: MontHeavy;
+    font-weight: 800;
+    font-size: 18px;
+    width: 400px;
+}
+
+.inputGroup h1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.inputIcon {
+    margin: 0 8px;
+    color: rgb(44, 194, 180);
+}
+
+.inputField {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px;
+
+}
+
+.inputGroup.error {
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.errorText {
+    margin-left: 60px;
+    display: flex;
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    margin-top: 0px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin-bottom: 0px;
+}
+
+.BtnSignUp {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.submitButton {
+    font-size: 22px;
+    background-color: rgb(44, 194, 180);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+}
+
+.submitButton:hover {
+    background-color: #2ac2bd;
+}
+
+.h2 {
+    font-family: MontHeavy;
+    color: rgb(44, 194, 180);
+    padding: 10px;
+}
+
+.SocialNet {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    gap: 10px;
+}

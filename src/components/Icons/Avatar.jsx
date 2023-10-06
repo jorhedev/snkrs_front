@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-export const AvatarSvg = ({
+export const Avatar = ({
     size = "300px",
     fill = '#000000',
     stroke = "none" }) => {

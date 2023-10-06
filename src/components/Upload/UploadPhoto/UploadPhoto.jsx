@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './UploadPhoto.module.css';
-import { AvatarSvg } from '../../Login/Avatar';
+import { Avatar } from '../../Icons/Avatar';
 import LoadSelectorBox from '../LoadSelectorBox/LoadSelectorBox';
 import { useSelector } from 'react-redux';
 import { readCookieSession } from '../../../services';
@@ -32,13 +32,9 @@ function UploadPhoto({ imageSrc, onChangeImage, defaultImage, size = '200px', ba
 
   return (
     <div className={styles.UploadPhoto}>
-      <span className={styles.PhotoWrapper} style={{ background: { background } }}>
-        {/* {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
-          <AvatarSvg wsize={'200px'} fill={'#3A6561'} stroke={'#3A6561'} /> :
-          <img className={styles.Photo} src={imageUrl} alt='uploadImage' />} */}
-
+      <span className={styles.PhotoWrapper} style={{ background: { background }, border: `5px solid ${background}` }}>
         {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
-          <AvatarSvg wsize={'200px'} fill={'#3A6561'} stroke={'#3A6561'} /> :
+          <Avatar size={size} fill={avatarFill} stroke={avatarFill} /> :
           <img className={styles.Photo} src={imageUrl} alt='uploadImage' />
         }
       </span>

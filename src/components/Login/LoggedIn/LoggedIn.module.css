@@ -23,16 +23,25 @@
 
 .LoggedInForm {
     display: flex;
-    padding: 25px;
-    padding-top: 50px;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-content: space-around;
-    align-items: stretch;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .LoggedInForm a {
     text-decoration: none;
+}
+
+.Role {
+    cursor: pointer;
+    transition: 0.8s ease-in-out;
+}
+
+.Role:hover {
+    color: aqua
 }
 
 .BodyLoggedIn {
@@ -45,10 +54,11 @@
 }
 
 .Name {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 20px;
+    font-family: MontHeavy;
+    font-size: 22px;
+    font-style: normal;
     display: flex;
+    cursor: pointer;
 }
 
 .Header {
@@ -61,13 +71,13 @@
     border-radius: 30px 30px 0px 0px;
     display: flex;
     width: 100%;
-    height: 120px;
+    height: 100px;
     background-color: #2D2D2D;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    align-content: center;
+    align-items: stretch;
     flex-wrap: nowrap;
+    padding-top: 25px;
 }
 
 .LoggedInHeader label {
@@ -75,11 +85,11 @@
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: MontHeavy;
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 800;
     line-height: normal;
-    letter-spacing: 0.44px;
+    letter-spacing: 0.45px;
 }
 
 .PhotoWrapper {

@@ -97,7 +97,16 @@
   width: 45%;
   margin-right: 10px;
 }
+.errorInput {
+  border: 2px solid red; /* Cambia el borde a rojo en caso de error */
+}
 
+/* Estilo para el mensaje de error debajo del campo */
+.errorText {
+  color: red; /* Color de texto rojo para el mensaje de error */
+  font-size: 14px; /* Tamaño de fuente del mensaje de error */
+  margin-top: 4px; /* Espacio superior para separar el mensaje del campo */
+}
 .buttonContainer {
   display: flex;
   justify-content: center;

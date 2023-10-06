@@ -37,29 +37,31 @@
 }
 
 .NavbarLinks h2 {
+    display: flex;
+    font-family: MontHeavy;
     margin: 0;
     font-size: 28px;
-    font-family: MontHeavy;
 }
 
 .NavbarLinks h3 {
+    display: flex;
+    font-family: MontHeavy;
     margin: 0;
     font-size: 45px;
-    font-family: MontHeavy;
     line-height: 0;
 }
 
-.NavbarLinks input {
+.NavInput {
     display: flex;
     height: 40px;
     width: 150px;
     border-radius: 25px;
     border: none;
     background-color: #d9d9d9;
-    text-align: center;
     font-family: MontHeavy;
     font-size: 20px;
     line-height: 0;
+    text-align: center;
 }
 
 .nav img {
@@ -67,14 +69,16 @@
     padding: 0 50px;
 
 }
-.btn{
+
+.btn {
     text-decoration: none;
-    background:#000 ;
+    background: #000;
     color: #fff;
     padding: 4px 10px;
     font-family: MontHeavy;
 }
-.btn:hover{
-    background:#3e3e3e8a ;
+
+.btn:hover {
+    background: #3e3e3e8a;
     color: #000;
 }

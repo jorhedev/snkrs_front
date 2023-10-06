@@ -1,4 +1,5 @@
 export const NAVBAR_LINKS = {
+    HOME: ['/trolley'],
     WOMEN: ['/', '/home'],
     MEN: ['/', '/home'],
     KIDS: ['/', '/home'],
