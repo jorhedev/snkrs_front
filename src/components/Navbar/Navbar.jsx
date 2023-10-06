@@ -51,7 +51,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {FAVORITE.includes(pathname) ? <Link to="/user/favorites"> <h3 title='favorites'>{ICONS.WHITE_FAVORITE}</h3></Link> : null}
                     {TROLLEY.includes(pathname) ? <h3>
                         {" "}
-                        <Link to="/user?view=shopping">
+                        <Link to="/user/shopping">
                             {" "}
                             <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
                             {" "}
