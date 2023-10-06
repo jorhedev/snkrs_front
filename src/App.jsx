@@ -15,7 +15,8 @@ import LateralMenu from './components/DashBoard/LateralMenu/LateralMenu';
 import { Brands, Customer, Product, Sales, Statistics, Stock, TypesCategories } from './views/Admin'
 import { Favorites, Profile, Record, Shopping } from './views/User'
 import HomeViews from './views/HomeViews/HomeViews';
-
+import Payment from './views/Payment/Payment';
+import PaymentSucces from './views/Payment/PaymentSucces';
 function App() {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
@@ -34,6 +35,8 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/home" element={<HomeViews/>} />
+        <Route path="/checkout" element={<Payment />} />
+        <Route path="/payment-succes" element={<PaymentSucces />} />
         {/* <Route path="/user" element={<DashboardUser />} /> */}
 
 
