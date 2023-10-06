@@ -22,7 +22,7 @@ const PaymentSucces = () => {
         <h1>WE RECEIVED YOUR ORDER </h1>
         <h3>We will get started on it right away and keep you up to date on our progress</h3>
         <h2>CHECK YOUR EMAIL</h2>
-        <Link to='/'><button className={styles.boton}>GO TO HOME</button></Link>
+        <Link to='/'><button className={styles.boton}>BACK TO HOME</button></Link>
         
       </div>
       <Confetti 
