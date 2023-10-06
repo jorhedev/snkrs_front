@@ -6,11 +6,19 @@
 
 .detail-container {
   display: flex;
-  position: relative;
-  left: 200px;
-  gap: 22px;
-  margin-top: 20px;
+  flex-direction: column;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
+.container-data{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
 .product-images {
   display: flex;
   flex-direction: column-reverse;
