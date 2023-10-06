@@ -1,13 +1,11 @@
 import React from 'react'
-import Navbar from '../../../Navbar/Navbar'
-import LateralMenu from '../../LateralMenu/LateralMenu'
+import styleDashBoard from '../../DashBoard.module.css'
 
 const Brands = () => {
     return (
-        <>
-            {/* <Navbar NavColor='#F7F7F7' LogoColor='#424242' />
-            <LateralMenu /> */}
-        </>
+        <div className={styleDashBoard.DashBoardContainer}>
+            Brands
+        </div>
     )
 }
 

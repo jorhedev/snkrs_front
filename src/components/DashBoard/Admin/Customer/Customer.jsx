@@ -1,9 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import styleDashBoard from '../../DashBoard.module.css'
 
 const Customer = () => {
     return (
-        <div>Customer</div>
+        <div className={styleDashBoard.DashBoardContainer}>
+            Customer
+        </div>
     )
 }
 

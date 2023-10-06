@@ -6,15 +6,22 @@
 
 .detail-container {
   display: flex;
+  align-items: center;
+  flex-direction: column  ;
 
-  flex-direction: column;
   justify-content: center;
   height: auto;
   gap: 22px;
   margin-top: 50px;
 }
 
+.product{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
 .container-data{
+
   display: flex;
   flex-direction: row;
   gap: 30px;
@@ -24,21 +31,23 @@
   display: flex;
   flex-direction: column;
   height: 500px;
-  
+
 }
 
 
 
 .im1 {
- 
+
   height: 170px;
 }
+
 .im2 {
- 
+
   height: 170px;
 }
+
 .im3 {
-  
+
   height: 170px;
 }
 
@@ -46,70 +55,82 @@
   display: flex;
   gap: 10px;
 }
+
 .product-images img {
   display: flex;
 
   width: 150px;
 }
+
 .product-main-image {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #f7f7f7;
   height: 485px;
+  width: 400px;
 }
+
 .product-main-image img {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   width: auto;
-  height: 320px;
+  height: 360px;
   position: relative;
-  top: 80px;
 }
 
 .product-info {
   display: flex;
   flex-direction: column;
-  
+
   height: 485px;
- 
+
 }
-.info h2{
+
+.info h2 {
   font-family: MontLight;
 }
+
 .product-info .name {
   font-size: 38px;
-  
+
   margin: 0px;
   font-family: MontHeavy;
 }
+
 .product-info h1 {
   font-size: 20px;
-  
+
   font-family: MontHeavy;
 }
+
 .product-info .type {
-  font-family:MontBold;
+  font-family: MontBold;
   font-size: 20px;
   margin: 0px 0px;
 }
+
 .product-info .price {
   font-family: MontHeavy;
   font-size: 26px;
 }
 
 .size {
-  
+
   display: grid;
   margin: 6px;
   gap: 5px;
   grid-template-columns: repeat(4, 1fr);
- width: 35px;
+  width: 35px;
 }
 
 .size a {
-  padding: 5px 10px ;
+  padding: 5px 10px;
   margin: 2px 0px;
   width: auto;
   height: 30px;
-  
+
   text-align: center;
   text-decoration: none;
   border: 1px solid #000;
@@ -117,54 +138,60 @@
   color: #000;
   box-shadow: 0 5px 7px #0000003f;
   font-size: 14px;
-  font-family:  MontHeavy;
-  
-  
+  font-family: MontHeavy;
+
+
 }
-.selected  {
+
+.selected {
   background-color: #54535396;
   color: #fff;
-  
+
 }
-.size a:hover{
-  background:#000;
-  
+
+.size a:hover {
+  background: #000;
+
 }
 
 
-.bo{
+.bo {
   display: flex;
   height: 35px;
   margin-top: 29px;
 }
-.bo .heart{
+
+.bo .heart {
   display: flex;
   justify-content: center;
   padding: 5px 10px;
- 
-  
+
+
   margin-left: 5px;
   background: #d9d9d9;
   text-align: center;
   font-size: 24px;
 }
-.bo .boto{
+
+.bo .boto {
   background: #000;
   padding: 6px 10px;
-  
+
   color: #fff;
   width: 250px;
   font-family: MontHeavy;
-  border:none ;
+  border: none;
   font-size: 16px;
-  
+
   cursor: pointer;
 }
-.arrow{
-  display:flex;
+
+.arrow {
+  display: flex;
   width: 100%;
 }
-.arrow .homebtn{
+
+.arrow .homebtn {
   margin-top: 100px;
   margin-left: 50px;
   font-weight: 700;
@@ -192,7 +219,7 @@
   margin-top: 106px;
 }
 
-.cardPromo{
+.cardPromo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -207,21 +234,21 @@
   cursor: pointer;
 }
 
-.cardPromoImage{
+.cardPromoImage {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 300px;
   height: 270px;
- 
+
 }
 
-.cardPromoImage img{
+.cardPromoImage img {
   width: 100%;
   height: auto;
 }
 
-.cardPromo h2{
+.cardPromo h2 {
   font-family: MontHeavy;
   font-size: 36px;
   font-weight: 400;
@@ -229,7 +256,7 @@
 
 }
 
-.cardPromo h3{
+.cardPromo h3 {
   margin: 0;
   font-family: MontHeavy;
   font-size: 24px;
@@ -237,21 +264,21 @@
   margin-top: 10px;
 }
 
-.cardPromo p{
+.cardPromo p {
   margin: 8px;
   font-family: MontLight;
   font-size: 20px;
 }
 
-.cardPromoInfo{
+.cardPromoInfo {
   display: flex;
   flex-direction: row;
- 
+
   margin-top: 15px;
   justify-content: space-between;
 }
 
-.title{
+.title {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -264,21 +291,20 @@
 
 .carouselContainer {
   width: 100%;
-   margin-top: 150px;
+  margin-top: 150px;
 
 }
 
 .cardContainer {
-    display: flex;
-    margin: 0px 8px;
-    
-    margin-bottom: 20px;
-    width: auto;
-  }
-.ofe{
-      width: 1000px;
-     
- 
+  display: flex;
+  margin: 0px 8px;
+
+  margin-bottom: 20px;
+  width: auto;
 }
 
+.ofe {
+  width: 1000px;
 
+
+}

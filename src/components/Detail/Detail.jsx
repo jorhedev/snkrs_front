@@ -83,6 +83,7 @@ const Detail = () => {
     </div>
     
     <div className="detail-container">
+      <div className="product">
 
       <div className="imagenes">
         {/* Aquí puedes renderizar las imágenes de la zapatilla */}
@@ -268,38 +269,13 @@ const Detail = () => {
           </Link>
         </div>
       </div>
+      </div>
       <TopSales />
       <BeMember />
       <Footer />
     </div>
 
-    <div className="carouselContainer">
-        <Slider {...settings}>
-          {saleData.map((d) => (
-            <div className="cardContainer" key={d.id}>
-            <div className="cardPromo" key={d.id}>
-                <div className="cardPromoImag">
-                <img
-                  src={d.image}
-                  alt={d.name}
-                />
-              </div>
-              <div className="cardPromoInfo">
-                <div>
-                  <h2>{d.name}</h2>
-                  <p>{d.type}</p>
-                </div>
-                <div>
-                  <h3>$ {d.price}</h3>
-                </div>
-              </div>
-            </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-
-      <Footer/>
+    
     </>
 
 

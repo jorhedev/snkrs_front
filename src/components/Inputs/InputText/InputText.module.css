@@ -1,6 +1,6 @@
 .InputText {
+    width: 100%;
     display: flex;
-
 }
 
 .InputText h3 {
@@ -8,12 +8,10 @@
 }
 
 .InputText input {
-    font-family: MontHeavy;
     border: none;
     border-radius: 10px;
     font-weight: 800;
     text-align: start;
-    font-size: 20px;
     text-indent: 10px;
     padding-right: 5px;
     outline: none;
@@ -22,29 +20,29 @@
 .InputText input::placeholder {
     opacity: 50%;
     font-size: 15px;
+    align-content: start;
+    text-align: start;
 }
 
 .DateFile {
+    width: calc(100%) !important;
     border: none;
     border-radius: 10px;
-    background: #D9D9D9;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: baseline;
-    align-content: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
-.ClearInput button {
+
+.ClearInput {
     display: flex;
-    color: white;
-    background: #D9D9D9;
-    width: 15px;
-    justify-content: center;
-    flex-direction: column;
+    color: black;
+    width: 40px;
+    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     align-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .Icon {
@@ -57,11 +55,6 @@
 .Icon:hover {
     transform: scale(1.2);
     color: rgb(44, 194, 180);
-}
-
-.ClearInput {
-    width: 25px;
-    text-decoration: none;
 }
 
 .ErrorLabel {

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
 import SignUp from './components/Login/SignUp/SignUp';
 import Detail from './components/Detail/Detail'
@@ -9,7 +8,6 @@ import ListadoBusqueda from './views/ListadoBusqueda/ListadoBusqueda'
 import ListaBusqWomen from './views/ListodoBusqueda/ListaBusqWomen'
 import ListaBusqKids from './views/ListodoBusqueda/ListaBusqKids'
 import './App.css'
-import DashboardUser from "./components/DashboardUser/DashboardUser";
 import Home from './views/Home/Home'
 import LateralMenu from './components/DashBoard/LateralMenu/LateralMenu';
 import { Brands, Customer, Product, Sales, Statistics, Stock, TypesCategories } from './views/Admin'
@@ -17,26 +15,37 @@ import { Favorites, Profile, Record, Shopping } from './views/User'
 import HomeViews from './views/HomeViews/HomeViews';
 import Payment from './views/Payment/Payment';
 import PaymentSucces from './views/Payment/PaymentSucces';
+import Trolley from './views/Trolley/Trolley';
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import { SESSION_NOT_COOKIE } from './const';
+
 function App() {
   const { pathname } = useLocation();
+
   return (
     <>
-      <Navbar />
-      {pathname.includes('/admin') || pathname.includes('/user') ? <Navbar NavColor='#F7F7F7' LogoColor='#424242' /> : <Navbar />}
-      {pathname.includes('/admin') || pathname.includes('/user') ? <LateralMenu /> : null}
+      {/* //? Lateral Menu */}
+      <LateralMenu />
+      {/* //? Navbar */}
+      {(pathname.includes('/admin') || pathname.includes('/user')) ? (<Navbar NavColor='#F7F7F7' LogoColor='#424242' />) : <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route path="/home" element={
+          <HomeViews />
+        }
+        />
         {/* <Route path="/user" element={<User />} /> */}
         <Route path="/card" element={<ListadoBusqueda />} />
         <Route path="/cardw" element={<ListaBusqWomen />} />
         <Route path="/cardk" element={<ListaBusqKids />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/trolley" element={<Trolley />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/home" element={<HomeViews/>} />
         <Route path="/checkout" element={<Payment />} />
         <Route path="/payment-succes" element={<PaymentSucces />} />
         {/* <Route path="/user" element={<DashboardUser />} /> */}
-
 
         {/* //?Routes USER */}
         <Route path="/user" element={<Navigate to="/user/profile" />} />

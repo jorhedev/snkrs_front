@@ -153,7 +153,7 @@ const HomeViews = () => {
                 <p>{zapa.type}</p>
                 <br />
               </div>
-                <img src={logo} alt="logo" width={60} height={50} />
+              <img src={logo} alt="logo" width={60} height={50} />
             </div>
           </Link>
         ))}
@@ -163,9 +163,8 @@ const HomeViews = () => {
         <button
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`${styles.pageButton} ${
-            currentPage === 1 ? styles.disabled : ""
-          }`}
+          className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ""
+            }`}
         >
           Back
         </button>
@@ -173,9 +172,8 @@ const HomeViews = () => {
           <button
             key={index}
             onClick={() => paginate(index + 1)}
-            className={`${styles.pageButton} ${
-              currentPage === index + 1 ? styles.activePage : ""
-            }`}
+            className={`${styles.pageButton} ${currentPage === index + 1 ? styles.activePage : ""
+              }`}
           >
             {index + 1}
           </button>
@@ -183,9 +181,8 @@ const HomeViews = () => {
         <button
           onClick={() => paginate(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`${styles.pageButton} ${
-            currentPage === totalPages ? styles.disabled : ""
-          }`}
+          className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ""
+            }`}
         >
           Next
         </button>

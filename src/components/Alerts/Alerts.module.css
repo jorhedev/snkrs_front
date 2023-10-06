@@ -1,0 +1,55 @@
+.BodyAlert {
+    border-radius: 30px !important;
+}
+
+.BtnBlack {
+    width: 150px;
+    font-family: MontHeavy;
+    font-size: 20px;
+    background-color: black !important;
+    border-radius: 20px !important;
+    color: white !important;
+}
+
+.BtnBlack:hover {
+    background-color: #104410 !important;
+    border: 3px solid #525252;
+    color: #fefcfc !important;
+}
+
+.TitleAlert {
+    font-family: MontHeavy;
+    font-size: 40px;
+}
+
+.ContentAlert {
+    font-family: Mont;
+    font-size: 20px;
+}
+
+.actionsButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px
+}
+
+.swal2-input {
+    border: none !important;
+    box-shadow: none !important;
+    outline: transparent !important;
+}
+
+.inputSwall {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 22px;
+    font-family: Mont;
+    text-align: center;
+    border-radius: 15px;
+    border-bottom: 2px solid black;
+}
+
+.inputSwall:active {
+    background-color: #c0c0c0;
+}

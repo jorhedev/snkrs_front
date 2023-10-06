@@ -1,0 +1,48 @@
+.shoppingCart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cartItem {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .cartItem img {
+    max-width: 100px;
+    margin-right: 50px;
+    transition: transform 0.3s ease;
+}
+.cartItem img:hover {
+  transform: scale(1.5);
+}
+  
+  .cartItemDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .totalContainer {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    font-family: MontRegular;
+  }
+  
+  .tableContainer {
+    margin-top: 20px;
+  }
+  
+  .table {
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-family: MontLight;
+    font-size: 20px;
+  }

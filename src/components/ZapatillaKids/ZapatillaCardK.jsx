@@ -37,11 +37,11 @@ const ZapatillaCard = ({ zapatilla }) => {
       timer: 1500,
     });
   };
-  const men = zapatilla.stock[0]?.gender
+  const men = zapatilla.stock[0]?.gender;
 
-  if (men === 'female') {
+  if (men === "female") {
     // Verificar si hay al menos una entrada en el stock con gender igual a "male"
-    console.log(men)
+    console.log(men);
     return (
       <NavLink
         key={zapatilla._id}
@@ -50,11 +50,20 @@ const ZapatillaCard = ({ zapatilla }) => {
           zapatilla.price < 90 ? styles.isPriceLessThan90 : ""
         }`}
       >
-        <a onClick={toggleLike}>
+        <div className={styles.b}>
+
+        <button
+          className={styles.boton}
+          onClick={(e) => {
+            e.preventDefault(); // Evita que el enlace se active al hacer clic en el botón
+            toggleLike(); // Llama a la función toggleLike
+          }}
+        >
           <span role="img" aria-label="Corazón">
             {isLiked ? "❤️" : "🤍"}
           </span>
-        </a>
+        </button>
+        </div>
         <img src={zapatilla?.image[0]?.src} alt={zapatilla.brand} />
         <p>{zapatilla?.stock[0]?.gender}</p>
         <div className={styles.name}>

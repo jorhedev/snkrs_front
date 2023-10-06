@@ -2,8 +2,17 @@ export const URL_SNKRS = 'http://localhost:3001'
 // export const URL_SNKRS = 'https://backendfindhotel-dev.fl0.io'
 
 export const SESSION_NAME = 'snkrs-session'
-export const SESSION_TIME = 30; // 30 minutos// Convierte a días
+export const SESSION_TIME = 30; // 30 minutos
+export const SESSION_NOT_COOKIE = '/home'
 
-export const USER_CUSTOM = ['/', '/home', '/reserv', '/user']
-export const USER_ADMIN = ['/', '/home', '/admin']
-export const snkrsStorage = 'snkrsStorage'
+export const PAYMENT_STORAGE = 'snkrs-payment'
+
+const MIN_YEARS_OLD = 18
+const MAX_YEARS_OLD = 120
+
+const fechaMin = new Date()
+const fechaMax = new Date()
+fechaMin.setFullYear(fechaMin.getFullYear() - MAX_YEARS_OLD)
+fechaMax.setFullYear(fechaMax.getFullYear() - MIN_YEARS_OLD)
+export const MIN_YEAR_REGISTER = fechaMin.toISOString().split('T')[0];
+export const MAX_YEAR_REGISTER = fechaMax.toISOString().split('T')[0];

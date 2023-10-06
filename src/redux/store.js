@@ -5,6 +5,7 @@ import zapatillasReducer from './zapatillasSlice';
 import userReducer from './user';
 import cartReducer from './cartSlice'
 import productReducer from './productSlice';
+import resultsMenReducer from './resultsMen'
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     user: userReducer,
     cart: cartReducer,
     products: productReducer,
+    results: resultsMenReducer,
   }
 });
 

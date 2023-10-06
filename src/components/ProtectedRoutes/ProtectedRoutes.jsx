@@ -2,26 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { SESSION_NAME, URL_FINDHOTEL } from '../../const/const';
-import { verifyCookieSession, getCookieSession } from '../../services';
+import { SESSION_NAME } from '../../const/const';
+import { readCookieSession, updateCookieSession } from '../../services';
 
 // const user = useSelector(state => state.user.user)
 // if (!user) {
 //   return <Navigate to='/home' />
 // }
-const ProtectedRoutes = ({ children, path, redirect = '/' }) => {
+const ProtectedRoutes = ({ children, nameCookie = SESSION_NAME, path, redirect = '/' }) => {
     const dispatch = useDispatch()
     const location = useLocation();
     const [toHome, setToHome] = useState(true)
-    const [user, setUser] = useState({})
+
+    const cookie = readCookieSession(nameCookie)
 
     useEffect(() => {
-        const cookie = getCookieSession()
-        if (cookie === undefined) {
-            // dispatch()
+        if (!cookie) {
             setToHome(true);
         } else {
-            console.log('login')
             checkCookieAndRedirect()
             setToHome(false)
         }
@@ -29,27 +27,24 @@ const ProtectedRoutes = ({ children, path, redirect = '/' }) => {
     }, []);
 
     const checkCookieAndRedirect = async () => {
-        const cookie = verifyCookieSession()
-        if (cookie === undefined) {
-            setUser({})
-            return setToHome(true)
+        const cookie = updateCookieSession()
+        if (!cookie) {
+            setToHome(true)
         }
-        setUser(cookie)
-        return setToHome(false)
+        setToHome(false)
     };
 
 
 
     const handlerProtectedClick = (event) => {
         if (!event.target.classList.contains('ProtectedRoutes')) {
-            checkCookieAndRedirect();
+            checkCookieAndRedirect()
         }
     }
 
     return (
         <span className='ProtectedRoutes' onClick={handlerProtectedClick}>
-            {!toHome && user.paths.includes(path) ? <Outlet /> : <Navigate to={'/'} />}
-            {toHome && <Navigate to={'/'} />};
+            children
         </span>
     )
 }
@@ -59,6 +54,7 @@ ProtectedRoutes.propTypes = {
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.element)
     ]),
+    nameCookie: PropTypes.string,
     path: PropTypes.string,
     redirect: PropTypes.string
 };

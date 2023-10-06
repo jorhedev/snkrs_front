@@ -1,6 +1,5 @@
 import styles from "./Header.module.css";
 import nikeAir from "../../assets/Image/nikeairProm.jpg";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -12,7 +11,6 @@ const Header = () => {
       <div className={styles.slide}>
         <img src={nikeAir} alt="" />
       </div>
-        <Link className={styles.btn} to={"/home"}>HOME</Link>
     </div>
   );
 };
