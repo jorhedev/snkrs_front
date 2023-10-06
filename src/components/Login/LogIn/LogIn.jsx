@@ -5,7 +5,7 @@ import styles from './LogIn.module.css';
 import SignIn from '../SignIn/SignIn';
 import { FaRegUser } from 'react-icons/fa'
 import LoggedIn from '../LoggedIn/LoggedIn';
-import { viewFormLog } from '../../../redux/user';
+import { setStatusLogin, setViewLogin, viewFormLog } from '../../../redux/user';
 import { readCookieSession } from '../../../services';
 
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
@@ -30,6 +30,10 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
     setImageUrl(image);
   }
 
+  const handlerChangeSignIn = (status) => {
+    dispatch(setViewLogin());
+  }
+
   return (
     <div className={styles.LogIn} >
       <span className={styles.PhotoWrapper} title='login' style={{
@@ -39,7 +43,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
           <FaRegUser size={sizeAvatar} /> :
           <img className={styles.Photo} src={imageUrl} alt='uploadImage' />}
       </span>
-      {login.view && <SignIn isActiveSignIn={login.status} />}
+      {login.view && <SignIn isActiveSignIn={login.status} onChangeSignIn={handlerChangeSignIn} />}
       {login.view && < LoggedIn isActiveLoggedIn={!login.status} />}
     </div>
   )

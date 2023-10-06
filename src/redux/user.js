@@ -2,7 +2,7 @@ import axiosInstance from '../utils/axiosInstance.js';
 import { createSlice } from "@reduxjs/toolkit";
 import {
     SESSION_NAME,
-} from "../const/const";
+} from "../const/const.jsx";
 import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
 import { logOut } from '../services/firebase';
 
@@ -14,6 +14,7 @@ const initialState = {
     },
 
 };
+
 
 export const userSlice = createSlice({
     name: "user",
@@ -34,8 +35,13 @@ export const userSlice = createSlice({
             }
         },
         setViewLogin: (state, action) => {
-            state.login.view = !state.login.view
+            console.log("🚀 ~ file: user.js:37 ~ action:", action)
+            if (action.payload === undefined)
+                state.login.view = !state.login.view
+            else
+                state.login.view = action.payload
         },
+
         setStatusLogin: (state, action) => {
             state.login.status = action.payload
         }

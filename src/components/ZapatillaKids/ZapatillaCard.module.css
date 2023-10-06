@@ -22,11 +22,11 @@
   .zapatilla:hover{
     transform: scale(1.05) ;
   }
-.product{
-    position: relative;
-    left: 280px;
-    width: 500px;
-}
+  .product{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+ }
 .isPriceLessThan90::before {
   content: '40%';
   position: absolute;

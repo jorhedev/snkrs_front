@@ -7,7 +7,6 @@ import { signOut } from '../../../redux/user';
 import { MdPerson } from 'react-icons/md';
 import { FaHotel, FaUserTie } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import { AvatarSvg } from '../../Icons/Avatar';
 import { readCookieSession } from '../../../services';
 
 const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
@@ -32,7 +31,7 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
     }
   }, [setUser]);
 
-  const handlerLogOut = () => {
+  const handlerSignOut = () => {
     dispatch(signOut())
   }
   return (
@@ -64,7 +63,7 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
           <div className={styles.BtnSignOut}>
           </div>
         </div >
-        <button className={styles.BtnLogOut} onClick={handlerLogOut}>Logout</button>
+        <button className={styles.BtnLogOut} onClick={handlerSignOut}>Logout</button>
       </div>
     </>
   )

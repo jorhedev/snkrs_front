@@ -1,0 +1,60 @@
+.slider {
+    width: 100%;
+    height: auto;
+    margin: 0px auto;
+    overflow: hidden;
+    margin-top: 40px;
+  
+  }
+  
+  .slider .titulo {
+    text-align: center;
+    font-family: MontHeavy;
+  }
+  
+  .slideTrack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: scroll 90s linear infinite;
+    -webkit-animation: scroll 90s linear infinite;
+    width: calc(200px * 14);
+  }
+  
+  
+  .slider h1 {
+    font-family: Cocogoose;
+    color: #101010;
+    text-align: center;
+    font-size: 40px;
+    font-family: Cocogoose;
+    font-weight: 500;
+    font-size: 32px;
+  }
+  
+  .slide {
+    width: 250px;
+    margin: 30px;
+  }
+  
+  .slide img {
+    width: 100%;
+    initial-letter: grayscale(1);
+    /* Webkit */
+    filter: gray;
+    /* IE6-9 */
+    filter: grayscale(1);
+    /* W3C */
+    opacity: .8;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+  
+    100% {
+      transform: translateX(calc(-200px * 7));
+      /* Cambiado el valor de -200 * 7 */
+    }
+  }

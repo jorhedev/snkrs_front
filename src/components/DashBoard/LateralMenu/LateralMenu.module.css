@@ -1,0 +1,77 @@
+.LateralMenuContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background: #F7F7F7;
+}
+
+
+.LateralMenu {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 80px);
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-end;
+    top: 80px;
+}
+
+a {
+    text-decoration: none;
+    color: #424242;
+}
+
+a:hover {
+    color: #D9D9D9;
+}
+
+.MenuLink {
+    display: flex;
+    width: 250px;
+    height: 100px;
+    font-family: MontHeavy;
+    border-radius: 50px 0px 0px 50px;
+    background: #D9D9D9;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.MenuLink:hover {
+    color: #FFF;
+    background: #424242;
+}
+
+.MenuActive {
+    color: #FFF;
+    background: #424242;
+}
+
+.MenuInfo {
+    display: flex;
+    height: 50px;
+    width: 180px;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding-right: 10px;
+    gap: 15px;
+}
+
+
+.MenuInfo label {
+    font-size: 22px;
+}
