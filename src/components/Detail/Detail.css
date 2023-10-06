@@ -6,14 +6,20 @@
 
 .detail-container {
   display: flex;
+  align-items: center;
+  flex-direction: column  ;
 
-  flex-direction: column;
   justify-content: center;
   height: auto;
   gap: 22px;
   margin-top: 50px;
 }
 
+.product{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
 .container-data{
   display: flex;
   flex-direction: row;
@@ -54,14 +60,18 @@
 .product-main-image {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #f7f7f7;
   height: 485px;
+  width: 400px;
 }
 .product-main-image img {
+  display: flex;
+  justify-content: center;
+  align-content: center;
   width: auto;
-  height: 320px;
+  height: 360px;
   position: relative;
-  top: 80px;
 }
 
 .product-info {
