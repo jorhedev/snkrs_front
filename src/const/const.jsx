@@ -6,3 +6,4 @@ export const SESSION_TIME = 30; // 30 minutos// Convierte a días
 
 export const USER_CUSTOM = ['/', '/home', '/reserv', '/user']
 export const USER_ADMIN = ['/', '/home', '/admin']
+export const snkrsStorage = 'snkrsStorage'
