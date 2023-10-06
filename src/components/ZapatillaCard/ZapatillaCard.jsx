@@ -1,38 +1,23 @@
 /** @format */
 
-import PropTypes from "prop-types";
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
-import { addCard, removeCard } from "../../redux/cardsSlice";
-import { NavLink } from "react-router-dom";
-import Swal from 'sweetalert2';
 import { addCartItemsById } from "../../redux/cartSlice";
-
-import {
-  setProductCategory,
-  setProductType,
-  setSize,
-  setColor,
-} from "../../redux/filtersSlice";
-
+import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/Image/Logo.png";
 import styles from "./ZapatillaCard.module.css";
 
 const ZapatillaCard = ({ zapatilla }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.zapatillas);
-  const card = useSelector((state) => state.cards);
-  const filters = useSelector((state) => state.filters);
 
-  console.log(favorites);
-
-  const isFavorite = favorites.some((favorite) => favorite.id === zapatilla.id);
+  const isFavorite = favorites.some(
+    (favorite) => favorite._id === zapatilla._id
+  );
   const [isLiked, setIsLiked] = useState(isFavorite);
-
-  // const isCard = card.some((car) => car.id === zapatilla.id)
-  // const [isCardZ, setCardZ] = useState(isCard)
-  // console.log(setCardZ)
 
   const toggleLike = () => {
     if (isLiked) {
@@ -42,56 +27,77 @@ const ZapatillaCard = ({ zapatilla }) => {
     }
     setIsLiked(!isLiked);
   };
+
   const addToCartHandler = () => {
     dispatch(addCartItemsById(zapatilla));
     Swal.fire({
-      icon: 'success',
-      title: 'Producto Agregado al Carrito',
+      icon: "success",
+      title: "Producto Agregado al Carrito",
       showConfirmButton: false,
-      timer: 1500, 
+      timer: 1500,
     });
   };
-  return (
-    <>
-      
-      <div
-      className={`${styles.zapatilla} ${
-        zapatilla.price < 90 ? styles.isPriceLessThan90 : ""
-      }`}
-    >
-      
-      
+  const men = zapatilla.stock[0]?.gender;
 
-      <img src={zapatilla?.image[0]?.src} alt={zapatilla.brand} />
-      
-     
-      <div className={styles.name}>
-        <h2>{zapatilla.brand}</h2>
-        <div className={styles.price}>
-          <p>$ {zapatilla.price}</p>
+  if (men === "male") {
+    // Verificar si hay al menos una entrada en el stock con gender igual a "male"
+    console.log(men);
+    return (
+      <NavLink
+        key={zapatilla._id}
+        to={`/detail/${zapatilla._id}`}
+        className={`${styles.zapatilla} ${
+          zapatilla.price < 90 ? styles.isPriceLessThan90 : ""
+        }`}
+      >
+        <div className={styles.b}>
 
-          <div></div>
+        <button
+          className={styles.boton}
+          onClick={(e) => {
+            e.preventDefault(); // Evita que el enlace se active al hacer clic en el botón
+            toggleLike(); // Llama a la función toggleLike
+          }}
+        >
+          <span role="img" aria-label="Corazón">
+            {isLiked ? "❤️" : "🤍"}
+          </span>
+        </button>
         </div>
-      </div>
+        <img src={zapatilla?.image[0]?.src} alt={zapatilla.brand} />
+        <p>{zapatilla?.stock[0]?.gender}</p>
+        <div className={styles.name}>
+          <h2>{zapatilla?.brand}</h2>
+          <div className={styles.price}>
+            <p>$ {zapatilla?.price}</p>
 
-      <p className={styles.type}>{zapatilla.model}</p>
-      <p className={styles.type}>{zapatilla.type}</p>
-      <p className={styles.circle}>
-        🔴🟢🔵⚫️⚪️
-        <img src={logo} alt="logo" width={70} />
-      </p>
-    <button onClick={addToCartHandler}>Agregar al carrito</button>
-    </div>
-    </>
-    
-  );
+            <div></div>
+          </div>
+        </div>
+
+        <p className={styles.type}>{zapatilla.model}</p>
+
+        <p className={styles.type}>{zapatilla.type}</p>
+
+        <p className={styles.circle}>
+          🔴🟢🔵⚫️⚪️
+          <img src={logo} alt="logo" width={70} />
+        </p>
+
+        <button onClick={addToCartHandler}>Agregar al carrito</button>
+      </NavLink>
+    );
+  } else {
+    return null; // No se renderizará la zapatilla si gender no es "male"
+  }
 };
 
 ZapatillaCard.propTypes = {
   zapatilla: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.number.isRequired,
     brand: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    stock: PropTypes.array.isRequired,
     model: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,

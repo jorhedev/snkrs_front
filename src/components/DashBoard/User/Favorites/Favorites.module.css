@@ -1,0 +1,145 @@
+.fa{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    margin: 10px auto;
+    width: 100px;
+    text-decoration: none;
+    
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    margin-left: 120px;
+}
+.cartContainer{
+    border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.cartContainer img{
+    width: 150px;
+    height: auto;
+}
+.boton{
+    display: flex;
+    justify-content: center;
+    width: 1;
+    gap: 5px;
+}
+.boton .btn{
+    width: 100px;
+    font-size: 12px;
+}
+.homebtn{
+    margin-left: 100px;
+}
+.home{
+    display: flex;
+    justify-content:start;
+    margin-top: 100px;
+    margin-left: 250px
+}
+
+
+
+
+.title{
+    font-family: MontHeavy;
+    position: relative;
+   
+}
+.name{
+  display: flex;
+  justify-content: space-between;
+}
+
+.price{
+  position: relative;
+  background: #080808;
+  color: #fff;
+  width: 86px;
+  height: 35px;
+  left: 25px;
+ padding: 4px 4px;
+ border: 1px solid #c1c1c171;
+ margin-bottom: 20px;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 2px 7px #000000f3;
+    font-family: MontHeavy;
+}
+.price div {
+  position: absolute;
+  bottom: -23px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  font-family: MontHeavy;
+  border-top: 13px solid #a2a2a2;
+  border-bottom: 10px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: -6;
+}
+.letra{
+  font-family: MontLight;
+}
+.name .price p{
+  font-size: 12px;
+  padding: 16px auto;
+}
+.name h2 {
+  font-size: 20px;
+  color: #000;
+ margin: 0;
+  font-family: MontHeavy;
+}
+
+
+
+  .data{
+    font-family: MontHeavy;
+    text-decoration: none;
+    color: #000;
+  }  
+  .letra{
+    font-family: MontLight;
+    text-decoration: none;
+    color: #000;
+  }
+    .containe {
+      display: flex;
+      padding: 7px 10px;
+      flex-direction: column;
+     
+    }
+  
+    .type{
+      display: flex;
+      flex-direction: column;
+    
+    }
+    
+    .card {
+      background-color: #f0f0f0;
+      padding: 16px 20px; 
+      box-sizing: border-box; 
+      width: 230px;
+      height: auto;
+    }
+    
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .boton{
+        display: flex;
+        justify-content: end;
+        border: none;
+        background: transparent;
+        font-size: 24px;
+        z-index: 1;
+      }

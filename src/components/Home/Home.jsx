@@ -70,7 +70,7 @@ const saleData = [
       name: "Yeezy",
       price: 75.99,
       type: "SPLV-350",
-      image: "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
       color: [],
       category: "ACCESSORIES",
       size: "4",
@@ -114,7 +114,7 @@ const saleData = [
       price: 199.99,
       type: "SPLV-350",
       image:
-        "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
       color: [],
       size: "6",
       category:""
@@ -125,7 +125,7 @@ const saleData = [
       price: 199.99,
       type: "SPLV-350",
       image:
-        "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
       color: [],
       size: "12",
       category:""
@@ -136,7 +136,7 @@ const saleData = [
       price: 199.99,
       type: "SPLV-350",
       image:
-        "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
       color: [],
       size: "9",
       category:""

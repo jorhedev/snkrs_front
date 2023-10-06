@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer/Footer";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import BeMember from "../../components/BeMember/BeMember";
@@ -12,10 +12,14 @@ import logo from "../../assets/Image/Logo.png";
 import Search from "../../components/Seach/Search";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import axios from "axios"; // Importa Axios
+import { useDispatch } from "react-redux"; // Solo necesitas useDispatch aquí
+import { setBrand, setModel } from "../../redux/filtersSlice";
 
 const itemsPerPage = 9;
 
 const HomeViews = () => {
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const [filteredProducts, setFilteredProducts] = useState(DataZapatilla);
   const [showNotFoundMessage, setShowNotFoundMessage] = useState(false);
@@ -45,6 +49,34 @@ const HomeViews = () => {
     // Mostrar el mensaje si no se encuentran resultados
     setShowNotFoundMessage(filteredProducts.length === 0);
   };
+  useEffect(() => {
+    // Realiza la solicitud GET a la ruta de productos
+    axios
+      .get("http://localhost:3001/products")
+      .then((response) => {
+        if (Array.isArray(response.data.products)) {
+          // Actualiza el estado con los datos de zapatillas obtenidos
+          setFilteredProducts(response.data.products);
+          // Configura los filtros de brand y model en el estado global
+          const brands = [
+            ...new Set(response.data.products.map((product) => product.brand)),
+          ];
+          const models = [
+            ...new Set(response.data.products.map((product) => product.model)),
+          ];
+          dispatch(setBrand(brands[0])); // Configura el filtro de brand inicialmente
+          dispatch(setModel(models[0])); // Configura el filtro de model inicialmente
+        } else {
+          console.error(
+            "Los datos de zapatillas no son un arreglo válido:",
+            response.data
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener los datos de zapatillas:", error);
+      });
+  }, [dispatch]);
 
   return (
     <>
@@ -56,8 +88,7 @@ const HomeViews = () => {
               alt=""
             />
             <Carousel.Caption>
-              
-            <img className={styles.logo} src={logo} alt="logo" width={70} />
+              <img className={styles.logo} src={logo} alt="logo" width={70} />
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -66,8 +97,11 @@ const HomeViews = () => {
               alt=""
             />
             <Carousel.Caption>
-            <img className={styles.logo} src={logo} alt="logo" width={70} />
-              <p>You can find the best brands and we will deliver them to your home.</p>
+              <img className={styles.logo} src={logo} alt="logo" width={70} />
+              <p>
+                You can find the best brands and we will deliver them to your
+                home.
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -76,9 +110,10 @@ const HomeViews = () => {
               alt=""
             />
             <Carousel.Caption>
-            <img className={styles.logo} src={logo} alt="logo" width={70} />
+              <img className={styles.logo} src={logo} alt="logo" width={70} />
               <p>
-              We have all the models you are looking for and prices to suit you.
+                We have all the models you are looking for and prices to suit
+                you.
               </p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -93,22 +128,36 @@ const HomeViews = () => {
         </div>
       )}
 
-      <Link to={'/card'} className={styles.cards}>
+      <div className={styles.cards}>
         {currentItems.map((zapa) => (
-          <div className={styles.containe} key={zapa.id}>
+          <Link
+            to={`/detail/${zapa._id}`}
+            className={styles.containe}
+            key={zapa._id}
+          >
             {/* Renderiza los detalles de los productos aquí */}
-            <div className={styles.card} key={zapa.id}>
-              <img src={zapa.image} alt={zapa.name} />
-              <h3 className={styles.data}>{zapa.name}</h3>
-              <div className={styles.type}>
-                <span className={styles.letra}>{zapa.type}</span>
-                <br />
-                <img src={logo} alt="logo" width={70} />
+            <div className={styles.card} key={zapa._id}>
+              <img src={zapa?.image[0].src} alt={zapa.name} />
+
+              <div className={styles.name}>
+                <h2>{zapa?.brand}</h2>
+                <div className={styles.price}>
+                  <p>$ {zapa?.price}</p>
+
+                  <div></div>
+                </div>
               </div>
+
+              <div className={styles.type}>
+                <span className={styles.letra}>{zapa.model}</span>
+                <p>{zapa.type}</p>
+                <br />
+              </div>
+                <img src={logo} alt="logo" width={60} height={50} />
             </div>
-          </div>
+          </Link>
         ))}
-      </Link>
+      </div>
 
       <div className={styles.pagination}>
         <button
@@ -143,14 +192,11 @@ const HomeViews = () => {
       </div>
 
       <div className={styles.container}>
-        <div>
-          <h1 className={styles.title}>Featured</h1>
+        <h1 className={styles.title}>Featured</h1>
+        <div className={styles.homer}>
           <Home />
         </div>
 
-        <div>
-          <Home />
-        </div>
         <div>
           <Banner1 />
         </div>
