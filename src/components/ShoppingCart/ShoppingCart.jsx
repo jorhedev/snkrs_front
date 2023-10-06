@@ -14,7 +14,7 @@ const ShoppingCart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   useEffect(() => {
     dispatch(getCartItems());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [showTable, setShowTable] = useState(true);
   const handleIncrease = (item) => {

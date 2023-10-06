@@ -13,6 +13,7 @@ const zapatillasSlice = createSlice({
     },
   },
 });
+console.log(zapatillasSlice)
 
 export const { addFavorite, removeFavorite } = zapatillasSlice.actions;
 

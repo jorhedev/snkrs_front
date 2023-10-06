@@ -1,0 +1,172 @@
+.container{
+    height: 100vh;
+    width: 100vw;
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.title{
+    font-family: MontHeavy;
+    position: relative;
+   
+}
+.name{
+  display: flex;
+  justify-content: space-between;
+}
+
+.price{
+  position: relative;
+  background: #080808;
+  color: #fff;
+  width: 86px;
+  height: 35px;
+  left: 25px;
+ padding: 4px 4px;
+ border: 1px solid #c1c1c171;
+ margin-bottom: 20px;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 2px 7px #000000f3;
+    font-family: MontHeavy;
+}
+.price div {
+  position: absolute;
+  bottom: -23px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  font-family: MontHeavy;
+  border-top: 13px solid #a2a2a2;
+  border-bottom: 10px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: -6;
+}
+.letra{
+  font-family: MontLight;
+}
+.name .price p{
+  font-size: 16px;
+  padding: 16px auto;
+}
+.name h2 {
+  font-size: 25px;
+  color: #000;
+ margin: 0;
+  font-family: MontHeavy;
+}
+.propa img{
+    width: 100%;
+   
+
+}
+.carrusel{
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+
+}
+.carrusel .logo{
+  width: 130px;
+  height: auto;
+}
+
+
+.carrusel img{
+  width: 100%;
+  height: 650px;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    margin: 10px auto;
+    width: 500px;
+    text-decoration: none;
+  
+  }
+  .data{
+    font-family: MontHeavy;
+    text-decoration: none;
+    color: #000;
+  }  
+  .letra{
+    font-family: MontLight;
+    text-decoration: none;
+    color: #000;
+  }
+    .containe {
+      display: flex;
+      padding: 7px 10px;
+      flex-direction: column;
+     
+    }
+    .container{
+      text-align: center;
+    }
+    .type{
+      display: flex;
+      flex-direction: column;
+    
+    }
+    
+    .card {
+      background-color: #f0f0f0;
+      padding: 16px 20px; 
+      box-sizing: border-box; 
+      width: 300px;
+    }
+    
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Estilos para los botones de paginación */
+
+    .pagination{
+        display: flex;
+        justify-content: center;
+    }
+.pageButton {
+    
+    width: auto;
+    background-color: #000; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: 1px solid #000; /* Borde del botón */
+    padding: 5px 10px; /* Espaciado interno del botón */
+    margin: 5px; /* Margen entre botones */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave al pasar el mouse */
+    font-family: MontHeavy;
+    /* Estilo cuando el botón está deshabilitado */
+    &.disabled {
+      background-color: #fff;
+      color: #000;
+      cursor: not-allowed;
+      text-decoration: none;
+    
+    }
+  
+    /* Estilo cuando el botón está activo */
+    &.activePage {
+      background-color: #fff;
+      color: #000;
+    }
+  
+    /* Pseudo-clases para el botón */
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+  .notFoundMessage{
+    display: flex;
+    justify-content:center ;
+  }
+  .notFoundMessage h1{
+    font-family:MontLight;
+    
+    font-size:2rem;
+    color: red;
+  }
