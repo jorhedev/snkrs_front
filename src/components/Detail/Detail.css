@@ -6,12 +6,20 @@
 
 .detail-container {
   display: flex;
+
   flex-direction: row;
   justify-content: center;
   height: auto;
   gap: 22px;
   margin-top: 50px;
 }
+
+.container-data{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
 .product-images {
   display: flex;
   flex-direction: column;

@@ -10,6 +10,10 @@ import axios from "axios";
 import "./Detail.css";
 import { addCartItemsById } from "../../redux/cartSlice";
 import Swal from "sweetalert2";
+
+import TopSales from "../TopSales/TopSales";
+import BeMember from '../../components/BeMember/BeMember'
+
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import Slider from 'react-slick';
@@ -79,6 +83,7 @@ const Detail = () => {
     </div>
     
     <div className="detail-container">
+
       <div className="imagenes">
         {/* Aquí puedes renderizar las imágenes de la zapatilla */}
         <div className="product-images">
@@ -263,6 +268,9 @@ const Detail = () => {
           </Link>
         </div>
       </div>
+      <TopSales />
+      <BeMember />
+      <Footer />
     </div>
 
     <div className="carouselContainer">
