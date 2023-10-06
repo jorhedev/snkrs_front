@@ -9,7 +9,7 @@ const Promo = () => {
       price: 75.99,
       type: "SPLV-350",
       image:
-        "https://p.kindpng.com/picc/s/124-1243472_yeezy-v2-beluga-png-transparent-png.png",
+        "https://dropoutmilano.com/cdn/shop/files/adidas-yeezy-boost-350-v2-natural-dropout_700x700.jpg?v=1696266800",
       color: [],
       category: "ACCESSORIES",
       size: "4",
@@ -20,7 +20,7 @@ const Promo = () => {
       price: 199.99,
       type: "SPLV-350",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
+        "https://sneakernews.com/wp-content/uploads/2023/05/adidas-yeezy-boost-350-v2-granite-hq2059-release-date-4.jpg",
       color: [],
       category: "CLOTHES",
       size: "6",
