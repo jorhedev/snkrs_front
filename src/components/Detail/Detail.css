@@ -197,7 +197,14 @@
   font-weight: 700;
   font-family: MontHeavy;
 }
-
+.homebtn{
+  text-decoration: none;
+  color: #000;
+  font-family: MontHeavy;
+}
+.homebtn:hover{
+  color:#c1c1c1 ;
+}
 
 
 
