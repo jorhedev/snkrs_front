@@ -4,12 +4,14 @@
   padding: 20px;
   font-family: MontHeavy;
   font-size: 20px;
+  margin-top: 50px;
 }
 
 
 .cartTable {
     padding: 60px;
     text-align: center;
+    margin-top: 50px;
 }
 .cartTable td {
   padding-left: 50px;
