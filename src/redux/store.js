@@ -7,6 +7,7 @@ import cartReducer from './cartSlice'
 import productReducer from './productSlice';
 import resultsMenReducer from './resultsMen'
 import recordReducer from "./recordSlice"
+import countryReducer from './country';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     products: productReducer,
     results: resultsMenReducer,
     record: recordReducer,
+    country: countryReducer
   }
 });
 

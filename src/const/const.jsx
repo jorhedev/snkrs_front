@@ -5,7 +5,9 @@ export const SESSION_NAME = 'snkrs-session'
 export const SESSION_TIME = 30; // 30 minutos
 export const SESSION_NOT_COOKIE = '/home'
 
+export const SIGNUP_STORAGE = 'snkrs-signup'
 export const PAYMENT_STORAGE = 'snkrs-payment'
+export const TROLLEY_STORAGE = 'snkrs-trolley'
 
 const MIN_YEARS_OLD = 18
 const MAX_YEARS_OLD = 120
