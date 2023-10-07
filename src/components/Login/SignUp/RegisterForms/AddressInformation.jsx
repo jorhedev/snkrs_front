@@ -71,7 +71,7 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
         const currentValue = { ...info, [field]: value }
         setInfo(currentValue)
         setError(signUpValidate(currentValue))
-        onChangeAddressInfo(currentValue)
+        // onChangeAddressInfo(currentValue)
     }
 
     return (

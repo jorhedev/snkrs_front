@@ -36,9 +36,9 @@ export const countrySlice = createSlice({
 
 export const fetchCountry = () => async (dispatch) => {
     try {
-        const country = await axiosInstance('/countries')
-            .then((data) => { return data.map(({ country }) => country) })
-        dispatch(setCountry(country))
+        const country = await axiosInstance('/world/countries')
+            .then((data) => { return data.map(({ country }) => { return country }) })
+        dispatch(setCountry(country.sort()))
     } catch (error) {
         console.log(error.message)
     }
@@ -47,8 +47,8 @@ export const fetchCountry = () => async (dispatch) => {
 
 export const fetchState = (country) => async (dispatch) => {
     try {
-        const { states } = axiosInstance(`/stateByCountry?country=${country}`)
-        dispatch(setState(states))
+        const { states } = await axiosInstance(`/world/stateByCountry?country=${country}`)
+        dispatch(setState(states.sort()))
     } catch (error) {
         console.log(error.message)
     }
@@ -57,8 +57,8 @@ export const fetchState = (country) => async (dispatch) => {
 
 export const fetchCity = (country, state) => async (dispatch) => {
     try {
-        const { cities } = axiosInstance(`/cityByState?country=${country}?state=${state}`)
-        dispatch(setCity(cities))
+        const { cities } = await axiosInstance(`/world/cityByState?country=${country}&state=${state}`)
+        dispatch(setCity(cities.sort()))
     } catch (error) {
         console.log(error.message)
     }
@@ -67,7 +67,7 @@ export const fetchCity = (country, state) => async (dispatch) => {
 
 export const fetchCountryDetail = (country) => async (dispatch) => {
     try {
-        const { flag, codes } = axiosInstance(`/countryDetail?country=${country}`)
+        const { flag, codes } = axiosInstance(`/world/countryDetail?country=${country}`)
         dispatch(setCountryInfo({
             flag: flag,
             iso2: codes.iso2,
