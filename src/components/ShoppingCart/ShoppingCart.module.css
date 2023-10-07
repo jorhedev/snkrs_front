@@ -6,7 +6,17 @@
   font-size: 20px;
   margin-top: 50px;
 }
-
+.homebtn{
+  text-decoration: none;
+  color: #000;
+  font-family: MontRegular;
+}
+.homebtn:hover{
+  color:#c1c1c1 ;
+}
+.homebtonP{
+  margin-top: 80px;
+}
 
 .cartTable {
     padding: 60px;

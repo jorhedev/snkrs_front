@@ -21,6 +21,17 @@
   font-family: Montregular;
   font-size: 15px;
 }
+.homebtn{
+  text-decoration: none;
+  color: #000;
+  font-family: MontRegular;
+}
+.homebtn:hover{
+  color:#c1c1c1 ;
+}
+.homebtonP{
+  margin-top: 80px;
+}
 .cartContainer {
     max-width: 1200px;
     margin: 0 auto;

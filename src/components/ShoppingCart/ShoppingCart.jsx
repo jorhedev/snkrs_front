@@ -4,7 +4,7 @@ import { getCartItems } from "../../redux/cartSlice";
 import styles from "./ShoppingCart.module.css";
 import { MdClose } from "react-icons/md";
 import { FaPlusCircle, FaMinusCircle, FaTrashAlt } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 import {
   itemIncrement, itemDecrement, removeFromCart, clearCart,
 } from "../../redux/cartSlice";
@@ -94,6 +94,7 @@ const ShoppingCart = () => {
   return (
     <div className={styles.cartContainer}>
       <div className={styles.tableContainer}>
+      <Link className={styles.homebtn} to={'/home'}><p className={styles.homebtonP} ><AiOutlineArrowLeft /> Home</p></Link>
         <h2 className={styles.h2}>SHOPPING CART</h2>
         {cartItems.length > 0 ? (
           <div>

@@ -84,7 +84,7 @@ const ZapatillaCard = ({ zapatilla }) => {
           <img src={logo} alt="logo" width={70} />
         </p>
 
-        <button onClick={addToCartHandler}>Agregar al carrito</button>
+        {/* <button onClick={addToCartHandler}>Agregar al carrito</button> */}
       </NavLink>
     );
   } else {
