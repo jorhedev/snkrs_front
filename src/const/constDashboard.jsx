@@ -73,7 +73,8 @@ export const MENU_ADMIN = {
 }
 
 export const NAV_ALL = [
-    '/', '/home'
+    '/', '/home',
+
 ]
 
 export const NAV_USER = [
@@ -84,4 +85,9 @@ export const NAV_USER = [
 export const NAV_ADMIN = [
     ...NAV_ALL,
     ...Object.values(MENU_ADMIN).map(({ route }) => route)
+]
+
+export const NOT_NAVE = [
+    ...NAV_USER,
+    ...NAV_ADMIN
 ]

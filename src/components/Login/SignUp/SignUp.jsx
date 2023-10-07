@@ -1,5 +1,5 @@
 /** @format */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import zapa from "../../../assets/Image/video1.webm"
 import styles from './SignUp.module.css';
@@ -7,20 +7,19 @@ import UploadPhoto from "../../Upload/UploadPhoto/UploadPhoto";
 import axiosInstance from "../../../utils/axiosInstance";
 import { NonActiveUser, ResetPassword } from "../../Alerts";
 import { AddressInformation, BasicInformation } from "./RegisterForms";
+import { SIGNUP_STORAGE } from "../../../const";
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
   const [signUp, setSignUp] = useState(false);
   const [user, setUser] = useState({
     nit: '',
-    birthday: '',
     firstName: '',
     lastName: '',
+    birthday: '',
     email: '',
     password: '',
-    image: [],
-    country: '',
-    city: '',
+    image: '',
     address: [{
       country: '',
       state: '',
@@ -31,20 +30,22 @@ const SignUp = () => {
     }],
   })
 
+  useEffect(() => {
+    //? Get Data from localStorage
+    const storedData = JSON.parse(localStorage.getItem(SIGNUP_STORAGE));
+    storedData && setSignUp({ ...storedData });
+  }, []);
+
   const handlerChangeImage = () => {
     console.log('photo')
   }
 
-  const handlerChangeSignUp = (data) => {
-    setUser({ ...user, ...data });
-  }
 
   const handlerPreview = () => { return step > 1 ? setStep(step - 1) : null }
 
   const handlerNext = async () => {
     try {
       const data = await axiosInstance.post(`/auth/verify-email/${user.email}`)
-      console.log("🚀 ~ file: SignUp.jsx:41 ~ handlerNext ~ data:", data)
       if (data) {
         if (data.status == 'inactive') {
           NonActiveUser()
@@ -60,7 +61,16 @@ const SignUp = () => {
       return step < 2 ? setStep(step + 1) : null
     }
   }
+
   const handlerSignUp = () => {
+
+  }
+
+  const handlerChangeSignUp = (data) => {
+    step == 1 && setUser({ ...user, ...data })
+    step == 2 && setUser({ ...user, address: [...data] })
+    const { password, ...storage } = user
+    localStorage.setItem(SIGNUP_STORAGE, JSON.stringify(storage));
 
   }
 
@@ -97,9 +107,9 @@ const SignUp = () => {
             )}
           </span>
           <div className={styles.ButtonSignUp}>
-            {step > 1 ? <button className={`${styles.SignUpBtns}`} onClick={handlerPreview}>Prev</button> : null}
-            {signUp ? <button className={`${styles.SignUpBtns}`} onClick={handlerSignUp}>Register</button> : null}
-            {step < 2 && !signUp ? <button className={`${styles.SignUpBtns}`} onClick={handlerNext}>Next</button> : null}
+            {step > 1 && <button className={`${styles.SignUpBtns}`} onClick={handlerPreview}>Prev</button>}
+            {!signUp && <button className={`${styles.SignUpBtns}`} onClick={handlerSignUp}>Register</button>}
+            {step < 2 && <button className={`${styles.SignUpBtns}`} onClick={handlerNext}>Next</button>}
           </div>
         </div>
         <div className={`${styles.ShoeMove} ${styles.SignUp_ShoeMove}`}>

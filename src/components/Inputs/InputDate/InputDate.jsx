@@ -29,7 +29,7 @@ const InputDate = ({ initInput = '', onChangeInput, errors, minDate = '', maxDat
       {tag !== '' && <h3 style={{ fontSize: '24px', ...style?.h3 }}>{tag}</h3>}
       <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9' }}>
         <input
-          style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px;', fontFamily: 'MontHeavy', ...style?.input }}
+          style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px', fontFamily: 'MontHeavy', ...style?.input }}
           type='date'
           autoComplete="off"
           value={state}
