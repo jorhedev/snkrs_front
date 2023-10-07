@@ -44,7 +44,7 @@ const LoggedIn = ({ isActiveLoggedIn = false, onChangeLoggedIn }) => {
         <div className={styles.Header}>
           <div className={styles.LoggedInHeader}>
             <label htmlFor="">{user?.firstName?.split(' ')[0]} {user?.lastName?.split(' ')[0]}</label>
-            <div className={styles.Photo}>
+            <div className={styles.PhotoLogin}>
               <LoggedInPhoto imageSrc={
                 (imageUrl === '' || imageUrl === null || imageUrl === undefined) ? '' :
                   imageUrl} size={'100%'} />

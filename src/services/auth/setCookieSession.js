@@ -12,7 +12,7 @@ const setCookieSession = (nameCookie, dataCookie) => {
 
         Cookies.set(nameCookie, JSON.stringify({ _id, ...user }), {
             expires: cookieExpires,
-            path: SESSION_NOT_COOKIE,
+            path: '/',
         });
     } catch (error) {
         console.log(' No fue posible iniciar session')

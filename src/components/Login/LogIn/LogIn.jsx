@@ -6,7 +6,7 @@ import SignIn from '../SignIn/SignIn';
 import { FaRegUser } from 'react-icons/fa'
 import LoggedIn from '../LoggedIn/LoggedIn';
 import { setStatusLogin, setViewLogin, viewFormLog } from '../../../redux/user';
-import { checkCookieSession, getCookieSession, readCookieSession } from '../../../services';
+import { getCookieSession, readCookieSession } from '../../../services';
 import { Navigate, useLocation } from 'react-router-dom';
 import { NAV_ALL, NAV_ADMIN, NAV_USER, SESSION_NOT_COOKIE } from '../../../const';
 
@@ -15,7 +15,6 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
   const { pathname } = useLocation()
   const login = useSelector(({ user }) => user.login)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
-  console.log("🚀 ~ file: LogIn.jsx:18 ~ LogIn ~ imageUrl:", imageUrl)
 
   const cookie = readCookieSession()
   console.log('here')
@@ -65,7 +64,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
       }} onClick={handlerClickLogin}>
         {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
           <FaRegUser size={sizeAvatar} /> :
-          <img className={styles.Photo} src={imageUrl} alt='uploadImage' />}
+          <img className={styles.PhotoLogin} src={imageUrl} alt='uploadImage' />}
       </span>
       {login.view && <SignIn isActiveSignIn={login.status} onChangeSignIn={handlerChangeSignIn} />}
       {login.view && < LoggedIn isActiveLoggedIn={!login.status} />}

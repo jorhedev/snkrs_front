@@ -1,4 +1,3 @@
-export { default as checkCookieSession } from './checkCookieSession'
 export { default as getCookieSession } from './getCookieSession'
 export { default as readCookieSession } from './readCookieSession'
 export { default as removeCookieSession } from './removeCookieSession'
