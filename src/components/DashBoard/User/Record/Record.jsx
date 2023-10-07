@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Record.module.css"
 import { fetchRecord } from "../../../../redux/recordSlice";
-
+import { Link } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 const Record = () => {
   const dispatch = useDispatch();
   const record = useSelector((state) => {
@@ -17,6 +18,8 @@ const Record = () => {
 
   return (
     <div className={styles.cartContainer}>
+      <Link className={styles.homebtn} to={'/home'}><p className={styles.homebtonP} ><AiOutlineArrowLeft /> Home</p></Link>
+
       <h2 className={styles.h2}>SHOPPING RECORD</h2>
       {record.length === 0 ? (
         <p className={styles.cartEmpty}>No records available</p>
