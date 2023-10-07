@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer/Footer";
 import Newsletter from "../../components/Newsletter/Newsletter";
@@ -12,76 +10,53 @@ import logo from "../../assets/Image/Logo.png";
 import Search from "../../components/Seach/Search";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
-import axios from "axios"; // Importa Axios
-import { useDispatch } from "react-redux"; // Solo necesitas useDispatch aquí
-import { setBrand, setModel } from "../../redux/filtersSlice";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from '../../redux/resultsMen';
 
 const itemsPerPage = 9;
 
 const HomeViews = () => {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
-  const [filteredProducts, setFilteredProducts] = useState(DataZapatilla);
+  const [currentPage, setCurrentPage] = useState(1);
   const [showNotFoundMessage, setShowNotFoundMessage] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Calcula el índice del primer y último elemento en la página actual
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  // Declare results here after fetching data from Redux
+  const results = useSelector((state) => state.results.results);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  // Filtra los elementos que deben mostrarse en la página actual
-  const currentItems = filteredProducts.slice(
+  const currentItems = results.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
 
-  // Calcula el número total de páginas
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const totalPages = Math.ceil(results.length / itemsPerPage);
 
-  // Función para cambiar de página
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Función para actualizar los productos filtrados
-  const handleFilterProducts = (filteredProducts) => {
-    setFilteredProducts(filteredProducts);
-    setCurrentPage(1); // Volver a la primera página cuando cambian los filtros
-    // Mostrar el mensaje si no se encuentran resultados
-    setShowNotFoundMessage(filteredProducts.length === 0);
+  const handleFilterProducts = (searchQuery) => {
+    const filteredResults = results.filter((zapa) =>
+      zapa.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setFilteredProducts(filteredResults);
+    setCurrentPage(1);
+    setShowNotFoundMessage(filteredResults.length === 0);
   };
-  useEffect(() => {
-    // Realiza la solicitud GET a la ruta de productos
-    axios
-      .get("http://localhost:3001/products")
-      .then((response) => {
-        if (Array.isArray(response.data.products)) {
-          // Actualiza el estado con los datos de zapatillas obtenidos
-          setFilteredProducts(response.data.products);
-          // Configura los filtros de brand y model en el estado global
-          const brands = [
-            ...new Set(response.data.products.map((product) => product.brand)),
-          ];
-          const models = [
-            ...new Set(response.data.products.map((product) => product.model)),
-          ];
-          dispatch(setBrand(brands[0])); // Configura el filtro de brand inicialmente
-          dispatch(setModel(models[0])); // Configura el filtro de model inicialmente
-        } else {
-          console.error(
-            "Los datos de zapatillas no son un arreglo válido:",
-            response.data
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos de zapatillas:", error);
-      });
-  }, [dispatch]);
 
   return (
     <>
       <div className={styles.carrusel}>
-        <Carousel>
+      <Carousel>
           <Carousel.Item>
             <img
               src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fd756a55198943.597a8e48aa0b4.gif"
@@ -135,7 +110,6 @@ const HomeViews = () => {
             className={styles.containe}
             key={zapa._id}
           >
-            {/* Renderiza los detalles de los productos aquí */}
             <div className={styles.card} key={zapa._id}>
               <img src={zapa?.image[0].src} alt={zapa.name} />
 
@@ -143,7 +117,6 @@ const HomeViews = () => {
                 <h2>{zapa?.brand}</h2>
                 <div className={styles.price}>
                   <p>$ {zapa?.price}</p>
-
                   <div></div>
                 </div>
               </div>
