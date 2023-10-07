@@ -21,11 +21,10 @@
 }
 
 
-.Photo {
+.PhotoLogin {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
-    border: 4px solid black;
 }
 
 .Icon {

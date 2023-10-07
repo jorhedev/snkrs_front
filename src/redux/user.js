@@ -67,14 +67,13 @@ export const signIn = (userCredentials) => async (dispatch) => {
 export const signOut = () => async (dispatch) => {
     try {
         const data = await axiosInstance.post(`/auth/sign-out`)
-        console.log("🚀 ~ file: user.js:71 ~ signOut ~ data:", data)
-        logOut()
         dispatch(setLogOut());
         removeCookieSession()
-        // window.location.href = '/';
+        await logOut()
+        return
     }
     catch (error) {
-        console.error('Error:', error);
+        console.error('Error:', error.message);
     }
 
 }
