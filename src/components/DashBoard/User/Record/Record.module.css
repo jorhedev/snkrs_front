@@ -1,0 +1,37 @@
+.h2{
+    margin-top: 50px;
+    font-family: MontHeavy;
+    font-size: 50px;
+    justify-content: flex-start;
+    padding-left: 200px;
+}
+  .cartTable {
+    padding: 60px;
+    text-align: center;
+    margin-top: 50px;
+}
+.td{
+  padding: 50px
+}
+.cartTable td {
+  padding-left: 50px;
+  padding-right: 50px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-family: Montregular;
+  font-size: 15px;
+}
+.cartContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: MontHeavy;
+    font-size: 20px;
+    display: grid;
+    margin-top: 50px;
+  }
+
+.cartEmpty p {
+  font-family: Montregular;
+  font-size: 50px;
+}
