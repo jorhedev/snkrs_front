@@ -17,7 +17,6 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
 
   const cookie = readCookieSession()
-  console.log('here')
   useEffect(() => {
     const interval = setInterval(() => {
       if (!getCookieSession()) {
@@ -46,7 +45,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
 
 
   if (!cookie) {
-    if ([NAV_ALL].some(nav => nav == pathname)) return (<Navigate to={SESSION_NOT_COOKIE} />)
+    if (!NAV_ALL.some(nav => nav == pathname)) return (<Navigate to={SESSION_NOT_COOKIE} />)
   } else {
     if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname)) {
       return (<Navigate to={SESSION_NOT_COOKIE} />)

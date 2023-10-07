@@ -31,7 +31,7 @@ const InputText = ({ initInput = '', onChangeInput, errors, tag = '', placeHolde
       {tag !== '' && <h3 style={{ fontFamily: 'MontHeavy', color: 'white', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
       <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9' }}>
         <input
-          style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px;', fontFamily: 'MontHeavy', ...style?.input }}
+          style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px', fontFamily: 'MontHeavy', ...style?.input }}
           type='text'
           autoComplete="off"
           value={state || ''}
