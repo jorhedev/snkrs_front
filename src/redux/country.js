@@ -34,7 +34,7 @@ export const countrySlice = createSlice({
     },
 });
 
-export const fetchCountry = async (dispatch) => {
+export const fetchCountry = () => async (dispatch) => {
     try {
         const country = await axiosInstance('/countries')
             .then((data) => { return data.map(({ country }) => country) })
