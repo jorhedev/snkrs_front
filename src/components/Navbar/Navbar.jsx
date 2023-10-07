@@ -62,7 +62,6 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     <Link to={SESSION_NOT_COOKIE}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
                 </div>
                 <div className={styles.NavbarLinks}>
-                    {HOME.includes(pathname) ? <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT_BLACK}HOME</h2></Link> : null}
                     {WOMEN.includes(pathname) ? <Link to='/cardw'><h2>WOMEN</h2></Link> : null}
                     {MEN.includes(pathname) ? <Link to='/card'><h2>MEN</h2></Link> : null}
                     {KIDS.includes(pathname) ? <Link to='/cardK'><h2>KIDS</h2></Link> : null}
@@ -79,6 +78,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                             {" "}
                         </Link>
                     </h3> : null}
+                    {/* {HOME.includes(pathname) ? <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT_BLACK}HOME</h2></Link> : null} */}
                     {LOGIN.includes(pathname) ? <LogIn /> : null}
                 </div>
             </div>
