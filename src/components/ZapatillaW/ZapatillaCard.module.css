@@ -25,9 +25,23 @@
   transform: scale(1.05) ;
 }
 .product{
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+ display: flex;
+ flex-direction: row-reverse;
+ justify-content: flex-end;
+}
+.b{
+display: flex;
+flex-direction: column;
+align-content: flex-end;
+width: 100%;
+}
+.boton{
+display: flex;
+justify-content: end;
+border: none;
+background: transparent;
+font-size: 24px;
+z-index: 1;
 }
 .isPriceLessThan90::before {
 content: 'sale';
