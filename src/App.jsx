@@ -37,9 +37,9 @@ function App() {
         }
         />
         {/* <Route path="/user" element={<User />} /> */}
-        <Route path="/card" element={<ListadoBusqueda />} />
-        <Route path="/cardw" element={<ListaBusqWomen />} />
-        <Route path="/cardk" element={<ListaBusqKids />} />
+        <Route path="/men" element={<ListadoBusqueda />} />
+        <Route path="/women" element={<ListaBusqWomen />} />
+        <Route path="/kids" element={<ListaBusqKids />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/trolley" element={<Trolley />} />
         <Route path="/signUp" element={<SignUp />} />

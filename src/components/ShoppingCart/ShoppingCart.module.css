@@ -1,28 +1,30 @@
 .cartContainer {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
   padding: 20px;
   font-family: MontHeavy;
   font-size: 20px;
-  margin-top: 50px;
 }
-.homebtn{
+
+.homebtn {
   text-decoration: none;
   color: #000;
   font-family: MontRegular;
 }
-.homebtn:hover{
-  color:#c1c1c1 ;
+
+.homebtn:hover {
+  color: #c1c1c1;
 }
-.homebtonP{
+
+.homebtonP {
   margin-top: 80px;
 }
 
 .cartTable {
-    padding: 60px;
-    text-align: center;
-    margin-top: 50px;
+  padding: 60px;
+  text-align: center;
+  margin-top: 50px;
 }
+
 .cartTable td {
   padding-left: 50px;
   padding-right: 50px;
@@ -37,9 +39,11 @@
   height: auto;
   transition: transform 0.3s ease;
 }
+
 .itemImage:hover {
   transform: scale(1.1);
 }
+
 .quantityCell {
   display: flex;
   align-items: center;
@@ -61,6 +65,7 @@
 .icon:hover {
   color: rgb(204, 14, 14);
 }
+
 .home {
   cursor: pointer;
   background-color: #c2c4c2;
@@ -71,6 +76,7 @@
   margin-top: 60px;
   font-family: MontHeavy;
 }
+
 .pay {
   cursor: pointer;
   background-color: #198805;
@@ -80,20 +86,23 @@
   border-radius: 5px;
   margin-top: 20px;
   font-family: MontHeavy;
-  animation: pulse 1s infinite; 
+  animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
   0% {
     transform: scale(1);
   }
+
   50% {
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 .totalTableContainer {
   display: flex;
   justify-content: flex-end;
@@ -102,6 +111,7 @@
   align-items: flex-end;
   align-content: space-between;
 }
+
 .total {
   display: flex;
   justify-content: flex-end;
@@ -112,7 +122,8 @@
   color: #000000;
   font-weight: bold;
 }
-.h2{
+
+.h2 {
   margin-top: 50px;
   font-family: MontHeavy;
   font-size: 50px;
@@ -120,6 +131,7 @@
   justify-content: flex-start;
   padding-left: 200px;
 }
+
 .buttonContainer {
   display: flex;
   justify-content: space-between;
@@ -128,7 +140,8 @@
   margin-left: 218px;
   width: 1150px;
 }
-.cartEmpty{
+
+.cartEmpty {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,6 +150,7 @@
   width: 1150px;
 
 }
+
 .cartEmpty p {
   font-family: Montregular;
   font-size: 50px;
@@ -149,24 +163,27 @@
   color: rgb(11, 11, 11);
   cursor: pointer;
 }
+
 .trash:hover {
   color: rgb(162, 16, 16);
 }
+
 .totalTable {
   width: 100%;
   font-family: MontHeavy;
   font-size: 18px;
   border: 10px;
   display: flex;
-align-items: center;
+  align-items: center;
 }
 
 .totalTable td {
-  text-align: right; 
-  padding: 10px 40px 10px 40px ;
+  text-align: right;
+  padding: 10px 40px 10px 40px;
   background-color: rgba(195, 196, 196, 0.903);
   border-radius: 18px;
 }
-.buttonHome{
+
+.buttonHome {
   margin-left: 200px;
 }

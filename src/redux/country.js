@@ -13,7 +13,6 @@ const initialState = {
     }
 };
 
-
 export const countrySlice = createSlice({
     name: "country",
     initialState,
@@ -27,9 +26,18 @@ export const countrySlice = createSlice({
         setCity: (state, action) => {
             state.city = action.payload;
         },
-
         setCountryInfo: (state, action) => {
             state.info = action.payload
+        },
+        clearState: (state, action) => {
+            state.state = []
+        },
+        clearCity: (state, action) => {
+            state.city = []
+
+        },
+        clearCountryInfo: (state, action) => {
+            state.info = {}
         }
     },
 });
@@ -46,6 +54,7 @@ export const fetchCountry = () => async (dispatch) => {
 }
 
 export const fetchState = (country) => async (dispatch) => {
+    dispatch(clearState())
     try {
         const { states } = await axiosInstance(`/world/stateByCountry?country=${country}`)
         dispatch(setState(states.sort()))
@@ -56,6 +65,7 @@ export const fetchState = (country) => async (dispatch) => {
 }
 
 export const fetchCity = (country, state) => async (dispatch) => {
+    dispatch(clearCity())
     try {
         const { cities } = await axiosInstance(`/world/cityByState?country=${country}&state=${state}`)
         dispatch(setCity(cities.sort()))
@@ -66,6 +76,7 @@ export const fetchCity = (country, state) => async (dispatch) => {
 }
 
 export const fetchCountryDetail = (country) => async (dispatch) => {
+    dispatch(clearCountryInfo())
     try {
         const { flag, codes } = axiosInstance(`/world/countryDetail?country=${country}`)
         dispatch(setCountryInfo({
@@ -80,6 +91,14 @@ export const fetchCountryDetail = (country) => async (dispatch) => {
 
 }
 
-export const { setCountry, setState, setCity, setCountryInfo } = countrySlice.actions;
+export const {
+    clearCity,
+    clearState,
+    clearCountryInfo,
+    setCountry,
+    setState,
+    setCity,
+    setCountryInfo
+} = countrySlice.actions;
 
 export default countrySlice.reducer;
