@@ -5,15 +5,15 @@ import styles from './LogIn.module.css';
 import SignIn from '../SignIn/SignIn';
 import { FaRegUser } from 'react-icons/fa'
 import LoggedIn from '../LoggedIn/LoggedIn';
-import { setStatusLogin, setViewLogin, viewFormLog } from '../../../redux/user';
+import { setStatusLogin, setViewLogin, viewFormLog } from '../../../redux/auth';
 import { getCookieSession, readCookieSession } from '../../../services';
 import { Navigate, useLocation } from 'react-router-dom';
-import { NAV_ALL, NAV_ADMIN, NAV_USER, SESSION_NOT_COOKIE } from '../../../const';
+import { NAV_ALL, NAV_ADMIN, NAV_USER, SESSION_NOT_COOKIE, DETAIL_PAGE } from '../../../const';
 
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation()
-  const login = useSelector(({ user }) => user.login)
+  const login = useSelector(({ auth }) => auth.login)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
 
   const cookie = readCookieSession()
@@ -45,9 +45,9 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
 
 
   if (!cookie) {
-    if (!NAV_ALL.some(nav => nav == pathname)) return (<Navigate to={SESSION_NOT_COOKIE} />)
+    if (!NAV_ALL.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) return (<Navigate to={SESSION_NOT_COOKIE} />)
   } else {
-    if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname)) {
+    if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) {
       return (<Navigate to={SESSION_NOT_COOKIE} />)
     }
     if (cookie.role == 'admin' && !NAV_ADMIN.some(nav => nav == pathname)) {

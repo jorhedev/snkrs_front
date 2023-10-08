@@ -1,9 +1,9 @@
 import React from 'react'
-import styleDashBoard from '../../DashBoard.module.css'
+import DashBoard from '../../DashBoard.module.css'
 
 const Profile = () => {
     return (
-        <div className={styleDashBoard.DashBoardContainer}>
+        <div className={DashBoard.DashBoardContainer}>
             Profile
         </div>
     )
