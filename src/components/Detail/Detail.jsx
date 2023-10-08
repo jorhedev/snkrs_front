@@ -88,9 +88,9 @@ const Detail = () => {
     <>
       <div className="arrow">
         <Link className="homebtn" to={"/home"}>
-          <p>
+          {/* <p>
             <AiOutlineArrowLeft /> Home
-          </p>
+          </p> */}
         </Link>
       </div>
 
@@ -287,7 +287,7 @@ const Detail = () => {
         <BeMember />
         <Footer />
       </div>
- </>
+    </>
   );
 };
 
@@ -328,7 +328,7 @@ const saleData = [
     color: [],
     category: "CLOTHES",
     size: "6",
-},
+  },
   {
     id: 3,
     name: "Yeezy",
@@ -338,7 +338,7 @@ const saleData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
     color: [],
     size: "4",
-    category:"",
+    category: "",
   },
   {
     id: 4,
@@ -349,7 +349,7 @@ const saleData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
     color: [],
     size: "8",
-    category:"",
+    category: "",
   },
   {
     id: 5,
@@ -360,7 +360,7 @@ const saleData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
     color: [],
     size: "6",
-    category:"",
+    category: "",
   },
   {
     id: 6,
@@ -371,7 +371,7 @@ const saleData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
     color: [],
     size: "12",
-    category:"",
+    category: "",
   },
   {
     id: 7,
@@ -382,7 +382,7 @@ const saleData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
     color: [],
     size: "9",
-    category:""
+    category: ""
   },
   {
     id: 8,
@@ -393,6 +393,6 @@ const saleData = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
     color: [],
     size: "5.5",
-    category:""
+    category: ""
   }
 ]

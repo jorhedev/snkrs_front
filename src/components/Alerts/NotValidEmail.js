@@ -6,6 +6,7 @@ const NotValidEmail = () => {
         title: 'Email not valid',
         text: 'Please sign in to continue',
         icon: 'error',
+        timer: 1500,
         confirmButtonText: 'OK',
         customClass: {
             container: styles.BodyAlert,

@@ -8,11 +8,7 @@ import { logOut } from '../services/firebase';
 
 const initialState = {
     user: {},
-    login: {
-        view: false,
-        status: true
-    },
-
+    users: [],
 };
 
 
@@ -20,75 +16,36 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setLogIn: (state, action) => {
-            state.user = action.payload;
-            state.login = {
-                view: false,
-                status: false
-            }
+        setUser: (state, action) => {
+            state.user = action.payload
         },
-        setLogOut: (state, action) => {
-            state.user = {}
-            state.login = state.login = {
-                view: false,
-                status: true
-            }
-        },
-        setViewLogin: (state, action) => {
-            if (action.payload === undefined)
-                state.login.view = !state.login.view
-            else
-                state.login.view = action.payload
-        },
-
-        setStatusLogin: (state, action) => {
-            state.login.status = action.payload
+        setAllUsers: (state, action) => {
+            state.users = action.payload
         }
     },
 });
-// Async action to sign in
-export const signIn = (userCredentials) => async (dispatch) => {
-    try {
-        const data = await axiosInstance.post(`/auth/sign-in`, userCredentials)
-        if (data) {
-            const { _id, expires, ...user } = data
-            setCookieSession(SESSION_NAME, data)
-            dispatch(setLogIn(user));
-        } else {
-            console.error('Error when closing session')
-        }
 
+export const fetchUserById = (id) => async (dispatch) => {
+    try {
+        const user = await axiosInstance.get(`/user/${id}`)
+        dispatch(setUser(user))
     } catch (error) {
-        // Captura cualquier error que pueda ocurrir durante la solicitud
-        console.error('Error:', error);
+        console.log(error.message)
     }
-};
+}
 
-export const signOut = () => async (dispatch) => {
+export const fetchAllUser = () => async (dispatch) => {
     try {
-        const data = await axiosInstance.post(`/auth/sign-out`)
-        dispatch(setLogOut());
-        removeCookieSession()
-        await logOut()
-        return
-    }
-    catch (error) {
-        console.error('Error:', error.message);
-    }
-
-}
-
-export const viewFormLog = () => (dispatch) => {
-    const cookies = readCookieSession()
-    if (cookies) {
-        dispatch(setStatusLogin(false))
-        dispatch(setViewLogin())
-    } else {
-        dispatch(setStatusLogin(true))
-        dispatch(setViewLogin())
+        const users = await axiosInstance.get(`/user`)
+        dispatch(setUser(users))
+    } catch (error) {
+        console.log(error.message)
     }
 }
 
-export const { setLogIn, setLogOut, setStatusLogin, setViewLogin } = userSlice.actions;
+export const {
+    setUser,
+    setAllUsers
+} = userSlice.actions;
 
 export default userSlice.reducer;

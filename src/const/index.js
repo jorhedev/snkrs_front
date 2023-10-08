@@ -1,5 +1,8 @@
 export { ICONS } from './constIcons'
-export { NAVBAR_LINKS } from './constNavbar'
+export {
+    NAVBAR_LINKS,
+    DETAIL_PAGE
+} from './constNavbar'
 
 export {
     NAV_ALL,
