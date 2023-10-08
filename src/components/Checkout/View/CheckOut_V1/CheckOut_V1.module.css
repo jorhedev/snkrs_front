@@ -3,7 +3,10 @@
   display: flex;
   font-family: MontHeavy;
 }
-
+.inputWrapper {
+  display: block; 
+  margin-bottom: 10px; 
+}
 .leftPanel {
   background: black;
   color: white;
@@ -55,7 +58,7 @@
 
 .inputGroup {
   margin-bottom: 30px;
-  display: flex;
+  display: block;
   flex-wrap: wrap;
 }
 
@@ -84,7 +87,13 @@
   background-size: 20px;
   padding-right: 30px;
 }
-
+.Link{
+  text-decoration: none;
+  color: black;
+  display:flex;
+  justify-content: center;
+  font-family: MontRegular;
+}
 .selectContainer {
   margin-bottom: 20px;
   display: flex;
@@ -98,14 +107,17 @@
   margin-right: 10px;
 }
 .errorInput {
-  border: 2px solid red; /* Cambia el borde a rojo en caso de error */
+  border: 2px solid red; 
 }
 
-/* Estilo para el mensaje de error debajo del campo */
 .errorText {
-  color: red; /* Color de texto rojo para el mensaje de error */
-  font-size: 14px; /* Tamaño de fuente del mensaje de error */
-  margin-top: 4px; /* Espacio superior para separar el mensaje del campo */
+  color: red; 
+  font-size: 14px; 
+  margin-top: 4px;
+  font-family: MontRegular; 
+  display: flex; 
+  justify-content: end;
+  margin-right: 50px;
 }
 .buttonContainer {
   display: flex;
