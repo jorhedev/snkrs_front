@@ -55,21 +55,22 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
         <div className={`${styles.container} ${isNavbarVisible ? styles.visible : ''}`} style={{ backgroundColor: `${NavColor}` }}>
             <div className={styles.nav}>
                 <div className={styles.logo}>
-                    <Link to={SESSION_NOT_COOKIE}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
+                    <Link to={'/'}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
                 </div>
                 <div className={styles.NavbarLinks}>
                     {WOMEN.includes(pathname) ? <Link to='/women'><h2>WOMEN</h2></Link> : null}
                     {MEN.includes(pathname) ? <Link to='/men'><h2>MEN</h2></Link> : null}
                     {KIDS.includes(pathname) ? <Link to='/kids'><h2>KIDS</h2></Link> : null}
-                    {SEARCH.includes(pathname) ? <input className={styles.NavInput} type="text" name="" id="" placeholder="search" /> : null}
-                    {role != 'admin' ? (FAVORITE.includes(pathname) || DETAIL_PAGE(pathname)) ?
+                    {KIDS.includes(pathname) ? "" : null}
+                    {role != 'admin' ? FAVORITE.includes(pathname) ?
+
                         <Link to={role == 'user' ? MENU_USER.favorites.route : null}>
                             <h3 title='favorites' onClick={handlerChangeFavorite}>{ICONS.FAVORITE_WHITE}</h3></Link> :
                         null : null}
                     {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
                         <h3>
                             {" "}
-                            <Link to="/trolley">
+                            <Link to={!role? "/trolley": "/user/shopping"}>
                                 <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
                             </Link>
                         </h3>

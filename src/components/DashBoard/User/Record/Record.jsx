@@ -11,7 +11,7 @@ const Record = () => {
     console.log("🚀 ~ file: Record.jsx:9 ~ Record ~ state:", state.record.record)
     return state.record.record
   });
-
+console.log(record)
   useEffect(() => {
     dispatch(fetchRecord());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,21 +31,21 @@ const Record = () => {
               <tr>
                 <th>Payment date</th>
                 <th>Pay</th>
-                <th>Image</th>
+                {/* <th>Image</th> */}
                 <th>Color</th>
                 <th>Quantity</th>
                 <th>Size</th>
               </tr>
             </thead>
             <tbody>
-              {record.map(({ payment, purchase_date, purchase }, index) => (
-                purchase.map((item, itemIndex) => (
+              {record.length && record.map(({ payment, purchase_date, purchase }, index) => (
+                purchase?.map((item, itemIndex) => (
                   <tr key={itemIndex}>
                     <td>{purchase_date}</td>
                     <td>$ {payment}</td>
-                    <td>g</td>
+                    {/* <td>g</td> */}
                     <td className={styles.td}>{item.color}</td>
-                    <td>{item.quantity}</td>
+                    <td>{item?.quantity}</td>
                     <td>{item.size}</td>
                   </tr>
                 ))

@@ -73,7 +73,10 @@
   margin-bottom: 10px;
   margin-right: 10px;
 }
-
+.country{
+  width: 90%; 
+  display:flex;
+} 
 .select {
   font-family: MontHeavy;
   width: 45%;
