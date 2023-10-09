@@ -14,7 +14,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../redux/resultsMen";
+import { fetchData, setResults } from "../../redux/resultsMen";
 import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
 
 const itemsPerPage = 9;
@@ -25,6 +25,7 @@ const HomeViews = () => {
   const [showNotFoundMessage, setShowNotFoundMessage] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLiked, setIsLiked] = useState({});
+  const [modelSearchResults, setModelSearchResults] = useState([]); // Nuevo estado para resultados de búsqueda por modelo
 
   useEffect(() => {
     dispatch(fetchData());
@@ -90,6 +91,21 @@ const HomeViews = () => {
     }
   };
 
+  // Función para buscar por modelo
+  const handleSearchByModel = (model) => {
+    // Realiza la solicitud a la API para buscar por modelo
+    axios
+      .get(`http://localhost:3001/products?limit=1000&model=${model}`)
+      .then((response) => {
+        const data = response.data;
+        // Actualiza el estado de los resultados de búsqueda por modelo
+        dispatch(setResults(data.products));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <div className={styles.carrusel}>
@@ -132,7 +148,11 @@ const HomeViews = () => {
         </Carousel>
       </div>
 
-      <Search products={DataZapatilla} onFilter={handleFilterProducts} />
+      <Search
+        products={DataZapatilla}
+        onFilter={handleFilterProducts}
+        onSearchByModel={handleSearchByModel}
+      />
 
       {showNotFoundMessage && (
         <div className={styles.notFoundMessage}>

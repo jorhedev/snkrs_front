@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ZapatillaCard from "./ZapatillaCard"; // Importa el componente de ZapatillaCard
@@ -26,6 +25,11 @@ const ZapatillasCard = () => {
     zapatilla.stock[0]?.gender === "male"
   );
 
+  // const filteredResultsMen = results;
+  
+  console.log(filteredResultsMen);
+
+
   // Calcula el total de páginas en función de los resultados filtrados
   const totalPages = Math.ceil(filteredResultsMen.length / itemsPerPage);
 
@@ -45,6 +49,7 @@ const ZapatillasCard = () => {
       setCurrentPage(totalPages);
     }
   }, [filteredResultsMen, currentPage, totalPages]);
+
 
   return (
     <>

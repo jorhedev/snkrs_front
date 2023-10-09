@@ -1,5 +1,4 @@
-// Search.js
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchQuery, selectSearchQuery } from "../../redux/productSlice";
 import {
@@ -11,7 +10,7 @@ import PropTypes from "prop-types";
 import logo from "../../assets/Image/Logo.png";
 import styles from "./Search.module.css";
 
-const Search = ({ products, onFilter }) => {
+const Search = ({ products, onFilter, onSearchByModel }) => {
   const dispatch = useDispatch();
   const searchQuery = useSelector(selectSearchQuery);
   const brandFilter = useSelector((state) => state.filters.brand);
@@ -38,10 +37,19 @@ const Search = ({ products, onFilter }) => {
       return matchesBrand && matchesModel && matchesQuery;
     });
     onFilter(filteredProducts);
-  }
+  };
 
   // Filtrar productos por nombre que coincidan con la búsqueda
   const filteredByName = useSelector(selectFilteredProducts);
+
+  // Estado local para el campo de búsqueda por modelo
+  const [modelSearch, setModelSearch] = useState("");
+
+  // Función para manejar la búsqueda por modelo
+  const handleModelSearch = () => {
+    // Llamar a la función proporcionada por HomeViews para buscar por modelo
+    onSearchByModel(modelSearch);
+  };
 
   return (
     <>
@@ -50,13 +58,26 @@ const Search = ({ products, onFilter }) => {
           Search section for the best products of all brands
         </p>
         <div className={styles.busca}>
-          <input
+          {/* <input
             className={styles.search__input}
             type="text"
             placeholder="Search"
             value={searchQuery}
             onChange={handleSearchChange}
+          /> */}
+          <input
+            className={styles.search__input}
+            type="text"
+            placeholder="Search by Model"
+            value={modelSearch}
+            onChange={(e) => setModelSearch(e.target.value)}
           />
+          <button
+            className={styles.search__button}
+            onClick={handleModelSearch}
+          >
+            Search by Model
+          </button>
         </div>
         <div className={styles.credits__container}>
           <p className="credits__text">
@@ -85,6 +106,7 @@ const Search = ({ products, onFilter }) => {
 Search.propTypes = {
   products: PropTypes.array.isRequired,
   onFilter: PropTypes.func.isRequired,
+  onSearchByModel: PropTypes.func.isRequired, // Prop para manejar la búsqueda por modelo
 };
 
 export default Search;
