@@ -1,40 +1,33 @@
 import React, { useState } from "react";
 import logo from "../../assets/Image/Logo.png";
-import {
-  BsFillArrowUpCircleFill,
-  BsFillArrowDownCircleFill,
-} from "react-icons/bs";
+import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterByBrand,
-  sortAscendant,
-  sortDescendant,
-} from "../../redux/resultsMen";
+import { setResults } from "../../redux/resultsMen"; // Asegúrate de importar la acción correcta
 
 import styles from "./Filter.module.css";
 
 const Filter = () => {
   const dispatch = useDispatch();
 
-  const dropdownData = [
+  const selectData = [
     {
       title: "Sort by",
-      stateKey: "sortBy",
+      stateKey: "sort",
       options: [
-        "PRICE (LOWEST TO HIGHEST)",
+        "price_desc",
         "NEWS",
         "BEST SELLERS",
-        "PRICE (HIGHEST TO LOWEST)",
+        "price_asc",
       ],
     },
     {
       title: "Brand",
       stateKey: "brand",
-      options: ["ACCESSORIES", "CLOTHES", "SHOES"],
+      options: ["adidas", "nike", "SHOES"],
     },
     {
-      title: "Model",
-      stateKey: "model",
+      title: "Type",
+      stateKey: "type",
       options: [
         "BASKETBALL",
         "RUNNING",
@@ -77,60 +70,49 @@ const Filter = () => {
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(Array(dropdownData.length).fill(false));
   const [selectedOptions, setSelectedOptions] = useState(
-    dropdownData.map(() => null)
-  );
-  const [iconoArriba, setIconoArriba] = useState(
-    Array(dropdownData.length).fill(true)
+    selectData.reduce((acc, data) => ({ ...acc, [data.stateKey]: "" }), {})
   );
 
-  const toggleDropdown = (index) => {
-    const newIsOpen = [...isOpen];
-    newIsOpen[index] = !newIsOpen[index];
-    setIsOpen(newIsOpen);
-
-    const newIconoArriba = [...iconoArriba];
-    newIconoArriba[index] = !newIconoArriba[index];
-    setIconoArriba(newIconoArriba);
+  const handleSelectChange = (event, stateKey) => {
+    const { value } = event.target;
+    setSelectedOptions({
+      ...selectedOptions,
+      [stateKey]: value,
+    });
   };
 
-  const handleOptionClick = (index, option) => {
-    const { stateKey } = dropdownData[index];
+  const handleFilterSubmit = () => {
+    // Construir un objeto para almacenar los parámetros de consulta seleccionados
+    const queryParams = {};
 
-    switch (stateKey) {
-      case "sortBy":
-        switch (option) {
-          case "PRICE (LOWEST TO HIGHEST)":
-            // Llama a la acción de Redux para ordenar por precio ascendente
-            dispatch(sortAscendant());
-            break;
-          // case "NEWS":
-          //   // Llama a la acción de Redux para ordenar por noticias
-          //   dispatch(sortTopCategory());
-          //   break;
-          // case "BEST SELLERS":
-          //   // Llama a la acción de Redux para ordenar por los más vendidos
-          //   dispatch(sortLowCategory());
-          //   break;
-          case "PRICE (HIGHEST TO LOWEST)":
-            // Llama a la acción de Redux para ordenar por precio descendente
-            dispatch(sortDescendant());
-            break;
-          default:
-            break;
+    // Filtrar solo las selecciones no vacías
+    Object.keys(selectedOptions).forEach((key) => {
+      const value = selectedOptions[key];
+      if (value) {
+        queryParams[key] = value;
+      }
+    });
+
+    // Realizar una solicitud GET al backend con los parámetros de consulta
+    const queryString = new URLSearchParams(queryParams).toString();
+
+    fetch(`http://localhost:3001/products?limit=1000&${queryString}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la solicitud.');
         }
-        break;
-      case "brand":
-        // Llama a la acción de Redux para filtrar por marca
-        dispatch(filterByBrand(option));
-        break;
-      // Agrega más casos para otros filtros y acciones de ordenamiento si es necesario...
-      default:
-        break;
-    }
+        return response.json();
+      })
+      .then(data => {
+        // Manejar los resultados filtrados aquí (por ejemplo, actualizar el estado de tu componente para mostrar los resultados)
+        console.log(data.products);
+        dispatch(setResults(data.products));
 
-    setIsOpen(Array(dropdownData.length).fill(false));
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   return (
@@ -143,37 +125,27 @@ const Filter = () => {
         <div className={styles.bar}></div>
         <img className={styles.img} src={logo} alt="logo" width={60} />
 
-        {dropdownData.map((dropdown, index) => (
-          <div key={index} className={styles.dropdown}>
-            <div className={styles.sort}>
-              <h4>{dropdown.title}</h4>
-              <button
-                className={styles.dropbtn}
-                onClick={() => toggleDropdown(index)}
-              >
-                {iconoArriba[index] ? (
-                  <BsFillArrowDownCircleFill />
-                ) : (
-                  <BsFillArrowUpCircleFill />
-                )}
-              </button>
-            </div>
-            <div className={styles.punto}></div>
-            {isOpen[index] && (
-              <div className={styles.dropdowncont}>
-                {dropdown.options.map((option, optionIndex) => (
-                  <a
-                    key={optionIndex}
-                    href="#"
-                    onClick={() => handleOptionClick(index, option)}
-                  >
-                    {option}
-                  </a>
-                ))}
-              </div>
-            )}
+        {selectData.map((select, index) => (
+          <div key={index} className={styles.selectContainer}>
+            <label>{select.title}</label>
+            <select
+              className={styles.select}
+              value={selectedOptions[select.stateKey]}
+              onChange={(event) =>
+                handleSelectChange(event, select.stateKey)
+              }
+            >
+              <option value="">Select {select.title}</option>
+              {select.options.map((option, optionIndex) => (
+                <option key={optionIndex} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </div>
         ))}
+
+        <button onClick={handleFilterSubmit}>Filtrar</button>
       </div>
     </div>
   );
