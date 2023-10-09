@@ -120,6 +120,11 @@
 .card Link {
   text-decoration: none;
 }
+
+.cards a{
+  text-decoration: none;
+}
+
 .container {
   text-align: center;
 }
