@@ -14,8 +14,8 @@ const { HOME, WOMEN, MEN, KIDS, FAVORITE, TROLLEY, SEARCH, LOGIN } = NAVBAR_LINK
 const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
     const dispatch = useDispatch()
     const { pathname } = useLocation()
-    const user = useSelector(({ user }) => { return user.user })
     const [role, setRole] = useState('')
+    const login = useSelector(({ auth }) => auth.login.status)
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
     if (!isNavbarVisible) dispatch(setViewLogin(false))
@@ -28,7 +28,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
         } else {
             setRole('');
         }
-    }, [cookie, role]);
+    }, [cookie, login]);
 
     useEffect(() => {
         let prevScrollPos = window.scrollY;
@@ -70,7 +70,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
                         <h3>
                             {" "}
-                            <Link to={!role? "/trolley": "/user/shopping"}>
+                            <Link to={role == 'user' ? MENU_USER.shopping.route : "/trolley"}>
                                 <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
                             </Link>
                         </h3>

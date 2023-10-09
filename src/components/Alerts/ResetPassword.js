@@ -4,7 +4,7 @@ import axiosInstance from '../../utils/axiosInstance';
 import { resetPassword } from '../../services/firebase';
 import Logo from '../Icons/Logo';
 
-const ResetPassword = ({ email = '' }) => {
+const ResetPassword = (email = '') => {
     Swal.fire({
         title: 'Registered Email',
         text: 'Do you want to reset your password?',
@@ -22,6 +22,7 @@ const ResetPassword = ({ email = '' }) => {
             cancelButton: styles.BtnBlack,
             title: styles.TitleAlert,
             container: styles.ContentAlert,
+
 
         },
         buttonsStyling: false,

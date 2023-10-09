@@ -3,7 +3,7 @@ import axiosInstance from '../../../utils/axiosInstance';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './SignIn.module.css';
 import { signInValidate } from '../../../services';
 import {
@@ -17,9 +17,7 @@ import { signIn as logIn, setViewLogin } from '../../../redux/auth';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { InputPassword, InputText } from '../../Inputs';
-
-import Swal from 'sweetalert2';
-import NotRegister from '../../Alerts/NotRegister';
+import { SendEmailVerify, NotRegister } from '../../Alerts';
 
 const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
@@ -35,39 +33,34 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   };
 
   const handlerSignIn = async (Red) => {
-    let _tokenResponse;
+    let _tokenResponse, user;
     try {
       switch (Red) {
         case 'google':
           await logOut();
-          ({ _tokenResponse } = await signInWithGoogle());
+          ({ user, _tokenResponse } = await signInWithGoogle());
           break;
         case 'facebook':
           await logOut();
-          ({ _tokenResponse } = await signInWithFacebook());
+          ({ user, _tokenResponse } = await signInWithFacebook());
           break;
         case 'twitter':
           await logOut();
-          ({ _tokenResponse } = await signInWithTwitter());
+          ({ user, _tokenResponse } = await signInWithTwitter());
           break;
         case 'login':
           await logOut();
-          ({ _tokenResponse } = await signIn(login.email, login.password));
-          if (_tokenResponse && !_tokenResponse.emailVerified) {
-            Swal.fire(
-              'Confirm Email',
-              'An email confirmation email has been sent',
-              'warning'
-            )
-            return
-          } else {
-            NotRegister()
-            return
+          ({ user, _tokenResponse } = await signIn(login.email, login.password));
+          if (user && !user.emailVerified) {
+            return SendEmailVerify()
+          } else if (!user) {
+            return NotRegister()
           }
+          break;
         default:
           return
       }
-      return dispatch(logIn(_tokenResponse))
+      return dispatch(logIn({ ..._tokenResponse, }))
     } catch (error) {
       console.error('Error al iniciar sesión:', error.message);
     }
@@ -122,15 +115,15 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
           <div className={styles.BtnSignIn}>
             <button className={styles.BtnLogIn} onClick={() => { handlerSignIn('login') }}>Login</button>
             <div className={styles.SocialNet}>
-              <div onClick={() => { handlerSignIn('facebook') }} >
-                <SocialNetworks redSocial={{ facebook: '' }} />
-              </div>
               <span onClick={() => { handlerSignIn('google') }} >
                 <SocialNetworks redSocial={{ google: '' }} />
               </span>
               <span onClick={() => { handlerSignIn('twitter') }}>
                 <SocialNetworks redSocial={{ twitter: '' }} />
               </span>
+              <div onClick={() => { handlerSignIn('facebook') }} >
+                <SocialNetworks redSocial={{ facebook: '' }} />
+              </div>
             </div>
           </div>
           <div className={styles.Links}>

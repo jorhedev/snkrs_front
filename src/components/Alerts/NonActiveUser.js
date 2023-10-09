@@ -6,6 +6,7 @@ const NonActiveUser = () => {
         title: 'Activate User',
         text: 'The user is not active, verify your email.',
         icon: 'error',
+        timer: 3000,
         confirmButtonText: 'OK',
         customClass: {
             container: styles.BodyAlert,

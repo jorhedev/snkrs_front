@@ -1,39 +1,45 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useInsertionEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import zapa from "../../../assets/Image/video1.webm"
 import styles from './SignUp.module.css';
 import UploadPhoto from "../../Upload/UploadPhoto/UploadPhoto";
 import axiosInstance from "../../../utils/axiosInstance";
-import { NonActiveUser, ResetPassword } from "../../Alerts";
+import { NonActiveUser, NotValidEmail, ResetPassword, SendEmailVerify, SignUpSuccess, UserPrevSignUp } from "../../Alerts";
 import { AddressInformation, BasicInformation } from "./RegisterForms";
 import { SIGNUP_STORAGE } from "../../../const";
+import { createUser } from "../../../services/firebase";
+import { handlerIsObjectEmpty, signUpValidate } from "../../../services";
 
+const initSignUp = {
+  nit: '',
+  firstName: '',
+  lastName: '',
+  birthday: '',
+  email: '',
+  password: '',
+  image: '',
+  address: [{
+    country: '',
+    state: '',
+    city: '',
+    phone: '',
+    address: '',
+    additional: '',
+    zip_code: ''
+  }]
+}
 const SignUp = () => {
   const [step, setStep] = useState(1);
-  const [signUp, setSignUp] = useState(false);
-  const [user, setUser] = useState({
-    nit: '',
-    firstName: '',
-    lastName: '',
-    birthday: '',
-    email: '',
-    password: '',
-    image: '',
-    address: [{
-      country: '',
-      state: '',
-      city: '',
-      phone: '',
-      address: '',
-      additional: '',
-    }],
-  })
+  const [register, setRegister] = useState(false);
+  const [signUp, setSignUp] = useState(initSignUp)
+
+  const [error, setError] = useState({})
 
   useEffect(() => {
     //? Get Data from localStorage
     const storedData = JSON.parse(localStorage.getItem(SIGNUP_STORAGE));
-    storedData && setSignUp({ ...storedData });
+    storedData && setSignUp({ ...signUp, ...storedData.signUp }) && setError({ ...storedData.error });
   }, []);
 
   const handlerChangeImage = () => {
@@ -45,33 +51,77 @@ const SignUp = () => {
 
   const handlerNext = async () => {
     try {
-      const data = await axiosInstance.post(`/auth/verify-email/${user.email}`)
-      if (data) {
-        if (data.status == 'inactive') {
-          NonActiveUser()
-          return
+      if (signUp.email === '') {
+        NotValidEmail('Email cannot be empty')
+      }
+      else if (signUp.password === '') {
+        NotValidEmail('Password cannot be empty')
+      } else if (error.email !== '') {
+        NotValidEmail('Email ERROR!!, verify the email entered')
+      } else {
+        const data = await axiosInstance.post(`/auth/verify-email/${signUp.email}`)
+        if (data) {
+          if (data.status == 'inactive') {
+            SendEmailVerify(signUp.email)
+            return
+          }
+          if (data.status == 'active') {
+            ResetPassword(signUp.email)
+            return
+          }
+          return step < 2 ? setStep(step + 1) : null
         }
-        if (data.status == 'active') {
-          ResetPassword({ email: user.email })
-          return
-        }
-        return step < 2 ? setStep(step + 1) : null
       }
     } catch (error) {
       return step < 2 ? setStep(step + 1) : null
     }
   }
 
-  const handlerSignUp = () => {
+  const handlerSignUp = async (event) => {
+    event.preventDefault();
+    try {
+      const { status, user } = await createUser(
+        signUp.email,
+        signUp.password,
+      )
 
-  }
+      const { password, ...data } = signUp
+      await axiosInstance.post(`/auth/sign-up`, {
+        user,
+        signUp: data
+      })
+      SignUpSuccess()
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  };
 
   const handlerChangeSignUp = (data) => {
-    step == 1 && setUser({ ...user, ...data })
-    step == 2 && setUser({ ...user, address: [...data] })
-    const { password, ...storage } = user
-    localStorage.setItem(SIGNUP_STORAGE, JSON.stringify(storage));
+    let currentValue = {}
+    step == 1 ? currentValue = { ...signUp, ...data } : null
+    step == 2 ? currentValue = { ...signUp, address: [data] } : null
+    setSignUp(currentValue)
+    setError(signUpValidate(currentValue))
+    const { password, ...storage } = currentValue
+    localStorage.setItem(SIGNUP_STORAGE, JSON.stringify({
+      signUp: storage,
+      error: signUpValidate(currentValue)
+    }));
+    isOkSignUp()
+  }
 
+  const isOkSignUp = () => {
+    const testSignUp = { ...signUp };
+    delete testSignUp.image;
+    delete testSignUp.address[0].additional;
+    delete testSignUp.address[0].zip_code;
+
+    if (!handlerIsObjectEmpty(testSignUp) && handlerIsObjectEmpty(error)) {
+      return setRegister(true)
+    }
+    return setRegister(false)
   }
 
   return (
@@ -92,7 +142,7 @@ const SignUp = () => {
                 <span className={styles.FormGroup} >
                   <span className={styles.FormLabel}>BASIC INFORMATION </span>
                   <div className={styles.FormLine}></div>
-                  <BasicInformation initValues={user} onChangeBasicInfo={handlerChangeSignUp} />
+                  <BasicInformation initValues={signUp} errors={error} onChangeBasicInfo={handlerChangeSignUp} />
                 </span>
               </div>
             )}
@@ -101,14 +151,17 @@ const SignUp = () => {
                 <span className={styles.FormGroup} >
                   <span className={styles.FormLabel}>ADDRESS INFORMATION </span>
                   <div className={styles.FormLine}></div>
-                  <AddressInformation initValues={user.address[0]} onChangeInfoContact={handlerChangeSignUp} />
+                  <AddressInformation
+                    initValues={signUp.address[0]}
+                    errors={error}
+                    onChangeAddressInfo={handlerChangeSignUp} />
                 </span>
               </div>
             )}
           </span>
           <div className={styles.ButtonSignUp}>
             {step > 1 && <button className={`${styles.SignUpBtns}`} onClick={handlerPreview}>Prev</button>}
-            {!signUp && <button className={`${styles.SignUpBtns}`} onClick={handlerSignUp}>Register</button>}
+            {register && step > 1 && <button className={`${styles.SignUpBtns}`} onClick={handlerSignUp}>Register</button>}
             {step < 2 && <button className={`${styles.SignUpBtns}`} onClick={handlerNext}>Next</button>}
           </div>
         </div>

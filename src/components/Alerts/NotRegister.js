@@ -6,6 +6,7 @@ const NotRegister = () => {
         title: 'User Not Registered',
         text: 'Please, register to continue with us',
         icon: 'error',
+        timer: 3000,
         confirmButtonText: 'OK',
         customClass: {
             popup: styles.BodyAlert,

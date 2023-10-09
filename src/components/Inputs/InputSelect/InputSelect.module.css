@@ -8,6 +8,7 @@
 }
 
 .InputSelect select {
+    max-width: 100%;
     border-radius: 0px 0px 10px 10px;
     border: none;
     border-bottom: 5px solid green;

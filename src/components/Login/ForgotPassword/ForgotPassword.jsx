@@ -7,7 +7,7 @@ import Logo from '../../Icons/Logo'
 import { ICONS, SESSION_NOT_COOKIE } from '../../../const'
 import { MdEmail } from 'react-icons/md';
 import { resetPassword } from '../../../services/firebase';
-import { NotValidEmail, ResetPassword, NotRegister } from '../../Alerts';
+import { ResetPassword, NotRegister } from '../../Alerts';
 import axiosInstance from '../../../utils/axiosInstance';
 import Shoe from '../../Icons/Shoe';
 import Footprint from '../../Icons/Footprint';

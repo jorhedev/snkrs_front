@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { signUpValidate } from '../../../../services';
 import styles from './RegisterForms.module.css';
-import { ICONS } from '../../../../const'
+import { ICONS, SIGNUP_STORAGE } from '../../../../const'
 import { InputDate, InputPassword, InputText } from '../../../Inputs';
 import { MIN_YEAR_REGISTER, MAX_YEAR_REGISTER } from '../../../../const';
 
@@ -15,7 +15,8 @@ const BasicIcon = {
   password: ICONS.PASSWORD,
 }
 
-const BasicInformation = ({ initValues = '', onChangeBasicInfo }) => {
+const BasicInformation = ({ initValues = {}, errors, onChangeBasicInfo }) => {
+  const [error, setError] = useState(errors)
   const [info, setInfo] = useState({
     nit: '',
     birthday: '',
@@ -23,28 +24,18 @@ const BasicInformation = ({ initValues = '', onChangeBasicInfo }) => {
     lastName: '',
     email: '',
     password: '',
-
-  })
-  const [error, setError] = useState({
-    nit: '',
-    birthday: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-
   })
 
   useEffect(() => {
     const { nit, birthday, firstName, lastName, email, password } = initValues
     setInfo({ nit, birthday, firstName, lastName, email, password })
-  }, [initValues])
+    setError(errors)
+  }, [initValues, errors])
 
 
   const handlerInputChange = (field, value) => {
     const currentValue = { ...info, [field]: value }
     setInfo(currentValue)
-    setError(signUpValidate(currentValue))
     onChangeBasicInfo(currentValue)
   }
 
@@ -96,6 +87,7 @@ const BasicInformation = ({ initValues = '', onChangeBasicInfo }) => {
 
 BasicInformation.propTypes = {
   initValues: PropTypes.object,
+  errors: PropTypes.object,
   onChangeBasicInfo: PropTypes.func,
 };
 
