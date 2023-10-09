@@ -57,6 +57,7 @@ const Detail = () => {
         icon: "warning",
         title: "Select a size",
         showConfirmButton: true,
+        confirmButtonColor: "black",
       });
     } else {
       const shoeToAdd = {
