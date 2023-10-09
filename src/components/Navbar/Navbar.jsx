@@ -70,7 +70,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
                         <h3>
                             {" "}
-                            <Link to="/trolley">
+                            <Link to={!role? "/trolley": "/user/shopping"}>
                                 <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
                             </Link>
                         </h3>

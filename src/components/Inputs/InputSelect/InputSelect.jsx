@@ -23,8 +23,8 @@ const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, ta
   return (
     <div className={styles.InputSelect} style={{ flexDirection: 'column', alignItems: 'center', gap: '30px', ...style }} >
       {tag !== '' && <h3 style={{ fontFamily: 'MontHeavy', color: 'white', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
-      <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9' }}>
-        <select className={styles.Selecter} value={selected} onChange={handleSelectChange}>
+      <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9', ...style.DateFile }}>
+        <select style={{ ...style?.select }}className={styles.Selecter} value={selected} onChange={handleSelectChange}>
           <option value="" disabled hidden>Select an Option</option>
           {options?.map((value, index) => {
             return (
