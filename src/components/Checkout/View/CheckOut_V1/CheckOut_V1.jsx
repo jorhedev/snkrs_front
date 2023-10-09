@@ -112,17 +112,19 @@ const CheckOut_V1 = ({ payment = "" }) => {
       const postData = {
         purchase: cartItems,
         shipping:{
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        country: formData.country,
-        state: formData.state,
-        city: formData.city}
+          fist_name: formData.firstName,
+          last_name: formData.lastName,
+          country: formData.country,
+          state: formData.state,
+          city: formData.city,
+          address: formData.address,
+          email: formData.email,
+          phone: formData.phone,
+        }
       };
       console.log(postData)
       const response = await axiosInstance.post("/shopping", postData);
-      console.log("Respuesta del servidor:", response.data);
+      console.log("Respuesta del servidor:", response);
     } catch (error) {
       console.error("Error al realizar la solicitud POST:", error);
     }
