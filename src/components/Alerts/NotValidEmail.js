@@ -1,17 +1,18 @@
 import Swal from 'sweetalert2';
 import styles from './Alerts.module.css';
 
-const NotValidEmail = () => {
+const NotValidEmail = (messages = 'Enter a valid email') => {
     Swal.fire({
         title: 'Email not valid',
-        text: 'Please sign in to continue',
+        text: messages,
         icon: 'error',
-        timer: 1500,
+        timer: 3000,
         confirmButtonText: 'OK',
         customClass: {
+            popup: styles.BodyAlert,
             container: styles.BodyAlert,
             confirmButton: styles.BtnBlack,
-            title: styles.TitleAlert,
+            title: styles.TitleAlert
         },
         buttonsStyling: false,
         showCancelButton: false,

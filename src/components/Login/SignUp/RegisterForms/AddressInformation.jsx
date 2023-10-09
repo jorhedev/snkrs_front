@@ -6,7 +6,7 @@ import styles from './RegisterForms.module.css';
 import { ICONS } from '../../../../const'
 import { InputSelect, InputText } from '../../../Inputs';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCity, fetchCountry, fetchState } from '../../../../redux/country';
+import { clearCity, clearState, fetchCity, fetchCountry, fetchState } from '../../../../redux/country';
 
 const AddressIcon = {
     country: ICONS.COUNTRY_WHITE,
@@ -17,11 +17,12 @@ const AddressIcon = {
     additional: ICONS.BUILD_WHITE,
     zip_code: ICONS.ZIP_CODE_BLACK
 }
-const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
+const AddressInformation = ({ initValues, errors, onChangeAddressInfo }) => {
     const dispatch = useDispatch()
     const country = useSelector(({ country }) => { return country.country })
     const state = useSelector(({ country }) => { return country.state })
     const city = useSelector(({ country }) => { return country.city })
+    const [error, setError] = useState(errors)
     const [info, setInfo] = useState({
         country: '',
         state: '',
@@ -31,21 +32,13 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
         additional: '',
         zip_code: ''
     })
-    const [error, setError] = useState({
-        country: '',
-        state: '',
-        city: '',
-        phone: '',
-        address: '',
-        additional: '',
-        zip_code: '',
-    })
 
     // ? Load initial values
     useEffect(() => {
         const { country, state, city, phone, address, additional, zip_code } = initValues
         setInfo({ country, state, city, phone, address, additional, zip_code })
-    }, [initValues])
+        setError(errors)
+    }, [initValues, errors])
 
     //? get Countries
     useEffect(() => {
@@ -55,6 +48,7 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
     //? get States
     useEffect(() => {
         if (info.country) {
+            dispatch(clearState())
             dispatch(fetchState(info.country));
         }
     }, [dispatch, info.country]);
@@ -62,6 +56,7 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
     //? get Cities
     useEffect(() => {
         if (info.country && info.state) {
+            dispatch(clearCity())
             dispatch(fetchCity(info.country, info.state));
         }
     }, [dispatch, info.country, info.state]);
@@ -70,8 +65,7 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
     const handlerInputChange = (field, value) => {
         const currentValue = { ...info, [field]: value }
         setInfo(currentValue)
-        setError(signUpValidate(currentValue))
-        // onChangeAddressInfo(currentValue)
+        onChangeAddressInfo(currentValue)
     }
 
     return (
@@ -90,20 +84,19 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
                                         phone: 'Phone',
                                         address: 'Address',
                                         additional: '(Optional) Aparment, Tower ',
-                                        zip_code: 'Zip Code',
+                                        zip_code: '(Optional) Zip Code',
                                     }[key]}
                                     style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }} />
                                 :
-                                ['country', 'state', 'city',].includes(key) ?
-                                    <InputSelect
-                                        options={key === 'country' ? country : key === 'state' ? state : city}
-                                        initInput={info[key]}
-                                        onChangeSelect={(input) => handlerInputChange(key, input)}
-                                        style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }}
-                                    />
-                                    : null}
+                                ['country', 'state', 'city'].includes(key) &&
+                                <InputSelect
+                                    options={key === 'country' ? country : key === 'state' ? state : city}
+                                    initSelect={info[key]}
+                                    onChangeSelect={(input) => handlerInputChange(key, input)}
+                                    style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }}
+                                />}
                         </div>
-                        {error[key] && <div className={styles.errorText}>{error[key]}</div>}
+                        {error[key] ? <div className={styles.errorText}>{error[key]}</div> : null}
                     </span>)
             })}
         </>
@@ -112,6 +105,7 @@ const AddressInformation = ({ initValues, onChangeAddressInfo }) => {
 
 AddressInformation.propTypes = {
     initValues: PropTypes.object,
+    errors: PropTypes.object,
     onChangeAddressInfo: PropTypes.func,
 }
 

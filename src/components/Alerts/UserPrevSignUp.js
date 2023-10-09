@@ -6,6 +6,7 @@ const UserPrevSignUp = () => {
         title: 'Previously Registered Email',
         text: 'Please, reset your password',
         icon: 'error',
+        timer: 3000,
         confirmButtonText: 'OK',
         customClass: {
             container: styles.BodyAlert,

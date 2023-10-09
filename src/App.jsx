@@ -17,7 +17,7 @@ import Payment from './views/Payment/Payment';
 import PaymentSucces from './views/Payment/PaymentSucces';
 import Trolley from './views/Trolley/Trolley';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
-import { SESSION_NOT_COOKIE } from './const';
+import Page404 from './views/Page404/Page404';
 
 function App() {
   const { pathname } = useLocation();
@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       {/* //? Lateral Menu */}
-      <LateralMenu />
+      {(pathname.includes('/admin') || pathname.includes('/user')) ? <LateralMenu /> : null}
       {/* //? Navbar */}
       {(pathname.includes('/admin') || pathname.includes('/user')) ? (<Navbar NavColor='#F7F7F7' LogoColor='#424242' />) : <Navbar />}
 
@@ -63,6 +63,9 @@ function App() {
         <Route exact path="/admin/stock" element={<Stock />} />
         <Route exact path="/admin/brands" element={<Brands />} />
         <Route exact path="/admin/types-categories" element={<TypesCategories />} />
+
+
+        <Route exact path="*" element={<Page404 />} />
 
       </Routes>
 
