@@ -9,6 +9,7 @@ import { setStatusLogin, setViewLogin, viewFormLog } from '../../../redux/auth';
 import { getCookieSession, readCookieSession } from '../../../services';
 import { Navigate, useLocation } from 'react-router-dom';
 import { NAV_ALL, NAV_ADMIN, NAV_USER, SESSION_NOT_COOKIE, DETAIL_PAGE } from '../../../const';
+import { Avatar } from '../../Icons/Avatar';
 
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
 
 
   if (!cookie) {
-    if (!NAV_ALL.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) return (<Navigate to={SESSION_NOT_COOKIE} />)
+    if (!NAV_ALL.some(nav => nav == pathname)) { return (<Navigate to={SESSION_NOT_COOKIE} />) }
   } else {
     if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) {
       return (<Navigate to={SESSION_NOT_COOKIE} />)
@@ -62,7 +63,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
         width: `${style.size}`, height: `${style.size}`
       }} onClick={handlerClickLogin}>
         {(imageUrl === '' || imageUrl === null || imageUrl === undefined) ?
-          <FaRegUser size={sizeAvatar} /> :
+          login.status ? <FaRegUser size={sizeAvatar} /> : <Avatar size={'100%'} fill={'#2D2D2D'} stroke={'#3A6561'} /> :
           <img className={styles.PhotoLogin} src={imageUrl} alt='uploadImage' />}
       </span>
       {login.view && <SignIn isActiveSignIn={login.status} onChangeSignIn={handlerChangeSignIn} />}

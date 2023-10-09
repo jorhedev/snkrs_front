@@ -5,7 +5,6 @@ import styles from './InputSelect.module.css';
 import { handlerNames } from '../../../services';
 
 const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, tag = '', placeHolder = '', params = false, style }) => {
-  console.log("🚀 ~ file: InputSelect.jsx:8 ~ InputSelect ~ options:", options)
   const [selected, setSelected] = useState(initSelect);
 
   useEffect(() => {
@@ -49,8 +48,8 @@ InputSelect.propTypes = {
   options: PropTypes.array,
   onChangeSelect: PropTypes.func,
   errors: PropTypes.string,
-  placeHolder: PropTypes.string,
   tag: PropTypes.string,
+  placeHolder: PropTypes.string,
   params: PropTypes.bool,
   style: PropTypes.object
 };

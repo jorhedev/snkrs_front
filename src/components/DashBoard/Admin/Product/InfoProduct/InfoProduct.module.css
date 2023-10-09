@@ -1,0 +1,34 @@
+.DataInfo {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.DataInfo h3 {
+    padding-right: 40px;
+}
+
+.Info {
+    width: 100%;
+    height: auto;
+}
+
+.DataInputsProducts {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: #424242;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 auto;
+}
+
+.KeyData {
+    width: 180px;
+    font-size: 30px;
+}

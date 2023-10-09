@@ -5,6 +5,7 @@ import {
 } from "../const/const.jsx";
 import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
 import { logOut } from '../services/firebase';
+import { Signed } from '../components/Alerts';
 
 const initialState = {
     login: {
@@ -46,7 +47,9 @@ export const signIn = (userCredentials) => async (dispatch) => {
         const data = await axiosInstance.post(`/auth/sign-in`, userCredentials)
         if (data) {
             setCookieSession(SESSION_NAME, data)
-            dispatch(setLogIn());
+            dispatch(setLogIn())
+            Signed()
+
         } else {
             console.error('Error when closing session')
         }
