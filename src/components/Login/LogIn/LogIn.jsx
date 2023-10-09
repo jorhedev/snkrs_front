@@ -46,7 +46,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
 
 
   if (!cookie) {
-    if (!NAV_ALL.some(nav => nav == pathname)) { return (<Navigate to={SESSION_NOT_COOKIE} />) }
+    if (!NAV_ALL.some(nav => nav == pathname ) && !DETAIL_PAGE(pathname)) { return (<Navigate to={SESSION_NOT_COOKIE} />) }
   } else {
     if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) {
       return (<Navigate to={SESSION_NOT_COOKIE} />)

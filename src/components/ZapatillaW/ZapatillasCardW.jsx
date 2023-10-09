@@ -12,15 +12,27 @@ const ZapatillasCardW = () => {
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const itemsPerPage = 9; // Cantidad de elementos por página
 
-  const filteredResults = useSelector((state) => state.results.results); // Obtén los resultados filtrados desde el estado de Redux
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchData())
   }, []);
 
-  // Cálculo del total de páginas
-  const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
+  // Cambia results por filteredResultsMen en el useSelector
+  const results = useSelector((state) => state.results.results);
+
+  // Filtra los resultados para mostrar solo los que tienen gender "male"
+  const filteredResultsMen = results.filter((zapatilla) =>
+    zapatilla.stock[0]?.gender === "female"
+  );
+
+  // const filteredResultsMen = results;
+  
+  console.log(filteredResultsMen);
+
+
+  // Calcula el total de páginas en función de los resultados filtrados
+  const totalPages = Math.ceil(filteredResultsMen.length / itemsPerPage);
 
   // Función para generar los números de página
   const generatePageNumbers = () => {
@@ -31,11 +43,20 @@ const ZapatillasCardW = () => {
     return pageNumbers;
   };
 
+  // Actualiza este efecto para escuchar cambios en results
+  useEffect(() => {
+    // Si la página actual es mayor que el número total de páginas después de filtrar, ajústala
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [filteredResultsMen, currentPage, totalPages]);
+
+
   return (
     <>
       <div className={styles.product}>
         <div className={styles.cards}>
-          {filteredResults
+          {filteredResultsMen
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((zapatilla) => (
               <ZapatillaCard key={zapatilla.id} zapatilla={zapatilla} />
@@ -66,9 +87,9 @@ const ZapatillasCardW = () => {
         ))}
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage * itemsPerPage >= filteredResults.length}
+          disabled={currentPage * itemsPerPage >= filteredResultsMen.length}
           className={`${styles.buttonpag} ${
-            currentPage * itemsPerPage >= filteredResults.length
+            currentPage * itemsPerPage >= filteredResultsMen.length
               ? ""
               : styles.active
           }`}

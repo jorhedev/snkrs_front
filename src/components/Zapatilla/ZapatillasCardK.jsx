@@ -11,39 +11,28 @@ import styles from "./ZapatillaCard.module.css";
 const ZapatillasCard = () => {
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const itemsPerPage = 9; // Cantidad de elementos por página
-  console.log(fetchData)
 
-  const results = useSelector((state) => state.results.results)
   const dispatch = useDispatch();
-  console.log(results); 
 
   useEffect(() => {
     dispatch(fetchData())
   }, []);
 
+  // Cambia results por filteredResultsMen en el useSelector
+  const results = useSelector((state) => state.results.results);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3001/products")
-  //     .then((response) => {
-  //       if (Array.isArray(response.data.products)) {
-  //         // Actualiza el estado con los datos de zapatillas obtenidos
-  //         setZapatillasData(response.data.products);
-  //       } else {
-  //         console.error(
-  //           "Los datos de zapatillas no son un arreglo válido:",
-  //           response.data
-  //         );
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error al obtener los datos de zapatillas:", error);
-  //     });
-  // }, []);
- 
+  // Filtra los resultados para mostrar solo los que tienen gender "male"
+  // const filteredResultsMen = results.filter((zapatilla) =>
+  //   zapatilla.stock[0]?.gender === "male"
+  // );
 
-  // Cálculo del total de páginas
-  const totalPages = Math.ceil(results.length / itemsPerPage);
+  const filteredResultsMen = results;
+  
+  console.log(filteredResultsMen);
+
+
+  // Calcula el total de páginas en función de los resultados filtrados
+  const totalPages = Math.ceil(filteredResultsMen.length / itemsPerPage);
 
   // Función para generar los números de página
   const generatePageNumbers = () => {
@@ -53,6 +42,15 @@ const ZapatillasCard = () => {
     }
     return pageNumbers;
   };
+
+  // Actualiza este efecto para escuchar cambios en results
+  useEffect(() => {
+    // Si la página actual es mayor que el número total de páginas después de filtrar, ajústala
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [filteredResultsMen, currentPage, totalPages]);
+
 
   return (
     <>

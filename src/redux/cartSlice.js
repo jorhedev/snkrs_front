@@ -73,6 +73,8 @@ export const addCartItemsById = (item) => async (dispatch) => {
     gener: item.stock[0].gender,
     image: item.image,
   };
+  console.log("item: ", item)
+  console.log("product: ", product)
   try {
     const res = await axiosInstance.get(`/trolley`);
     if (

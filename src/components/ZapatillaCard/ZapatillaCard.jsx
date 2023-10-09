@@ -40,9 +40,7 @@ const ZapatillaCard = ({ zapatilla }) => {
   };
   const men = zapatilla?.stock[0]?.gender;
 
-  if (men === "male") {
-    // Verificar si hay al menos una entrada en el stock con gender igual a "male"
-    console.log(men);
+
     return (
       <NavLink
         key={zapatilla?._id}
@@ -65,7 +63,7 @@ const ZapatillaCard = ({ zapatilla }) => {
           </button>
         </div>
         <img src={zapatilla?.image[0]?.src} alt={zapatilla.brand} />
-        <p>{zapatilla?.stock[0]?.gender}</p>
+        {/* <p>{zapatilla?.stock[0]?.gender}</p> */}
         <div className={styles.name}>
           <h2>{zapatilla?.brand}</h2>
           <div className={styles.price}>
@@ -87,9 +85,7 @@ const ZapatillaCard = ({ zapatilla }) => {
         {/* <button onClick={addToCartHandler}>Agregar al carrito</button> */}
       </NavLink>
     );
-  } else {
-    return null; // No se renderizará la zapatilla si gender no es "male"
-  }
+            
 };
 
 ZapatillaCard.propTypes = {

@@ -36,11 +36,7 @@ const ZapatillaCardK = ({ zapatilla }) => {
     });
   };
 
-  if (zapatilla && zapatilla._id) {
-    // Verifica si zapatilla y zapatilla._id son definidos
-    const men = zapatilla.stock[0]?.gender;
 
-    if (men === "male") {
       return (
         <NavLink
           key={zapatilla._id}
@@ -63,7 +59,7 @@ const ZapatillaCardK = ({ zapatilla }) => {
             </button>
           </div>
           <img src={zapatilla.image[0]?.src} alt={zapatilla.brand} />
-          <p>{zapatilla.stock[0]?.gender}</p>
+          {/* <p>{zapatilla.stock[0]?.gender}</p> */}
           <div className={styles.name}>
             <h2>{zapatilla.brand}</h2>
             <div className={styles.price}>
@@ -79,10 +75,7 @@ const ZapatillaCardK = ({ zapatilla }) => {
           </p>
         </NavLink>
       );
-    }
-  }
-
-  return null; // Retorna null si zapatilla o zapatilla._id no están definidos
+// Retorna null si zapatilla o zapatilla._id no están definidos
 };
 
 ZapatillaCardK.propTypes = {

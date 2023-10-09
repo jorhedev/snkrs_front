@@ -19,7 +19,7 @@ const ListaBusqWomen = () => {
         
         <div className={styles.homediv}>
         <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
-       <p className={styles.men}>Kieds</p>
+       <p className={styles.men}>Kids</p>
         </div>
         <div className={styles.zapatilla}>
         <ZapatillaK />

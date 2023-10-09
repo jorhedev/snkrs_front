@@ -15,15 +15,13 @@ const Filter = () => {
       stateKey: "sort",
       options: [
         "price_desc",
-        "NEWS",
-        "BEST SELLERS",
         "price_asc",
       ],
     },
     {
       title: "Brand",
       stateKey: "brand",
-      options: ["adidas", "nike", "SHOES"],
+      options: ["adidas", "nike", "puma", "fila", "reebok", "converse"],
     },
     {
       title: "Type",
@@ -35,6 +33,7 @@ const Filter = () => {
         "SOCCER",
         "CLIMBING",
         "CASUAL",
+        "CLASSIC"
       ],
     },
     {
@@ -66,7 +65,7 @@ const Filter = () => {
     {
       title: "Colors",
       stateKey: "color",
-      options: ["🔴", "🟢", "🔵", "⚫️", "⚪️", "🟠", "🟣", "🟡", "🟤"],
+      options: ["red", "green", "blue", "black", "white", "orange", "purple", "yellow", "brown"],
     },
   ];
 
