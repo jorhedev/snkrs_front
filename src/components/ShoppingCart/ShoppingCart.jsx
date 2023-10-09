@@ -115,6 +115,7 @@ const ShoppingCart = () => {
             <AiOutlineArrowLeft /> Home
           </p>
         </Link>
+
         <h2 className={styles.h2}>SHOPPING CART</h2>
         {cartItems.length > 0 ? (
           <div>

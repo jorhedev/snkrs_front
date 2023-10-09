@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './LoggedIn.module.css';
 import LoggedInPhoto from '../LoggedInPhoto/LoggedInPhoto'
-import { signOut, viewFormLog } from '../../../redux/user';
+import { signOut, viewFormLog } from '../../../redux/auth';
 import { MdPerson } from 'react-icons/md';
-import { FaHotel, FaUserTie } from 'react-icons/fa';
+import { FaUserTie } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { handlerNames, readCookieSession } from '../../../services';
 

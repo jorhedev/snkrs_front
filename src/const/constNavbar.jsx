@@ -8,6 +8,9 @@ export const NAVBAR_LINKS = {
     TROLLEY: ['/home'],
     LOGIN: [
         '/home',
+        '/women',
+        '/men',
+        '/kids',
         '/user/profile',
         '/user/favorites',
         '/user/record',
@@ -21,3 +24,5 @@ export const NAVBAR_LINKS = {
         '/admin/types-categories',
     ]
 }
+
+export const DETAIL_PAGE = (path) => { return /^\/detail\/[a-zA-Z0-9]+$/.test(path); }

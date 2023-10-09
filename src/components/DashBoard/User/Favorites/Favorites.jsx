@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addFavorite, removeFavorite } from "../../../../redux/zapatillasSlice";
 import styles from "./Favorites.module.css";
 import axios from "axios"; // Importa Axios
+import DashBoard from '../../DashBoard.module.css'
 import logo from "../../../../assets/Image/Logo.png";
 import zapa from "../../../../assets/Image/zapatillas.png";
 import Swal from "sweetalert2"; // Importa SweetAlert2
@@ -93,14 +94,14 @@ const Favorites = () => {
   }, []); // Asegúrate de agregar "axios" como dependencia
 
   return (
-    <>
-      <div className={styles.home}>
+    <div className={DashBoard.DashBoardContainer}>
+      {/* <div className={styles.home}>
         <Link className={styles.homebtn} to={"/home"}>
           <p>
             <img src={zapa} alt="" width={30} /> Home
           </p>
         </Link>
-      </div>
+      </div> */}
 
       <div className={styles.fa}>
         {zapatillas.map((item) => (
@@ -159,7 +160,7 @@ const Favorites = () => {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -51,10 +51,6 @@ export const cartSlice = createSlice({
 export const getCartItems = () => async (dispatch) => {
   try {
     const { User_id } = readCookieSession();
-    console.log(
-      "🚀 ~ file: cartSlice.js:58 ~ getCartItems ~ User_id:",
-      User_id
-    );
 
     if (User_id) {
       const response = await axiosInstance.get(`/trolley`);

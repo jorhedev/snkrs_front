@@ -1,23 +1,19 @@
 import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
-import snkrs from '../../assets/Logo.png'
-import { AiOutlineHeart } from 'react-icons/ai';
-import { BsCart2 } from 'react-icons/bs';
 import { LogIn } from '../Login';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setViewLogin } from "../../redux/user";
-import { NAVBAR_LINKS, ICONS, MENU_USER, SESSION_NOT_COOKIE } from "../../const";
+import { setViewLogin } from "../../redux/auth";
+import { NAVBAR_LINKS, ICONS, MENU_USER, SESSION_NOT_COOKIE, DETAIL_PAGE } from "../../const";
 import Logo from "../Icons/Logo";
 import { readCookieSession } from "../../services";
 import { NotLogin } from "../Alerts";
 
-const { HOME, WOMEN, MEN, KIDS, FAVORITE, TROLLEY, LOGIN } = NAVBAR_LINKS
+const { HOME, WOMEN, MEN, KIDS, FAVORITE, TROLLEY, SEARCH, LOGIN } = NAVBAR_LINKS
 const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
     const dispatch = useDispatch()
     const { pathname } = useLocation()
-    console.log("🚀 ~ file: Navbar.jsx:20 ~ Navbar ~ pathname:", pathname)
     const user = useSelector(({ user }) => { return user.user })
     const [role, setRole] = useState('')
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -67,20 +63,25 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {KIDS.includes(pathname) ? <Link to='/cardK'><h2>KIDS</h2></Link> : null}
                     {KIDS.includes(pathname) ? "" : null}
                     {role != 'admin' ? FAVORITE.includes(pathname) ?
+
                         <Link to={role == 'user' ? MENU_USER.favorites.route : null}>
                             <h3 title='favorites' onClick={handlerChangeFavorite}>{ICONS.FAVORITE_WHITE}</h3></Link> :
                         null : null}
-                    {(role != 'admin' && TROLLEY.includes(pathname)) ? <h3>
-                        {" "}
-                        <Link to="/user/shopping">
+                    {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
+                        <h3>
                             {" "}
-                            <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
-                            {" "}
-                        </Link>
-                    </h3> : null}
-                    {/* {HOME.includes(pathname) ? <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT_BLACK}HOME</h2></Link> : null} */}
-                    {LOGIN.includes(pathname) ? <LogIn /> : null}
+                            <Link to="/trolley">
+                                <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
+                            </Link>
+                        </h3>
+                        : null}
+                    {LOGIN.includes(pathname) || DETAIL_PAGE(pathname) ? <LogIn /> : null}
                 </div>
+            </div>
+            <div className={`${styles.BackHome} ${styles.NavbarLinks}`}>
+                {HOME.includes(pathname) || DETAIL_PAGE(pathname) ?
+                    <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT_BLACK}BACK TO HOME</h2></Link>
+                    : null}
             </div>
         </div >
     )

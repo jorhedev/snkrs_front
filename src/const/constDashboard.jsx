@@ -73,8 +73,7 @@ export const MENU_ADMIN = {
 }
 
 export const NAV_ALL = [
-    '/', '/home',
-
+    '/', '/home', '/women', '/men', '/kids'
 ]
 
 export const NAV_USER = [

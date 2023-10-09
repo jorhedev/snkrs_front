@@ -13,7 +13,7 @@ import {
   signInWithTwitter,
   signInWithFacebook
 } from '../../../services/firebase';
-import { signIn as logIn, setViewLogin } from '../../../redux/user';
+import { signIn as logIn, setViewLogin } from '../../../redux/auth';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import SocialNetworks from '../../SocialNetworks/SocialNetworks';
 import { InputPassword, InputText } from '../../Inputs';
@@ -25,9 +25,7 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [login, setLogin] = useState({ email: null, password: null });
-  console.log("🚀 ~ file: SignIn.jsx:28 ~ SignIn ~ login:", login.email)
   const [error, setError] = useState({ email: '', password: '' });
-  console.log("🚀 ~ file: SignIn.jsx:29 ~ SignIn ~ error:", error)
   const [viewForgotPass, setViewForgotPass] = useState(false);
 
   const handleInputChange = (inputField, inputValue) => {
@@ -55,7 +53,6 @@ const SignIn = ({ isActiveSignIn = false, onChangeSignIn }) => {
         case 'login':
           await logOut();
           ({ _tokenResponse } = await signIn(login.email, login.password));
-          console.log("🚀 ~ file: SignIn.jsx:56 ~ handlerSignIn ~ _tokenResponse:", _tokenResponse)
           if (_tokenResponse && !_tokenResponse.emailVerified) {
             Swal.fire(
               'Confirm Email',
