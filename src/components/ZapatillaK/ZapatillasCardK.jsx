@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ZapatillaCard from "./ZapatillaCardK";
+import ZapatillaCard from "./ZapatillaCard";
 import Filter from "../Filter/Filter";
 import axios from "axios";
 import styles from "./ZapatillaCard.module.css";
@@ -18,6 +18,8 @@ const ZapatillasCardK = () => {
   useEffect(() => {
     dispatch(fetchData());
   }, []);
+
+  console.log(filteredResults);
 
   // Cálculo del total de páginas
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
