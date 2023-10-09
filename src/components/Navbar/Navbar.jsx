@@ -58,9 +58,9 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     <Link to={'/'}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
                 </div>
                 <div className={styles.NavbarLinks}>
-                    {WOMEN.includes(pathname) ? <Link to='/cardw'><h2>WOMEN</h2></Link> : null}
-                    {MEN.includes(pathname) ? <Link to='/card'><h2>MEN</h2></Link> : null}
-                    {KIDS.includes(pathname) ? <Link to='/cardK'><h2>KIDS</h2></Link> : null}
+                    {WOMEN.includes(pathname) ? <Link to='/women'><h2>WOMEN</h2></Link> : null}
+                    {MEN.includes(pathname) ? <Link to='/men'><h2>MEN</h2></Link> : null}
+                    {KIDS.includes(pathname) ? <Link to='/kids'><h2>KIDS</h2></Link> : null}
                     {KIDS.includes(pathname) ? "" : null}
                     {role != 'admin' ? FAVORITE.includes(pathname) ?
 
