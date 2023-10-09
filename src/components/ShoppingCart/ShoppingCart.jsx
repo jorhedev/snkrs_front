@@ -61,10 +61,10 @@ const ShoppingCart = () => {
       text: "¿Are you sure to empty the cart?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
+      confirmButtonColor: "black",
+      cancelButtonColor: "black",
       cancelButtonText: "No",
+      confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());
@@ -78,10 +78,10 @@ const ShoppingCart = () => {
       text: `¿Are you sure to delete this item from the cart?`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
+      confirmButtonColor: "black",
+      cancelButtonColor: "black",
       cancelButtonText: "No",
+      confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(removeFromCart(item._id));

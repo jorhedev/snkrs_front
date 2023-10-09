@@ -55,7 +55,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
         <div className={`${styles.container} ${isNavbarVisible ? styles.visible : ''}`} style={{ backgroundColor: `${NavColor}` }}>
             <div className={styles.nav}>
                 <div className={styles.logo}>
-                    <Link to={'/'}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
+                    <Link to={'/home'}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
                 </div>
                 <div className={styles.NavbarLinks}>
                     {WOMEN.includes(pathname) ? <Link to='/women'><h2>WOMEN</h2></Link> : null}
@@ -64,7 +64,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {KIDS.includes(pathname) ? "" : null}
                     {role != 'admin' ? FAVORITE.includes(pathname) ?
 
-                        <Link to={role == 'user' ? MENU_USER.favorites.route : null}>
+                        <Link to={role == 'user' ? MENU_USER.favorites.route || DETAIL_PAGE(pathname): null}>
                             <h3 title='favorites' onClick={handlerChangeFavorite}>{ICONS.FAVORITE_WHITE}</h3></Link> :
                         null : null}
                     {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
