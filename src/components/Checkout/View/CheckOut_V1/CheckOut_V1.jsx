@@ -1,17 +1,34 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axiosInstance from "../../../../utils/axiosInstance";
 import styles from "./CheckOut_V1.module.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 import Bag from "./Bag";
 import { Link } from "react-router-dom";
-import { fetchCity, fetchCountry,fetchState } from "../../../../redux/country";
+import { fetchCity, fetchCountry, fetchState } from "../../../../redux/country";
+import { InputSelect } from "../../../Inputs";
+import { getCartItems } from "../../../../redux/cartSlice";
 // eslint-disable-next-line react/prop-types
 const CheckOut_V1 = ({ payment = "" }) => {
+  const country = useSelector(({ country }) => {
+    return country.country;
+  });
+  const state = useSelector(({ country }) => {
+    return country.state;
+  });
+  const city = useSelector(({ country }) => {
+    return country.city;
+  });
   const dispatch = useDispatch();
   const [token, setToken] = useState("");
-  
-
+  const cartItems = useSelector(({ cart }) => {
+    return cart.cartItems;
+  });
+  useEffect(() => {
+    dispatch(getCartItems());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const isFormValid = useRef({
     firstName: false,
     lastName: false,
@@ -23,7 +40,11 @@ const CheckOut_V1 = ({ payment = "" }) => {
     lastName: "",
     email: "",
     phone: "",
+    country: "",
+    state: "",
+    city: "",
   });
+  console.log("formData", formData);
 
   const [formErrors, setFormErrors] = useState({
     firstName: "",
@@ -34,17 +55,37 @@ const CheckOut_V1 = ({ payment = "" }) => {
   useEffect(() => {
     setToken(payment);
   }, [payment]);
-  
 
+  //? get Countries
+  useEffect(() => {
+    dispatch(fetchCountry());
+  }, [dispatch]);
+
+  //? get States
+  useEffect(() => {
+    if (formData.country) {
+      dispatch(fetchState(formData.country));
+    }
+  }, [dispatch, formData.country]);
+
+  //? get Cities
+  useEffect(() => {
+    if (formData.country && formData.state) {
+      dispatch(fetchCity(formData.country, formData.state));
+    }
+  }, [dispatch, formData.country, formData.state]);
 
   const updateFormValidity = (updateValue) => {
-    const { name, data: { error, value}} = updateValue
-    console.log(name, error, value)
-    const isValid = Boolean(!error) && Boolean(value)
+    const {
+      name,
+      data: { error, value },
+    } = updateValue;
+    console.log(name, error, value);
+    const isValid = Boolean(!error) && Boolean(value);
     isFormValid.current = {
       ...isFormValid.current,
       [name]: isValid,
-    }
+    };
   };
 
   const validateField = (fieldName, value) => {
@@ -66,6 +107,26 @@ const CheckOut_V1 = ({ payment = "" }) => {
     }
   };
 
+  const makePostRequest = async () => {
+    try {
+      const postData = {
+        purchase: cartItems,
+        shipping:{
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        country: formData.country,
+        state: formData.state,
+        city: formData.city}
+      };
+      console.log(postData)
+      const response = await axiosInstance.post("/shopping", postData);
+      console.log("Respuesta del servidor:", response.data);
+    } catch (error) {
+      console.error("Error al realizar la solicitud POST:", error);
+    }
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -75,9 +136,13 @@ const CheckOut_V1 = ({ payment = "" }) => {
       name,
       data: {
         value,
-        error
-      }
+        error,
+      },
     });
+  };
+  const handlerInputChange = (field, value) => {
+    const currentValue = { ...formData, [field]: value };
+    setFormData(currentValue);
   };
 
   return (
@@ -111,7 +176,6 @@ const CheckOut_V1 = ({ payment = "" }) => {
                   <div className={styles.errorText}>{formErrors.firstName}</div>
                 )}
               </div>
-
               <div className={styles.inputWrapper}>
                 <label className={styles.label}> Last Name: </label>
                 <input
@@ -129,24 +193,54 @@ const CheckOut_V1 = ({ payment = "" }) => {
                   <div className={styles.errorText}>{formErrors.lastName}</div>
                 )}
               </div>
-
-              <label className={styles.label}> Country: </label>
-              <select className={styles.select}>
-                <option value=""> </option>
-                <option value=""></option>
-              </select>
-
-              <label className={styles.label}> City: </label>
-              <select className={styles.select}>
-                <option value=""> </option>
-                <option value=""></option>
-              </select>
-
-              <label className={styles.label}>State: </label>
-              <select className={styles.select}>
-                <option value=""></option>
-                <option value=""></option>
-              </select>
+              <label className={styles.label}> </label>
+              {Object.keys(formData).map((key, index) => {
+                return (
+                  <div className={styles.country} key={index}>
+                    {["country", "state", "city"].includes(key) && (
+                      <>
+                        <label className={styles.label}>
+                          {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
+                        </label>
+                        <InputSelect
+                          options={
+                            key === "country"
+                              ? country
+                              : key === "state"
+                              ? state
+                              : city
+                          }
+                          initInput={formData[key]}
+                          onChangeSelect={(input) =>
+                            handlerInputChange(key, input)
+                          }
+                          style={{
+                            flexDirection: "row",
+                            alignItems: "start",
+                            gap: "4px",
+                            select: {
+                              backgroundColor: "#101010",
+                              color: "white",
+                              width: "75%",
+                              fontFamily: "MontLight",
+                              borderColor: "white",
+                            },
+                            DateFile: {
+                              justifyContent: "flex-end",
+                              background: "black",
+                              marginBottom: "20px",
+                            },
+                            input: {
+                              width: "100%",
+                              background: "rgb(217, 217, 217)",
+                            },
+                          }}
+                        />
+                      </>
+                    )}
+                  </div>
+                );
+              })}
 
               <label className={styles.label}>Address: </label>
               <input
@@ -156,7 +250,6 @@ const CheckOut_V1 = ({ payment = "" }) => {
                 id="address"
                 name="address"
               />
-
               <div className={styles.inputWrapper}>
                 <label className={styles.label}> Email: </label>
                 <input
@@ -174,7 +267,6 @@ const CheckOut_V1 = ({ payment = "" }) => {
                   <div className={styles.errorText}>{formErrors.email}</div>
                 )}
               </div>
-
               <div className={styles.inputWrapper}>
                 <label className={styles.label}> Phone: </label>
                 <input
@@ -211,10 +303,18 @@ const CheckOut_V1 = ({ payment = "" }) => {
         </div>
         <div className={styles.buttonContainer}>
           <div
+          onClick={makePostRequest}
             id="wallet_container"
-            style={{ display: Object.keys(isFormValid.current).every(e => isFormValid.current[e] === true) ? "" : "none"}}
+            style={{
+              display: Object.keys(isFormValid.current).every(
+                (e) => isFormValid.current[e] === true
+              )
+                ? ""
+                : "none",
+            }}
           >
             <Wallet initialization={{ preferenceId: token }} />
+          
           </div>
         </div>
       </div>
