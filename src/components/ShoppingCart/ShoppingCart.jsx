@@ -112,7 +112,7 @@ const ShoppingCart = () => {
       <div className={styles.tableContainer}>
         <Link className={styles.homebtn} to={"/home"}>
           <p className={styles.homebtonP}>
-            <AiOutlineArrowLeft /> Home
+            {/* <AiOutlineArrowLeft /> Home */}
           </p>
         </Link>
 
