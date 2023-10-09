@@ -20,9 +20,9 @@ export const resultsMenSlice = createSlice({
     
   },
 });
-
 export const fetchData = () => async (dispatch) => {
   try {
+
     const { data } = await axios.get('http://localhost:3001/products?limit=1000');
     const rMen = data.products;
     dispatch(setResults(rMen));
@@ -37,3 +37,8 @@ export const fetchData = () => async (dispatch) => {
 export const { setResults, setFilteredResultsMen } = resultsMenSlice.actions;
 
 export default resultsMenSlice.reducer;
+
+
+
+
+

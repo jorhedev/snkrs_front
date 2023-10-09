@@ -9,11 +9,13 @@ import styles from "./Favorites.module.css";
 import axios from "axios"; // Importa Axios
 import DashBoard from '../../DashBoard.module.css'
 import logo from "../../../../assets/Image/Logo.png";
+import zapa from "../../../../assets/Image/zapatillas.png";
+import Swal from "sweetalert2"; // Importa SweetAlert2
 
 const Favorites = () => {
   const dispatch = useDispatch();
   const zapatillas = useSelector((state) => state.zapatillas);
-
+  const [isLiked, setIsLiked] = useState({});
   const [favoritas, setFavoritas] = useState([]);
 
   const agregarFavorita = (item) => {
@@ -22,14 +24,59 @@ const Favorites = () => {
   };
 
   const eliminarFavorita = (item) => {
+    // Elimina el artículo de favoritos y actualiza el estado
     dispatch(removeFavorite(item));
-    setFavoritas(favoritas.filter((zapatilla) => zapatilla.id !== item.id));
+
+    // Elimina el artículo del objeto isLiked
+    const updatedIsLiked = { ...isLiked };
+    delete updatedIsLiked[item._id];
+    setIsLiked(updatedIsLiked);
+
+    // Actualiza la lista de favoritas después de eliminar una
+    const updatedFavoritas = favoritas.filter(
+      (zapatilla) => zapatilla._id !== item._id
+    );
+    setFavoritas(updatedFavoritas);
+
+    // Actualiza el localStorage con la lista de favoritas actualizada
+    localStorage.setItem("favorites", JSON.stringify(updatedFavoritas));
   };
 
-  useEffect(() => {
+  // Función para mostrar la alerta de confirmación
+  const showDeleteConfirmation = (item) => {
+    Swal.fire({
+      title: "WARNING",
+      text: "¿Are you sure to delete this item from favorites?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Si el usuario confirma, elimina la tarjeta
+        eliminarFavorita(item);
+      }
+    });
+  };
+  const toggleLike = (item) => {
+    const updatedIsLiked = { ...isLiked };
+    if (zapatillas.includes(item)) {
+      eliminarFavorita(item);
+      delete updatedIsLiked[zapa._id];
+    } else {
+      agregarFavorita(item);
+      updatedIsLiked[zapa._id] = true;
+    }
+    localStorage.setItem("favorites", JSON.stringify(updatedIsLiked));
+    setIsLiked(updatedIsLiked);
+  };
+
+  useEffect((id) => {
     // Utiliza Axios para obtener los datos de la API
     axios
-      .get("http://localhost:3001/products")
+      .get(`http://localhost:3001/favorites/${id}`)
       .then((response) => {
         if (Array.isArray(response.data.products)) {
           // Actualiza el estado con los datos de zapatillas obtenidos
@@ -51,7 +98,7 @@ const Favorites = () => {
       {/* <div className={styles.home}>
         <Link className={styles.homebtn} to={"/home"}>
           <p>
-            <AiOutlineArrowLeft /> Home
+            <img src={zapa} alt="" width={30} /> Home
           </p>
         </Link>
       </div> */}
@@ -68,8 +115,6 @@ const Favorites = () => {
               <img src={item?.image[0].src} alt={item.name} />
 
               <div className={styles.name}>
-
-
                 <h2>{item?.brand}</h2>
                 <div className={styles.price}>
                   <p>$ {item?.price}</p>
@@ -83,20 +128,33 @@ const Favorites = () => {
                 <p>{item.type}</p>
                 <br />
               </div>
+              <button
+                className={`${styles.likeButton} ${
+                  isLiked[item._id] ? styles.liked : ""
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  
+                  // Llama a eliminarFavorita para eliminar el artículo si está en favoritos, o agregarlo si no lo está
+                  toggleLike(item);
+                }}
+              >
+                <span role="img" aria-label="Corazón">
+                  {isLiked[item._id] ? "🤍" : "❤️"}
+                </span>
+              </button>
+              <div className={styles.dele}>
 
-              <div className={styles.boton}>
-                <button
-                  className={styles.btn}
-                  onClick={() => eliminarFavorita(item)}
-                >
-                  Delete
-                </button>
-                <button
-                  className={styles.btn}
-                  onClick={() => eliminarFavorita(item)}
-                >
-                  Add to cart
-                </button>
+              <img src={logo} alt={item.name} width={50}  />
+              <button
+              className={`${styles.deleteButton}`}
+              onClick={(e) => {
+                e.preventDefault();
+                showDeleteConfirmation(item._id)
+              }}
+            >
+              Delete
+            </button>
               </div>
             </div>
           </Link>

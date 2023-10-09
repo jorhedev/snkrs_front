@@ -7,6 +7,7 @@ import productReducer from './productSlice';
 import resultsMenReducer from './resultsMen'
 import recordReducer from "./recordSlice"
 import countryReducer from './country';
+import favoritosReducer, { fetchFavorites, addFavorite, removeFavorite } from './favoritosSlice';
 import authReducer from './auth';
 import userReducer from './user';
 
@@ -20,8 +21,11 @@ const store = configureStore({
     products: productReducer,
     results: resultsMenReducer,
     record: recordReducer,
-    country: countryReducer
+    country: countryReducer,
+    favoritos: favoritosReducer,
   }
 });
+// Cargar los favoritos al inicializar la aplicación
+store.dispatch(fetchFavorites());
 
 export default store;

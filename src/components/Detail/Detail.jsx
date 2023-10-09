@@ -20,6 +20,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from '../../components/Footer/Footer'
+import zapa from '../../assets/Image/zapatillas.png'
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
@@ -88,9 +89,10 @@ const Detail = () => {
     <>
       <div className="arrow">
         <Link className="homebtn" to={"/home"}>
-          {/* <p>
-            <AiOutlineArrowLeft /> Home
-          </p> */}
+          <p>
+          <img src={zapa} alt="" width={30}/> Home
+          </p>
+
         </Link>
       </div>
 
@@ -275,7 +277,7 @@ const Detail = () => {
                 ADD TO CART
               </button>
 
-              <Link to="/user?view=favorites">
+              <Link to="/user/favorites">
                 <p className="heart">
                   <BsHeart />
                 </p>
@@ -307,6 +309,7 @@ Detail.propTypes = {
 };
 
 export default Detail;
+
 
 const saleData = [
   {

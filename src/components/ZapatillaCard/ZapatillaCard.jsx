@@ -19,6 +19,7 @@ const ZapatillaCard = ({ zapatilla }) => {
   );
   const [isLiked, setIsLiked] = useState(isFavorite);
 
+  console.log(zapatilla)
   const toggleLike = () => {
     if (isLiked) {
       dispatch(removeFavorite(zapatilla));
@@ -37,32 +38,31 @@ const ZapatillaCard = ({ zapatilla }) => {
       timer: 1500,
     });
   };
-  const men = zapatilla.stock[0]?.gender;
+  const men = zapatilla?.stock[0]?.gender;
 
   if (men === "male") {
     // Verificar si hay al menos una entrada en el stock con gender igual a "male"
     console.log(men);
     return (
       <NavLink
-        key={zapatilla._id}
+        key={zapatilla?._id}
         to={`/detail/${zapatilla._id}`}
         className={`${styles.zapatilla} ${
           zapatilla.price < 90 ? styles.isPriceLessThan90 : ""
         }`}
       >
         <div className={styles.b}>
-
-        <button
-          className={styles.boton}
-          onClick={(e) => {
-            e.preventDefault(); // Evita que el enlace se active al hacer clic en el botón
-            toggleLike(); // Llama a la función toggleLike
-          }}
-        >
-          <span role="img" aria-label="Corazón">
-            {isLiked ? "❤️" : "🤍"}
-          </span>
-        </button>
+          <button
+            className={styles.boton}
+            onClick={(e) => {
+              e.preventDefault(); // Evita que el enlace se active al hacer clic en el botón
+              toggleLike(); // Llama a la función toggleLike
+            }}
+          >
+            <span role="img" aria-label="Corazón">
+              {isLiked ? "❤️" : "🤍"}
+            </span>
+          </button>
         </div>
         <img src={zapatilla?.image[0]?.src} alt={zapatilla.brand} />
         <p>{zapatilla?.stock[0]?.gender}</p>
