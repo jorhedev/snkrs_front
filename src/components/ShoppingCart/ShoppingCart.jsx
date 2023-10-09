@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartItems } from "../../redux/cartSlice";
@@ -6,13 +8,17 @@ import { MdClose } from "react-icons/md";
 import { FaPlusCircle, FaMinusCircle, FaTrashAlt } from "react-icons/fa";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import {
-  itemIncrement, itemDecrement, removeFromCart, clearCart,
+  itemIncrement,
+  itemDecrement,
+  removeFromCart,
+  clearCart,
 } from "../../redux/cartSlice";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axiosInstance from "../../utils/axiosInstance";
 import { Link } from "react-router-dom";
+import zapa from "../../assets/Image/zapatillas.png";
 import { PAYMENT_STORAGE } from "../../const/const";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 
@@ -93,8 +99,22 @@ const ShoppingCart = () => {
   const total = subtotal;
   return (
     <div className={styles.cartContainer}>
+
+      <div className={styles.divi}>
+        <Link className={styles.hom} to={"/home"}>
+          <p>
+            <img src={zapa} alt="" width={30} /> Home
+          </p>
+        </Link>
+       
+      </div>
+
       <div className={styles.tableContainer}>
-      <Link className={styles.homebtn} to={'/home'}><p className={styles.homebtonP} ><AiOutlineArrowLeft /> Home</p></Link>
+        <Link className={styles.homebtn} to={"/home"}>
+          <p className={styles.homebtonP}>
+            <AiOutlineArrowLeft /> Home
+          </p>
+        </Link>
         <h2 className={styles.h2}>SHOPPING CART</h2>
         {cartItems.length > 0 ? (
           <div>
@@ -160,9 +180,9 @@ const ShoppingCart = () => {
             </table>
           </div>
         ) : (
-          <div className={styles.cartEmpty}><p >YOUR CART IS EMPTY</p>
+          <div className={styles.cartEmpty}>
+            <p>YOUR CART IS EMPTY</p>
           </div>
-
         )}
 
         {showTable && cartItems.length > 0 && (

@@ -44,10 +44,9 @@ export const resultsMenSlice = createSlice({
     // Puedes agregar más acciones de filtro y ordenamiento según tus necesidades...
   },
 });
-
 export const fetchData = () => async (dispatch) => {
   try {
-    const { data } = await axios.get('http://localhost:3001/products');
+    const { data } = await axios.get('http://localhost:3001/products?limit=1000'); // Corrección en la URL para el límite de productos
     const rMen = data.products;
     dispatch(setResults(rMen));
     dispatch(setFilteredResultsMen(rMen)); // Inicialmente, los resultados filtrados son iguales a los resultados originales
@@ -60,3 +59,8 @@ export const fetchData = () => async (dispatch) => {
 export const { setResults, setFilteredResultsMen, sortAscendant, sortDescendant, sortFilteredAscendant, sortFilteredDescendant, filterByBrand } = resultsMenSlice.actions;
 
 export default resultsMenSlice.reducer;
+
+
+
+
+

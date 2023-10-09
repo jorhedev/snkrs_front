@@ -165,12 +165,15 @@
   display: flex;
   justify-content: center;
   padding: 5px 10px;
-
+  color: #000;
 
   margin-left: 5px;
   background: #d9d9d9;
   text-align: center;
   font-size: 24px;
+}
+.bo .heart:hover{
+  color: red;
 }
 
 .bo .boto {
@@ -206,7 +209,20 @@
   color:#c1c1c1 ;
 }
 
-
+.homebtn img{
+  /* Alto de la imagen */
+   animation: slideLeft 1s linear infinite; /* Aplica la animación */
+ }
+ 
+ /* Definición de la animación */
+ @keyframes slideLeft {
+   0% {
+     transform: translateX(0); /* Inicio: no se desplaza horizontalmente */
+   }
+   100% {
+     transform: translateX(-100%); /* Fin: se desplaza completamente hacia la izquierda */
+   }
+ }
 
 
 
@@ -315,3 +331,7 @@
 
 
 }
+
+
+
+

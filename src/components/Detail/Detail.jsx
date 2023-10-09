@@ -20,6 +20,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from '../../components/Footer/Footer'
+import zapa from '../../assets/Image/zapatillas.png'
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
@@ -89,7 +90,7 @@ const Detail = () => {
       <div className="arrow">
         <Link className="homebtn" to={"/home"}>
           <p>
-            <AiOutlineArrowLeft /> Home
+          <img src={zapa} alt="" width={30}/> Home
           </p>
         </Link>
       </div>
@@ -275,7 +276,7 @@ const Detail = () => {
                 ADD TO CART
               </button>
 
-              <Link to="/user?view=favorites">
+              <Link to="/user/favorites">
                 <p className="heart">
                   <BsHeart />
                 </p>
@@ -307,92 +308,3 @@ Detail.propTypes = {
 };
 
 export default Detail;
-
-const saleData = [
-  {
-    id: 1,
-    name: "Yeezy",
-    price: 75.99,
-    type: "SPLV-350",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    category: "ACCESSORIES",
-    size: "4",
-  },
-  {
-    id: 2,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    category: "CLOTHES",
-    size: "6",
-},
-  {
-    id: 3,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "4",
-    category:"",
-  },
-  {
-    id: 4,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "8",
-    category:"",
-  },
-  {
-    id: 5,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "6",
-    category:"",
-  },
-  {
-    id: 6,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "12",
-    category:"",
-  },
-  {
-    id: 7,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "9",
-    category:""
-  },
-  {
-    id: 8,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "5.5",
-    category:""
-  }
-]

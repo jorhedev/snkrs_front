@@ -1,26 +1,49 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ZapatillaCard from "./ZapatillaCardK";
+import ZapatillaCardK from "./ZapatillaCardK"; // Importa el componente de ZapatillaCard
 import Filter from "../Filter/Filter";
+import { fetchData } from '../../redux/resultsMen';
 import axios from "axios";
 import styles from "./ZapatillaCard.module.css";
 
-import { fetchData } from "../../redux/resultsMen"; // Asegúrate de importar la acción fetchData
 
-const ZapatillasCardK = () => {
+const ZapatillasCard = () => {
   const [currentPage, setCurrentPage] = useState(1); // Página actual
   const itemsPerPage = 9; // Cantidad de elementos por página
+  console.log(fetchData)
 
-  const filteredResults = useSelector((state) => state.results.results); // Obtén los resultados filtrados desde el estado de Redux
+  const results = useSelector((state) => state.results.results)
   const dispatch = useDispatch();
+  console.log(results); 
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchData())
   }, []);
 
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3001/products")
+  //     .then((response) => {
+  //       if (Array.isArray(response.data.products)) {
+  //         // Actualiza el estado con los datos de zapatillas obtenidos
+  //         setZapatillasData(response.data.products);
+  //       } else {
+  //         console.error(
+  //           "Los datos de zapatillas no son un arreglo válido:",
+  //           response.data
+  //         );
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error al obtener los datos de zapatillas:", error);
+  //     });
+  // }, []);
+ 
+
   // Cálculo del total de páginas
-  const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
+  const totalPages = Math.ceil(results.length / itemsPerPage);
 
   // Función para generar los números de página
   const generatePageNumbers = () => {
@@ -33,12 +56,13 @@ const ZapatillasCardK = () => {
 
   return (
     <>
+    
       <div className={styles.product}>
         <div className={styles.cards}>
-          {filteredResults
+          {results
             .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
             .map((zapatilla) => (
-              <ZapatillaCard key={zapatilla.id} zapatilla={zapatilla} />
+              <ZapatillaCardK key={zapatilla.id} zapatilla={zapatilla} />
             ))}
         </div>
         <Filter />
@@ -66,9 +90,9 @@ const ZapatillasCardK = () => {
         ))}
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage * itemsPerPage >= filteredResults.length}
+          disabled={currentPage * itemsPerPage >= results.length}
           className={`${styles.buttonpag} ${
-            currentPage * itemsPerPage >= filteredResults.length
+            currentPage * itemsPerPage >= results.length
               ? ""
               : styles.active
           }`}
@@ -80,4 +104,4 @@ const ZapatillasCardK = () => {
   );
 };
 
-export default ZapatillasCardK;
+export default ZapatillasCard;

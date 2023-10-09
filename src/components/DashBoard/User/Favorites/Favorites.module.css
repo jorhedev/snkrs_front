@@ -36,6 +36,11 @@
 }
 .homebtn{
     margin-left: 100px;
+    text-decoration: none;
+    font-family: MontHeavy;
+}
+.homebtn:hover{
+  opacity: .5;
 }
 .home{
     display: flex;
@@ -43,7 +48,11 @@
     margin-top: 100px;
     margin-left: 250px
 }
-
+.home p{
+  text-align: none;
+  color: #000;
+  font-family: MontHeavy;
+}
 
 
 
@@ -69,8 +78,11 @@
  margin-bottom: 20px;
   border-radius: 5px 0 0 5px;
   box-shadow: 0 2px 7px #000000f3;
+  font-weight: bold ;
+  font-size: 20px;
     font-family: MontHeavy;
 }
+
 .price div {
   position: absolute;
   bottom: -23px;
@@ -128,6 +140,7 @@
       box-sizing: border-box; 
       width: 230px;
       height: auto;
+      position: relative;
     }
     
     .card img {
@@ -143,3 +156,39 @@
         font-size: 24px;
         z-index: 1;
       }
+
+      .likeButton {
+        position: absolute;
+        top: 10px; 
+        right: 10px; 
+        border: none;
+        background: transparent;
+        font-size: 25px;
+      }
+
+
+
+.homebtn img{
+ /* Alto de la imagen */
+  animation: slideLeft 1s linear infinite; /* Aplica la animación */
+}
+
+/* Definición de la animación */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0); /* Inicio: no se desplaza horizontalmente */
+  }
+  100% {
+    transform: translateX(-100%); /* Fin: se desplaza completamente hacia la izquierda */
+  }
+}
+
+
+.dele{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.dele img{
+  height: 10px;
+}

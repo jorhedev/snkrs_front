@@ -1,10 +1,13 @@
 .cartContainer {
-  max-width: 1200px;
+  width: 1200px;
   margin: 0 auto;
   padding: 20px;
   font-family: MontHeavy;
   font-size: 20px;
-  margin-top: 50px;
+  
+}
+.tableContainer{
+  width: 400px;
 }
 .homebtn{
   text-decoration: none;
@@ -15,7 +18,7 @@
   color:#c1c1c1 ;
 }
 .homebtonP{
-  margin-top: 80px;
+  margin-top: 10px;
 }
 
 .cartTable {
@@ -121,12 +124,13 @@
   padding-left: 200px;
 }
 .buttonContainer {
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   margin-left: 218px;
-  width: 1150px;
+  width: 1000px;
 }
 .cartEmpty{
   display: flex;
@@ -169,4 +173,25 @@ align-items: center;
 }
 .buttonHome{
   margin-left: 200px;
+  text-decoration: none;
 }
+.divi p{
+  margin-top: 70px ;
+  margin-left: 200px;
+  color: #000;
+}
+
+.hom img{
+  /* Alto de la imagen */
+   animation: slideLeft 1s linear infinite; /* Aplica la animación */
+ }
+ 
+ /* Definición de la animación */
+ @keyframes slideLeft {
+   0% {
+     transform: translateX(0); /* Inicio: no se desplaza horizontalmente */
+   }
+   100% {
+     transform: translateX(-100%); /* Fin: se desplaza completamente hacia la izquierda */
+   }
+ }

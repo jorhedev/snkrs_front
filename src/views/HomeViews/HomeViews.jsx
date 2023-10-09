@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer/Footer";
 import Newsletter from "../../components/Newsletter/Newsletter";
@@ -12,7 +14,8 @@ import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from '../../redux/resultsMen';
+import { fetchData } from "../../redux/resultsMen";
+import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
 
 const itemsPerPage = 9;
 
@@ -21,9 +24,14 @@ const HomeViews = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showNotFoundMessage, setShowNotFoundMessage] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isLiked, setIsLiked] = useState({});
 
   useEffect(() => {
     dispatch(fetchData());
+
+    // Cargar productos favoritos desde el almacenamiento local al cargar la página
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
+    setIsLiked(savedFavorites);
   }, [dispatch]);
 
   // Declare results here after fetching data from Redux
@@ -32,10 +40,7 @@ const HomeViews = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = results.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentItems = results.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(results.length / itemsPerPage);
 
@@ -53,10 +58,42 @@ const HomeViews = () => {
     setShowNotFoundMessage(filteredResults.length === 0);
   };
 
+  const handleLikeClick = (zapa) => {
+    // Actualizar el estado local de favoritos
+    const updatedIsLiked = { ...isLiked };
+    if (updatedIsLiked[zapa._id]) {
+      // Si ya está en favoritos, quítalo
+      dispatch(removeFavorite(zapa));
+      delete updatedIsLiked[zapa._id];
+    } else {
+      // Si no está en favoritos, agrégalo
+      dispatch(addFavorite(zapa));
+      updatedIsLiked[zapa._id] = true;
+    }
+
+    // Guardar productos favoritos en el almacenamiento local
+    localStorage.setItem("favorites", JSON.stringify(updatedIsLiked));
+
+    // Actualizar el estado del botón "favorito" para esta zapatilla
+    setIsLiked(updatedIsLiked);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <>
       <div className={styles.carrusel}>
-      <Carousel>
+        <Carousel>
           <Carousel.Item>
             <img
               src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fd756a55198943.597a8e48aa0b4.gif"
@@ -111,7 +148,7 @@ const HomeViews = () => {
             key={zapa._id}
           >
             <div className={styles.card} key={zapa._id}>
-              <img src={zapa?.image[0].src} alt={zapa.name} />
+              <img src={zapa?.image[0]?.src} alt={zapa.name} />
 
               <div className={styles.name}>
                 <h2>{zapa?.brand}</h2>
@@ -126,39 +163,56 @@ const HomeViews = () => {
                 <p>{zapa.type}</p>
                 <br />
               </div>
-              <img src={logo} alt="logo" width={60} height={50} />
+              <img src={logo} alt={zapa.name} width={50} />
+
+              <button
+                className={`${styles.likeButton} ${
+                  isLiked[zapa._id] ? styles.liked : ""
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLikeClick(zapa);
+                }}
+              >
+                <span role="img" aria-label="Corazón">
+                  {isLiked[zapa._id] ? "❤️" : "🤍"}
+                </span>
+              </button>
             </div>
           </Link>
         ))}
       </div>
 
       <div className={styles.pagination}>
-        <button
-          onClick={() => paginate(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ""
+        <ul className={styles.paginationList}>
+          <li
+            className={`${styles.pageButton} ${
+              currentPage === 1 ? styles.disabled : ""
             }`}
-        >
-          Back
-        </button>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => paginate(index + 1)}
-            className={`${styles.pageButton} ${currentPage === index + 1 ? styles.activePage : ""
-              }`}
+            onClick={handlePrevPage}
           >
-            {index + 1}
-          </button>
-        ))}
-        <button
-          onClick={() => paginate(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ""
+            Back
+          </li>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li
+              key={index}
+              className={`${styles.pageButton} ${
+                currentPage === index + 1 ? styles.activePage : ""
+              }`}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </li>
+          ))}
+          <li
+            className={`${styles.pageButton} ${
+              currentPage === totalPages ? styles.disabled : ""
             }`}
-        >
-          Next
-        </button>
+            onClick={handleNextPage}
+          >
+            Next
+          </li>
+        </ul>
       </div>
 
       <div className={styles.container}>
