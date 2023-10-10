@@ -81,6 +81,26 @@ const Filter = () => {
     });
   };
 
+  const handleReset = () => {
+    fetch(`http://localhost:3001/products?limit=1000&`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la solicitud.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Manejar los resultados filtrados aquí (por ejemplo, actualizar el estado de tu componente para mostrar los resultados)
+        console.log(data.products);
+        dispatch(setResults(data.products));
+
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    
+  };
+
   const handleFilterSubmit = () => {
     // Construir un objeto para almacenar los parámetros de consulta seleccionados
     const queryParams = {};
@@ -119,7 +139,7 @@ const Filter = () => {
       <div className={styles.filter1}>
         <div className={styles.title}>
           <h3>Filter and Sort</h3>
-          <a href="">Clear all</a>
+          <a onClick={handleReset} >Clear all</a>
         </div>
         <div className={styles.bar}></div>
         <img className={styles.img} src={logo} alt="logo" width={60} />
@@ -127,6 +147,7 @@ const Filter = () => {
         {selectData.map((select, index) => (
           <div key={index} className={styles.selectContainer}>
             <label>{select.title}</label>
+            <div className={styles.dropdown}>
             <select
               className={styles.select}
               value={selectedOptions[select.stateKey]}
@@ -141,6 +162,7 @@ const Filter = () => {
                 </option>
               ))}
             </select>
+          </div>
           </div>
         ))}
 
