@@ -100,19 +100,12 @@ const ShoppingCart = () => {
   return (
     <div className={styles.cartContainer}>
 
-      <div className={styles.divi}>
-        <Link className={styles.hom} to={"/home"}>
-          <p>
-            <img src={zapa} alt="" width={30} /> Home
-          </p>
-        </Link>
-       
-      </div>
+      
 
       <div className={styles.tableContainer}>
         <Link className={styles.homebtn} to={"/home"}>
           <p className={styles.homebtonP}>
-            {/* <AiOutlineArrowLeft /> Home */}
+            <AiOutlineArrowLeft /> Home
           </p>
         </Link>
 

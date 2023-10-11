@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addFavorite, removeFavorite } from "../../../../redux/zapatillasSlice";
 import styles from "./Favorites.module.css";
 import axios from "axios"; // Importa Axios
-import DashBoard from '../../DashBoard.module.css'
+import DashBoard from "../../DashBoard.module.css";
 import logo from "../../../../assets/Image/Logo.png";
 import zapa from "../../../../assets/Image/zapatillas.png";
 import Swal from "sweetalert2"; // Importa SweetAlert2
@@ -105,10 +105,11 @@ const Favorites = () => {
 
       <div className={styles.fa}>
         {zapatillas.map((item) => (
-          <Link
+          <NavLink
             to={`/detail/${item._id}`}
             className={styles.containe}
             key={item._id}
+            style={{ textDecoration: "none" }}
           >
             {/* Renderiza los detalles de los productos aquí */}
             <div className={styles.card} key={item._id}>
@@ -118,6 +119,7 @@ const Favorites = () => {
                 <h2>{item?.brand}</h2>
                 <div className={styles.price}>
                   <p>$ {item?.price}</p>
+               
 
                   <div></div>
                 </div>
@@ -134,7 +136,7 @@ const Favorites = () => {
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
-                  
+
                   // Llama a eliminarFavorita para eliminar el artículo si está en favoritos, o agregarlo si no lo está
                   toggleLike(item);
                 }}
@@ -143,21 +145,14 @@ const Favorites = () => {
                   {isLiked[item._id] ? "🤍" : "❤️"}
                 </span>
               </button>
-              <div className={styles.dele}>
-
-              <img src={logo} alt={item.name} width={50}  />
-              <button
-              className={`${styles.deleteButton}`}
-              onClick={(e) => {
-                e.preventDefault();
-                showDeleteConfirmation(item._id)
-              }}
-            >
-              Delete
-            </button>
-              </div>
+              
+                <p className={styles.circle}>
+                  🔴🟢🔵⚫️⚪️
+                  <img src={logo} alt="logo" width={70} />
+                </p>
+            
             </div>
-          </Link>
+          </NavLink>
         ))}
       </div>
     </div>

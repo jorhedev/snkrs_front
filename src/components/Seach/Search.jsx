@@ -8,6 +8,7 @@ import {
 } from "../../redux/filtersSlice";
 import PropTypes from "prop-types";
 import logo from "../../assets/Image/Logo.png";
+import { BsSearch } from 'react-icons/bs';
 import styles from "./Search.module.css";
 
 const Search = ({ products, onFilter, onSearchByModel }) => {
@@ -71,12 +72,13 @@ const Search = ({ products, onFilter, onSearchByModel }) => {
             placeholder="Search by Model"
             value={modelSearch}
             onChange={(e) => setModelSearch(e.target.value)}
+           
           />
           <button
             className={styles.search__button}
             onClick={handleModelSearch}
           >
-            Search by Model
+           <BsSearch/>
           </button>
         </div>
         <div className={styles.credits__container}>

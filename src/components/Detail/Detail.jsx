@@ -88,17 +88,18 @@ const Detail = () => {
   };
   return (
     <>
-      <div className="arrow">
+      {/* <div className="arrow">
         <Link className="homebtn" to={"/home"}>
           <p>
           <img src={zapa} alt="" width={30}/> Home
           </p>
 
         </Link>
-      </div>
+      </div> */}
 
       <div className="detail-container">
         <div className="product">
+         
           <div className="imagenes">
             {/* Aquí puedes renderizar las imágenes de la zapatilla */}
             <div className="product-images">

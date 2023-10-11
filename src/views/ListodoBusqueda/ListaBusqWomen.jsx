@@ -1,5 +1,5 @@
 import React from 'react'
-import ZapatillaWomen from "../../components/ZapatillaW/ZapatillasCardW";
+import Cards from "../../components/Cards/Cards";
 import Footer from "../../components/Footer/Footer";
 import BeMember from '../../components/BeMember/BeMember'
 import Banner from "../../components/banner/bannerWomen";
@@ -12,17 +12,18 @@ import zapa from '../../assets/Image/zapatillas.png'
 import styles from "./Listado.module.css";
 
 const ListaBusqWomen = () => {
+  console.log(Cards)
   return (
     <>
       <div className={styles.containerList}>
         <Banner />
         
         <div className={styles.homediv}>
-        <Link className={styles.homebtn} to={'/home'}><p><img src={zapa} alt="" width={30}/> Home</p></Link>
+        <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
        <p className={styles.men}>Women</p>
         </div>
         <div className={styles.zapatilla}>
-        <ZapatillaWomen />
+        <Cards />
         </div>
         <BeMember/>
         <Footer/>
