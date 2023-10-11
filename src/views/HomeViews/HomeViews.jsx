@@ -16,6 +16,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, setResults } from "../../redux/resultsMen";
 import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
+import Cards from '../../components/Cards/Cards'
 
 const itemsPerPage = 9;
 
@@ -160,81 +161,13 @@ const HomeViews = () => {
         </div>
       )}
 
-      <div className={styles.cards}>
-        {currentItems.map((zapa) => (
-          <Link
-            to={`/detail/${zapa._id}`}
-            className={styles.containe}
-            key={zapa._id}
-          >
-            <div className={styles.card} key={zapa._id}>
-              <img src={zapa?.image[0]?.src} alt={zapa.name} />
+      <div className={styles.tarjetas}>
+      <Cards/>
 
-              <div className={styles.name}>
-                <h2>{zapa?.brand}</h2>
-                <div className={styles.price}>
-                  <p>$ {zapa?.price}</p>
-                  <div></div>
-                </div>
-              </div>
-
-              <div className={styles.type}>
-                <span className={styles.letra}>{zapa.model}</span>
-                <p>{zapa.type}</p>
-                <br />
-              </div>
-              <img src={logo} alt={zapa.name} width={50} />
-
-              <button
-                className={`${styles.likeButton} ${
-                  isLiked[zapa._id] ? styles.liked : ""
-                }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLikeClick(zapa);
-                }}
-              >
-                <span role="img" aria-label="Corazón">
-                  {isLiked[zapa._id] ? "❤️" : "🤍"}
-                </span>
-              </button>
-            </div>
-          </Link>
-        ))}
       </div>
 
-      <div className={styles.pagination}>
-        <ul className={styles.paginationList}>
-          <li
-            className={`${styles.pageButton} ${
-              currentPage === 1 ? styles.disabled : ""
-            }`}
-            onClick={handlePrevPage}
-          >
-            Back
-          </li>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <li
-              key={index}
-              className={`${styles.pageButton} ${
-                currentPage === index + 1 ? styles.activePage : ""
-              }`}
-              onClick={() => paginate(index + 1)}
-            >
-              {index + 1}
-            </li>
-          ))}
-          <li
-            className={`${styles.pageButton} ${
-              currentPage === totalPages ? styles.disabled : ""
-            }`}
-            onClick={handleNextPage}
-          >
-            Next
-          </li>
-        </ul>
-      </div>
 
+      
       <div className={styles.container}>
         <h1 className={styles.title}>Featured</h1>
         <div className={styles.homer}>

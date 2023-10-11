@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ZapatillaK from "../../components/Zapatilla/ZapatillasCardK";
+import Cars from "../../components/Cards/Cards";
 import Footer from "../../components/Footer/Footer";
 import BeMember from '../../components/BeMember/BeMember'
 import Banner from "../../components/banner/bannerKids";
@@ -22,7 +22,7 @@ const ListaBusqWomen = () => {
        <p className={styles.men}>Kids</p>
         </div>
         <div className={styles.zapatilla}>
-        <ZapatillaK />
+        <Cars />
         </div>
         <BeMember/>
         <Footer/>

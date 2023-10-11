@@ -5,22 +5,55 @@ import styles from "./Record.module.css"
 import { fetchRecord } from "../../../../redux/recordSlice";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+
 const Record = () => {
   const dispatch = useDispatch();
-  const record = useSelector((state) => {
-    console.log("🚀 ~ file: Record.jsx:9 ~ Record ~ state:", state.record.record)
-    return state.record.record
-  });
-console.log(record)
+  const record = useSelector((state) => state.record.record);
+
   useEffect(() => {
     dispatch(fetchRecord());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
+
+  // Función para formatear una fecha en el formato deseado y aplicar estilos a la hora
+  const formatDateTime = (dateTimeStr) => {
+    const dateTime = new Date(dateTimeStr);
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
+
+    const formattedDateTime = dateTime.toLocaleDateString(undefined, options);
+
+    // Separa la fecha en sus partes
+    const [datePart, timePart] = formattedDateTime.split(" ");
+    const [hourPart, minutePart, secondPart] = timePart.split(":");
+
+    // Aplica estilos condicionales a la hora, minutos y segundos
+    const hourClass = parseInt(hourPart) <= 24 ? styles.greenText : "";
+    const minuteClass = parseInt(minutePart) <= 60 ? styles.greenText : "";
+    const secondClass = parseInt(secondPart) <= 60 ? styles.greenText : "";
+
+    return (
+      <span>
+        {datePart}{" "}
+        <span className={hourClass}>{hourPart}</span>:
+        <span className={minuteClass}>{minutePart}</span>:
+        <span className={secondClass}>{secondPart}</span>
+      </span>
+    );
+  };
 
   return (
     <div className={DashBoard.DashBoardContainer}>
       <div className={styles.cartContainer}>
-        <Link className={styles.homebtn} to={'/home'}><p className={styles.homebtonP} ><AiOutlineArrowLeft /> Home</p></Link>
+        <Link className={styles.homebtn} to={'/home'}>
+          <p className={styles.homebtonP}><AiOutlineArrowLeft /> Home</p>
+        </Link>
 
         <h2 className={styles.h2}>SHOPPING RECORD</h2>
         {record.length === 0 ? (
@@ -31,7 +64,6 @@ console.log(record)
               <tr>
                 <th>Payment date</th>
                 <th>Pay</th>
-                {/* <th>Image</th> */}
                 <th>Color</th>
                 <th>Quantity</th>
                 <th>Size</th>
@@ -39,16 +71,19 @@ console.log(record)
             </thead>
             <tbody>
               {record.length && record.map(({ payment, purchase_date, purchase }, index) => (
-                purchase?.map((item, itemIndex) => (
-                  <tr key={itemIndex}>
-                    <td>{purchase_date}</td>
-                    <td>$ {payment}</td>
-                    {/* <td>g</td> */}
-                    <td className={styles.td}>{item.color}</td>
-                    <td>{item?.quantity}</td>
-                    <td>{item.size}</td>
-                  </tr>
-                ))
+                purchase?.map((item, itemIndex) => {
+                  const formattedDateTime = formatDateTime(purchase_date);
+
+                  return (
+                    <tr key={itemIndex}>
+                      <td>{formattedDateTime}</td>
+                      <td>$ {payment}</td>
+                      <td className={styles.td}>{item.color}</td>
+                      <td>{item?.quantity}</td>
+                      <td>{item.size}</td>
+                    </tr>
+                  );
+                })
               ))}
             </tbody>
           </table>
@@ -57,6 +92,5 @@ console.log(record)
     </div>
   );
 };
-
 
 export default Record;

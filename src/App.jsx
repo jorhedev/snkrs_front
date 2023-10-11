@@ -19,6 +19,7 @@ import Trolley from './views/Trolley/Trolley';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import Page404 from './views/Page404/Page404';
 
+
 function App() {
   const { pathname } = useLocation();
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/checkout" element={<Payment />} />
         <Route path="/payment-succes" element={<PaymentSucces />} />
+        
         {/* <Route path="/user" element={<DashboardUser />} /> */}
 
         {/* //?Routes USER */}
