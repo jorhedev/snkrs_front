@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addFavorite, removeFavorite } from "../../../../redux/zapatillasSlice";
+import { addFavorites, removeFavorites } from "../../../../redux/favorites";
 import styles from "./Favorites.module.css";
 import axios from "axios"; // Importa Axios
 import DashBoard from "../../DashBoard.module.css";
@@ -19,13 +19,13 @@ const Favorites = () => {
   const [favoritas, setFavoritas] = useState([]);
 
   const agregarFavorita = (item) => {
-    dispatch(addFavorite(item));
+    dispatch(addFavorites(item));
     setFavoritas([...favoritas, item]);
   };
 
   const eliminarFavorita = (item) => {
     // Elimina el artículo de favoritos y actualiza el estado
-    dispatch(removeFavorite(item));
+    dispatch(removeFavorites(item));
 
     // Elimina el artículo del objeto isLiked
     const updatedIsLiked = { ...isLiked };
@@ -119,7 +119,7 @@ const Favorites = () => {
                 <h2>{item?.brand}</h2>
                 <div className={styles.price}>
                   <p>$ {item?.price}</p>
-               
+
 
                   <div></div>
                 </div>
@@ -131,9 +131,8 @@ const Favorites = () => {
                 <br />
               </div>
               <button
-                className={`${styles.likeButton} ${
-                  isLiked[item._id] ? styles.liked : ""
-                }`}
+                className={`${styles.likeButton} ${isLiked[item._id] ? styles.liked : ""
+                  }`}
                 onClick={(e) => {
                   e.preventDefault();
 
@@ -145,12 +144,12 @@ const Favorites = () => {
                   {isLiked[item._id] ? "🤍" : "❤️"}
                 </span>
               </button>
-              
-                <p className={styles.circle}>
-                  🔴🟢🔵⚫️⚪️
-                  <img src={logo} alt="logo" width={70} />
-                </p>
-            
+
+              <p className={styles.circle}>
+                🔴🟢🔵⚫️⚪️
+                <img src={logo} alt="logo" width={70} />
+              </p>
+
             </div>
           </NavLink>
         ))}

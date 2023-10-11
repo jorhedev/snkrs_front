@@ -5,7 +5,7 @@ import {
   setBrand,
   setModel,
   selectFilteredProducts,
-} from "../../redux/filtersSlice";
+} from "../../redux/filters";
 import PropTypes from "prop-types";
 import logo from "../../assets/Image/Logo.png";
 import { BsSearch } from 'react-icons/bs';

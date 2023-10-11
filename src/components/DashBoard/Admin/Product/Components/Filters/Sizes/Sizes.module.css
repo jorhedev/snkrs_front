@@ -1,0 +1,43 @@
+.SizesContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+
+.SizesHeader {
+    position: relative;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: flex-start;
+    color: #424242;
+}
+
+.Icons {
+    width: 10px;
+    height: 10px;
+    border-radius: 50px 50px 0px 0px;
+}
+
+.Title {
+    border-bottom: 3px dashed;
+    width: 170px;
+    display: flex;
+    font-family: MontHeavy;
+    font-size: 25px;
+}
+
+.Text {
+    display: flex;
+    font-family: MontBold;
+    font-size: 15px;
+    flex-direction: row;
+    justify-content: flex-end;
+}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 
 const initialState = {
   results: [], // Almacena todos los resultados originales
@@ -17,17 +18,16 @@ export const resultsMenSlice = createSlice({
     setFilteredResultsMen: (state, action) => {
       state.filteredResultsMen = action.payload; // Actualiza el estado con los resultados filtrados.
     },
-    
+
   },
 });
 export const fetchData = () => async (dispatch) => {
   try {
 
-    const { data } = await axios.get('http://localhost:3001/products?limit=1000');
-    const rMen = data.products;
-    dispatch(setResults(rMen));
-    dispatch(setFilteredResultsMen([...rMen])); // Configura filteredResultsMen como una copia de rMen
-    console.log(rMen);
+    const { products } = await axiosInstance.get('/products?limit=1000');
+    const rMen = products;
+    dispatch(setResults(products));
+    dispatch(setFilteredResultsMen([...products]));
   } catch (error) {
     console.error("Error:", error);
   }

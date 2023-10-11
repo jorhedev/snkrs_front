@@ -66,14 +66,14 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {KIDS.includes(pathname) ? "" : null}
                     {role != 'admin' ? FAVORITE.includes(pathname) ?
 
-                        <Link to={role == 'user' ? MENU_USER.favorites.route || DETAIL_PAGE(pathname): null}>
-                            <h3 title='favorites' onClick={handlerChangeFavorite}>{ICONS.FAVORITE_WHITE}</h3></Link> :
+                        <Link to={role == 'user' ? MENU_USER.favorites.route || DETAIL_PAGE(pathname) : null}>
+                            <h3 title='favorites' onClick={handlerChangeFavorite}>{ICONS.FAVORITE('black')}</h3></Link> :
                         null : null}
                     {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
                         <h3>
                             {" "}
                             <Link to={role == 'user' ? MENU_USER.shopping.route : "/trolley"}>
-                                <h3 title='shopping cart'>{ICONS.TROLLEY}</h3>
+                                <h3 title='shopping cart'>{ICONS.TROLLEY('black')}</h3>
                             </Link>
                         </h3>
                         : null}
@@ -82,7 +82,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
             </div>
             <div className={`${styles.BackHome} ${styles.NavbarLinks}`}>
                 {HOME.includes(pathname) || DETAIL_PAGE(pathname) ?
-                    <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT_BLACK}BACK TO HOME</h2></Link>
+                    <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT('black')}BACK TO HOME</h2></Link>
                     : null}
             </div>
         </div >

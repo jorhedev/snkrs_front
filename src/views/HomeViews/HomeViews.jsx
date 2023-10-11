@@ -15,8 +15,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, setResults } from "../../redux/resultsMen";
-import { addFavorite, removeFavorite } from "../../redux/zapatillasSlice";
-import Cards from '../../components/Cards/Cards'
+import { addFavorites, removeFavorites } from "../../redux/favorites";
+import Cards from "../../components/Cards/Cards";
 
 const itemsPerPage = 9;
 
@@ -65,11 +65,11 @@ const HomeViews = () => {
     const updatedIsLiked = { ...isLiked };
     if (updatedIsLiked[zapa._id]) {
       // Si ya está en favoritos, quítalo
-      dispatch(removeFavorite(zapa));
+      dispatch(removeFavorites(zapa));
       delete updatedIsLiked[zapa._id];
     } else {
       // Si no está en favoritos, agrégalo
-      dispatch(addFavorite(zapa));
+      dispatch(addFavorites(zapa));
       updatedIsLiked[zapa._id] = true;
     }
 
@@ -162,12 +162,12 @@ const HomeViews = () => {
       )}
 
       <div className={styles.tarjetas}>
-      <Cards/>
+        <Cards />
 
       </div>
 
 
-      
+
       <div className={styles.container}>
         <h1 className={styles.title}>Featured</h1>
         <div className={styles.homer}>

@@ -32,3 +32,33 @@
     width: 180px;
     font-size: 30px;
 }
+
+.Images {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+
+.UploadImages {
+    width: 50%;
+    height: auto;
+}
+
+.ImageContainer {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.UploadContainer {
+    display: flex;
+    font-size: 15px;
+    font-family: MontHeavy;
+    align-items: center;
+}
