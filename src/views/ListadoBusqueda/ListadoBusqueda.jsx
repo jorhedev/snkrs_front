@@ -1,5 +1,5 @@
 import React from "react";
-import ZapatillasCard from "../../components/ZapatillaCard/ZapatillasCard";
+import Cards from "../../components/Cards/Cards";
 import Banner from "../../components/banner/banner";
 import Footer from "../../components/Footer/Footer";
 import BeMember from '../../components/BeMember/BeMember'
@@ -18,11 +18,11 @@ const ListadoBusqueda = () => {
         <Banner />
 
         <div className={styles.homediv}>
-          <Link className={styles.homebtn} to={'/home'}><p><img src={zapa} alt="" width={30}/> Home</p></Link>
+          <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
           <p className={styles.men}>MEN</p>
         </div>
         <div className={styles.zapatilla}>
-          <ZapatillasCard />
+          <Cards />
         </div>
         <BeMember />
         <Footer />
