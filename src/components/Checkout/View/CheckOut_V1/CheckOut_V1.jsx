@@ -10,7 +10,7 @@ import { fetchCity, fetchCountry, fetchState } from "../../../../redux/country";
 import { InputSelect } from "../../../Inputs";
 import { getCartItems } from "../../../../redux/cartSlice";
 // eslint-disable-next-line react/prop-types
-const CheckOut_V1 = ({ payment = "" }) => {
+const CheckOut_V1 = () => {
   const country = useSelector(({ country }) => {
     return country.country;
   });
@@ -36,10 +36,6 @@ const CheckOut_V1 = ({ payment = "" }) => {
     phone: false,
   });
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
     country: "",
     state: "",
     city: "",
@@ -47,14 +43,11 @@ const CheckOut_V1 = ({ payment = "" }) => {
   console.log("formData", formData);
 
   const [formErrors, setFormErrors] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    firstName: "error",
+    lastName: "error",
+    email: "error",
+    phone: "error",
   });
-  useEffect(() => {
-    setToken(payment);
-  }, [payment]);
 
   //? get Countries
   useEffect(() => {
@@ -111,7 +104,7 @@ const CheckOut_V1 = ({ payment = "" }) => {
     try {
       const postData = {
         purchase: cartItems,
-        shipping:{
+        shipping: {
           fist_name: formData.firstName,
           last_name: formData.lastName,
           country: formData.country,
@@ -120,15 +113,29 @@ const CheckOut_V1 = ({ payment = "" }) => {
           address: formData.address,
           email: formData.email,
           phone: formData.phone,
-        }
+        },
       };
-      console.log(postData)
+      console.log(postData);
       const response = await axiosInstance.post("/shopping", postData);
+      setToken(response.id);
       console.log("Respuesta del servidor:", response);
     } catch (error) {
       console.error("Error al realizar la solicitud POST:", error);
     }
   };
+  useEffect(() => {
+    if (token !== "") {
+      console.log("Valor de token:", token);
+    }
+  }, [token]);
+  if (
+    Object.keys(formData).length === 8 &&
+    Object.values(formErrors).every((e) => e === "") &&
+    token === ""
+  ) {
+    makePostRequest();
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -146,7 +153,7 @@ const CheckOut_V1 = ({ payment = "" }) => {
     const currentValue = { ...formData, [field]: value };
     setFormData(currentValue);
   };
-
+  console.log("Valor de token:", token);
   return (
     <div className={styles.checkout}>
       <div className={styles.leftPanel}>
@@ -251,6 +258,8 @@ const CheckOut_V1 = ({ payment = "" }) => {
                 type="text"
                 id="address"
                 name="address"
+                value={formData.address}
+                onChange={handleInputChange}
               />
               <div className={styles.inputWrapper}>
                 <label className={styles.label}> Email: </label>
@@ -303,21 +312,8 @@ const CheckOut_V1 = ({ payment = "" }) => {
             order
           </p>
         </div>
-        <div className={styles.buttonContainer}>
-          <div
-          onClick={makePostRequest}
-            id="wallet_container"
-            style={{
-              display: Object.keys(isFormValid.current).every(
-                (e) => isFormValid.current[e] === true
-              )
-                ? ""
-                : "none",
-            }}
-          >
-            <Wallet initialization={{ preferenceId: token }} />
-          
-          </div>
+        <div id="wallet_container">
+          {token && <Wallet initialization={{ preferenceId: token }} />}
         </div>
       </div>
       <div className={styles.rightPanel}>

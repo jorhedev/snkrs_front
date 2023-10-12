@@ -2,28 +2,43 @@
   margin-top: 50px;
   font-family: MontHeavy;
   font-size: 50px;
+  display: flex;
   justify-content: flex-start;
   padding-left: 200px;
 }
 
-.cartTable {
-  padding: 60px;
-  text-align: center;
-  margin-top: 50px;
+.select{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  font-family: Montregular;
+  font-size: 16px;
+  color: white;
+  background-color: black;
+  
 }
 
-.td {
-  padding: 50px
+
+
+.cartTable th, .cartTable td {
+  padding: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.cartTable th {
+  background-color: #f5f5f5;
+  font-family: MontHeavy;
+  font-size: 16px;
+  
 }
 
 .cartTable td {
-  padding-left: 50px;
-  padding-right: 50px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  font-family: Montregular;
-  font-size: 15px;
+  font-family: MontRegular;
+  font-size: 14px;
 }
+
 
 .homebtn {
   text-decoration: none;
@@ -35,22 +50,42 @@
   color: #c1c1c1;
 }
 
-.homebtonP {
-  margin-top: 80px;
-}
-
 .cartContainer {
-  max-width: 100%;
   padding: 20px;
   font-family: MontHeavy;
   font-size: 20px;
-  display: grid;
+  text-align: center;
+  margin-left: 15%;
+
 }
 
 .cartEmpty p {
   font-family: Montregular;
-  font-size: 50px;
+  font-size: 24px;
+  text-align: center;
 }
-.greenText{
-  color: red;
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.paginationButton {
+  color: #ffffff;
+  background-color: black;
+  padding: 10px 20px;
+  border-color: rgb(0, 0, 0);
+  cursor: pointer;
+  outline: none;
+  font-family: MontRegular;
+  font-size: 12px;
+
+}
+
+
+.currentPage {
+  
+  margin: 0 10px;
+  font-family: MontRegular;
+  font-size: 12px;
+
 }

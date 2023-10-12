@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect }from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { getCartItems } from '../../redux/cartSlice';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -7,7 +9,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from "./Home.module.css";
 
 const Home = () => {
-
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.cartItems);
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, [dispatch]);
 
     const settings = {
         dots: true, // Muestra los indicadores (puntitos)

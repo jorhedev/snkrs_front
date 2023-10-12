@@ -10,7 +10,6 @@ import countryReducer from './country';
 import favoritosReducer, { fetchFavorites, addFavorite, removeFavorite } from './favoritosSlice';
 import authReducer from './auth';
 import userReducer from './user';
-
 const store = configureStore({
   reducer: {
     zapatillas: zapatillasReducer,
