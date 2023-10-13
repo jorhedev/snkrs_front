@@ -4,7 +4,7 @@ import styles from "./RenderView.module.css"
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { addFavorite, removeFavorite } from '../../redux/zapatillasSlice';
+import { addFavorites, removeFavorites } from '../../redux/favorites';
 
 // eslint-disable-next-line react/prop-types
 const RenderView = ({ selectedView }) => {
@@ -17,12 +17,12 @@ const RenderView = ({ selectedView }) => {
 
   // Función para agregar una zapatilla como favorita
   const agregarFavorita = (item) => {
-    dispatch(addFavorite(item)); // Llamando a la acción para agregarla al estado global
+    dispatch(addFavorites(item)); // Llamando a la acción para agregarla al estado global
     setFavoritas([...favoritas, item]); // Actualizando el estado local
   };
 
   const eliminarFavorita = (item) => {
-    dispatch(removeFavorite(item)); // Llamando a la acción para eliminarla del estado global
+    dispatch(removeFavorites(item)); // Llamando a la acción para eliminarla del estado global
     setFavoritas(favoritas.filter((zapatilla) => zapatilla.id !== item.id)); // Actualizando el estado local
   };
 
@@ -35,45 +35,45 @@ const RenderView = ({ selectedView }) => {
       );
     case 'favorites':
       return (
-        <div  className={styles.cartContainer}>
+        <div className={styles.cartContainer}>
           <h1>Favorite</h1>
-          <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
-        <table className={styles.cartTable}>
-        <thead>
-          <tr>
-            <th></th>
-            
-            <th>Image</th>
-            <th>Type</th>
-            <th>Gender</th>
-           
-            <th>Price</th>
-            <th></th>
-            <th></th>
-           
-          </tr>
-        </thead>
-        <tbody>
-          {zapatillas.map((item) => (
-            <tr key={item.id}>
-              <td></td>
-              <td>
-                <img src={item.image} alt={item.name} className={styles.itemImage} />
-              </td>
-              <td>{item.type}</td>
-              <td>{item.gender}</td>
-              <td>{item.price}</td>
-              <td></td>
-              <td>
-                
-               
-                  <button className={styles.btn} onClick={() => eliminarFavorita(item)}>Delete</button>
-               
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft /> Home</p></Link>
+          <table className={styles.cartTable}>
+            <thead>
+              <tr>
+                <th></th>
+
+                <th>Image</th>
+                <th>Type</th>
+                <th>Gender</th>
+
+                <th>Price</th>
+                <th></th>
+                <th></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {zapatillas.map((item) => (
+                <tr key={item.id}>
+                  <td></td>
+                  <td>
+                    <img src={item.image} alt={item.name} className={styles.itemImage} />
+                  </td>
+                  <td>{item.type}</td>
+                  <td>{item.gender}</td>
+                  <td>{item.price}</td>
+                  <td></td>
+                  <td>
+
+
+                    <button className={styles.btn} onClick={() => eliminarFavorita(item)}>Delete</button>
+
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
     case 'shopping':

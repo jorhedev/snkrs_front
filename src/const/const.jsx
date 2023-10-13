@@ -1,5 +1,5 @@
 export const URL_SNKRS = 'http://localhost:3001'
-// export const URL_SNKRS = 'https://backendfindhotel-dev.fl0.io'
+// export const URL_SNKRS = 'https://snkrs-29bl.onrender.com'
 
 export const SESSION_NAME = 'snkrs-session'
 export const SESSION_TIME = 30; // 30 minutos
@@ -7,7 +7,10 @@ export const SESSION_NOT_COOKIE = '/home'
 
 export const SIGNUP_STORAGE = 'snkrs-signup'
 export const PAYMENT_STORAGE = 'snkrs-payment'
+export const PRODUCT_STORAGE = 'snkrs-product'
 export const TROLLEY_STORAGE = 'snkrs-trolley'
+
+export const GENDER = ['men', 'women', 'kids']
 
 const MIN_YEARS_OLD = 18
 const MAX_YEARS_OLD = 120

@@ -35,10 +35,9 @@
 
 .viewImages {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border: none;
-
     display: flex;
     justify-content: center;
     align-items: center;

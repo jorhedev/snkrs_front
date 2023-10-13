@@ -4,7 +4,6 @@ import getCookieSession from "./getCookieSession";
 const readCookieSession = (nameCookie = SESSION_NAME) => {
     try {
         const cookie = getCookieSession(nameCookie)
-        console.log(cookie);
         if (cookie) {
             const cookieDecode = JSON.parse(cookie);
             return cookieDecode

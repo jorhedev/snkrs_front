@@ -142,7 +142,7 @@ const SignUp = () => {
                 <span className={styles.FormGroup} >
                   <span className={styles.FormLabel}>BASIC INFORMATION </span>
                   <div className={styles.FormLine}></div>
-                  <BasicInformation initValues={signUp} errors={error} onChangeBasicInfo={handlerChangeSignUp} />
+                  <BasicInformation initBasicInfo={signUp} errors={error} onChangeBasicInfo={handlerChangeSignUp} />
                 </span>
               </div>
             )}
@@ -152,7 +152,7 @@ const SignUp = () => {
                   <span className={styles.FormLabel}>ADDRESS INFORMATION </span>
                   <div className={styles.FormLine}></div>
                   <AddressInformation
-                    initValues={signUp.address[0]}
+                    initAddressInfo={signUp.address[0]}
                     errors={error}
                     onChangeAddressInfo={handlerChangeSignUp} />
                 </span>
