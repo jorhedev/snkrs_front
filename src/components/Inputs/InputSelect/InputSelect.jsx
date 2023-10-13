@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './InputSelect.module.css';
 import { handlerNames } from '../../../services';
 
-const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, tag = '', placeHolder = '', params = false, style }) => {
+const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, tag = '', placeHolder = '', CapitalLetter = false, style }) => {
   const [selected, setSelected] = useState(initSelect);
 
   useEffect(() => {
@@ -23,15 +23,15 @@ const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, ta
     <div className={styles.InputSelect} style={{ flexDirection: 'column', alignItems: 'center', gap: '30px', ...style }} >
       {tag !== '' && <h3 style={{ fontFamily: 'MontHeavy', color: 'white', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
       <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9', ...style.DateFile }}>
-        <select style={{ ...style?.select }}className={styles.Selecter} value={selected} onChange={handleSelectChange}>
-          <option value="" disabled hidden>Select an Option</option>
+        <select style={{ fontFamily: 'Mont', borderBottom: '5px solid green', borderInlineEnd: '1px solid green', ...style?.select }} className={styles.Selecter} value={selected} onChange={handleSelectChange}>
+          <option className={styles.OptionDefault} style={{ ...style?.select }} value="" disabled hidden>Select an Option</option>
           {options?.map((value, index) => {
             return (
               <option
                 key={index}
                 value={value}
-                className={styles.Selected}
-              >{handlerNames(value)}
+                style={{ ...style?.select }}
+              >{CapitalLetter ? value.toUpperCase() : handlerNames(value)}
               </option>
             )
           })
@@ -50,7 +50,7 @@ InputSelect.propTypes = {
   errors: PropTypes.string,
   tag: PropTypes.string,
   placeHolder: PropTypes.string,
-  params: PropTypes.bool,
+  CapitalLetter: PropTypes.bool,
   style: PropTypes.object
 };
 

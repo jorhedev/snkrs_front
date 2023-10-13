@@ -1,20 +1,19 @@
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
-import filtersReducer from './filtersSlice';
-import zapatillasReducer from './zapatillasSlice';
+import filtersReducer from './filters';
 import cartReducer from './cartSlice'
 import productReducer from './productSlice';
 import resultsMenReducer from './resultsMen'
 import recordReducer from "./recordSlice"
 import countryReducer from './country';
-import favoritosReducer, { fetchFavorites, addFavorite, removeFavorite } from './favoritosSlice';
+import favoritesReducer from './favorites';
 import authReducer from './auth';
 import userReducer from './user';
 import reviewReducer from './reviewSlice';
 import newsletterReducer from "./newsletterSlice";
 const store = configureStore({
   reducer: {
-    zapatillas: zapatillasReducer,
+    favorites: favoritesReducer,
     filters: filtersReducer,
     auth: authReducer,
     user: userReducer,
@@ -23,12 +22,12 @@ const store = configureStore({
     results: resultsMenReducer,
     record: recordReducer,
     country: countryReducer,
-    favoritos: favoritosReducer,
+
+ 
     reviews: reviewReducer,
     newsletter: newsletterReducer,
-  }
+}
+  
 });
-// Cargar los favoritos al inicializar la aplicación
-store.dispatch(fetchFavorites());
 
 export default store;

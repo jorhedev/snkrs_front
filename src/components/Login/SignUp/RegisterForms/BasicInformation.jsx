@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { signUpValidate } from '../../../../services';
 import styles from './RegisterForms.module.css';
-import { ICONS, SIGNUP_STORAGE } from '../../../../const'
+import { ICONS, MIN_YEAR_REGISTER, MAX_YEAR_REGISTER } from '../../../../const'
 import { InputDate, InputPassword, InputText } from '../../../Inputs';
-import { MIN_YEAR_REGISTER, MAX_YEAR_REGISTER } from '../../../../const';
 
 const BasicIcon = {
-  nit: ICONS.NIT_WHITE,
-  birthday: ICONS.BIRTHDAY_WHITE,
-  firstName: ICONS.PERSON,
-  lastName: ICONS.PERSON,
-  email: ICONS.E_MAIL,
-  password: ICONS.PASSWORD,
+  nit: ICONS.NIT('white'),
+  birthday: ICONS.BIRTHDAY('white'),
+  firstName: ICONS.PERSON('white'),
+  lastName: ICONS.PERSON('white'),
+  email: ICONS.E_MAIL('white'),
+  password: ICONS.PASSWORD('white'),
 }
 
-const BasicInformation = ({ initValues = {}, errors, onChangeBasicInfo }) => {
+const initInfo = {
+  nit: '',
+  birthday: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+}
+
+const BasicInformation = ({ initBasicInfo = {}, errors, onChangeBasicInfo }) => {
   const [error, setError] = useState(errors)
-  const [info, setInfo] = useState({
-    nit: '',
-    birthday: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  })
+  const [info, setInfo] = useState(initInfo)
 
   useEffect(() => {
-    const { nit, birthday, firstName, lastName, email, password } = initValues
+    const { nit, birthday, firstName, lastName, email, password } = initBasicInfo
     setInfo({ nit, birthday, firstName, lastName, email, password })
     setError(errors)
-  }, [initValues, errors])
+  }, [initBasicInfo, errors])
 
 
   const handlerInputChange = (field, value) => {
@@ -56,7 +56,7 @@ const BasicInformation = ({ initValues = {}, errors, onChangeBasicInfo }) => {
                     lastName: 'Last Name',
                     email: 'Email',
                   }[key]}
-                  namesFormat={['firstName', 'lastName'].includes(key) ? true : false}
+                  namesFormat={!!['firstName', 'lastName'].includes(key)}
                   style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }} />
                 : ['nit', 'password'].includes(key) ?
                   <InputPassword
@@ -86,7 +86,7 @@ const BasicInformation = ({ initValues = {}, errors, onChangeBasicInfo }) => {
 }
 
 BasicInformation.propTypes = {
-  initValues: PropTypes.object,
+  initBasicInfo: PropTypes.object,
   errors: PropTypes.object,
   onChangeBasicInfo: PropTypes.func,
 };

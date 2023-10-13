@@ -1,0 +1,28 @@
+.ContainerHeader {
+    position: relative;
+    display: flex;
+    width: auto;
+    height: auto;
+    gap: 18px;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: flex-start;
+    color: #424242;
+}
+
+.Title {
+    border-bottom: 3px dashed;
+    width: 100%;
+    display: flex;
+    font-family: MontHeavy;
+    font-size: 25px;
+}
+
+.Text {
+    display: flex;
+    font-family: MontBold;
+    font-size: 15px;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-left: 30px;
+}

@@ -5,8 +5,6 @@ import Navbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ListadoBusqueda from './views/ListadoBusqueda/ListadoBusqueda'
-import ListaBusqWomen from './views/ListodoBusqueda/ListaBusqWomen'
-import ListaBusqKids from './views/ListodoBusqueda/ListaBusqKids'
 import './App.css'
 import Home from './views/Home/Home'
 import LateralMenu from './components/DashBoard/LateralMenu/LateralMenu';
@@ -40,8 +38,8 @@ function App() {
         />
         {/* <Route path="/user" element={<User />} /> */}
         <Route path="/men" element={<ListadoBusqueda />} />
-        <Route path="/women" element={<ListaBusqWomen />} />
-        <Route path="/kids" element={<ListaBusqKids />} />
+        <Route path="/women" element={<ListadoBusqueda />} />
+        <Route path="/kids" element={<ListadoBusqueda />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/trolley" element={<Trolley />} />
         <Route path="/signUp" element={<SignUp />} />

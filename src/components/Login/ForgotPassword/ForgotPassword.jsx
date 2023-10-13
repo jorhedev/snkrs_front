@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './ForgotPassword.module.css';
-import { Link } from "react-router-dom";
 import Logo from '../../Icons/Logo'
-import { ICONS, SESSION_NOT_COOKIE } from '../../../const'
-import { MdEmail } from 'react-icons/md';
-import { resetPassword } from '../../../services/firebase';
 import { ResetPassword, NotRegister } from '../../Alerts';
 import axiosInstance from '../../../utils/axiosInstance';
 import Shoe from '../../Icons/Shoe';
 import Footprint from '../../Icons/Footprint';
 
 const ForgotPassword = ({ initEmail = '', viewForgot, onViewForgot }) => {
-  console.log("🚀 ~ file: ForgotPassword.jsx:14 ~ ForgotPassword ~ initEmail:", initEmail)
   const [email, setEmail] = useState(initEmail)
   const [error, setError] = useState('')
 
@@ -58,7 +52,7 @@ const ForgotPassword = ({ initEmail = '', viewForgot, onViewForgot }) => {
     <>
       {viewForgot && (
         <div className={styles.ForgotPasswordContainer} onClick={handlerExternalClick}>
-          <Footprint width={'100vw'} height={'100vh'} fill={'#FFFFFF'}></Footprint>
+          <Footprint width={'100vw'} height={'100vh'} fill={'#ffffff58'} />
           <div className={styles.ForgotContainer}>
             <div className={styles.ForgotPassword} >
               <div className={styles.Header}>

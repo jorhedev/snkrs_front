@@ -11,9 +11,6 @@
     max-width: 100%;
     border-radius: 0px 0px 10px 10px;
     border: none;
-    border-bottom: 5px solid green;
-    border-inline-end: 1px solid green;
-    font-family: Mont;
     font-weight: bold;
     font-size: 20px;
     text-indent: 10px;
@@ -34,6 +31,10 @@
     outline: none;
     background-color: #f0f0f0;
     border-color: #dfdfdf;
+}
+
+.OptionDefault {
+    text-transform: capitalize;
 }
 
 .DateFile {

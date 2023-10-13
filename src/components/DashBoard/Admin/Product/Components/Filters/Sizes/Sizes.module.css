@@ -1,0 +1,115 @@
+.SizesContainer {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+
+.SizesHeader {
+    position: relative;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    color: #424242;
+}
+
+.Icons {
+    display: flex;
+    width: 36px;
+    height: 40px;
+    border-radius: 50px 50px 0px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
+.Icons h4 {
+    margin: 0;
+    cursor: pointer;
+}
+
+
+.Title {
+    border-bottom: 3px dashed;
+    width: 204px;
+    display: flex;
+    font-family: MontHeavy;
+    font-size: 25px;
+    height: 40px;
+}
+
+.Text {
+    display: flex;
+    font-family: MontBold;
+    font-sizes: 15px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.PaletteSizes {
+    display: grid;
+    position: absolute;
+    top: 40px;
+    border-bottom: 2px solid #5a5a5a;
+    border-inline-end: 2px solid #5a5a5a;
+    border-inline-start: 2px solid #5a5a5a;
+    background-color: #D9D9D9;
+    width: 240px;
+    height: 153px;
+    border-radius: 0px 0px 20px 20px;
+    justify-content: center;
+    align-items: start;
+    align-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(37px, 1fr));
+    gap: 6px;
+    padding: 10px;
+    justify-items: center;
+}
+
+.ArrowActive {
+    width: 100%;
+    height: inherit;
+    display: flex;
+    border-top: 2px solid #5a5a5a;
+    border-inline-end: 2px solid #5a5a5a;
+    border-inline-start: 2px solid #5a5a5a;
+    background-color: #D9D9D9;
+    border-radius: 50px 50px 0px 0px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.RefColor {
+    width: 40px;
+    height: 40px;
+}
+
+.BtnSizes {
+    font-family: MontBold;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 40px;
+    height: 29px;
+    border: 1px solid #9d9d9d;
+    cursor: pointer
+}
+
+.BtnSizes:hover {
+    border: 1px solid #535353;
+    background: #535353;
+    color: #D9D9D9;
+    cursor: pointer
+}

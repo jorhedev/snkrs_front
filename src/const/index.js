@@ -14,6 +14,7 @@ export {
 
 export {
     URL_SNKRS,
+    GENDER,
     MIN_YEAR_REGISTER,
     MAX_YEAR_REGISTER,
     SESSION_NAME,
@@ -21,5 +22,6 @@ export {
     SESSION_NOT_COOKIE,
     TROLLEY_STORAGE,
     PAYMENT_STORAGE,
+    PRODUCT_STORAGE,
     SIGNUP_STORAGE
 } from './const'

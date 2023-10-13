@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './UploadSquare.module.css';
-import IconSelector from '../../IconSelector/IconSelector';
+import { FaTrashAlt } from 'react-icons/fa'
 
 const UploadSquare = ({ onImageUpload }) => {
   const [imageFiles, setImageFiles] = useState([])
@@ -42,8 +42,6 @@ const UploadSquare = ({ onImageUpload }) => {
     event.preventDefault();
   };
 
-
-
   const handleMouseEnter = (index) => {
     const timeoutId = setTimeout(() => {
       setHoveredImageIndex(index);
@@ -77,7 +75,7 @@ const UploadSquare = ({ onImageUpload }) => {
         >
           <div className={styles.viewImages} key={index}>
             <span className={styles.RemoveButton} onClick={() => handleRemoveImage(index)} >
-              <IconSelector iconType={'trash'} size={15} color={'black'} />
+              <FaTrashAlt size={15} color={'black'} />
             </span>
             <img
               src={URL.createObjectURL(file)}

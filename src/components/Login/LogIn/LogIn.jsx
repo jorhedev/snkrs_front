@@ -14,7 +14,7 @@ import { Avatar } from '../../Icons/Avatar';
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation()
-  const login = useSelector(({ auth }) => auth.login)
+  const login = useSelector(({ auth }) => auth)
   const [imageUrl, setImageUrl] = useState(imageSrc || defaultImage || '');
 
   const cookie = readCookieSession()
@@ -46,7 +46,7 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
 
 
   if (!cookie) {
-    if (!NAV_ALL.some(nav => nav == pathname ) && !DETAIL_PAGE(pathname)) { return (<Navigate to={SESSION_NOT_COOKIE} />) }
+    if (!NAV_ALL.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) { return (<Navigate to={SESSION_NOT_COOKIE} />) }
   } else {
     if (cookie.role == 'user' && !NAV_USER.some(nav => nav == pathname) && !DETAIL_PAGE(pathname)) {
       return (<Navigate to={SESSION_NOT_COOKIE} />)

@@ -37,6 +37,7 @@ const ProtectedRoutes = ({ children, nameCookie = SESSION_NAME, path, redirect =
 
 
     const handlerProtectedClick = (event) => {
+        console.log('here')
         if (!event.target.classList.contains('ProtectedRoutes')) {
             checkCookieAndRedirect()
         }

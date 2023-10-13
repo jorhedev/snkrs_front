@@ -9,36 +9,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearCity, clearState, fetchCity, fetchCountry, fetchState } from '../../../../redux/country';
 
 const AddressIcon = {
-    country: ICONS.COUNTRY_WHITE,
-    state: ICONS.STATE_WHITE,
-    city: ICONS.CITY,
-    phone: ICONS.PHONE_WHITE,
-    address: ICONS.LOCATION_WHITE,
-    additional: ICONS.BUILD_WHITE,
-    zip_code: ICONS.ZIP_CODE_BLACK
+    country: ICONS.COUNTRY('white'),
+    state: ICONS.STATE('white'),
+    city: ICONS.CITY('white'),
+    phone: ICONS.PHONE('white'),
+    address: ICONS.LOCATION('white'),
+    additional: ICONS.BUILD('white'),
+    zip_code: ICONS.ZIP_CODE('none')
 }
-const AddressInformation = ({ initValues, errors, onChangeAddressInfo }) => {
+
+const initAddress = {
+    country: '',
+    state: '',
+    city: '',
+    phone: '',
+    address: '',
+    additional: '',
+    zip_code: ''
+}
+const AddressInformation = ({ initAddressInfo, errors, onChangeAddressInfo }) => {
     const dispatch = useDispatch()
     const country = useSelector(({ country }) => { return country.country })
     const state = useSelector(({ country }) => { return country.state })
     const city = useSelector(({ country }) => { return country.city })
     const [error, setError] = useState(errors)
-    const [info, setInfo] = useState({
-        country: '',
-        state: '',
-        city: '',
-        phone: '',
-        address: '',
-        additional: '',
-        zip_code: ''
-    })
+    const [info, setInfo] = useState(initAddress)
 
     // ? Load initial values
     useEffect(() => {
-        const { country, state, city, phone, address, additional, zip_code } = initValues
+        const { country, state, city, phone, address, additional, zip_code } = initAddressInfo
         setInfo({ country, state, city, phone, address, additional, zip_code })
         setError(errors)
-    }, [initValues, errors])
+    }, [initAddressInfo, errors])
 
     //? get Countries
     useEffect(() => {
@@ -104,7 +106,7 @@ const AddressInformation = ({ initValues, errors, onChangeAddressInfo }) => {
 }
 
 AddressInformation.propTypes = {
-    initValues: PropTypes.object,
+    initAddressInfo: PropTypes.object,
     errors: PropTypes.object,
     onChangeAddressInfo: PropTypes.func,
 }

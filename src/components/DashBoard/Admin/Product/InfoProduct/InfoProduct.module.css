@@ -1,11 +1,18 @@
+.InfoProductContainer {
+    position: relative;
+}
+
 .DataInfo {
+    width: 75%;
     position: relative;
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
+    padding-top: 10px;
+    margin: auto;
 }
 
 .DataInfo h3 {
@@ -20,15 +27,45 @@
 .DataInputsProducts {
     display: flex;
     flex-direction: row;
-    width: 100%;
     color: #424242;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    margin: 0 auto;
+    align-content: center;
 }
 
 .KeyData {
     width: 180px;
     font-size: 30px;
+}
+
+.Images {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+
+.UploadImages {
+    width: 100%;
+    height: auto;
+}
+
+.ImageContainer {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.UploadContainer {
+    display: flex;
+    font-size: 15px;
+    font-family: MontHeavy;
+    align-items: center;
 }
