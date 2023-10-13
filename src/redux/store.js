@@ -9,7 +9,6 @@ import countryReducer from './country';
 import favoritesReducer from './favorites';
 import authReducer from './auth';
 import userReducer from './user';
-
 const store = configureStore({
   reducer: {
     favorites: favoritesReducer,

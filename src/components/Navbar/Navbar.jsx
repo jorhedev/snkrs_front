@@ -10,14 +10,12 @@ import Logo from "../Icons/Logo";
 import { readCookieSession } from "../../services";
 import { NotLogin } from "../Alerts";
 
-
-
 const { HOME, WOMEN, MEN, KIDS, FAVORITE, TROLLEY, SEARCH, LOGIN } = NAVBAR_LINKS
 const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
     const dispatch = useDispatch()
     const { pathname } = useLocation()
     const [role, setRole] = useState('')
-    const login = useSelector(({ auth }) => auth.login.status)
+    const login = useSelector(({ auth }) => auth.status)
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
     if (!isNavbarVisible) dispatch(setViewLogin(false))

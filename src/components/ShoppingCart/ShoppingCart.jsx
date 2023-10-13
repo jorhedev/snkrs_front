@@ -44,17 +44,7 @@ const ShoppingCart = () => {
     dispatch(itemDecrement(item._id));
   };
 
-  const handlePay = async () => {
-    try {
-      const data = await axiosInstance.post("/shopping", {
-        purchase: cartItems,
-      });
-      localStorage.setItem(PAYMENT_STORAGE, JSON.stringify(data));
-      setPayment(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const handleClearCart = () => {
     MySwal.fire({
       title: "WARNING",
@@ -194,7 +184,7 @@ const ShoppingCart = () => {
                   </tbody>
                 </table>
                 <Link to="/checkout">
-                  <button className={styles.pay} onClick={handlePay}>
+                  <button className={styles.pay}>
                     PAGAR
                   </button>
                 </Link>
