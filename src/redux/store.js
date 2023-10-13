@@ -10,6 +10,8 @@ import countryReducer from './country';
 import favoritosReducer, { fetchFavorites, addFavorite, removeFavorite } from './favoritosSlice';
 import authReducer from './auth';
 import userReducer from './user';
+import reviewReducer from './reviewSlice';
+import newsletterReducer from "./newsletterSlice";
 const store = configureStore({
   reducer: {
     zapatillas: zapatillasReducer,
@@ -22,6 +24,8 @@ const store = configureStore({
     record: recordReducer,
     country: countryReducer,
     favoritos: favoritosReducer,
+    reviews: reviewReducer,
+    newsletter: newsletterReducer,
   }
 });
 // Cargar los favoritos al inicializar la aplicación

@@ -116,7 +116,7 @@ const Cards = () => {
               <div className={styles.circle}>
 
               <Link className={styles.start}>
-              <FaStar/> <FaStar/> <FaStar/> <FaStar/> <FaStarHalfAlt/>
+              🔴🟢🔵⚫️⚪️
               </Link>
                 <img src={logo} alt="logo" width={70} />
               </div>
