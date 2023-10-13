@@ -232,12 +232,10 @@
    .circle{
     display: flex;
     justify-content: space-between;
-    
+    width: 100%;
+    font-size: 10px;
   }
-  .circle .start{
-    width: 100px;
-    color: #000;
-  }
+  
   .circle img{
     width: 70px;
     height: 15px;

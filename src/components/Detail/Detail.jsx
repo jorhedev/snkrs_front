@@ -10,17 +10,22 @@ import axios from "axios";
 import "./Detail.css";
 import { addCartItemsById } from "../../redux/cartSlice";
 import Swal from "sweetalert2";
-
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import TopSales from "../TopSales/TopSales";
-import BeMember from '../../components/BeMember/BeMember'
+import BeMember from "../../components/BeMember/BeMember";
 
 import { Link } from "react-router-dom";
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Footer from '../../components/Footer/Footer'
-import zapa from '../../assets/Image/zapatillas.png'
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import {
+  BsFillHandThumbsUpFill,
+  BsFillHandThumbsDownFill,
+} from "react-icons/bs";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Footer from "../../components/Footer/Footer";
+import zapa from "../../assets/Image/zapatillas.png";
+import InfoUser from "../InfoUser/InfoUser";
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
@@ -29,6 +34,10 @@ const Detail = () => {
   const [zapatilla, setZapatilla] = useState(null);
   console.log(zapatilla);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  
+  
 
   // Función para manejar el clic en un botón de tamaño
   const handleSizeClick = (size) => {
@@ -59,18 +68,19 @@ const Detail = () => {
         showConfirmButton: true,
         confirmButtonColor: "black",
       });
-    } else {
+    
+    }else  {
       const shoeToAdd = {
         ...zapatilla,
-        stock: zapatilla.stock.map(e => {
+        stock: zapatilla.stock.map((e) => {
           const newStock = {
             ...e,
-            size: selectedSize
-          }
-          return newStock
-        })
-      }
-      console.log('MY SHOE', shoeToAdd)
+            size: selectedSize,
+          };
+          return newStock;
+        }),
+      };
+      console.log("MY SHOE", shoeToAdd);
       dispatch(addCartItemsById(shoeToAdd));
     }
   };
@@ -99,7 +109,6 @@ const Detail = () => {
 
       <div className="detail-container">
         <div className="product">
-         
           <div className="imagenes">
             {/* Aquí puedes renderizar las imágenes de la zapatilla */}
             <div className="product-images">
@@ -122,7 +131,13 @@ const Detail = () => {
 
           <div className="product-info">
             <div className="info">
-              <h1 className="name">{zapatilla.brand}</h1>
+              <div className="views">
+                <h1 className="name">{zapatilla.brand}</h1>
+                <button className="show-table-button">
+                  <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
+                  120
+                </button>
+              </div>
               <h2>{zapatilla.model}</h2>
               <p className="type"> {zapatilla.type}</p>
               <p className="price"> $ {zapatilla.price}</p>
@@ -273,7 +288,7 @@ const Detail = () => {
                 </a>
               </div>
             </div>
-
+                <p className="for">(**) For thin feet we recommend purchasing the lower size.</p>
             <div className="bo">
               <button className="boto" onClick={addToCartHandler}>
                 ADD TO CART
@@ -287,6 +302,7 @@ const Detail = () => {
             </div>
           </div>
         </div>
+       <InfoUser/>
         <TopSales />
         <BeMember />
         <Footer />
@@ -311,93 +327,3 @@ Detail.propTypes = {
 };
 
 export default Detail;
-
-
-const saleData = [
-  {
-    id: 1,
-    name: "Yeezy",
-    price: 75.99,
-    type: "SPLV-350",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    category: "ACCESSORIES",
-    size: "4",
-  },
-  {
-    id: 2,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    category: "CLOTHES",
-    size: "6",
-  },
-  {
-    id: 3,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "4",
-    category: "",
-  },
-  {
-    id: 4,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "8",
-    category: "",
-  },
-  {
-    id: 5,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "6",
-    category: "",
-  },
-  {
-    id: 6,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "12",
-    category: "",
-  },
-  {
-    id: 7,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "9",
-    category: ""
-  },
-  {
-    id: 8,
-    name: "Yeezy",
-    price: 199.99,
-    type: "SPLV-350",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkBOYtmOq07TgAM1UK_EsbPSnU9sxsVnmC0DwEZ6f7iJBC5ConFtqGQi5sqFINvs-Bzis&usqp=CAU",
-    color: [],
-    size: "5.5",
-    category: ""
-  }
-]

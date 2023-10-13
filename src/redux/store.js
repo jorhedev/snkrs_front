@@ -9,6 +9,8 @@ import countryReducer from './country';
 import favoritesReducer from './favorites';
 import authReducer from './auth';
 import userReducer from './user';
+import reviewReducer from './reviewSlice';
+import newsletterReducer from "./newsletterSlice";
 const store = configureStore({
   reducer: {
     favorites: favoritesReducer,
@@ -20,7 +22,12 @@ const store = configureStore({
     results: resultsMenReducer,
     record: recordReducer,
     country: countryReducer,
-  }
+
+ 
+    reviews: reviewReducer,
+    newsletter: newsletterReducer,
+}
+  
 });
 
 export default store;

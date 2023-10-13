@@ -107,6 +107,7 @@ const Cards = ({ results }) => {
 
                                     <Link className={styles.start}>
                                         <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />
+                                        🔴🟢🔵⚫️⚪️
                                     </Link>
                                     <img src={logo} alt="logo" width={70} />
                                 </div>
@@ -127,8 +128,6 @@ const Cards = ({ results }) => {
                         </Link>
                     ))}
                 </div>
-                <Filter />
-
             </div>
 
             <div className={styles.pagination}>

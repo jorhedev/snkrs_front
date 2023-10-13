@@ -1,0 +1,103 @@
+{
+    "comentarios": [
+      {
+        "_id": 1,
+        "img": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Karol123",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "_id": 2,
+        "img": "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Leandro8",
+        "calificacion": "★★★★☆",
+        "comentario": "For walking and training they are very good. I recommend them. "
+      },
+      {
+        "id": 3,
+        "img": "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Micaela10",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 4,
+        "img": "https://images.pexels.com/photos/8690108/pexels-photo-8690108.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Andruss",
+        "calificacion": "★★★★☆",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 5,
+        "img": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Leví2023",
+        "calificacion": "★★☆☆☆",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 6,
+        "img": "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Ana5",
+        "calificacion": "★★★★☆",
+        "comentario": "For walking and training they are very good. I recommend them. "
+      },
+      {
+        "id": 7,
+        "img": "https://media.istockphoto.com/id/175726997/es/foto/con-una-sonrisa-de-confianza.jpg?s=612x612&w=0&k=20&c=S9M8ecc-M-5gziubLrPGGHk_vSFPFdAvZF65U4Iielc=",
+        "usuario": "LuisMiguel365",
+        "calificacion": "★★★★☆",
+        "comentario": "For walking and training they are very good. I recommend them. "
+      },
+      {
+        "id": 8,
+        "img": "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "MariaLuz4",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 9,
+        "img": "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Daniel2023",
+        "calificacion": "★★★☆☆",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 10,
+        "img": "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Jorge",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 11,
+        "img": "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "MariaLuz",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 12,
+        "img": "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Daniel2023",
+        "calificacion": "★★★☆☆",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 13,
+        "img": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Henry123",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them."
+      },
+      {
+        "id": 14,
+        "img": "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "usuario": "Juan23",
+        "calificacion": "★★★★★",
+        "comentario": "For walking and training they are very good. I recommend them. "
+      }
+    ]
+}
+  
