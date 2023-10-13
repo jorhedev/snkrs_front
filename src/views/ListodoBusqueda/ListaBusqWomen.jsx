@@ -8,9 +8,11 @@ import zapa from '../../assets/Image/zapatillas.png'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import styles from "./Listado.module.css";
+import { useSelector } from 'react-redux';
 
 const ListaBusqWomen = () => {
-  console.log(Cards)
+  const results = useSelector((state) => state.results.results);
+
   return (
     <>
       <div className={styles.containerList}>
@@ -21,7 +23,7 @@ const ListaBusqWomen = () => {
           <p className={styles.men}>Women</p>
         </div>
         <div className={styles.zapatilla}>
-          <Cards />
+          <Cards results={results} />
         </div>
         <BeMember />
         <Footer />

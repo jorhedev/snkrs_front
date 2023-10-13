@@ -8,10 +8,8 @@ import { logOut } from '../services/firebase';
 import { Signed } from '../components/Alerts';
 
 const initialState = {
-    login: {
-        view: false,
-        status: true
-    },
+    view: false,
+    status: true
 };
 
 export const authSlice = createSlice({
@@ -19,25 +17,21 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         setLogIn: (state, action) => {
-            state.login = {
-                view: false,
-                status: false
-            }
+            state.view = false
+            state.status = false
         },
         setLogOut: (state, action) => {
-            state.login = state.login = {
-                view: false,
-                status: true
-            }
+            state.view = false
+            state.status = true
         },
         setViewLogin: (state, action) => {
             if (action.payload === undefined)
-                state.login.view = !state.login.view
+                state.view = !state.view
             else
-                state.login.view = action.payload
+                state.view = action.payload
         },
         setStatusLogin: (state, action) => {
-            state.login.status = action.payload
+            state.status = action.payload
         },
     },
 });

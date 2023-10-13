@@ -5,7 +5,7 @@ import { InputSelect, InputText } from '../../../../Inputs'
 import UploadSquare from '../Components/UploadSquare/UploadSquare'
 import { GENDER } from '../../../../../const'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCategories, fetchTypes } from '../../../../../redux/filters'
+import { fetchBrands, fetchCategories, fetchTypes } from '../../../../../redux/filters'
 
 const intInfo = {
    sku: '',
@@ -29,12 +29,18 @@ const InfoProduct = ({ initInfoProduct = {}, onChangeInfoProduct, errors }) => {
    const [infoProduct, setInfoProduct] = useState(intInfo)
    const genders = GENDER
    const brands = useSelector(({ filters }) => filters.data.brands)
+   console.log("🚀 ~ file: InfoProduct.jsx:32 ~ InfoProduct ~ brands:", brands)
    const types = useSelector(({ filters }) => filters.data.types)
    const categories = useSelector(({ filters }) => filters.data.categories)
 
    //? get Categories
    useEffect(() => {
       dispatch(fetchCategories())
+   }, [dispatch]);
+
+   //? get Brands
+   useEffect(() => {
+      dispatch(fetchBrands())
    }, [dispatch]);
 
    //? get Types
@@ -54,26 +60,42 @@ const InfoProduct = ({ initInfoProduct = {}, onChangeInfoProduct, errors }) => {
    }
 
    return (
-      <>
+      <div className={styles.InfoProductContainer}>
          <div className={styles.DataInfo} >
             {Object.keys(infoProduct).map((key, index) => {
                return (
                   <div className={styles.DataInputsProducts} key={index}>
                      <span className={styles.KeyData}>{key.toUpperCase()}</span>
+                     {'sku'.includes(key) &&
+                        < InputSelect
+                           options={['NEW PRODUCT......']}
+                           style={{
+                              width: '400px',
+                              select: { borderBottom: '0px solid black', borderInlineEnd: '0px solid black' }
+                           }}
+                           initSelect={infoProduct[key]}
+                           onChangeSelect={(input) => handlerSelectChange(key, input)}
+
+                        />
+                     }
                      {['model', 'price'].includes(key) &&
                         <InputText
-                           style={{
-                              width: '300px'
-                           }}
                            initInput={infoProduct[key]}
+                           buttonClear={true}
+                           placeHolder={`${key.toUpperCase()}`}
+                           style={{
+                              width: '400px',
+                              input: { width: '380px', fontSize: '20px' }
+                           }}
                            onChangeInput={(input) => handlerSelectChange(key, input)}
+
                         />
                      }
                      {['brand', 'gender', 'category', 'type'].includes(key) &&
                         < InputSelect
                            options={key === 'brand' ? brands : key === 'category' ? categories : key == 'type' ? types : genders}
                            style={{
-                              width: '300px',
+                              width: '400px',
                               select: { borderBottom: '5px solid black', borderInlineEnd: '2px solid black' }
                            }}
                            initSelect={infoProduct[key]}
@@ -92,7 +114,7 @@ const InfoProduct = ({ initInfoProduct = {}, onChangeInfoProduct, errors }) => {
                </div>
             </div>
          </div>
-      </>
+      </div>
    )
 }
 

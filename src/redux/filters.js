@@ -14,6 +14,13 @@ const initialState = {
       categories: [],
       colors: [],
       sizes: [],
+   },
+   detail: {
+      brands: [],
+      types: [],
+      categories: [],
+      colors: [],
+      sizes: []
    }
 };
 
@@ -36,39 +43,55 @@ const filters = createSlice({
       setColor: (state, action) => {
          state.color = action.payload;
       },
-      setDataBrands: ({ data }, action) => {
-         data.brands = action.payload;
+      setDataBrands: ({ data, detail }, { payload }) => {
+         data.brands = payload.brands;
+         detail.brands = payload.detailBrands;
       },
-      setDataCategories: ({ data }, action) => {
-         data.categories = action.payload;
+      setDataCategories: ({ data, detail }, { payload }) => {
+         data.categories = payload.categories
+         detail.categories = payload.detailCategories
       },
-      setDataTypes: ({ data }, action) => {
-         data.types = action.payload;
+      setDataTypes: ({ data, detail }, { payload }) => {
+         data.types = payload.types;
+         detail.types = payload.detailTypes;
       },
-      setDataSizes: ({ data }, action) => {
-         data.sizes = action.payload;
+      setDataColors: ({ data, detail }, { payload }) => {
+         data.colors = payload.colors;
+         detail.colors = payload.detailColors;
       },
-      setDataColors: ({ data }, action) => {
-         data.colors = action.payload;
+      setDataSizes: ({ data, detail }, { payload }) => {
+         data.sizes = payload.sizes;
+         detail.sizes = payload.detailSizes;
       },
+      clearTypes: ({ data, detail }, action) => {
+         data.types = []
+         detail.types = []
+      },
+      clearCategories: ({ data, detail }, action) => {
+         data.categories = []
+         detail.categories = []
+      }
 
    },
 });
 
 export const fetchBrands = () => async (dispatch) => {
    try {
-      const brands = await axiosInstance('/features/brand')
-      dispatch(setDataBrands(brands))
+      const detailBrands = await axiosInstance.get('/brand')
+      const brands = detailBrands.map(({ brand }) => brand)
+      dispatch(setDataBrands({ brands, detailBrands }))
    } catch (error) {
       console.log(error.messages)
    }
 }
 
+
 export const fetchTypes = (category) => async (dispatch) => {
    try {
-      const types = await axiosInstance(`/features/type?category=${category}`)
-         .then((data) => data.map(({ type }) => type))
-      dispatch(setDataTypes(types))
+      dispatch(clearTypes())
+      const detailTypes = await axiosInstance.get(`/features/type?category=${category}`)
+      const types = detailTypes.map(({ type }) => type)
+      dispatch(setDataTypes({ types, detailTypes }))
    } catch (error) {
       console.log(error.messages)
    }
@@ -76,20 +99,19 @@ export const fetchTypes = (category) => async (dispatch) => {
 
 export const fetchCategories = () => async (dispatch) => {
    try {
-      const categories = await axiosInstance('/features/category')
-         .then(data => data.map(({ category }) => category))
-      dispatch(setDataCategories(categories))
+      const detailCategories = await axiosInstance.get(`/features/category`)
+      const categories = detailCategories.map((({ category }) => category))
+      dispatch(setDataCategories({ categories, detailCategories }))
    } catch (error) {
       console.log(error.messages)
    }
-
 }
 
 export const fetchColors = () => async (dispatch) => {
    try {
-      const colors = await axiosInstance('/features/color')
-         .then(data => data.map(({ name, html }) => { return { name, html } }))
-      dispatch(setDataColors(colors))
+      const detailColors = await axiosInstance.get('/features/color')
+      const colors = detailColors.map(({ name, html }) => { return { name, html } })
+      dispatch(setDataColors({ colors, detailColors }))
    } catch (error) {
       console.log(error.messages)
    }
@@ -97,27 +119,13 @@ export const fetchColors = () => async (dispatch) => {
 
 export const fetchSizes = (gender, category = 'shoes') => async (dispatch) => {
    try {
-      const sizes = await axiosInstance(`/features/size?category=${category}&gender=${gender}`)
-         .then(data => data.map(({ size }) => { return size }))
-      dispatch(setDataSizes(sizes))
+      const detailSizes = await axiosInstance.get(`/features/size?category=${category}&gender=${gender}`)
+      const sizes = detailSizes.map(({ size }) => { return size })
+      dispatch(setDataSizes({ sizes, detailSizes }))
    } catch (error) {
       console.log(error.messages)
    }
 }
-
-// Selector para obtener productos filtrados según los filtros
-export const selectFilteredProducts = (state) => {
-   const { brand, model } = state.filters;
-   const { products } = state.products;
-
-   // Filtrar los productos según brand y model
-   const filteredProducts = products.filter((product) =>
-      (!brand || product.brand.toLowerCase().includes(brand.toLowerCase())) &&
-      (!model || product.model.toLowerCase().includes(model.toLowerCase()))
-   );
-
-   return filteredProducts;
-};
 
 export const {
    setSortBy,
@@ -125,6 +133,8 @@ export const {
    setModel,
    setSize,
    setColor,
+   clearTypes,
+   clearCategories,
    setDataBrands,
    setDataCategories,
    setDataColors,

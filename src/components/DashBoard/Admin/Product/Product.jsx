@@ -9,7 +9,6 @@ import Logo from "../../../Icons/Logo";
 import { PRODUCT_STORAGE } from "../../../../const";
 
 const initProduct = {
-  sku: '',
   model: '',
   brand: '',
   gender: '',
@@ -92,7 +91,7 @@ const Product = () => {
                   <StockProduct
                     initStock={stock}
                     onChangeStockProduct={handlerChangeProduct}
-                    sku={product.sku}
+                    model={product.model}
                     gender={product.gender} />
                 </div>
               )}

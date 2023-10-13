@@ -10,7 +10,8 @@ import {
     FaFemale,
     FaBirthdayCake,
     FaArrowAltCircleDown,
-    FaArrowAltCircleUp
+    FaArrowAltCircleUp,
+    FaPencilAlt
 } from 'react-icons/fa';
 import {
     MdMale,
@@ -68,4 +69,5 @@ export const ICONS = {
     IMAGE: (fill = 'black') => { return <BsImage fill={fill} /> },
     ARROW_DOWN: (fill = 'black') => { return <FaArrowAltCircleDown fill={fill} /> },
     ARROW_UP: (fill = 'black') => { return <FaArrowAltCircleUp fill={fill} /> },
+    EDIT: (fill = 'black') => { return <FaPencilAlt fill={fill} /> },
 }

@@ -1,4 +1,5 @@
 .ProductBody {
+    width: 900px;
     position: fixed;
     font-family: MontHeavy;
     display: flex;

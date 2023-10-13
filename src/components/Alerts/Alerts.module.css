@@ -7,16 +7,33 @@
     width: 150px;
     font-family: MontHeavy;
     font-size: 20px;
-    background-color: black !important;
+    background-color: #2d2d2d !important;
     border-radius: 20px !important;
     color: white !important;
 }
 
 .BtnBlack:hover {
-    background-color: #104410 !important;
-    border: 3px solid #525252;
-    color: #fefcfc !important;
+    background-color: #135e1f !important;
+    border: 3px solid #2D2D2D;
+    color: #f1f1f1 !important;
 }
+
+
+.BtnCancel {
+    width: 150px;
+    font-family: MontHeavy;
+    font-size: 20px;
+    border-radius: 20px !important;
+    background-color: #2d2d2d !important;
+    color: white !important;
+}
+
+.BtnCancel:hover {
+    background-color: #5f0e0e !important;
+    border: 3px solid #5f0e0e;
+    color: #eeeded !important;
+}
+
 
 .TitleAlert {
     font-family: MontHeavy;
@@ -52,5 +69,18 @@
 }
 
 .inputSwall:active {
-    background-color: #c0c0c0;
+    background-color: transparent;
+}
+
+.Input {
+    border-radius: 15px;
+    border: none;
+    color: #2d2d2d;
+    border-bottom: 3px #2d2d2d solid;
+    font-family: MontRegular,
+}
+
+.Input:placeholder {
+    color: #2d2d2d;
+    font-family: MontRegular,
 }

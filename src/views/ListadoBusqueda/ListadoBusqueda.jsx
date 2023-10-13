@@ -8,9 +8,12 @@ import zapa from '../../assets/Image/zapatillas.png'
 
 
 import styles from "./Listado.module.css";
+import { useSelector } from "react-redux";
 
 const ListadoBusqueda = () => {
   const { pathname } = useLocation()
+  const results = useSelector((state) => state.results.results);
+
 
   return (
     <>
@@ -22,7 +25,7 @@ const ListadoBusqueda = () => {
           <p className={styles.men}>{pathname.slice(1).toUpperCase()}</p>
         </div>
         <div className={styles.zapatilla}>
-          <Cards />
+          <Cards results={results} />
         </div>
         <BeMember />
         <Footer />
