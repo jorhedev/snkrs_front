@@ -16,6 +16,43 @@
     height: auto;
     gap: 16px;
     justify-content: flex-start;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.ProductModel {
+    display: flex;
+}
+
+.ProductFilters {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.DataStock {
+    display: grid;
+    background-color: #D9D9D9;
+    width: 766px;
+    height: 500px;
+    justify-content: center;
+    align-items: start;
+    align-content: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+.InfoStock {
+    background-color: black;
+    width: 130px;
+    height: 130px;
+    color: #D9D9D9;
 }

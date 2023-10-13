@@ -4,7 +4,6 @@ import { setSearchQuery, selectSearchQuery } from "../../redux/productSlice";
 import {
   setBrand,
   setModel,
-  selectFilteredProducts,
 } from "../../redux/filters";
 import PropTypes from "prop-types";
 import logo from "../../assets/Image/Logo.png";
@@ -41,7 +40,7 @@ const Search = ({ products, onFilter, onSearchByModel }) => {
   };
 
   // Filtrar productos por nombre que coincidan con la búsqueda
-  const filteredByName = useSelector(selectFilteredProducts);
+  const filteredByName = []
 
   // Estado local para el campo de búsqueda por modelo
   const [modelSearch, setModelSearch] = useState("");
@@ -72,13 +71,13 @@ const Search = ({ products, onFilter, onSearchByModel }) => {
             placeholder="Search by Model"
             value={modelSearch}
             onChange={(e) => setModelSearch(e.target.value)}
-           
+
           />
           <button
             className={styles.search__button}
             onClick={handleModelSearch}
           >
-           <BsSearch/>
+            <BsSearch />
           </button>
         </div>
         <div className={styles.credits__container}>

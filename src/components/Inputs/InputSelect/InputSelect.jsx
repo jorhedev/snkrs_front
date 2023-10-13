@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './InputSelect.module.css';
 import { handlerNames } from '../../../services';
 
-const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, tag = '', placeHolder = '', params = false, style }) => {
+const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, tag = '', placeHolder = '', CapitalLetter = false, style }) => {
   const [selected, setSelected] = useState(initSelect);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, ta
                 key={index}
                 value={value}
                 style={{ ...style?.select }}
-              >{handlerNames(value)}
+              >{CapitalLetter ? value.toUpperCase() : handlerNames(value)}
               </option>
             )
           })
@@ -50,7 +50,7 @@ InputSelect.propTypes = {
   errors: PropTypes.string,
   tag: PropTypes.string,
   placeHolder: PropTypes.string,
-  params: PropTypes.bool,
+  CapitalLetter: PropTypes.bool,
   style: PropTypes.object
 };
 

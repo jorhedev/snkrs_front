@@ -1,32 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types';
 import styles from './Colors.module.css'
 import { ICONS } from '../../../../../../../const';
 
-const Colors = ({ colors = [] }) => {
-  const [viewPaletteColors, setViewPaletteColors] = useState(false)
+const Colors = ({ initColor = '', colors = [], onSelectColor }) => {
+  const [color, setColor] = useState('')
+  const [viewColors, setViewColors] = useState(false)
 
-  const handlerSelectColor = () => {
 
+  const handlerSelectColor = (data) => {
+    setColor(data)
+    onSelectColor(data)
+  }
+  const handlerViewColors = () => {
+    setViewColors(!viewColors)
   }
 
   return (
-    <div className={styles.ColorsContainer}>
+    <div className={styles.ColorsContainer} >
       <span className={styles.ColorsHeader}>
         <span className={styles.Title}>Colors</span>
         <div className={styles.Icons}>
-          {!viewPaletteColors ?
-            <h4>{ICONS.ARROW_DOWN('#828282')}</h4> :
-            <h4>{ICONS.ARROW_UP('#828282')}</h4>
+          {!viewColors ?
+            <h4 onClick={handlerViewColors}>{ICONS.ARROW_DOWN('#828282')}</h4> :
+            <h4 onClick={handlerViewColors} className={styles.ArrowActive}>{ICONS.ARROW_UP('#828282')}</h4>
           }
         </div>
       </span>
-      <div className={styles.PaletteColors}>
-        {viewPaletteColors && (
+      <div className={viewColors ? styles.PaletteColors : null} >
+        {viewColors && (
           colors?.map(({ name, html }, index) => {
             return (
-              <div key={index}>
-                <button className={styles.BtnColor} onClick={handlerSelectColor} />
+              <div className={styles.MarkColor} key={index}>
+                <button
+                  title={name}
+                  className={styles.BtnColor} style={{ background: `${html}` }}
+                  onClick={() => handlerSelectColor(name)}
+                />
               </div>
             )
           })
@@ -37,8 +47,9 @@ const Colors = ({ colors = [] }) => {
 }
 
 Colors.propTypes = {
-  colors: PropTypes.array.isRequired
-
+  initColor: PropTypes.string,
+  onSelectColor: PropTypes.func,
+  colors: PropTypes.array
 }
 
 export default Colors

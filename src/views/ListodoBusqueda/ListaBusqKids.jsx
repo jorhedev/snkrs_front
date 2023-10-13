@@ -10,22 +10,25 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/Image/Logo.png";
 
 import styles from "./Listado.module.css";
+import { useSelector } from 'react-redux';
 
 const ListaBusqWomen = () => {
+  const results = useSelector((state) => state.results.results);
+
   return (
     <>
       <div className={styles.containerList}>
         <Banner />
-        
+
         <div className={styles.homediv}>
-        <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft/> Home</p></Link>
-       <p className={styles.men}>Kids</p>
+          <Link className={styles.homebtn} to={'/home'}><p><AiOutlineArrowLeft /> Home</p></Link>
+          <p className={styles.men}>Kids</p>
         </div>
         <div className={styles.zapatilla}>
-        <Cars />
+          <Cars results={results} />
         </div>
-        <BeMember/>
-        <Footer/>
+        <BeMember />
+        <Footer />
       </div>
     </>
   );
