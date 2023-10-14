@@ -1,10 +1,5 @@
 import axiosInstance from '../utils/axiosInstance.js';
 import { createSlice } from "@reduxjs/toolkit";
-import {
-    SESSION_NAME,
-} from "../const/const.jsx";
-import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
-import { logOut } from '../services/firebase';
 
 const initialState = {
     user: {},
@@ -23,16 +18,35 @@ export const userSlice = createSlice({
             state.users = action.payload
         }
     },
+    updateUserData: (state, action) => {
+        if (state.user) {
+          state.user = { ...state.user, ...action.payload };
+        }
+      },
 });
+export const { setUser, updateUserData } = userSlice.actions;
 
-export const fetchUserById = (id) => async (dispatch) => {
+export const selectUser = (state) => state.user.user;
+
+export const fetchUserById = () => async (dispatch) => {
     try {
-        const user = await axiosInstance.get(`/user/${id}`)
-        dispatch(setUser(user))
+        const response = await axiosInstance.get("/user"); 
+        console.log('Data received:', response);
+        dispatch(setUser(response));
     } catch (error) {
-        console.log(error.message)
+        console.error(error);
     }
-}
+};
+
+export const updateUser = (updatedData) => async (dispatch) => {
+    try {
+        console.log("Updating user...");
+        const response = await axiosInstance.put("/user", updatedData);
+        dispatch(updateUserData(response.data));
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export const fetchAllUser = () => async (dispatch) => {
     try {
@@ -44,7 +58,6 @@ export const fetchAllUser = () => async (dispatch) => {
 }
 
 export const {
-    setUser,
     setAllUsers
 } = userSlice.actions;
 

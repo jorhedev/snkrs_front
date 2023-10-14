@@ -1,0 +1,120 @@
+.userProfile {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  margin-top:15%;
+  margin-left: 20%;
+}
+
+.userImage {
+  width: 150px;
+  border-radius: 50%;
+  margin-right: 50px;
+  margin-left: -20%
+
+}
+
+.userInfo {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+   width: 60%;
+}
+
+.label {
+  font-weight: bold;
+  width: 120px;
+  font-family: MontHeavy;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-family: MontRegular;
+  width: 60%;
+
+}
+
+.button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0078d4;
+  color: #fff;
+}
+
+.buttonSave {
+  background-color: #000000;
+  color:white;
+  margin-right: 5px
+}
+.buttonSave:hover {
+  border: 3px solid #000000;
+}
+.buttonCancel {
+  background-color: #000000;
+  color:white;
+}
+
+.buttonCancel:hover {
+  border: 3px solid #000000;
+}
+.buttonEdit {
+  background-color: #000000;
+  color: #fff;
+}
+.buttonEdit:hover {
+  border: 3px solid #000000;
+}
+
+.plus{
+  color: black;
+  background-color: white;
+}
+.btn{
+  border-color: white;
+}
+.progress {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: -40%;
+}
+
+.progressMessage {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  background-color: #898787;
+  height: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #000000;
+  transition: width 0.5s;
+}
+.edit {
+  border: 1px solid #0d0d0d;
+  background-color: #fff; 
+  color: #000; 
+}
