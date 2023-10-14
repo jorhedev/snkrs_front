@@ -63,6 +63,7 @@ console.log(record)
                   <th>Size</th>
                   <th>Color</th>
                   <th>Gender</th>
+                  <th>Review</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,6 +89,7 @@ console.log(record)
                         <td>{product.size}</td>
                         <td>{product.color}</td>
                         <td>{product.gener}</td>
+                        <td><button>Review</button></td>
                       </tr>
                     ))}
                   </React.Fragment>
