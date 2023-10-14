@@ -5,6 +5,8 @@ import { readCookieSession } from "../../../../services";
 import { FaRegEdit, FaPlus } from "react-icons/fa";
 import { fetchUserById, updateUser, selectUser } from "../../../../redux/user";
 import Swal from "sweetalert2";
+import moment from "moment";
+import { MAX_YEAR_REGISTER, MIN_YEAR_REGISTER } from "../../../../const";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,17 @@ const Profile = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedFields, setUpdatedFields] = useState({});
+  const [updatedFields, setUpdatedFields] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    birthday: "",
+    country: "",
+    state: "",
+    city: "",
+    address: "",
+    phone: "",
+  });
 
   const calculateProfileCompletion = (user) => {
     const totalFields = 10;
@@ -43,13 +55,28 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchUserById());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
+
 
   useEffect(() => {
     if (user) {
       const { image, ...userData } = user;
+      const userBirthday = moment.utc(user.birthday).format("YYYY-MM-DD")
       setImageUrl(image);
+      setUpdatedFields({...updatedFields, 
+        firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          birthday: userBirthday,
+            country: user?.address?.[0]?.country  || "" ,
+            state: user?.address?.[0]?.state || "",
+            city: user?.address?.[0]?.city || "",
+            address: user?.address?.[0]?.address || "",
+            phone: user?.address?.[0]?.phone || "",
+      });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const handleEditClick = () => {
@@ -61,7 +88,21 @@ const Profile = () => {
     console.log("Save button clicked");
     if (Object.keys(updatedFields).length > 0) {
       console.log("Updated Fields:", updatedFields);
-      dispatch(updateUser(updatedFields));
+      dispatch(
+        updateUser({
+          firstName: updatedFields.firstName,
+          lastName: updatedFields.lastName,
+          email: updatedFields.email,
+          birthday: updatedFields.birthday,
+          address: {
+            country: updatedFields.country ,
+            state: updatedFields.state  ,
+            city: updatedFields.city ,
+            address: updatedFields.address ,
+            phone: updatedFields.phone ,
+          },
+        })
+      );
     }
     setIsEditing(false);
   };
@@ -116,7 +157,7 @@ const Profile = () => {
       <div className={styles.userImage}>
         <img className={styles.userImage} src={imageUrl} alt="User Image" />
         <button className={styles.btn} onClick={handleProfilePictureClick}>
-          <FaPlus className={styles.plus}/>
+          <FaPlus className={styles.plus} />
         </button>
       </div>
       <div className={styles.userInfo}>
@@ -126,7 +167,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="firstName"
-            value={user.firstName || ""}
+            value={updatedFields.firstName || ""}
             onChange={handleChange}
           />
         </div>
@@ -136,7 +177,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="lastName"
-            value={user.lastName || ""}
+            value={updatedFields.lastName || ""}
             onChange={handleChange}
           />
         </div>
@@ -146,7 +187,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="email"
             name="email"
-            value={user.email || ""}
+            value={updatedFields.email || ""}
             onChange={handleChange}
           />
         </div>
@@ -156,7 +197,9 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="date"
             name="birthday"
-            value={user.birthday || ""}
+            min={MIN_YEAR_REGISTER}
+            max={MAX_YEAR_REGISTER}
+            value={updatedFields.birthday || ""}
             onChange={handleChange}
           />
         </div>
@@ -166,7 +209,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="country"
-            value={user.country || ""}
+            value={updatedFields.country || ""}
             onChange={handleChange}
           />
         </div>
@@ -176,7 +219,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="state"
-            value={user.state || ""}
+            value={updatedFields.state || ""}
             onChange={handleChange}
           />
         </div>
@@ -186,7 +229,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="city"
-            value={user.city || ""}
+            value={updatedFields.city || ""}
             onChange={handleChange}
           />
         </div>
@@ -196,7 +239,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="address"
-            value={user.address || ""}
+            value={updatedFields.address || ""}
             onChange={handleChange}
           />
         </div>
@@ -206,7 +249,7 @@ const Profile = () => {
             className={`${styles.input} ${isEditing ? styles.edit : ""}`}
             type="text"
             name="phone"
-            value={user.phone || ""}
+            value={updatedFields.phone || ""}
             onChange={handleChange}
           />
         </div>
