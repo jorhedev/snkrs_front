@@ -13,6 +13,7 @@ import { NotLogin } from "../Alerts";
 const { HOME, WOMEN, MEN, KIDS, FAVORITE, TROLLEY, SEARCH, LOGIN } = NAVBAR_LINKS
 const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
     const dispatch = useDispatch()
+    const cartItems = useSelector((state) => state.cart.cartItems);
     const { pathname } = useLocation()
     const [role, setRole] = useState('')
     const login = useSelector(({ auth }) => auth.status)
@@ -70,9 +71,12 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                     {(role != 'admin' && (TROLLEY.includes(pathname) || DETAIL_PAGE(pathname))) ?
                         <h3>
                             {" "}
-                            <Link to={role == 'user' ? MENU_USER.shopping.route : "/trolley"}>
-                                <h3 title='shopping cart'>{ICONS.TROLLEY('black')}</h3>
-                            </Link>
+                            <Link to={role == "user" ? MENU_USER.shopping.route : "/trolley"}>
+              <h3 title='shopping cart'>
+              {ICONS.TROLLEY ("black")} 
+              <span className={styles.cartCounter}> {cartItems.length} </span>
+            </h3>
+              </Link>
                         </h3>
                         : null}
                     {LOGIN.includes(pathname) || DETAIL_PAGE(pathname) ? <LogIn /> : null}
