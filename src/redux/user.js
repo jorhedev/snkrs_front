@@ -24,7 +24,6 @@ export const userSlice = createSlice({
         }
       },
 });
-export const { setUser, updateUserData } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 
@@ -42,7 +41,7 @@ export const updateUser = (updatedData) => async (dispatch) => {
     try {
         console.log("Updating user...");
         const response = await axiosInstance.put("/user", updatedData);
-        dispatch(updateUserData(response.data));
+        dispatch(setUser(response));
     } catch (error) {
         console.error(error);
     }
@@ -58,7 +57,9 @@ export const fetchAllUser = () => async (dispatch) => {
 }
 
 export const {
-    setAllUsers
+    setAllUsers,
+    updateUserData,
+ setUser  
 } = userSlice.actions;
 
 export default userSlice.reducer;
