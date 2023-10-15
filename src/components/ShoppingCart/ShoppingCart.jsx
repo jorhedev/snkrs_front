@@ -90,7 +90,7 @@ const ShoppingCart = () => {
   return (
     <div className={styles.cartContainer}>
 
-      
+
 
       <div className={styles.tableContainer}>
         <Link className={styles.homebtn} to={"/home"}>
@@ -128,7 +128,7 @@ const ShoppingCart = () => {
                           onClick={() => handleRemove(item)}
                         />
                       </td>
-                      <td className={styles.fila}>{item?.color}</td>
+                      <td className={styles.fila}><div className=""></div>{item?.color}</td>
                       <td>
                         <img
                           src={item?.image[0]?.src}
@@ -136,7 +136,7 @@ const ShoppingCart = () => {
                           className={styles.itemImage}
                         />
                       </td>
-                      <td>{item?.gener}</td>
+                      <td>{item?.gender}</td>
 
                       <td>{item?.size}</td>
                       <td>

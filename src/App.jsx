@@ -14,7 +14,7 @@ import HomeViews from './views/HomeViews/HomeViews';
 import Payment from './views/Payment/Payment';
 import PaymentSucces from './views/Payment/PaymentSucces';
 import Trolley from './views/Trolley/Trolley';
-import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import ProtectedRoutes from './utils/ProtectedRoutes';
 import Page404 from './views/Page404/Page404';
 import Views from './components/Views/Views';
 
@@ -33,7 +33,9 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/home" element={
-          <HomeViews />
+          <ProtectedRoutes>
+            <HomeViews />
+          </ProtectedRoutes>
         }
         />
         {/* <Route path="/user" element={<User />} /> */}
@@ -45,8 +47,8 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/checkout" element={<Payment />} />
         <Route path="/payment-succes" element={<PaymentSucces />} />
-        <Route path="/views" element={<Views/>} />
-        
+        <Route path="/views" element={<Views />} />
+
         {/* <Route path="/user" element={<DashboardUser />} /> */}
 
         {/* //?Routes USER */}

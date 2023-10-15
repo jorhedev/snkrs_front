@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ICONS } from '../../../../../../../const'
 
 const Sizes = ({ sizes, onSelectSize }) => {
+  const [hover, setHover] = useState(false)
   const [viewSizes, setViewSizes] = useState(false)
   const [selectSize, setSelectSize] = useState('')
 
@@ -11,19 +12,30 @@ const Sizes = ({ sizes, onSelectSize }) => {
     !!sizes.length && setViewSizes(!viewSizes)
   }
   const handlerSelectSize = (data) => {
-    setSelectSize(data)
-    onSelectSize(data)
-
+    let currentData = ''
+    data == selectSize ? currentData = '' : currentData = data
+    setSelectSize(currentData)
+    onSelectSize(currentData)
   }
+
+  const handlerHoverEnter = () => { setHover(!hover) }
+  const handlerHoverLeave = () => { setHover(!hover) }
 
   return (
     <div className={styles.SizesContainer}>
       <span className={styles.SizesHeader}>
-        <span className={styles.Title}>Size (US)</span>
+        <span className={styles.Title}>Size (US) <h3> {selectSize}</h3></span>
         <div className={styles.Icons}>
           {!viewSizes ?
-            <h4 onClick={handlerViewSizes}>{ICONS.ARROW_DOWN('#828282')}</h4> :
-            <h4 onClick={handlerViewSizes} className={styles.ArrowActive}>{ICONS.ARROW_UP('#828282')}</h4>
+            <h4
+              onMouseEnter={handlerHoverEnter}
+              onMouseLeave={handlerHoverLeave}
+              onClick={handlerViewSizes}>{ICONS.ARROW_DOWN(!hover ? '#828282' : 'green')}</h4> :
+            <h4
+              onMouseLeave={handlerHoverLeave}
+              onMouseEnter={handlerHoverEnter}
+              onClick={handlerViewSizes}
+              className={styles.ArrowActive}>{ICONS.ARROW_UP(hover ? '#828282' : 'green')}</h4>
           }
         </div>
       </span>
@@ -34,7 +46,7 @@ const Sizes = ({ sizes, onSelectSize }) => {
               <div className={styles.MarkSizes} key={index}>
                 <button
                   title={size}
-                  className={styles.BtnSizes}
+                  className={size === selectSize ? styles.BtnSizesActive : styles.BtnSizes}
                   onClick={() => handlerSelectSize(size)}
                 >{parseFloat(size)}</button>
               </div>

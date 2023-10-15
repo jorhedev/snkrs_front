@@ -11,14 +11,14 @@ export const favotites = createSlice({
     initialState,
     reducers: {
         setFavorites: ({ storages, favorites }, { payload }) => {
-            storages.push(payload)
-            favorites = payload.map(({ _id }) => { return _id })
+            storages.push(...payload)
+            favorites.push(...payload.map(({ _id }) => { return _id }))
         },
         mergeFavorites: ({ favorites }, { payload }) => {
             favorites.push(payload)
         },
-        deleteFavorites: ({ favorites }, { payload }) => {
-            return favorites.filter(favorite => favorite !== payload)
+        deleteFavorites: (state, { payload }) => {
+            state.favorites = state.favorites.filter((favorite) => (favorite != payload))
         },
         cleanFavorites: (state, { payload }) => {
             state.favorites = []
@@ -29,9 +29,7 @@ export const favotites = createSlice({
 export const fetchFavorites = () => async (dispatch) => {
     try {
         const data = await axiosInstance.get(`/favorites`)
-        if (data)
-            console.log("🚀 ~ file: favorites.js:33 ~ fetchFavorites ~ data:", data)
-        dispatch(setFavorites(data))
+        if (data) dispatch(setFavorites(data))
         return
     }
     catch (error) {

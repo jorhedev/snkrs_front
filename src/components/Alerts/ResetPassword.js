@@ -3,6 +3,7 @@ import styles from './Alerts.module.css';
 import axiosInstance from '../../utils/axiosInstance';
 import { resetPassword } from '../../services/firebase';
 import Logo from '../Icons/Logo';
+import ResetEmailSend from './ResetEmailSend';
 
 const ResetPassword = (email = '') => {
     Swal.fire({
@@ -22,8 +23,6 @@ const ResetPassword = (email = '') => {
             cancelButton: styles.BtnBlack,
             title: styles.TitleAlert,
             container: styles.ContentAlert,
-
-
         },
         buttonsStyling: false,
         showCancelButton: true,
@@ -42,16 +41,7 @@ const ResetPassword = (email = '') => {
         allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: `Reset email sent`,
-                icon: 'success',
-                customClass: {
-                    popup: styles.BodyAlert,
-                    confirmButton: styles.BtnBlack,
-                    title: styles.TitleAlert,
-                    container: styles.ContentAlert,
-                },
-            })
+            ResetEmailSend()
         }
     })
 }

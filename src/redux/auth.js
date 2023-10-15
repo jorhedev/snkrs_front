@@ -6,6 +6,7 @@ import {
 import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
 import { logOut } from '../services/firebase';
 import { Signed } from '../components/Alerts';
+import { cleanFavorites } from './favorites.js';
 
 const initialState = {
     view: false,
@@ -58,6 +59,7 @@ export const signOut = () => async (dispatch) => {
     try {
         await axiosInstance.post(`/auth/sign-out`)
         dispatch(setLogOut());
+        dispatch(cleanFavorites())
         removeCookieSession()
         await logOut()
         return

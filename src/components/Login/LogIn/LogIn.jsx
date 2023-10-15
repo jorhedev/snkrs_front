@@ -10,6 +10,7 @@ import { getCookieSession, readCookieSession } from '../../../services';
 import { Navigate, useLocation } from 'react-router-dom';
 import { NAV_ALL, NAV_ADMIN, NAV_USER, SESSION_NOT_COOKIE, DETAIL_PAGE } from '../../../const';
 import { Avatar } from '../../Icons/Avatar';
+import { cleanFavorites, fetchFavorites } from '../../../redux/favorites';
 
 const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }, sizeAvatar = '35' }) => {
   const dispatch = useDispatch();
@@ -25,16 +26,17 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
       }
     }, 5000);
     return () => clearInterval(interval);
-  }, [cookie, setImageUrl]);
+  }, [cookie, setImageUrl, dispatch]);
 
   useEffect(() => {
     if (cookie) {
       const { image } = cookie
+      dispatch(fetchFavorites())
       setImageUrl(image)
     } else {
       setImageUrl('')
     }
-  }, [cookie, setImageUrl]);
+  }, [cookie, dispatch, setImageUrl]);
 
   const handlerClickLogin = () => {
     dispatch(viewFormLog())

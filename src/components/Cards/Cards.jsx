@@ -2,35 +2,28 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import logo from "../../assets/Image/Logo.png";
-import Search from "../../components/Seach/Search";
-
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Filter from "../Filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, setResults } from "../../redux/resultsMen";
-import favorites, { addFavorites, fetchFavorites, removeFavorites } from "../../redux/favorites"
+import { addFavorites, cleanFavorites, fetchFavorites, removeFavorites } from "../../redux/favorites"
 import styles from "./Cards.module.css";
 import { NotLogin } from "../Alerts";
+import { readCookieSession } from "../../services";
+import { fetchDetail } from "../../redux/products";
 const itemsPerPage = 9;
 
 const Cards = ({ results }) => {
-    console.log("🚀 ~ file: Cards.jsx:18 ~ Cards ~ results:", results)
+    const cookie = readCookieSession()
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [isLiked, setIsLiked] = useState({});
-    const login = useSelector(({ auth }) => !auth.status)
-    const favorites = useSelector(({ favorites }) => favorites.favorites)
-
+    const favorites = useSelector(({ favorites }) => { return favorites.favorites })
+    console.log("🚀 ~ file: Cards.jsx:21 ~ Cards ~ favorites:", favorites)
     useEffect(() => {
         dispatch(fetchData());
         dispatch(fetchFavorites())
-        // Cargar productos favoritos desde el almacenamiento local al cargar la página
-        const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
-        setIsLiked(savedFavorites);
     }, [dispatch]);
-
-    // Declare results here after fetching data from Redux
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -43,17 +36,11 @@ const Cards = ({ results }) => {
         setCurrentPage(pageNumber);
     };
 
-    const handleFilterProducts = (searchQuery) => {
-        const filteredResults = results.filter((zapa) =>
-            zapa.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        setCurrentPage(1);
-    };
-
-    const handleLikeClick = (zapa) => {
-        if (login) {
-            if (favorites.includes(zapa._id)) {
+    const handleLikeClick = (event, zapa) => {
+        event.preventDefault();
+        if (cookie) {
+            if (favorites?.includes(zapa._id)) {
+                console.log('incluido')
                 dispatch(removeFavorites(zapa._id));
             } else {
                 dispatch(addFavorites(zapa._id));
@@ -87,10 +74,10 @@ const Cards = ({ results }) => {
                             style={{ textDecoration: "none" }}
                         >
                             <div className={styles.card} key={zapa._id}>
-                                <img src={zapa?.image[0]?.src} alt={zapa.name} />
+                                <img src={zapa?.image} alt={zapa.model} />
 
                                 <div className={styles.name}>
-                                    <h2>{zapa?.brand}</h2>
+                                    <h2>{zapa?.brand?.brand}</h2>
                                     <div className={styles.price}>
                                         <p>$ {zapa?.price}</p>
                                         <div></div>
@@ -113,15 +100,11 @@ const Cards = ({ results }) => {
                                 </div>
 
                                 <button
-                                    className={`${styles.likeButton} ${isLiked[zapa._id] ? styles.liked : ""
-                                        }`}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleLikeClick(zapa);
-                                    }}
+                                    className={`${styles.likeButton}`}
+                                    onClick={(event) => { handleLikeClick(event, zapa) }}
                                 >
                                     <span role="img" aria-label="Corazón">
-                                        {favorites.includes(zapa._id) ? "❤️" : "🤍"}
+                                        {favorites?.includes(zapa._id) ? "❤️" : "🤍"}
                                     </span>
                                 </button>
                             </div>

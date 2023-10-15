@@ -6,6 +6,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 
 const UploadSquare = ({ onImageUpload }) => {
   const [imageFiles, setImageFiles] = useState([])
+  console.log("🚀 ~ file: UploadSquare.jsx:9 ~ UploadSquare ~ imageFiles:", imageFiles)
   const [viewZoom, setViewZoom] = useState(false)
   const [hoverTimeoutId, setHoverTimeoutId] = useState(null);
   const [hoveredImageIndex, setHoveredImageIndex] = useState(null);
@@ -91,7 +92,14 @@ const UploadSquare = ({ onImageUpload }) => {
         <div className={`${styles.newImage} ${styles.Image}`}>
           <span className="plus">+</span>
         </div>
-        <input type="file" id="imageInput" className={styles.imageInput} onChange={handlerFileChange} multiple></input>
+        <input
+          type="file"
+          name='imagesFiles'
+          id="imageInput"
+          className={styles.imageInput}
+          onChange={handlerFileChange}
+          multiple
+        ></input>
       </label>
     </div>
   )

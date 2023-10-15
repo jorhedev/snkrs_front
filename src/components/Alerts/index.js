@@ -2,10 +2,9 @@ export { default as ModalDataUpdate } from './ModalDataUpdate'
 export { default as ModalDataDelete } from './ModalDataDelete'
 export { default as ModalDataCreate } from './ModalDataCreate'
 
-
+export { default as ResetEmailSend } from './ResetEmailSend'
 export { default as SignUpSuccess } from './SignUpSuccess'
 export { default as SendEmailVerify } from './SendEmailVerify'
-export { default as FieldsEmpty } from './FieldsEmpty'
 export { default as NonActiveUser } from './NonActiveUser'
 export { default as NotLogin } from './NotLogin'
 export { default as NotRegister } from './NotRegister'

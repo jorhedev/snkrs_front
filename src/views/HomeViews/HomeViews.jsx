@@ -25,15 +25,11 @@ const HomeViews = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showNotFoundMessage, setShowNotFoundMessage] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [isLiked, setIsLiked] = useState({});
   const [modelSearchResults, setModelSearchResults] = useState([]); // Nuevo estado para resultados de búsqueda por modelo
 
   useEffect(() => {
     dispatch(fetchData());
 
-    // Cargar productos favoritos desde el almacenamiento local al cargar la página
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
-    setIsLiked(savedFavorites);
   }, [dispatch]);
 
   // Declare results here after fetching data from Redux
@@ -58,26 +54,6 @@ const HomeViews = () => {
     setFilteredProducts(filteredResults);
     setCurrentPage(1);
     setShowNotFoundMessage(filteredResults.length === 0);
-  };
-
-  const handleLikeClick = (zapa) => {
-    // Actualizar el estado local de favoritos
-    const updatedIsLiked = { ...isLiked };
-    if (updatedIsLiked[zapa._id]) {
-      // Si ya está en favoritos, quítalo
-      dispatch(removeFavorites(zapa));
-      delete updatedIsLiked[zapa._id];
-    } else {
-      // Si no está en favoritos, agrégalo
-      dispatch(addFavorites(zapa));
-      updatedIsLiked[zapa._id] = true;
-    }
-
-    // Guardar productos favoritos en el almacenamiento local
-    localStorage.setItem("favorites", JSON.stringify(updatedIsLiked));
-
-    // Actualizar el estado del botón "favorito" para esta zapatilla
-    setIsLiked(updatedIsLiked);
   };
 
   const handleNextPage = () => {

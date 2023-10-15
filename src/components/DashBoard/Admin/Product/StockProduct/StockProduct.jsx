@@ -9,17 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchColors, fetchSizes } from '../../../../../redux/filters';
 import Sizes from '../Components/Filters/Sizes/Sizes';
 import handlerFilterStock from './handlerFilterStock';
+import { ICONS } from '../../../../../const';
 
 const initInfoStock = []
 
 const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gender = '' }) => {
     const dispatch = useDispatch()
+    const [isHovered, setIsHovered] = useState({ 0: { minus: false, plus: false } })
+    const [filtered, setFiltered] = useState([])
     const [stock, setStock] = useState(initInfoStock)
+    const [filter, setFilter] = useState({ color: '', size: '' })
     const colors = useSelector(({ filters }) => filters.data.colors)
     const sizes = useSelector(({ filters }) => filters.data.sizes)
-    const [filter, setFilter] = useState({ color: '', size: '' })
-    console.log("🚀 ~ file: StockProduct.jsx:21 ~ StockProduct ~ filter:", filter)
-    const [filtered, setFiltered] = useState([])
 
     useEffect(() => {
         setStock(initStock)
@@ -28,7 +29,7 @@ const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gen
     useEffect(() => {
         dispatch(fetchColors())
         dispatch(fetchSizes(gender))
-    }, [dispatch])
+    }, [dispatch, gender])
 
     useEffect(() => {
         setStock(handlerFieldStock(colors, sizes))
@@ -55,12 +56,36 @@ const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gen
         }
     }
     const handlerChangeQuantity = (event, index) => {
-        // event.preventDefaul()
-        // const [name, value] = event.target
-        // setStock([...stock, [index]['quantity']: value])
+        const { name, value } = event.target
+        const newQuantity = 0
+        isNaN(value)
 
+        const updateData = [...stock, stock[index].quantity = value]
+        setStock(updateData)
+        // value >= 0 ? setStock(updateData) :
+        //     value === null || value == undefined ? setStock(currentData) :
+        //         null
     }
 
+    const handlerClickQuantity = (index, button) => {
+        let updateData = []
+        if (button === 'minus' && stock[index].quantity > 0) {
+            updateData = [...stock, stock[index].quantity -= 1]
+            setStock(updateData)
+        }
+        if (button === 'plus') {
+            updateData = [...stock, stock[index].quantity += 1]
+            setStock(updateData)
+
+        }
+    }
+
+    const handlerHoverEnter = (index, button) => {
+        setIsHovered({ ...isHovered, [index]: { [button]: true } })
+    }
+    const handlerHoverLeave = (index, button) => {
+        setIsHovered({ ...isHovered, [index]: { [button]: false } })
+    }
     return (
         <div className={styles.StockContainer}>
             <div className={styles.ContainerHeader}>
@@ -73,18 +98,28 @@ const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gen
                     <Sizes sizes={sizes} onSelectSize={handlerChangeSize} />
                 </div>
                 <div className={styles.DataStock}>
-                    {stock.length && stock?.map(({ color, size, quantity }, index) => {
+                    {stock?.length && stock?.map(({ color, size, quantity }, index) => {
                         return (
                             filtered && filtered.includes(index) &&
                             <div className={styles.InfoStock} key={index}>
-                                <div>
-                                    <div>
-                                        {size} {color.name}
-                                    </div>
+                                <div className={styles.SizeStock}>
+                                    {size}
                                 </div>
-                                <input type="text"
-                                    onChange={(event) => handlerChangeQuantity(event, index)}
-                                />
+                                <div className={styles.ColorStock} style={{ background: `${color?.html}` }} title={color?.name}>
+                                </div>
+                                <div className={styles.QuantityStock}>
+                                    <h4 onMouseEnter={() => handlerHoverEnter(index, "minus")}
+                                        onMouseLeave={() => handlerHoverLeave(index, "minus")}
+                                        onClick={() => handlerClickQuantity(index, "minus")}>
+                                        {ICONS.MINUS(!isHovered[index]?.minus ? '#828282' : 'green')}</h4>
+                                    <input type='number' name={index} value={quantity}
+                                        className={styles.InputQuantity}
+                                        onChange={(event) => handlerChangeQuantity(event, index)} />
+                                    <h4 onMouseEnter={() => handlerHoverEnter(index, "plus")}
+                                        onMouseLeave={() => handlerHoverLeave(index, "plus")}
+                                        onClick={() => handlerClickQuantity(index, "plus")}>
+                                        {ICONS.PLUS(!isHovered[index]?.plus ? '#828282' : 'green')}</h4>
+                                </div>
                             </div>
                         )
                     })}

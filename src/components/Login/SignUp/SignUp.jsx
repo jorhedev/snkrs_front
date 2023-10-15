@@ -1,15 +1,15 @@
 /** @format */
 import React, { useEffect, useInsertionEffect, useState } from "react";
-import { Form, Button } from "react-bootstrap";
 import zapa from "../../../assets/Image/video1.webm"
 import styles from './SignUp.module.css';
 import UploadPhoto from "../../Upload/UploadPhoto/UploadPhoto";
 import axiosInstance from "../../../utils/axiosInstance";
-import { NonActiveUser, NotValidEmail, ResetPassword, SendEmailVerify, SignUpSuccess, UserPrevSignUp } from "../../Alerts";
+import { NotValidEmail, ResetPassword, SendEmailVerify, SignUpSuccess } from "../../Alerts";
 import { AddressInformation, BasicInformation } from "./RegisterForms";
-import { SIGNUP_STORAGE } from "../../../const";
+import { SESSION_NOT_COOKIE, SIGNUP_STORAGE } from "../../../const";
 import { createUser } from "../../../services/firebase";
 import { handlerIsObjectEmpty, signUpValidate } from "../../../services";
+import { Navigate, redirect } from "react-router-dom";
 
 const initSignUp = {
   nit: '',
@@ -31,21 +31,34 @@ const initSignUp = {
 }
 const SignUp = () => {
   const [step, setStep] = useState(1);
-  const [register, setRegister] = useState(false);
+  const [register, setRegister] = useState({ button: false, success: false });
   const [signUp, setSignUp] = useState(initSignUp)
-
   const [error, setError] = useState({})
 
   useEffect(() => {
     //? Get Data from localStorage
     const storedData = JSON.parse(localStorage.getItem(SIGNUP_STORAGE));
-    storedData && setSignUp({ ...signUp, ...storedData.signUp }) && setError({ ...storedData.error });
+    if (storedData) {
+      setSignUp({ ...signUp, ...storedData.signUp });
+      setError({ ...error, ...storedData.error })
+    }
   }, []);
 
   const handlerChangeImage = () => {
     console.log('photo')
   }
 
+  useEffect(() => {
+    const testSignUp = { ...signUp };
+    delete testSignUp.image;
+    delete testSignUp.address[0].additional;
+    delete testSignUp.address[0].zip_code;
+
+    if (!handlerIsObjectEmpty(testSignUp) && handlerIsObjectEmpty(error)) {
+      return setRegister({ ...register, button: true })
+    }
+    return setRegister({ ...register, button: false })
+  }, [signUp, error])
 
   const handlerPreview = () => { return step > 1 ? setStep(step - 1) : null }
 
@@ -86,12 +99,15 @@ const SignUp = () => {
       )
 
       const { password, ...data } = signUp
-      await axiosInstance.post(`/auth/sign-up`, {
+      const isOk = await axiosInstance.post(`/auth/sign-up`, {
         user,
         signUp: data
       })
-      SignUpSuccess()
-
+      if (isOk) {
+        localStorage.removeItem(SIGNUP_STORAGE)
+        SignUpSuccess({ redirect })
+        setRegister({ ...register, success: redirect })
+      }
     } catch (error) {
       console.log(error)
     }
@@ -109,19 +125,10 @@ const SignUp = () => {
       signUp: storage,
       error: signUpValidate(currentValue)
     }));
-    isOkSignUp()
   }
 
-  const isOkSignUp = () => {
-    const testSignUp = { ...signUp };
-    delete testSignUp.image;
-    delete testSignUp.address[0].additional;
-    delete testSignUp.address[0].zip_code;
-
-    if (!handlerIsObjectEmpty(testSignUp) && handlerIsObjectEmpty(error)) {
-      return setRegister(true)
-    }
-    return setRegister(false)
+  if (register.success) {
+    return <Navigate to={SESSION_NOT_COOKIE} />;
   }
 
   return (
@@ -144,8 +151,8 @@ const SignUp = () => {
                   <div className={styles.FormLine}></div>
                   <BasicInformation
                     initBasicInfo={signUp}
-                    errors={error} o
-                    nChangeBasicInfo={handlerChangeSignUp} />
+                    errors={error}
+                    onChangeBasicInfo={handlerChangeSignUp} />
                 </span>
               </div>
             )}
@@ -164,7 +171,7 @@ const SignUp = () => {
           </span>
           <div className={styles.ButtonSignUp}>
             {step > 1 && <button className={`${styles.SignUpBtns}`} onClick={handlerPreview}>Prev</button>}
-            {register && step > 1 && <button className={`${styles.SignUpBtns}`} onClick={handlerSignUp}>Register</button>}
+            {register.button && step > 1 && <button className={`${styles.SignUpBtns}`} onClick={handlerSignUp}>Register</button>}
             {step < 2 && <button className={`${styles.SignUpBtns}`} onClick={handlerNext}>Next</button>}
           </div>
         </div>

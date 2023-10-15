@@ -10,6 +10,7 @@ const InputText = ({
   onChangeInput,
   errors,
   tag = '',
+  name = '',
   placeHolder = '',
   disabled = false,
   buttonClear = false,
@@ -40,6 +41,7 @@ const InputText = ({
       {tag !== '' && <h3 style={{ fontFamily: 'MontHeavy', color: 'white', fontSize: '24px', ...style?.h3 }}>{tag} </h3>}
       <div className={styles.DateFile} style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', background: '#D9D9D9' }}>
         {!disabled && <input
+          name={name}
           style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px', fontFamily: 'MontHeavy', ...style?.input }}
           type='text'
           autoComplete="off"
@@ -48,6 +50,7 @@ const InputText = ({
           onChange={(event) => { handlerInputChange(event) }}
         />}
         {disabled && <input
+          name={name}
           style={{ width: '200px', height: '45px', background: '#D9D9D9', fontSize: '15px', fontFamily: 'MontHeavy', ...style?.input }}
           type='text'
           autoComplete="off"
@@ -67,6 +70,7 @@ const InputText = ({
 InputText.propTypes = {
   initInput: PropTypes.string,
   onChangeInput: PropTypes.func,
+  name: PropTypes.string,
   errors: PropTypes.string,
   tag: PropTypes.string,
   placeHolder: PropTypes.string,

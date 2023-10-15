@@ -68,6 +68,7 @@ const InfoProduct = ({ initInfoProduct = {}, onChangeInfoProduct, errors }) => {
                      <span className={styles.KeyData}>{key.toUpperCase()}</span>
                      {'sku'.includes(key) &&
                         < InputSelect
+                           name={key}
                            options={['NEW PRODUCT......']}
                            style={{
                               width: '400px',
@@ -80,6 +81,7 @@ const InfoProduct = ({ initInfoProduct = {}, onChangeInfoProduct, errors }) => {
                      }
                      {['model', 'price'].includes(key) &&
                         <InputText
+                           name={key}
                            initInput={infoProduct[key]}
                            buttonClear={true}
                            placeHolder={`${key.toUpperCase()}`}
@@ -88,11 +90,11 @@ const InfoProduct = ({ initInfoProduct = {}, onChangeInfoProduct, errors }) => {
                               input: { width: '380px', fontSize: '20px' }
                            }}
                            onChangeInput={(input) => handlerSelectChange(key, input)}
-
                         />
                      }
                      {['brand', 'gender', 'category', 'type'].includes(key) &&
                         < InputSelect
+                           name={key}
                            options={key === 'brand' ? brands : key === 'category' ? categories : key == 'type' ? types : genders}
                            style={{
                               width: '400px',

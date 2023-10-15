@@ -32,15 +32,13 @@ const AddressInformation = ({ initAddressInfo, errors, onChangeAddressInfo }) =>
     const country = useSelector(({ country }) => { return country.country })
     const state = useSelector(({ country }) => { return country.state })
     const city = useSelector(({ country }) => { return country.city })
-    const [error, setError] = useState(errors)
     const [info, setInfo] = useState(initAddress)
 
     // ? Load initial values
     useEffect(() => {
         const { country, state, city, phone, address, additional, zip_code } = initAddressInfo
         setInfo({ country, state, city, phone, address, additional, zip_code })
-        setError(errors)
-    }, [initAddressInfo, errors])
+    }, [initAddressInfo])
 
     //? get Countries
     useEffect(() => {
@@ -98,7 +96,7 @@ const AddressInformation = ({ initAddressInfo, errors, onChangeAddressInfo }) =>
                                     style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }}
                                 />}
                         </div>
-                        {error[key] ? <div className={styles.errorText}>{error[key]}</div> : null}
+                        {errors[key] && <div className={styles.errorText}>{errors[key]}</div>}
                     </span>)
             })}
         </>
