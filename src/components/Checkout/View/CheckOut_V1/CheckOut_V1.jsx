@@ -172,9 +172,8 @@ const CheckOut_V1 = () => {
                 <label className={styles.label}> First Name: </label>
                 <input
                   placeholder="First Name"
-                  className={`${styles.input} ${
-                    formErrors.firstName && styles.errorInput
-                  }`}
+                  className={`${styles.input} ${formErrors.firstName && styles.errorInput
+                    }`}
                   type="text"
                   id="firstNameInput"
                   name="firstName"
@@ -189,9 +188,8 @@ const CheckOut_V1 = () => {
                 <label className={styles.label}> Last Name: </label>
                 <input
                   placeholder="Last Name"
-                  className={`${styles.input} ${
-                    formErrors.lastName && styles.errorInput
-                  }`}
+                  className={`${styles.input} ${formErrors.lastName && styles.errorInput
+                    }`}
                   type="text"
                   id="lastName"
                   name="lastName"
@@ -202,50 +200,51 @@ const CheckOut_V1 = () => {
                   <div className={styles.errorText}>{formErrors.lastName}</div>
                 )}
               </div>
-              <label className={styles.label}> </label>
               {Object.keys(formData).map((key, index) => {
                 return (
-                  <div className={styles.country} key={index}>
+                  <div key={index}>
                     {["country", "state", "city"].includes(key) && (
-                      <>
+                      <div className={styles.WrapperCountry}>
                         <label className={styles.label}>
                           {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
                         </label>
-                        <InputSelect
-                          options={
-                            key === "country"
-                              ? country
-                              : key === "state"
-                              ? state
-                              : city
-                          }
-                          initInput={formData[key]}
-                          onChangeSelect={(input) =>
-                            handlerInputChange(key, input)
-                          }
-                          style={{
-                            flexDirection: "row",
-                            alignItems: "start",
-                            gap: "4px",
-                            select: {
-                              backgroundColor: "#101010",
-                              color: "white",
-                              width: "75%",
-                              fontFamily: "MontLight",
-                              borderColor: "white",
-                            },
-                            DateFile: {
-                              justifyContent: "flex-end",
-                              background: "black",
-                              marginBottom: "20px",
-                            },
-                            input: {
-                              width: "100%",
-                              background: "rgb(217, 217, 217)",
-                            },
-                          }}
-                        />
-                      </>
+                        <div className={styles.InputSelect}>
+                          <InputSelect
+                            options={
+                              key === "country"
+                                ? country
+                                : key === "state"
+                                  ? state
+                                  : city
+                            }
+                            initInput={formData[key]}
+                            onChangeSelect={(input) =>
+                              handlerInputChange(key, input)
+                            }
+
+                            style={{
+                              flexDirection: "row",
+                              alignItems: "flex-start",
+                              select: {
+                                backgroundColor: "#101010",
+                                color: "white",
+                                fontFamily: "MontLight",
+                                borderColor: "white",
+                                border: "2px solid white",
+                              },
+                              DateFile: {
+                                justifyContent: "flex-end",
+                                background: "black",
+                                alignItems: 'start',
+                              },
+                              input: {
+                                width: '100%',
+                                background: "rgb(217, 217, 217)",
+                              },
+                            }}
+                          />
+                        </div>
+                      </div>
                     )}
                   </div>
                 );
@@ -265,9 +264,8 @@ const CheckOut_V1 = () => {
                 <label className={styles.label}> Email: </label>
                 <input
                   placeholder="mail@mail.com"
-                  className={`${styles.input} ${
-                    formErrors.email && styles.errorInput
-                  }`}
+                  className={`${styles.input} ${formErrors.email && styles.errorInput
+                    }`}
                   type="text"
                   id="email"
                   name="email"
@@ -282,9 +280,8 @@ const CheckOut_V1 = () => {
                 <label className={styles.label}> Phone: </label>
                 <input
                   placeholder="5555 555 555"
-                  className={`${styles.input} ${
-                    formErrors.phone && styles.errorInput
-                  }`}
+                  className={`${styles.input} ${formErrors.phone && styles.errorInput
+                    }`}
                   type="text"
                   inputMode="numeric"
                   id="phone"

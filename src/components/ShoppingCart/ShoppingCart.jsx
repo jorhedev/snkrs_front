@@ -93,17 +93,17 @@ const ShoppingCart = () => {
 
 
       <div className={styles.tableContainer}>
-        <Link className={styles.homebtn} to={"/home"}>
+        {/* <Link className={styles.homebtn} to={"/home"}>
           <p className={styles.homebtonP}>
             <AiOutlineArrowLeft /> Home
           </p>
-        </Link>
+        </Link> */}
 
         <h2 className={styles.h2}>SHOPPING CART</h2>
         {cartItems.length > 0 ? (
-          <div>
+          <div >
             <table className={styles.cartTable}>
-              <thead>
+              <thead >
                 <tr>
                   <th></th>
                   <th></th>

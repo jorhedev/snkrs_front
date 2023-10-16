@@ -26,13 +26,14 @@ const InputSelect = ({ initSelect = '', options = [], onChangeSelect, errors, ta
         <select
           name={name}
           style={{ fontFamily: 'Mont', borderBottom: '5px solid green', borderInlineEnd: '1px solid green', ...style?.select }} className={styles.Selecter} value={selected} onChange={handleSelectChange}>
-          <option className={styles.OptionDefault} style={{ ...style?.select }} value="" disabled hidden>Select an Option</option>
+          <option className={styles.OptionDefault} style={{ ...style?.option }} value="" disabled hidden>Select an Option</option>
           {options?.map((value, index) => {
             return (
               <option
                 key={index}
+                title={value}
                 value={value}
-                style={{ ...style?.select }}
+                style={{ ...style?.option }}
               >{CapitalLetter ? value.toUpperCase() : handlerNames(value)}
               </option>
             )

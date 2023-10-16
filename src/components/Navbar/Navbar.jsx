@@ -31,6 +31,13 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
         }
     }, [cookie, login]);
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
     useEffect(() => {
         let prevScrollPos = window.scrollY;
         const handlerScroll = () => {
@@ -54,6 +61,7 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
 
     return (
         <div className={`${styles.container} ${isNavbarVisible ? styles.visible : ''}`} style={{ backgroundColor: `${NavColor}` }}>
+
             <div className={styles.nav}>
                 <div className={styles.logo}>
                     <Link to={'/home'}><Logo width={'200px'} height={'60px'} fill={LogoColor} /></Link>
@@ -72,20 +80,26 @@ const Navbar = ({ NavColor = '#ffffff', LogoColor = 'black' }) => {
                         <h3>
                             {" "}
                             <Link to={role == "user" ? MENU_USER.shopping.route : "/trolley"}>
-              <h3 title='shopping cart'>
-              {ICONS.TROLLEY ("black")} 
-              <span className={styles.cartCounter}> {cartItems.length} </span>
-            </h3>
-              </Link>
+                                <h3 title='shopping cart'>
+                                    {ICONS.TROLLEY("black")}
+                                    <span className={styles.cartCounter}> {cartItems.length} </span>
+                                </h3>
+                            </Link>
                         </h3>
                         : null}
                     {LOGIN.includes(pathname) || DETAIL_PAGE(pathname) ? <LogIn /> : null}
                 </div>
             </div>
-            <div className={`${styles.BackHome} ${styles.NavbarLinks}`}>
+            <div className={`${styles.BackHomeContainer} ${styles.NavbarLinks} ${isNavbarVisible ? styles.BackHome : styles.BackHomeOnly}`}>
                 {HOME.includes(pathname) || DETAIL_PAGE(pathname) ?
-                    <Link to={SESSION_NOT_COOKIE}><h2>{ICONS.ARROW_LEFT('black')}BACK TO HOME</h2></Link>
+                    <Link to={SESSION_NOT_COOKIE}>
+                        <h2>{ICONS.ARROW_LEFT('black')}</h2><h2>BACK TO HOME</h2>
+                    </Link>
                     : null}
+                {!isNavbarVisible && NAVBAR_LINKS.HOME.includes(pathname) &&
+                    <div onClick={scrollToTop} style={{ cursor: 'pointer' }}>
+                        <div className={`${styles.BackHomeOnly}`}><h2 style={{ marginBotton: '20px' }}>{pathname.slice(1).toUpperCase()}</h2></div>
+                    </div>}
             </div>
         </div >
     )

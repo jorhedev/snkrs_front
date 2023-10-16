@@ -93,7 +93,22 @@ const AddressInformation = ({ initAddressInfo, errors, onChangeAddressInfo }) =>
                                     options={key === 'country' ? country : key === 'state' ? state : city}
                                     initSelect={info[key]}
                                     onChangeSelect={(input) => handlerInputChange(key, input)}
-                                    style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }}
+                                    style={{
+                                        flexDirection: 'row',
+                                        alignItems: 'start', gap: '4px',
+                                        input: {
+                                            width: '100%', background: 'rgb(217, 217, 217)'
+                                        },
+                                        select: {
+                                            fontSize: '15px',
+                                            borderBottom: '6px gray solid',
+                                            borderInlineStart: '2px gray solid',
+
+                                        },
+                                        option: {
+                                            width: '100%',
+                                        }
+                                    }}
                                 />}
                         </div>
                         {errors[key] && <div className={styles.errorText}>{errors[key]}</div>}

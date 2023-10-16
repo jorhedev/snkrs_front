@@ -1,5 +1,5 @@
 export const NAVBAR_LINKS = {
-    HOME: ['/trolley'],
+    HOME: ['/trolley', '/women', '/men', '/kids'],
     WOMEN: ['/home', '/men', '/kids'],
     MEN: ['/home', '/women', '/kids'],
     KIDS: ['/home', '/women', '/men'],

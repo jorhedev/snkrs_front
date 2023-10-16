@@ -7,7 +7,7 @@
 .detail-container {
   display: flex;
   align-items: center;
-  flex-direction: column  ;
+  flex-direction: column;
 
   justify-content: center;
   height: auto;
@@ -15,22 +15,25 @@
   margin-top: 160px;
 }
 
-.product{
+.product {
   display: flex;
   flex-direction: row;
   gap: 50px;
 }
-.product .imagen{
+
+.product .imagen {
   width: 250px;
-  
+
 }
-.product .propaganda{
+
+.product .propaganda {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-right: 30px;
 }
-.container-data{
+
+.container-data {
 
   display: flex;
   flex-direction: row;
@@ -41,7 +44,7 @@
   display: flex;
   flex-direction: column;
   height: 500px;
-  
+
 }
 
 
@@ -65,17 +68,21 @@
   display: flex;
   gap: 10px;
 }
-.views{
+
+.views {
   display: flex;
   justify-content: space-between;
 }
-.views .show-table-button{
+
+.views .show-table-button {
   background: transparent;
   border: none;
 }
-.views .show-table-button:hover{
-  color:gold ;
+
+.views .show-table-button:hover {
+  color: gold;
 }
+
 .product-images img {
   display: flex;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -100,10 +107,12 @@
   height: 360px;
   position: relative;
 }
-.for{
+
+.for {
   font-family: MontLight;
   font-size: 12px;
 }
+
 .product-info {
   display: flex;
   flex-direction: column;
@@ -172,7 +181,7 @@
 .size .selected {
   background-color: #000;
   color: #fff;
-  
+
   box-shadow: rgba(204, 219, 232, 0.366) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.41) -3px -3px 6px 1px inset;
 }
 
@@ -184,7 +193,7 @@
 .bo {
   display: flex;
   height: 35px;
-  
+
 }
 
 .bo .heart {
@@ -198,7 +207,8 @@
   text-align: center;
   font-size: 24px;
 }
-.bo .heart:hover{
+
+.bo .heart:hover {
   color: red;
 }
 
@@ -214,7 +224,8 @@
 
   cursor: pointer;
 }
-.bo .boto:hover{
+
+.bo .boto:hover {
   background: #fff;
   color: #000;
   border: 2px solid #000;
@@ -231,29 +242,35 @@
   font-weight: 700;
   font-family: MontHeavy;
 }
-.homebtn{
+
+.homebtn {
   text-decoration: none;
   color: #000;
   font-family: MontHeavy;
 }
-.homebtn:hover{
-  color:#c1c1c1 ;
+
+.homebtn:hover {
+  color: #c1c1c1;
 }
 
-.homebtn img{
+.homebtn img {
   /* Alto de la imagen */
-   animation: slideLeft 1s linear infinite; /* Aplica la animación */
- }
- 
- /* Definición de la animación */
- @keyframes slideLeft {
-   0% {
-     transform: translateX(0); /* Inicio: no se desplaza horizontalmente */
-   }
-   100% {
-     transform: translateX(-100%); /* Fin: se desplaza completamente hacia la izquierda */
-   }
- }
+  animation: slideLeft 1s linear infinite;
+  /* Aplica la animación */
+}
+
+/* Definición de la animación */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+    /* Inicio: no se desplaza horizontalmente */
+  }
+
+  100% {
+    transform: translateX(-100%);
+    /* Fin: se desplaza completamente hacia la izquierda */
+  }
+}
 
 /*----------------- Tale--------------------- */
 /* Estilos para la tabla de valoración */
@@ -269,7 +286,8 @@
   border: 1px solid #ddd;
 }
 
-.rating-table th, .rating-table td {
+.rating-table th,
+.rating-table td {
   padding: 8px;
   text-align: center;
   border: 1px solid #ddd;
@@ -297,29 +315,34 @@
 
 /* Alinea el texto de los comentarios a la izquierda */
 
-.dedos{
+.dedos {
   display: flex;
   gap: 20px;
   margin: 20px 10px;
 }
-.read{
+
+.read {
   display: flex;
   width: 90%;
   justify-content: space-between;
   align-items: flex-end;
 }
-.leer{
+
+.leer {
   cursor: pointer;
   font-family: MontLight;
 }
-.leer:hover{
-  color:#3c4b5a8a;
+
+.leer:hover {
+  color: #3c4b5a8a;
 }
-.rating{
+
+.rating {
   background: green;
   color: #fff;
 }
-.rating h3{
+
+.rating h3 {
   font-family: MontHeavy;
 }
 
@@ -421,10 +444,35 @@
 
 .ofe {
   width: 1000px;
-
-
 }
 
+.Colors {
+  border-radius: 21px;
+  background: #ccc;
+  display: grid;
+  gap: 5px;
+  width: 75px;
+  height: auto;
+  padding: 8px;
+  justify-content: center;
+  align-items: start;
+  align-content: stretch;
+  grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+}
 
+.SelectProps {
+  width: 320px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.SelectSize {
+  display: flex;
+  flex-direction: column;
+}
 
+.SelectColor {
+  display: flex;
+  flex-direction: column;
+}

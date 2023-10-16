@@ -17,6 +17,7 @@ import Footer from "../../components/Footer/Footer";
 import InfoUser from "../InfoUser/InfoUser";
 import { fetchColors, fetchSizes } from "../../redux/filters";
 import { fetchDetail } from "../../redux/products";
+import { ICONS } from "../../const";
 
 const Detail = () => {
   // Obtén el parámetro de la URL que contiene el ID de la zapatilla
@@ -24,10 +25,10 @@ const Detail = () => {
   const { id } = useParams();
   // const [zapatilla, setZapatilla] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null)
   const zapatilla = useSelector(({ products }) => products.detail)
   const colors = useSelector(({ filters }) => filters.data.colors)
   const sizes = useSelector(({ filters }) => filters.data.sizes)
-  console.log("🚀 ~ file: Detail.jsx:36 ~ Detail ~ size:", sizes)
 
   useEffect(() => {
     dispatch(fetchColors())
@@ -40,8 +41,13 @@ const Detail = () => {
   }, [dispatch, zapatilla])
 
   const handleSizeClick = (size) => {
+
     setSelectedSize(size);
   };
+
+  const handleColorClick = (color) => {
+    setSelectedSize(color)
+  }
 
   if (zapatilla === null || sizes === null) {
     return <div>Cargando...</div>;
@@ -112,18 +118,37 @@ const Detail = () => {
               <h2>{zapatilla?.model}</h2>
               <p className="type"> {zapatilla?.type}</p>
               <p className="price"> $ {zapatilla?.price}</p>
-              <h2>Size (US)</h2>
-              <div className="size">
-                {sizes.map((size, index) => {
-                  return (
-                    <a
-                      key={index}
-                      href="#"
-                      onClick={() => handleSizeClick(size)}
-                      className={selectedSize === size ? "selected" : ""}
-                    >{size}</a>
-                  )
-                })}
+              <div className="SelectProps">
+                <div className='SelectSize'>
+                  <h2>Size (US)</h2>
+                  <div className="size">
+                    {sizes.map((size, index) => {
+                      return (
+                        <a
+                          key={index}
+                          href="#"
+                          onClick={() => handleSizeClick(size)}
+                          className={selectedSize === size ? "selected" : ""}
+                        >{size}</a>
+                      )
+                    })}
+                  </div>
+                </div>
+                <div className='SelectColors'>
+                  <h2>Color </h2>
+                  <div className="Colors">
+                    {colors.map(({ name, html }, index) => {
+                      return (
+                        <a
+                          key={index}
+                          href="#"
+                          onClick={() => handleColorClick(name)}
+                          className={selectedSize === name ? "selected" : ""}
+                        ><h3 title={name}>{ICONS.COLORS(html)}</h3></a>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
             <p className="for">(**) For thin feet we recommend purchasing the lower size.</p>

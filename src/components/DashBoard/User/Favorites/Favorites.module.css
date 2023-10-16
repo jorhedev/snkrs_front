@@ -1,57 +1,65 @@
-.fa{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    margin: 10px auto;
-    width: 200px;
-    margin-top: 70px;
-    text-decoration: none;
-    
+.fa {
+  display: grid;
+  grid-template-columns: repeat(200px, 1fr);
+  justify-content: center;
+  margin: 10px auto;
+  width: 200px;
+  margin-top: 70px;
+  text-decoration: none;
+
 }
 
-.cards{
-    display: grid;
-    grid-template-columns: repeat(3 , 1fr);
-    margin-left: 120px;
-    
-    gap: 8px;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-left: 120px;
+
+  gap: 8px;
 }
-.cartContainer{
-    border: 1px solid #ccc;
+
+.cartContainer {
+  border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-.cartContainer img{
-    width: 150px;
-    height: auto;
+
+.cartContainer img {
+  width: 150px;
+  height: auto;
 }
-.boton{
-    display: flex;
-    justify-content: center;
-    width: 1;
-    gap: 5px;
+
+.boton {
+  display: flex;
+  justify-content: center;
+  width: 1;
+  gap: 5px;
 }
-.boton .btn{
-    width: 100px;
-    font-size: 12px;
+
+.boton .btn {
+  width: 100px;
+  font-size: 12px;
 }
-.homebtn{
-    margin-left: 100px;
-    text-decoration: none;
-    font-family: MontHeavy;
+
+.homebtn {
+  margin-left: 100px;
+  text-decoration: none;
+  font-family: MontHeavy;
 }
-.homebtn:hover{
+
+.homebtn:hover {
   opacity: .5;
 }
-.home{
-    display: flex;
-    justify-content:start;
-    margin-top: 100px;
-    margin-left: 250px
+
+.home {
+  display: flex;
+  justify-content: start;
+  margin-top: 100px;
+  margin-left: 250px
 }
-.home p{
+
+.home p {
   text-align: none;
   color: #000;
   font-family: MontHeavy;
@@ -59,31 +67,32 @@
 
 
 
-.title{
-    font-family: MontHeavy;
-    position: relative;
-   
+.title {
+  font-family: MontHeavy;
+  position: relative;
+
 }
-.name{
+
+.name {
   display: flex;
   justify-content: space-between;
 }
 
-.price{
+.price {
   position: relative;
   background: #080808;
   color: #fff;
   width: 96px;
   height: 35px;
   left: 25px;
- padding: 4px 4px;
- border: 1px solid #c1c1c193;
- margin-bottom: 30px;
+  padding: 4px 4px;
+  border: 1px solid #c1c1c193;
+  margin-bottom: 30px;
   border-radius: 5px 0 0 5px;
   box-shadow: 0 2px 7px #000000f3;
-  font-weight: bold ;
+  font-weight: bold;
   font-size: 20px;
-    font-family: MontHeavy;
+  font-family: MontHeavy;
 }
 
 
@@ -99,113 +108,125 @@
   border-right: 13px solid transparent;
   z-index: -6;
 }
-.letra{
+
+.letra {
   font-family: MontLight;
 }
-.name .price p{
+
+.name .price p {
   font-size: 12px;
   padding: 16px auto;
 }
+
 .name h2 {
   font-size: 20px;
   color: #000;
   text-decoration: none;
- margin: 0;
+  margin: 0;
   font-family: MontHeavy;
 }
-.name .price p{
+
+.name .price p {
   font-size: 18px;
   text-decoration: none;
 }
 
-.type p{
+.type p {
   color: #000;
 }
-  .data{
-    font-family: MontHeavy;
-    text-decoration: none;
-    color: #000;
-  }  
-  .letra{
-    font-family: MontLight;
-    text-decoration: none;
-    color: #000;
-  }
-    .containe {
-      display: flex;
-      padding: 7px 10px;
-      flex-direction: column;
-     
-    }
-  
-    .type{
-      display: flex;
-      flex-direction: column;
-    
-    }
-    
-    .card {
-      background-color: #f0f0f0;
-      padding: 16px 20px; 
-      box-sizing: border-box; 
-      margin: 8px;
-      width: 280px;
-      height: auto;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-      position: relative;
-    }
-    
-    .card img {
-      max-width: 100%;
-      height: auto;
-    }
 
-    .boton{
-        display: flex;
-        justify-content: end;
-        border: none;
-        background: transparent;
-        font-size: 24px;
-        z-index: 1;
-      }
+.data {
+  font-family: MontHeavy;
+  text-decoration: none;
+  color: #000;
+}
 
-      .likeButton {
-        position: absolute;
-        top: 10px; 
-        right: 10px; 
-        border: none;
-        background: transparent;
-        font-size: 25px;
-      }
+.letra {
+  font-family: MontLight;
+  text-decoration: none;
+  color: #000;
+}
+
+.containe {
+  display: flex;
+  padding: 7px 10px;
+  flex-direction: column;
+
+}
+
+.type {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card {
+  background-color: #f0f0f0;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  margin: 8px;
+  width: 280px;
+  height: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  position: relative;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.boton {
+  display: flex;
+  justify-content: end;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  z-index: 1;
+}
+
+.likeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 25px;
+}
 
 
 
-.homebtn img{
- /* Alto de la imagen */
-  animation: slideLeft 1s linear infinite; /* Aplica la animación */
+.homebtn img {
+  /* Alto de la imagen */
+  animation: slideLeft 1s linear infinite;
+  /* Aplica la animación */
 }
 
 /* Definición de la animación */
 @keyframes slideLeft {
   0% {
-    transform: translateX(0); /* Inicio: no se desplaza horizontalmente */
+    transform: translateX(0);
+    /* Inicio: no se desplaza horizontalmente */
   }
+
   100% {
-    transform: translateX(-100%); /* Fin: se desplaza completamente hacia la izquierda */
+    transform: translateX(-100%);
+    /* Fin: se desplaza completamente hacia la izquierda */
   }
 }
 
 
-.dele{
+.dele {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.dele img{
+
+.dele img {
   height: 10px;
 }
 
-.containe .circle{
+.containe .circle {
   display: flex;
   justify-content: space-between;
   font-size: 8px;

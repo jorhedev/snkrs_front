@@ -4,7 +4,7 @@
 }
 
 .BtnBlack {
-    width: 120px;
+    width: 140px;
     font-family: MontHeavy;
     font-size: 20px;
     background-color: #2d2d2d !important;
@@ -20,7 +20,7 @@
 
 
 .BtnCancel {
-    width: 100px;
+    width: 140px;
     font-family: MontHeavy;
     font-size: 20px;
     border-radius: 20px !important;

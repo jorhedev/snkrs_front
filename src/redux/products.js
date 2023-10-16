@@ -4,6 +4,11 @@ import { fetchSizes } from './filters.js';
 
 const initialState = {
     products: [],
+    pages: {
+        currentPage: 0,
+        itemRange: { min: 0, max: 0 },
+        totalPages: 0,
+    },
     detail: {}
 };
 
@@ -11,8 +16,10 @@ export const productSlice = createSlice({
     name: "product",
     initialState,
     reducers: {
-        setProducts: (state, payload) => {
-            state.products = payload
+        setProducts: (state, { payload }) => {
+            console.log("🚀 ~ file: products.js:20 ~ payload:", payload)
+            state.products = payload.products
+            state.pages = { ...payload.pages }
         },
         setDetail: (state, { payload }) => {
             state.detail = payload
@@ -27,19 +34,20 @@ export const productSlice = createSlice({
 });
 // Async action to sign in
 export const fetchProducts = (filters) => async (dispatch) => {
+    console.log("🚀 ~ file: products.js:36 ~ fetchProducts ~ filters:", filters)
     try {
-        dispatch(cleanProducts())
+
+        // dispatch(cleanProducts())
+        let endPoint = '/products'
         if (Object.keys(filters).length) {
-            let endPoint = '/products'
             Object.entries(filters).forEach(([key, value], index) => {
                 if (!index) endPoint += `?${key}=${value}`
                 else endPoint += `&${key}=${value}`
             })
-
-        } else {
-            console.error('Error when closing session')
         }
-
+        const products = await axiosInstance.get(endPoint)
+        console.log("🚀 ~ file: products.js:47 ~ fetchProducts ~ products:", products)
+        dispatch(setProducts(products))
     } catch (error) {
         // Captura cualquier error que pueda ocurrir durante la solicitud
         console.error('Error:', error);
