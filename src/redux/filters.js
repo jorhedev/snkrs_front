@@ -120,7 +120,7 @@ export const fetchColors = () => async (dispatch) => {
 export const fetchSizes = (gender, category = 'shoes') => async (dispatch) => {
    try {
       const detailSizes = await axiosInstance.get(`/features/size?category=${category}&gender=${gender}`)
-      const sizes = detailSizes.map(({ size }) => { return size })
+      const sizes = detailSizes.map(({ size }) => { return size }).sort((a, b) => parseFloat(a) - parseFloat(b))
       dispatch(setDataSizes({ sizes, detailSizes }))
    } catch (error) {
       console.log(error.messages)

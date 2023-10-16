@@ -1,11 +1,9 @@
+import './App.css'
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom'
 import SignUp from './components/Login/SignUp/SignUp';
 import Detail from './components/Detail/Detail'
 import Navbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import ListadoBusqueda from './views/ListadoBusqueda/ListadoBusqueda'
-import './App.css'
 import Home from './views/Home/Home'
 import LateralMenu from './components/DashBoard/LateralMenu/LateralMenu';
 import { Brands, Customer, Product, Sales, Statistics, Stock, TypesCategories } from './views/Admin'
@@ -14,9 +12,10 @@ import HomeViews from './views/HomeViews/HomeViews';
 import Payment from './views/Payment/Payment';
 import PaymentSucces from './views/Payment/PaymentSucces';
 import Trolley from './views/Trolley/Trolley';
-import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import ProtectedRoutes from './utils/ProtectedRoutes';
 import Page404 from './views/Page404/Page404';
 import Views from './components/Views/Views';
+import Genders from './views/Genders/Genders';
 
 
 function App() {
@@ -33,20 +32,22 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/home" element={
-          <HomeViews />
+          <ProtectedRoutes>
+            <HomeViews />
+          </ProtectedRoutes>
         }
         />
         {/* <Route path="/user" element={<User />} /> */}
-        <Route path="/men" element={<ListadoBusqueda />} />
-        <Route path="/women" element={<ListadoBusqueda />} />
-        <Route path="/kids" element={<ListadoBusqueda />} />
+        <Route path="/men" element={<Genders />} />
+        <Route path="/women" element={<Genders />} />
+        <Route path="/kids" element={<Genders />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/trolley" element={<Trolley />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/checkout" element={<Payment />} />
         <Route path="/payment-succes" element={<PaymentSucces />} />
-        <Route path="/views" element={<Views/>} />
-        
+        <Route path="/views" element={<Views />} />
+
         {/* <Route path="/user" element={<DashboardUser />} /> */}
 
         {/* //?Routes USER */}

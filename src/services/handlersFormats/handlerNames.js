@@ -8,7 +8,7 @@ const handlerNames = (name, realTime = false) => {
         if (realTime === true) {
             let long = name.length
             if (long === 0) return name
-            if (long === 1 && /[a-zñ]/.test(name)) return name[0].toUpperCase()
+            if (long === 1 && /[a-zñ]/i.test(name)) return name[0].toUpperCase()
             if (long >= 2) {
                 if (/\s{2}$/.test(name)) return name.slice(0, -1)
                 if (/\s[a-zñ]$/.test(name)) return name.slice(0, -1) + name[long - 1].toUpperCase()

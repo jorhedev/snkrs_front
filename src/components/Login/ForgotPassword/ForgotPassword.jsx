@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ForgotPassword.module.css';
 import Logo from '../../Icons/Logo'
-import { ResetPassword, NotRegister } from '../../Alerts';
+import { ResetPassword, NotRegister, ResetEmailSend } from '../../Alerts';
 import axiosInstance from '../../../utils/axiosInstance';
 import Shoe from '../../Icons/Shoe';
 import Footprint from '../../Icons/Footprint';
+import { resetPassword } from '../../../services/firebase';
 
 const ForgotPassword = ({ initEmail = '', viewForgot, onViewForgot }) => {
   const [email, setEmail] = useState(initEmail)
@@ -24,7 +25,12 @@ const ForgotPassword = ({ initEmail = '', viewForgot, onViewForgot }) => {
             return NotRegister()
           }
           if (data.status == 'active') {
-            return ResetPassword({ email })
+            try {
+              await resetPassword(email)
+              return ResetEmailSend()
+            } catch (error) {
+              console.log(error)
+            }
           }
         }
       }

@@ -23,14 +23,12 @@ const initInfo = {
 }
 
 const BasicInformation = ({ initBasicInfo = {}, errors, onChangeBasicInfo }) => {
-  const [error, setError] = useState(errors)
   const [info, setInfo] = useState(initInfo)
 
   useEffect(() => {
     const { nit, birthday, firstName, lastName, email, password } = initBasicInfo
     setInfo({ nit, birthday, firstName, lastName, email, password })
-    setError(errors)
-  }, [initBasicInfo, errors])
+  }, [initBasicInfo])
 
 
   const handlerInputChange = (field, value) => {
@@ -78,7 +76,7 @@ const BasicInformation = ({ initBasicInfo = {}, errors, onChangeBasicInfo }) => 
                     />
                     : null}
             </div>
-            {error[key] && <div className={styles.errorText}>{error[key]}</div>}
+            {errors[key] && <div className={styles.errorText}>{errors[key]}</div>}
           </span>)
       })}
     </>

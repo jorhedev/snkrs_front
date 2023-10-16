@@ -41,12 +41,29 @@
 
 .Title {
     border-bottom: 3px dashed;
-    width: 164px;
+    width: 180px;
     display: flex;
     font-family: MontHeavy;
     font-size: 25px;
     height: 40px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
 }
+
+.ColorSelect {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #424242;
+}
+
+.ColorNone {
+    visibility: hidden;
+}
+
+
 
 .Text {
     display: flex;
@@ -64,7 +81,7 @@
     border-inline-end: 2px solid #5a5a5a;
     border-inline-start: 2px solid #5a5a5a;
     background-color: #D9D9D9;
-    width: 200px;
+    width: 216px;
     height: 102px;
     border-radius: 0px 0px 20px 20px;
     justify-content: center;
@@ -74,6 +91,7 @@
     gap: 6px;
     padding: 10px;
     justify-items: center;
+    z-index: 10;
 }
 
 .ArrowActive {
@@ -106,6 +124,15 @@
 
 .BtnColor:hover {
     transform: scale(1.2);
+    border: 1px solid #535353;
+    cursor: pointer
+}
+
+.BtnColorActive {
+    transform: scale(1.2);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
     border: 1px solid #535353;
     cursor: pointer
 }

@@ -1,0 +1,48 @@
+.paginationList {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+.pageButton {
+
+    width: auto;
+    background-color: #000;
+    /* Color de fondo */
+    color: #fff;
+    /* Color del texto */
+    border: 1px solid #000;
+    /* Borde del botón */
+    padding: 5px 10px;
+    /* Espaciado interno del botón */
+    margin: 5px;
+    /* Margen entre botones */
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre el botón */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s;
+    /* Transición suave al pasar el mouse */
+    font-family: MontHeavy;
+
+    /* Estilo cuando el botón está deshabilitado */
+    &.disabled {
+        background-color: #fff;
+        color: #000;
+        cursor: not-allowed;
+        text-decoration: none;
+
+    }
+
+    /* Estilo cuando el botón está activo */
+    &.activePage {
+        background-color: #fff;
+        color: #000;
+    }
+
+    /* Pseudo-clases para el botón */
+    &:hover {
+        background-color: #000;
+        color: #fff;
+    }
+}

@@ -2,58 +2,32 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import logo from "../../assets/Image/Logo.png";
-import Search from "../../components/Seach/Search";
-
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Filter from "../Filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData, setResults } from "../../redux/resultsMen";
-import favorites, { addFavorites, fetchFavorites, removeFavorites } from "../../redux/favorites"
+import { addFavorites, cleanFavorites, fetchFavorites, removeFavorites } from "../../redux/favorites"
 import styles from "./Cards.module.css";
 import { NotLogin } from "../Alerts";
-const itemsPerPage = 9;
+import { readCookieSession } from "../../services";
+import { ICONS } from "../../const";
 
-const Cards = ({ results }) => {
-    console.log("🚀 ~ file: Cards.jsx:18 ~ Cards ~ results:", results)
+const Cards = ({ products }) => {
+    console.log("🚀 ~ file: Cards.jsx:18 ~ Cards ~ products:", products)
+
+    const cookie = readCookieSession()
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(1);
-    const [isLiked, setIsLiked] = useState({});
-    const login = useSelector(({ auth }) => !auth.status)
-    const favorites = useSelector(({ favorites }) => favorites.favorites)
-
+    const favorites = useSelector(({ favorites }) => { return favorites.favorites })
     useEffect(() => {
         dispatch(fetchData());
         dispatch(fetchFavorites())
-        // Cargar productos favoritos desde el almacenamiento local al cargar la página
-        const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
-        setIsLiked(savedFavorites);
     }, [dispatch]);
 
-    // Declare results here after fetching data from Redux
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-
-    const currentItems = results.slice(indexOfFirstItem, indexOfLastItem);
-
-    const totalPages = Math.ceil(results.length / itemsPerPage);
-
-    const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
-
-    const handleFilterProducts = (searchQuery) => {
-        const filteredResults = results.filter((zapa) =>
-            zapa.name.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        setCurrentPage(1);
-    };
-
-    const handleLikeClick = (zapa) => {
-        if (login) {
-            if (favorites.includes(zapa._id)) {
+    const handleLikeClick = (event, zapa) => {
+        event.preventDefault();
+        if (cookie) {
+            if (favorites?.includes(zapa._id)) {
                 dispatch(removeFavorites(zapa._id));
             } else {
                 dispatch(addFavorites(zapa._id));
@@ -63,23 +37,11 @@ const Cards = ({ results }) => {
         }
     };
 
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const handlePrevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
-
     return (
         <>
             <div className={styles.product}>
                 <div className={styles.cards}>
-                    {currentItems.map((zapa) => (
+                    {products?.map((zapa) => (
                         <Link
                             to={`/detail/${zapa._id}`}
                             className={styles.containe}
@@ -87,10 +49,10 @@ const Cards = ({ results }) => {
                             style={{ textDecoration: "none" }}
                         >
                             <div className={styles.card} key={zapa._id}>
-                                <img src={zapa?.image[0]?.src} alt={zapa.name} />
+                                <img src={zapa?.image} alt={zapa.model} />
 
                                 <div className={styles.name}>
-                                    <h2>{zapa?.brand}</h2>
+                                    <h2>{zapa?.brand?.brand}</h2>
                                     <div className={styles.price}>
                                         <p>$ {zapa?.price}</p>
                                         <div></div>
@@ -98,30 +60,36 @@ const Cards = ({ results }) => {
                                 </div>
 
                                 <div className={styles.type}>
-                                    <span className={styles.letra}>{zapa.model}</span>
+                                    <span className={styles.letra}>{zapa?.model}</span>
 
                                     <p>{zapa.type}</p>
                                     <br />
                                 </div>
-                                <div className={styles.circle}>
+                                <div className={styles.Data}>
 
                                     <Link className={styles.start}>
                                         <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />
-                                        🔴🟢🔵⚫️⚪️
                                     </Link>
+                                    <div className={styles.ColorsCard}>
+                                        {[...new Set(zapa?.stock?.map(({ color }) => JSON.stringify(color)))]
+                                            .map(item => JSON.parse(item)).map(({ name, html }, index) => {
+                                                return (
+                                                    // <div key={index} title={name} className={styles.Colors}>
+                                                    <h5 key={index} title={name}>{ICONS.COLORS(html)}</h5>
+
+                                                )
+                                            })}
+                                    </div>
+
                                     <img src={logo} alt="logo" width={70} />
                                 </div>
 
                                 <button
-                                    className={`${styles.likeButton} ${isLiked[zapa._id] ? styles.liked : ""
-                                        }`}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleLikeClick(zapa);
-                                    }}
+                                    className={`${styles.likeButton}`}
+                                    onClick={(event) => { handleLikeClick(event, zapa) }}
                                 >
                                     <span role="img" aria-label="Corazón">
-                                        {favorites.includes(zapa._id) ? "❤️" : "🤍"}
+                                        {favorites?.includes(zapa._id) ? "❤️" : "🤍"}
                                     </span>
                                 </button>
                             </div>
@@ -130,40 +98,13 @@ const Cards = ({ results }) => {
                 </div>
             </div>
 
-            <div className={styles.pagination}>
-                <ul className={styles.paginationList}>
-                    <li
-                        className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ""
-                            }`}
-                        onClick={handlePrevPage}
-                    >
-                        Back
-                    </li>
-                    {Array.from({ length: totalPages }, (_, index) => (
-                        <li
-                            key={index}
-                            className={`${styles.pageButton} ${currentPage === index + 1 ? styles.activePage : ""
-                                }`}
-                            onClick={() => paginate(index + 1)}
-                        >
-                            {index + 1}
-                        </li>
-                    ))}
-                    <li
-                        className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ""
-                            }`}
-                        onClick={handleNextPage}
-                    >
-                        Next
-                    </li>
-                </ul>
-            </div>
+
         </>
     );
 };
 
 Cards.propTypes = {
-    results: PropTypes.array
+    products: PropTypes.array
 }
 
 export default Cards;

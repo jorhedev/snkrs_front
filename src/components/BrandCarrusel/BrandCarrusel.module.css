@@ -1,59 +1,58 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 65px;
-    margin-top: 106px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 65px;
+  margin-top: 106px;
 
-.cardPromo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    height: 200px;
-    width: 300px;
-    padding: 25px;
 }
 
-.cardPromoImage{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 200px;
-    background-color: #F7F7F7;
+.cardPromo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  height: 200px;
+  width: 300px;
+  background-color: #F7F7F7;
 }
 
-.cardPromoImage img{
-    width: 100%;
-    height: auto;
+.cardPromoImage {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100%;
+}
+
+.cardPromoImage img {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background-color: none;
 }
 
 
-  .title{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-family: MontHeavy;
-    font-size: 64px;
-    line-height: 0;
-    margin: 0;
-  }
+.title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: MontHeavy;
+  font-size: 64px;
+  line-height: 0;
+  margin: 0;
+}
 
 
-  .carouselContainer {
-    width: 100%;     
+.carouselContainer {
+  width: 100%;
 
-  }
+}
 
-  .cardContainer {
-    display: flex;
-    margin: 0px 1px;
-  }
-  
-
-
-
+.cardContainer {
+  display: flex;
+  margin: 0px 1px;
+}

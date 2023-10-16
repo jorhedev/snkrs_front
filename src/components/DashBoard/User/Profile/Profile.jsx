@@ -83,7 +83,7 @@ const Profile = () => {
   };
 
   const handleSaveClick = (event) => {
-  event.preventDefault();
+    event.preventDefault();
     console.log("Save button clicked");
     if (Object.keys(updatedFields).length > 0) {
       console.log("Updated Fields:", updatedFields);
@@ -143,8 +143,8 @@ const Profile = () => {
           {profileCompletion === 100
             ? "Perfil Completo"
             : `Perfil ${profileCompletion.toFixed(
-                0
-              )}% completado, por favor completa los campos faltantes`}
+              0
+            )}% completado, por favor completa los campos faltantes`}
         </span>
 
         <div className={styles.progressBar}>
@@ -262,9 +262,9 @@ const Profile = () => {
 
           {isEditing ? (
             <div className={styles.editButtons}>
-              <button 
-              type= "submit"
-              className={styles.buttonSave} >
+              <button
+                type="submit"
+                className={styles.buttonSave} >
                 Save
               </button>
               <button

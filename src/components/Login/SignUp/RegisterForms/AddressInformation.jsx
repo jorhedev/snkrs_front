@@ -32,15 +32,13 @@ const AddressInformation = ({ initAddressInfo, errors, onChangeAddressInfo }) =>
     const country = useSelector(({ country }) => { return country.country })
     const state = useSelector(({ country }) => { return country.state })
     const city = useSelector(({ country }) => { return country.city })
-    const [error, setError] = useState(errors)
     const [info, setInfo] = useState(initAddress)
 
     // ? Load initial values
     useEffect(() => {
         const { country, state, city, phone, address, additional, zip_code } = initAddressInfo
         setInfo({ country, state, city, phone, address, additional, zip_code })
-        setError(errors)
-    }, [initAddressInfo, errors])
+    }, [initAddressInfo])
 
     //? get Countries
     useEffect(() => {
@@ -95,10 +93,25 @@ const AddressInformation = ({ initAddressInfo, errors, onChangeAddressInfo }) =>
                                     options={key === 'country' ? country : key === 'state' ? state : city}
                                     initSelect={info[key]}
                                     onChangeSelect={(input) => handlerInputChange(key, input)}
-                                    style={{ flexDirection: 'row', alignItems: 'start', gap: '4px', input: { width: '100%', background: 'rgb(217, 217, 217)' } }}
+                                    style={{
+                                        flexDirection: 'row',
+                                        alignItems: 'start', gap: '4px',
+                                        input: {
+                                            width: '100%', background: 'rgb(217, 217, 217)'
+                                        },
+                                        select: {
+                                            fontSize: '15px',
+                                            borderBottom: '6px gray solid',
+                                            borderInlineStart: '2px gray solid',
+
+                                        },
+                                        option: {
+                                            width: '100%',
+                                        }
+                                    }}
                                 />}
                         </div>
-                        {error[key] ? <div className={styles.errorText}>{error[key]}</div> : null}
+                        {errors[key] && <div className={styles.errorText}>{errors[key]}</div>}
                     </span>)
             })}
         </>

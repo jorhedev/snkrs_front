@@ -8,19 +8,28 @@ import DashBoard from "../../DashBoard.module.css";
 import zapa from "../../../../assets/Image/zapatillas.png";
 import Swal from "sweetalert2"; // Importa SweetAlert2
 import Cards from "../../../Cards/Cards";
+import Paginated from "../../../Paginated/Paginated";
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const zapatillas = useSelector(({ favorites }) => favorites.storages);
-  console.log("🚀 ~ file: Favorites.jsx:18 ~ Favorites ~ zapatillas:", zapatillas)
-  const [isLiked, setIsLiked] = useState({});
-  const [favoritas, setFavoritas] = useState([]);
+  const [pageFavorites, setPageFavorites] = useState(1)
+  const storages = useSelector(({ favorites }) => favorites.storages);
+  const favorites = useSelector(({ favorites }) => favorites.favorites);
+  const paginated = useSelector(({ favorites }) => favorites.pages);
+  console.log("🚀 ~ file: Favorites.jsx:18 ~ Favorites ~ paginated:", paginated)
 
 
   useEffect(() => {
-    dispatch(fetchFavorites())
-  }, [dispatch])
+    dispatch(fetchFavorites({ page: pageFavorites }))
+  }, [dispatch, pageFavorites])
 
+  useEffect(() => {
+    dispatch(fetchFavorites({ page: pageFavorites }))
+  }, [dispatch, favorites, pageFavorites]);
+
+  const handlerChangePage = (page) => {
+    setPageFavorites(page)
+  }
   // const agregarFavorita = (item) => {
   //   dispatch(addFavorites(item));
   //   setFavoritas([...favoritas, item]);
@@ -104,8 +113,14 @@ const Favorites = () => {
       </div> */}
 
       <div className={styles.fa}>
-        <Cards results={zapatillas} />
+        <Cards products={storages} />
+        <Paginated
+          currentPage={paginated.currentPage}
+          totalPages={paginated.totalPages}
+          onChangePage={handlerChangePage}
+        />
       </div>
+
     </div>
   );
 };

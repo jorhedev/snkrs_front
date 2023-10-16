@@ -1,10 +1,8 @@
 .DashBoardContainer {
-        position: relative;
-        font-family: MontHeavy;
-        top: 80px;
-        left: 250px;
-        max-width: calc(100vw - 250px);
-        min-height: calc(100vh - 80px);
-
-    
+    position: relative;
+    font-family: MontHeavy;
+    top: 80px;
+    left: 250px;
+    max-width: calc(100vw - 250px);
+    min-height: calc(100vh - 80px);
 }

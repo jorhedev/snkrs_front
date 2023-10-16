@@ -1,23 +1,25 @@
 .LateralMenuContainer {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 250px;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background: #F7F7F7;
 }
 
 .LateralMenu {
     position: relative;
     width: 100%;
-    height: calc(100% - 80px);
+    min-height: calc(100vh);
     display: flex;
     gap: 15px;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-end;
-    top: 80px;
+    align-content: center;
+    padding-top: 80px;
 }
 
 .LateralMenu a {

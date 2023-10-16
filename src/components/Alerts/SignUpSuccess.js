@@ -1,10 +1,9 @@
 import Swal from 'sweetalert2';
 import styles from './Alerts.module.css';
 import axiosInstance from '../../utils/axiosInstance';
-import { redirect } from 'react-router-dom';
+import { SESSION_NOT_COOKIE } from '../../const';
 
-const SignUpSuccess = () => {
-    console.log('heres')
+const SignUpSuccess = ({ setRedirect }) => {
     Swal.fire({
         title: 'Your Welcome',
         text: 'Check your email to activate your account',
@@ -18,11 +17,8 @@ const SignUpSuccess = () => {
         },
     }).then((result) => {
         if (result.isConfirmed) {
-            redirect('/home')
+            setRedirect(true)
         }
-        setTimeout(() => {
-            redirect('/home')
-        }, 3000);
     });
 };
 

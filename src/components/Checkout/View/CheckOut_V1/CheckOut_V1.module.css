@@ -3,10 +3,12 @@
   display: flex;
   font-family: MontHeavy;
 }
+
 .inputWrapper {
-  display: block; 
-  margin-bottom: 10px; 
+  display: block;
+  margin-bottom: 10px;
 }
+
 .leftPanel {
   background: black;
   color: white;
@@ -34,19 +36,22 @@
   margin-left: 60px;
   margin-bottom: 40px;
 }
-.payment{
+
+.payment {
   font-family: MontLight;
   color: #ffffff;
   display: flex;
   justify-content: center;
- 
+
 }
-.p{
+
+.p {
   font-family: MontLight;
   color: #ffffff;
   display: flex;
   justify-content: center;
 }
+
 .formContainer {
   margin-left: 50px;
   margin-right: 50px;
@@ -73,10 +78,12 @@
   margin-bottom: 10px;
   margin-right: 10px;
 }
-.country{
-  width: 90%; 
-  display:flex;
-} 
+
+.country {
+  width: 90%;
+  display: flex;
+}
+
 .select {
   font-family: MontHeavy;
   width: 45%;
@@ -90,13 +97,15 @@
   background-size: 20px;
   padding-right: 30px;
 }
-.Link{
+
+.Link {
   text-decoration: none;
   color: black;
-  display:flex;
+  display: flex;
   justify-content: center;
   font-family: MontRegular;
 }
+
 .selectContainer {
   margin-bottom: 20px;
   display: flex;
@@ -109,19 +118,21 @@
   width: 45%;
   margin-right: 10px;
 }
+
 .errorInput {
-  border: 2px solid red; 
+  border: 2px solid red;
 }
 
 .errorText {
-  color: red; 
-  font-size: 14px; 
+  color: red;
+  font-size: 14px;
   margin-top: 4px;
-  font-family: MontRegular; 
-  display: flex; 
+  font-family: MontRegular;
+  display: flex;
   justify-content: end;
   margin-right: 50px;
 }
+
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -152,4 +163,17 @@
 .img {
   width: 200px;
   height: auto;
+}
+
+.WrapperCountry {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.InputSelect {
+  width: 45%;
+  margin: 8px 0;
 }

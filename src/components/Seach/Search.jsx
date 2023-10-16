@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchQuery, selectSearchQuery } from "../../redux/productSlice";
+// import { setSearchQuery, selectSearchQuery } from "../../redux/productSlice";
 import {
   setBrand,
   setModel,
@@ -12,13 +12,13 @@ import styles from "./Search.module.css";
 
 const Search = ({ products, onFilter, onSearchByModel }) => {
   const dispatch = useDispatch();
-  const searchQuery = useSelector(selectSearchQuery);
+  // const searchQuery = useSelector(selectSearchQuery);
   const brandFilter = useSelector((state) => state.filters.brand);
   const modelFilter = useSelector((state) => state.filters.model);
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
-    dispatch(setSearchQuery(query));
+    // dispatch(setSearchQuery(query));
 
     // Dividir la consulta en partes para brand y model (puedes ajustar esto según tus datos)
     const queryParts = query.split(" ");

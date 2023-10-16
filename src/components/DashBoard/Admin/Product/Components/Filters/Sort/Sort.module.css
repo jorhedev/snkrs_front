@@ -1,4 +1,4 @@
-.SizesContainer {
+.SortsContainer {
     position: relative;
     width: 100%;
     height: auto;
@@ -10,7 +10,7 @@
 }
 
 
-.SizesHeader {
+.SortsHeader {
     position: relative;
     display: flex;
     width: auto;
@@ -39,30 +39,24 @@
     cursor: pointer;
 }
 
-
 .Title {
     border-bottom: 3px dashed;
-    width: 204px;
+    width: 164px;
     display: flex;
     font-family: MontHeavy;
     font-size: 25px;
     height: 40px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 10px;
 }
 
 .Text {
     display: flex;
     font-family: MontBold;
-    font-sizes: 15px;
+    font-size: 15px;
     flex-direction: row;
     justify-content: flex-end;
 }
 
-.PaletteSizes {
+.PaletteSorts {
     display: grid;
     position: absolute;
     top: 40px;
@@ -70,13 +64,13 @@
     border-inline-end: 2px solid #5a5a5a;
     border-inline-start: 2px solid #5a5a5a;
     background-color: #D9D9D9;
-    width: 240px;
-    height: 153px;
+    width: 200px;
+    height: 102px;
     border-radius: 0px 0px 20px 20px;
     justify-content: center;
     align-items: start;
     align-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(37px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(29px, 1fr));
     gap: 6px;
     padding: 10px;
     justify-items: center;
@@ -98,35 +92,21 @@
     flex-wrap: nowrap;
 }
 
-.RefColor {
+.RefSort {
     width: 40px;
     height: 40px;
 }
 
-.BtnSizes {
-    font-family: MontBold;
-    border-radius: 5px;
-    font-size: 15px;
-    width: 40px;
-    height: 29px;
+.BtnSort {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
     border: 1px solid #9d9d9d;
-    cursor: pointer
+    transition: 0.4s ease-in;
 }
 
-.BtnSizes:hover {
+.BtnSort:hover {
+    transform: scale(1.2);
     border: 1px solid #535353;
-    background: #535353;
-    color: #D9D9D9;
-}
-
-.BtnSizesActive {
-    border: 1px solid #535353;
-    background: #535353;
-    color: #D9D9D9;
-    font-family: MontBold;
-    border-radius: 5px;
-    font-size: 15px;
-    width: 40px;
-    height: 29px;
     cursor: pointer
 }

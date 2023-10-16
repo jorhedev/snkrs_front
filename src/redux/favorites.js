@@ -4,21 +4,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     favorites: [],
     storages: [],
+    pages: {
+        currentPage: 0,
+        itemsRange: { min: 0, max: 0 },
+        totalPages: 0,
+    }
 };
 
 export const favotites = createSlice({
     name: "favotites",
     initialState,
     reducers: {
-        setFavorites: ({ storages, favorites }, { payload }) => {
-            storages.push(payload)
-            favorites = payload.map(({ _id }) => { return _id })
+        setFavorites: (state, { payload }) => {
+            state.favorites = payload.favorites.map(({ _id }) => { return _id })
+            state.storages = payload.favorites
+            state.pages = { ...payload.pages }
         },
         mergeFavorites: ({ favorites }, { payload }) => {
             favorites.push(payload)
         },
-        deleteFavorites: ({ favorites }, { payload }) => {
-            return favorites.filter(favorite => favorite !== payload)
+        deleteFavorites: (state, { payload }) => {
+            state.favorites = state.favorites.filter((favorite) => (favorite != payload))
         },
         cleanFavorites: (state, { payload }) => {
             state.favorites = []
@@ -26,13 +32,18 @@ export const favotites = createSlice({
     },
 });
 // Async action to sign in
-export const fetchFavorites = () => async (dispatch) => {
+export const fetchFavorites = (filters) => async (dispatch) => {
     try {
-        const data = await axiosInstance.get(`/favorites`)
-        if (data)
-            console.log("🚀 ~ file: favorites.js:33 ~ fetchFavorites ~ data:", data)
-        dispatch(setFavorites(data))
-        return
+        let endPoint = `/favorites`
+        if (Object.keys(filters).length) {
+            Object.entries(filters).forEach(([key, value], index) => {
+                if (!index) endPoint += `?${key}=${value}`
+                else endPoint += `&${key}=${value}`
+            })
+        }
+        const data = await axiosInstance.get(endPoint)
+        console.log("🚀 ~ file: favorites.js:45 ~ fetchFavorites ~ data:", data)
+        if (data) dispatch(setFavorites(data))
     }
     catch (error) {
         console.error('Error:', error.message);
