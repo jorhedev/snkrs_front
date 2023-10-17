@@ -17,11 +17,8 @@ const Genders = () => {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const [pageGender, setPageGender] = useState(1)
-    const products = useSelector(({ products }) => {
-        return products.products
-    })
+    const products = useSelector(({ products }) => { return products.products })
     console.log("🚀 ~ file: Genders.jsx:21 ~ Genders ~ products:", products)
-
     const pages = useSelector(({ products }) => products.pages)
 
     useEffect(() => {

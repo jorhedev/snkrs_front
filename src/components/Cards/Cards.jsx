@@ -14,11 +14,10 @@ import { readCookieSession } from "../../services";
 import { ICONS } from "../../const";
 
 const Cards = ({ products }) => {
-    console.log("🚀 ~ file: Cards.jsx:18 ~ Cards ~ products:", products)
-
     const cookie = readCookieSession()
     const dispatch = useDispatch();
     const favorites = useSelector(({ favorites }) => { return favorites.favorites })
+
     useEffect(() => {
         dispatch(fetchData());
         dispatch(fetchFavorites())
@@ -71,14 +70,13 @@ const Cards = ({ products }) => {
                                         <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />
                                     </Link>
                                     <div className={styles.ColorsCard}>
-                                        {[...new Set(zapa?.stock?.map(({ color }) => JSON.stringify(color)))]
-                                            .map(item => JSON.parse(item)).map(({ name, html }, index) => {
-                                                return (
-                                                    // <div key={index} title={name} className={styles.Colors}>
-                                                    <h5 key={index} title={name}>{ICONS.COLORS(html)}</h5>
+                                        {[...new Set(zapa?.stock?.map(({ color }) => JSON.stringify(color)))]?.map(item => JSON.parse(item))?.map(({ name, html }, index) => {
+                                            return (
+                                                // <div key={index} title={name} className={styles.Colors}>
+                                                <h5 key={index} title={name}>{ICONS.COLORS(html)}</h5>
 
-                                                )
-                                            })}
+                                            )
+                                        })}
                                     </div>
 
                                     <img src={logo} alt="logo" width={70} />
