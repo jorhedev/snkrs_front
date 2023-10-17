@@ -66,20 +66,18 @@ export const getCartItems = () => async (dispatch) => {
 export const addCartItemsById = (item) => async (dispatch) => {
   const product = {
     Product_id: item._id,
-    color: item.stock[0].color[0],
-    size: item.stock[0].size,
+    color: item.color,
+    size: item.size,
     price: item.price,
     quantity: 1,
-    gener: item.stock[0].gender,
+    gender: item.gender,
     image: item.image,
   };
-  console.log("item: ", item)
-  console.log("product: ", product)
   try {
     const res = await axiosInstance.get(`/trolley`);
     if (
       res.find(
-        (e) => e.Product_id == product.Product_id && e.size == product.size
+        (e) => e.Product_id == product.Product_id && e.size == product.size && e.color.name == product.color.name
       )
     ) {
       Swal.fire({
@@ -88,7 +86,7 @@ export const addCartItemsById = (item) => async (dispatch) => {
         showConfirmButton: true,
       });
     } else {
-      const response = await axiosInstance.put("/trolley/add", product);
+      await axiosInstance.put("/trolley/add", product);
       dispatch(addToCart(item));
       Swal.fire({
         icon: "success",

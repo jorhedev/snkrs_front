@@ -34,13 +34,17 @@ export const favotites = createSlice({
 // Async action to sign in
 export const fetchFavorites = (filters) => async (dispatch) => {
     try {
+
         let endPoint = `/favorites`
-        if (Object.keys(filters).length) {
+        console.log('endPoint')
+        if (filters && Object.keys(filters).length) {
             Object.entries(filters).forEach(([key, value], index) => {
                 if (!index) endPoint += `?${key}=${value}`
                 else endPoint += `&${key}=${value}`
             })
         }
+        console.log('poraqui')
+
         const data = await axiosInstance.get(endPoint)
         console.log("🚀 ~ file: favorites.js:45 ~ fetchFavorites ~ data:", data)
         if (data) dispatch(setFavorites(data))

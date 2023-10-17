@@ -17,7 +17,6 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         setProducts: (state, { payload }) => {
-            console.log("🚀 ~ file: products.js:20 ~ payload:", payload)
             state.products = payload.products
             state.pages = { ...payload.pages }
         },
@@ -34,19 +33,15 @@ export const productSlice = createSlice({
 });
 // Async action to sign in
 export const fetchProducts = (filters) => async (dispatch) => {
-    console.log("🚀 ~ file: products.js:36 ~ fetchProducts ~ filters:", filters)
     try {
-
-        // dispatch(cleanProducts())
         let endPoint = '/products'
-        if (Object.keys(filters).length) {
+        if (filters && Object.keys(filters).length) {
             Object.entries(filters).forEach(([key, value], index) => {
                 if (!index) endPoint += `?${key}=${value}`
                 else endPoint += `&${key}=${value}`
             })
         }
         const products = await axiosInstance.get(endPoint)
-        console.log("🚀 ~ file: products.js:47 ~ fetchProducts ~ products:", products)
         dispatch(setProducts(products))
     } catch (error) {
         // Captura cualquier error que pueda ocurrir durante la solicitud
