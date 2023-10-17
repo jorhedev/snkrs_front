@@ -64,7 +64,6 @@ export const getCartItems = () => async (dispatch) => {
 };
 
 export const addCartItemsById = (item) => async (dispatch) => {
-  console.log("🚀 ~ file: cartSlice.js:67 ~ addCartItemsById ~ item:", item)
   const product = {
     Product_id: item._id,
     color: item.color,

@@ -25,11 +25,8 @@ const Detail = () => {
   const { id } = useParams();
   // const [zapatilla, setZapatilla] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
-  console.log("🚀 ~ file: Detail.jsx:28 ~ Detail ~ selectedSize:", selectedSize)
   const [selectedColor, setSelectedColor] = useState(null)
-  console.log("🚀 ~ file: Detail.jsx:29 ~ Detail ~ selectedColor:", selectedColor)
   const zapatilla = useSelector(({ products }) => products.detail)
-  console.log("🚀 ~ file: Detail.jsx:30 ~ Detail ~ zapatilla:", zapatilla)
   const colors = useSelector(({ filters }) => filters.data.colors)
   const sizes = useSelector(({ filters }) => filters.data.sizes)
 
@@ -101,7 +98,7 @@ const Detail = () => {
           color: isStock.color,
           size: isStock.size,
           gender: zapatilla.gender,
-          image: zapatilla.image
+          image: zapatilla.image[0].src
         };
         console.log("MY SHOE", shoeToAdd);
         dispatch(addCartItemsById(shoeToAdd));
