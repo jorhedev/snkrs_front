@@ -13,7 +13,9 @@
 
 }
 .tarjetas{
-  margin-left: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .name {
