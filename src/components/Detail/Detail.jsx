@@ -25,8 +25,11 @@ const Detail = () => {
   const { id } = useParams();
   // const [zapatilla, setZapatilla] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
+  console.log("🚀 ~ file: Detail.jsx:28 ~ Detail ~ selectedSize:", selectedSize)
   const [selectedColor, setSelectedColor] = useState(null)
+  console.log("🚀 ~ file: Detail.jsx:29 ~ Detail ~ selectedColor:", selectedColor)
   const zapatilla = useSelector(({ products }) => products.detail)
+  console.log("🚀 ~ file: Detail.jsx:30 ~ Detail ~ zapatilla:", zapatilla)
   const colors = useSelector(({ filters }) => filters.data.colors)
   const sizes = useSelector(({ filters }) => filters.data.sizes)
 
@@ -41,39 +44,68 @@ const Detail = () => {
   }, [dispatch, zapatilla])
 
   const handleSizeClick = (size) => {
-
-    setSelectedSize(size);
+    console.log(size)
+    const currentSize = size
+    if (currentSize !== selectedSize) {
+      return setSelectedSize(currentSize)
+    }
+    return setSelectedSize(null)
   };
 
   const handleColorClick = (color) => {
-    setSelectedSize(color)
+    const currentColor = color
+    if (currentColor !== selectedColor) {
+      return setSelectedColor(color)
+    }
+    return setSelectedColor(null)
   }
 
   if (zapatilla === null || sizes === null) {
     return <div>Cargando...</div>;
   }
   const addToCartHandler = () => {
-    if (selectedSize === null) {
-      Swal.fire({
-        icon: "warning",
-        title: "Select a size",
-        showConfirmButton: true,
-        confirmButtonColor: "black",
+    if (selectedSize === null || selectedColor === null) {
+      if (selectedSize === null) {
+        Swal.fire({
+          icon: "warning",
+          title: "Select one size",
+          showConfirmButton: true,
+          confirmButtonColor: "black",
+        });
+      }
+      if (selectedColor === null) {
+        Swal.fire({
+          icon: "warning",
+          title: "Select one color",
+          showConfirmButton: true,
+          confirmButtonColor: "black",
+        });
+      }
+    } else {
+
+      const isStock = zapatilla.stock.find(({ color, size }) => {
+        return color.name == selectedColor && size == selectedSize;
       });
 
-    } else {
-      const shoeToAdd = {
-        ...zapatilla,
-        stock: zapatilla.stock.map((e) => {
-          const newStock = {
-            ...e,
-            size: selectedSize,
-          };
-          return newStock;
-        }),
-      };
-      console.log("MY SHOE", shoeToAdd);
-      dispatch(addCartItemsById(shoeToAdd));
+      if (!isStock) {
+        Swal.fire({
+          icon: "warning",
+          title: "There is no product in stock",
+          showConfirmButton: true,
+          confirmButtonColor: "black",
+        });
+      } else {
+        const shoeToAdd = {
+          _id: zapatilla._id,
+          price: zapatilla.price,
+          color: isStock.color,
+          size: isStock.size,
+          gender: zapatilla.gender,
+          image: zapatilla.image
+        };
+        console.log("MY SHOE", shoeToAdd);
+        dispatch(addCartItemsById(shoeToAdd));
+      }
     }
   };
 
@@ -143,7 +175,7 @@ const Detail = () => {
                           key={index}
                           href="#"
                           onClick={() => handleColorClick(name)}
-                          className={selectedSize === name ? "selected" : ""}
+                          className={selectedColor === name ? "selected" : ""}
                         ><h3 title={name}>{ICONS.COLORS(html)}</h3></a>
                       )
                     })}
