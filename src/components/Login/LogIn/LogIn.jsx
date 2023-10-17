@@ -31,7 +31,6 @@ const LogIn = ({ imageSrc, onChangeImage, defaultImage, style = { size: '55px' }
   useEffect(() => {
     if (cookie) {
       const { image } = cookie
-      dispatch(fetchFavorites())
       setImageUrl(image)
     } else {
       setImageUrl('')

@@ -6,7 +6,7 @@ import {
 import { setCookieSession, readCookieSession, removeCookieSession } from '../services';
 import { logOut } from '../services/firebase';
 import { Signed } from '../components/Alerts';
-import { cleanFavorites } from './favorites.js';
+import { cleanFavorites, fetchFavorites } from './favorites.js';
 
 const initialState = {
     view: false,
@@ -43,6 +43,7 @@ export const signIn = (userCredentials) => async (dispatch) => {
         if (data) {
             setCookieSession(SESSION_NAME, data)
             dispatch(setLogIn())
+            dispatch(fetchFavorites())
             Signed()
 
         } else {

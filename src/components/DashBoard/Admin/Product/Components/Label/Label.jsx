@@ -19,7 +19,7 @@ const Label = ({ title, text }) => {
 
 Label.propTypes = {
     title: PropTypes.string,
-    text: PropTypes.func,
+    text: PropTypes.string,
 };
 
 export default Label;

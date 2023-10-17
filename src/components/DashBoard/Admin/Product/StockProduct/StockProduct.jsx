@@ -56,26 +56,27 @@ const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gen
         }
     }
     const handlerChangeQuantity = (event, index) => {
-        const { name, value } = event.target
-        const newQuantity = 0
-        isNaN(value)
+        event.preventDefault();
+        const { name, value } = event.target;
 
-        const updateData = [...stock, stock[index].quantity = value]
-        setStock(updateData)
-        // value >= 0 ? setStock(updateData) :
-        //     value === null || value == undefined ? setStock(currentData) :
-        //         null
+        // Clona el arreglo de stock y actualiza el valor de quantity para el índice específico
+        const updatedStock = [...stock];
+        updatedStock[index].quantity = value;
+
+        // Actualiza el estado con el nuevo arreglo actualizado
+        setStock(updatedStock);
     }
 
-    const handlerClickQuantity = (index, button) => {
-        let updateData = []
-        if (button === 'minus' && stock[index].quantity > 0) {
-            updateData = [...stock, stock[index].quantity -= 1]
-            setStock(updateData)
+    const handlerClickQuantity = (event, index, button) => {
+        event.preventDefault()
+        let updateData = [...stock]
+        if (button === 'minus' && updateData[index].quantity > 0) {
+            updateData[index].quantity -= 1
+            return setStock(updateData)
         }
         if (button === 'plus') {
-            updateData = [...stock, stock[index].quantity += 1]
-            setStock(updateData)
+            updateData[index].quantity += 1
+            return setStock(updateData)
 
         }
     }
@@ -112,12 +113,13 @@ const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gen
                                         onMouseLeave={() => handlerHoverLeave(index, "minus")}
                                         onClick={() => handlerClickQuantity(index, "minus")}>
                                         {ICONS.MINUS(!isHovered[index]?.minus ? '#828282' : 'green')}</h4>
-                                    <input type='number' name={index} value={quantity}
+                                    <input type='text' name={index} value={quantity}
                                         className={styles.InputQuantity}
-                                        onChange={(event) => handlerChangeQuantity(event, index)} />
+                                        onChange={(event) => handlerChangeQuantity(event, index)}
+                                    />
                                     <h4 onMouseEnter={() => handlerHoverEnter(index, "plus")}
                                         onMouseLeave={() => handlerHoverLeave(index, "plus")}
-                                        onClick={() => handlerClickQuantity(index, "plus")}>
+                                        onClick={(event) => handlerClickQuantity(event, index, "plus")}>
                                         {ICONS.PLUS(!isHovered[index]?.plus ? '#828282' : 'green')}</h4>
                                 </div>
                             </div>
@@ -130,7 +132,7 @@ const StockProduct = ({ initStock, onChangeStockProduct, errors, model = '', gen
 }
 
 StockProduct.propTypes = {
-    initStock: PropTypes.object,
+    initStock: PropTypes.array,
     onChangeStockProduct: PropTypes.func,
     errors: PropTypes.object,
     model: PropTypes.string,
