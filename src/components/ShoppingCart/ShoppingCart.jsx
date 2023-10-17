@@ -20,6 +20,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { Link } from "react-router-dom";
 import zapa from "../../assets/Image/zapatillas.png";
 import { PAYMENT_STORAGE } from "../../const/const";
+import { ICONS } from "../../const";
 initMercadoPago("APP_USR-e2f3a313-4a9d-4110-bd77-ad6c50675664");
 
 const ShoppingCart = () => {
@@ -28,6 +29,7 @@ const ShoppingCart = () => {
   const cartItems = useSelector(({ cart }) => {
     return cart.cartItems;
   });
+  console.log("🚀 ~ file: ShoppingCart.jsx:31 ~ cartItems ~ cartItems:", cartItems)
 
   useEffect(() => {
     dispatch(getCartItems());
@@ -128,7 +130,11 @@ const ShoppingCart = () => {
                           onClick={() => handleRemove(item)}
                         />
                       </td>
-                      <td className={styles.fila}><div className=""></div>{item?.color}</td>
+                      <td className={styles.fila}>
+                        <div className="">
+                          <h1 title={item?.color?.name}>{ICONS.COLORS(item?.color?.html)}</h1>
+                        </div>
+                      </td>
                       <td>
                         <img
                           src={item?.image[0]?.src}
