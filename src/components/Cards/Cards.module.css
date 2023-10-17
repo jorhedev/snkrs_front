@@ -101,8 +101,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
-  margin: 10px auto;
-  width: 500px;
+  width: 1000px;
   text-decoration: none;
 
 }

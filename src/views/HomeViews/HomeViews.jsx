@@ -138,7 +138,7 @@ const HomeViews = () => {
       )}
 
       <div className={styles.tarjetas}>
-        <Cards results={results} />
+        <Cards products={results} />
 
       </div>
 

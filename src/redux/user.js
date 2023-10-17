@@ -25,6 +25,7 @@ export const userSlice = createSlice({
       },
 });
 
+
 export const selectUser = (state) => state.user.user;
 
 export const fetchUserById = () => async (dispatch) => {
@@ -49,12 +50,17 @@ export const updateUser = (updatedData) => async (dispatch) => {
 
 export const fetchAllUser = () => async (dispatch) => {
     try {
-        const users = await axiosInstance.get(`/user`)
+        const users = await axiosInstance.get(`/admin`)
+        console.log(users);
+
         dispatch(setUser(users))
+
     } catch (error) {
         console.log(error.message)
     }
 }
+
+
 
 export const {
     setAllUsers,
