@@ -11,25 +11,35 @@ import styles from "./Genders.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../redux/products";
 import Paginated from "../../components/Paginated/Paginated";
+import Filter from "../../components/Filter/Filter";
 
 
 const Genders = () => {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const [pageGender, setPageGender] = useState(1)
+    const [filter, setFilter] = useState()
     const products = useSelector(({ products }) => {
         return products.products
     })
-    console.log("🚀 ~ file: Genders.jsx:21 ~ Genders ~ products:", products)
-
     const pages = useSelector(({ products }) => products.pages)
 
+
+    useEffect(()=>{
+        setFilter("")
+      },[pathname])
+    
     useEffect(() => {
-        dispatch(fetchProducts({ gender: pathname.slice(1), page: pageGender }))
-    }, [dispatch, pathname, pageGender])
+        dispatch(fetchProducts({ gender: pathname.slice(1), page: pageGender, ...filter }))
+    }, [dispatch, pathname, pageGender, filter])
 
     const handlerChangePage = (page) => {
         setPageGender(page)
+    }
+
+    const handleFilter = (data) => {
+        setFilter(data)
+        console.log("es data", data);
     }
 
     return (
@@ -37,6 +47,7 @@ const Genders = () => {
             <Banner />
 
             <div className={styles.homediv}>
+                <Filter onChangeFilter={handleFilter} path={pathname}/>
             </div>
             <div className={styles.zapatilla}>
                 <Cards products={products} />
