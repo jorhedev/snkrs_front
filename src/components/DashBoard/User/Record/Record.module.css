@@ -55,7 +55,7 @@
   font-family: MontHeavy;
   font-size: 20px;
   text-align: center;
-  margin-left: 15%;
+  margin-left: 10%;
 
 }
 
@@ -88,4 +88,16 @@
   font-family: MontRegular;
   font-size: 12px;
 
+}
+
+.reviewButton{
+  padding: 5px 10px;
+  border: 1px solid #000;
+  text-decoration: none;
+  color: #000;
+  font-family: MontHeavy;
+}
+.reviewButton:hover{
+  background: #000;
+  color: #fff;
 }

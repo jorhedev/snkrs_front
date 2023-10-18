@@ -96,7 +96,6 @@ const Cards = ({ products }) => {
                 </div>
             </div>
 
-
         </>
     );
 };
