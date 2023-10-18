@@ -9,6 +9,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import "./Reviews.css";
 import Swal from "sweetalert2"; // Importa SweetAlert
+import axiosInstance from "../../utils/axiosInstance";
 
 const Reviews = ({ Product_id, brand, images, model }) => {
   const dispatch = useDispatch();
@@ -117,10 +118,10 @@ const Reviews = ({ Product_id, brand, images, model }) => {
   }, [user])
   useEffect(() => {
     // Realiza una solicitud HTTP para obtener los detalles de la zapatilla
-    axios
-      .get(`http://localhost:3001/products/${id}`)
+    axiosInstance
+      .get(`/products/${id}`)
       .then((response) => {
-        setZapatilla(response.data);
+        setZapatilla(response);
       })
       .catch((error) => {
         console.error("Error al obtener los datos de zapatilla:", error);

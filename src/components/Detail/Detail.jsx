@@ -102,8 +102,8 @@ const Detail = () => {
         const response = await axiosInstance.get(
           `/review?product=${id}`
         );
-        setReviewsInfo(response.data);
-        console.log(response.data);
+        setReviewsInfo(response);
+        console.log(response);
       } catch (error) {
         setError("Error al obtener las reseñas: " + error.message);
       }
