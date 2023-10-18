@@ -9,7 +9,7 @@ import { MAX_YEAR_REGISTER, MIN_YEAR_REGISTER } from "../../../../const";
 const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  console.log("Información del usuario:", user);
+  console.log("Información del usuario:", user.firstName);
 
   const [imageUrl, setImageUrl] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
