@@ -171,7 +171,7 @@ const FilterHorizontalUser = ({ onChangeFilter }) => {
           </select>
         </div>
 
-        <div className={styles.searchBar}>
+        {/* <div className={styles.searchBar}>
         <div className="search-bar">
           <input
             type="text"
@@ -181,7 +181,7 @@ const FilterHorizontalUser = ({ onChangeFilter }) => {
           />
           <button onClick={handleSearch}>Search</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
