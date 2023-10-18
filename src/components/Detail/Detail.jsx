@@ -279,9 +279,9 @@ const Detail = () => {
           </button>
 
           <div className="slidi">
-            {Array.isArray(reviewsInfo.reviews) &&
-            reviewsInfo.reviews.length > 0 ? (
-              reviewsInfo.reviews.map((review) => (
+            {Array.isArray(reviewsInfo?.reviews) &&
+            reviewsInfo?.reviews?.length > 0 ? (
+              reviewsInfo?.reviews?.map((review) => (
                 <div key={review._id} className="slid">
                   <img
                     src={review.User_id.image}
@@ -314,7 +314,7 @@ const Detail = () => {
             <p className="comment">
               <button className="show-table-button">
                   <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
-                </button> {reviewsInfo.averageRating}
+                </button> {reviewsInfo?.averageRating}
             </p>
           </div>
 
