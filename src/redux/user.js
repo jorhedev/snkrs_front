@@ -16,13 +16,13 @@ export const userSlice = createSlice({
         },
         setAllUsers: (state, action) => {
             state.users = action.payload
-        }
-    },
+        },
     updateUserData: (state, action) => {
         if (state.user) {
+        console.log("🚀 ~ file: user.js:23 ~ action.payload:", action.payload)
           state.user = { ...state.user, ...action.payload };
         }
-      },
+    }}
 });
 
 
