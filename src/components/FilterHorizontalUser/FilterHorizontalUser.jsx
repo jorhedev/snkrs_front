@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setResults } from "../../redux/resultsMen"; // Asegúrate de importar la acción correcta
 import { InputSelect, InputText } from "../Inputs";
-import styles from "./Filter.module.css";
+import styles from "./FilterHorizontal.module.css";
 import { fetchProducts, setProducts } from "../../redux/products";
 import { useLocation } from "react-router-dom";
 import {
@@ -17,6 +17,9 @@ import {
   fetchColors
 } from "../../redux/filters";
 import { GENDER } from "../../const";
+import axiosInstance from "../../utils/axiosInstance";
+import { fetchCountry } from "../../redux/country";
+
 
 const initFilters = {
   sort: "",
@@ -27,17 +30,16 @@ const initFilters = {
 };
 
 // eslint-disable-next-line react/prop-types
-const Filter = ({ path, onChangeFilter }) => {
+const FilterHorizontalUser = ({ onChangeFilter }) => {
   const { pathname } = useLocation();
+  const [searchTerm, setSearchTerm] = useState('');
+
   const dispatch = useDispatch();
   const [pageGender, setPageGender] = useState(1);
   const products = useSelector(({ products }) => {
     return products.products;
   });
 
-  useEffect(() => {
-    setSelectedOptions(initFilters);
-  }, [path]);
 
   const pages = useSelector(({ products }) => products.pages);
 
@@ -57,11 +59,15 @@ const Filter = ({ path, onChangeFilter }) => {
   const sizes = useSelector(({ filters }) => filters.data.sizes);
   const colors = useSelector(({ filters }) => filters.data.colors)
 
+  const country = useSelector(({ country }) => { return country.country })
+
+
   useEffect(() => {
     dispatch(fetchBrands());
     dispatch(fetchTypes("shoes"));
     dispatch(fetchSizes("men"));
     dispatch(fetchColors());
+    dispatch(fetchCountry())
   }, [dispatch]);
 
 
@@ -72,80 +78,91 @@ const Filter = ({ path, onChangeFilter }) => {
     console.log(updatedOptions);
   };
 
+  const handleSearch = () => {
+    axiosInstance.get(`/products?brand=${searchTerm}`)
+      .then(response => {
+        const data = response; 
+        dispatch(setProducts({ products: data.products, pages: data.pages })); 
+      })
+      .catch(error => {
+        console.error("Error fetching products:", error);
+      });
+  };
+
   return (
     <div className={styles.filter}>
-      <div className={styles.filter1}>
+
         <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>SORT</span>
+          <span className={styles.KeyData}>ORDER A-Z</span>
           <select
             name="sort"
             style={{
-              width: "200px",
+              width: "160px",
               borderBottom: "5px solid black",
               borderInlineEnd: "2px solid black",
             }}
             value={selectedOptions.sort}
             onChange={(e) => handleFilterChange('sort', e.target.value)}
           >
-            <option value="">--Select option--</option>
+            <option value="">Select option</option>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>
         </div>
         <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>BRAND</span>
+          <span className={styles.KeyData}>ORDER EMAIL</span>
           <select
             name="brand"
             style={{
-              width: "200px",
+              width: "160px",
               borderBottom: "5px solid black",
               borderInlineEnd: "2px solid black",
             }}
             value={selectedOptions.brand}
             onChange={(e) => handleFilterChange('brand', e.target.value)}
           >
-            <option value="">--Select brand--</option>
+            <option value="">Select option</option>
             {brands.map((brand, index) => (
               <option key={index} value={brand}>
-                {brand}
+                {brand.toUpperCase()}
               </option>
             ))}
           </select>
         </div>
         <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>TYPE</span>
+          <span className={styles.KeyData}>ORDER COUNTRY</span>
           <select
             name="type"
             style={{
-              width: "200px",
+              width: "160px",
               borderBottom: "5px solid black",
               borderInlineEnd: "2px solid black",
             }}
             value={selectedOptions.type}
             onChange={(e) => handleFilterChange('type', e.target.value)}
           >
-            <option value="">--Select type--</option>
-            {types.map((type, index) => (
+            <option value="">Select option</option>
+            {country.map((type, index) => (
               <option key={index} value={type}>
-                {type}
+                {type.toUpperCase()}
               </option>
             ))}
           </select>
         </div>
         <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>SIZE</span>
+          <span className={styles.KeyData}>ORDER STATUS</span>
           <select
             name="size"
             style={{
-              width: "200px",
+              width: "160px",
               borderBottom: "5px solid black",
               borderInlineEnd: "2px solid black",
             }}
             value={selectedOptions.size}
             onChange={(e) => handleFilterChange('size', e.target.value)}
           >
-            <option value="">--Select size--</option>
+            <option value="">Select option</option>
             {sizes.map((size, index) => (
               <option key={index} value={size}>
                 {size}
@@ -153,56 +170,20 @@ const Filter = ({ path, onChangeFilter }) => {
             ))}
           </select>
         </div>
-        <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>COLOR</span>
-          <select
-            name="color"
-            style={{
-              width: "200px",
-              borderBottom: "5px solid black",
-              borderInlineEnd: "2px solid black",
-            }}
-            value={selectedOptions.color}
-            onChange={(e) => handleFilterChange('color', e.target.value)}
-          >
-            <option value="">--Select color--</option>
-            {colors.map((color, index) => (
-              <option key={index} value={color.name}>
-                {color.name}
-              </option>
-            ))}
-          </select>
+
+        <div className={styles.searchBar}>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Filter;
-
-
-
-
-  // const handleSelectChange = (event, stateKey) => {
-  //   const queryParams = {};
-  //   const { value } = event.target;
-  //   // JSON.stringify(color)
-
-  //   const currentSelect = {
-  //     ...selectedOptions,
-  //     [stateKey]: value,
-  //   };
-
-  //   setSelectedOptions(currentSelect);
-
-  //   console.log("selected", selectedOptions);
-
-  //   Object.keys(currentSelect).forEach((key) => {
-  //     const value = currentSelect[key];
-  //     if (value) {
-  //       queryParams[key] = value;
-  //     }
-  //   });
-
-  //   onChangeFilter(queryParams);
-  // };
+export default FilterHorizontalUser;
