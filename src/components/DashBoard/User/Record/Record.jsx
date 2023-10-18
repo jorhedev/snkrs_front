@@ -7,6 +7,7 @@ import styles from "./Record.module.css";
 import { fetchRecord } from "../../../../redux/recordSlice";
 import { Link } from "react-router-dom";
 import { setSortingMethod } from "../../../../redux/recordSlice";
+import { ICONS } from "../../../../const";
 const Record = () => {
   const dispatch = useDispatch();
 
@@ -72,7 +73,7 @@ const Record = () => {
                   <th>Review</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className={styles.TableData}>
                 {getPaginatedRecord().map((recordItem, index) => (
                   <React.Fragment key={index}>
                     <tr>
@@ -87,7 +88,7 @@ const Record = () => {
                         <td>{product.model}</td>
                         <td>
                           <img
-                            src={product?.image?.src}
+                            src={product?.image}
                             alt={product.model}
                             style={{ maxWidth: "100px" }}
                           />
@@ -95,7 +96,7 @@ const Record = () => {
                         <td>${product.price}</td>
                         <td>{product.quantity}</td>
                         <td>{product.size}</td>
-                        <td>{product.color}</td>
+                        <td><h3 title={product?.color?.name}>{ICONS.COLORS(product?.color?.html)}</h3></td>
                         <td>{product.gender}</td>
                         <td>
                           <Link
