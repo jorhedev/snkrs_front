@@ -1,5 +1,7 @@
 /** @format */
-import React, { useEffect, useState } from "react";
+
+// Detail.js
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -9,6 +11,9 @@ import { addCartItemsById } from "../../redux/cartSlice";
 import Swal from "sweetalert2";
 import TopSales from "../TopSales/TopSales";
 import BeMember from "../../components/BeMember/BeMember";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { IoMdStar, IoMdStarOutline } from "react-icons/io";
+import {FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,6 +25,7 @@ import { fetchColors, fetchSizes } from "../../redux/filters";
 import { addFavorites, fetchFavorites, removeFavorites } from "../../redux/favorites";
 import { NotLogin } from "../Alerts";
 import { ICONS } from "../../const";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -33,6 +39,20 @@ const Detail = () => {
   const colors = useSelector(({ filters }) => filters.data.colors)
   const sizes = useSelector(({ filters }) => filters.data.sizes)
   const cookie = readCookieSession()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const slideTrackRef = useRef(null);
+  const [reviewsInfo, setReviewsInfo] = useState([]);
+  const [error, setError] = useState(null);
+  console.log(reviewsInfo);
+
+  const scrollLeft = () => {
+    slideTrackRef.current.scrollLeft -= 200; // Ajusta la cantidad de desplazamiento según tu diseño
+  };
+
+  const scrollRight = () => {
+    slideTrackRef.current.scrollLeft += 200; // Ajusta la cantidad de desplazamiento según tu diseño
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -73,8 +93,30 @@ const Detail = () => {
     }
     return setSelectedColor(null)
   }
+  
+  
 
-  if (zapatilla === null || sizes === null) {
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `/review?product=${id}`
+        );
+        setReviewsInfo(response.data);
+        console.log(response.data);
+      } catch (error) {
+        setError("Error al obtener las reseñas: " + error.message);
+      }
+    };
+
+    fetchReviews();
+  }, [id]);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+  // Si la zapatilla no se encuentra, puedes mostrar un mensaje de carga o error.
+  if (zapatilla === null) {
     return <div>Cargando...</div>;
   }
   const addToCartHandler = () => {
@@ -228,7 +270,59 @@ const Detail = () => {
             </div>
           </div>
         </div>
-        <InfoUser />
+
+        <div className="slidi">
+          <h1>Customers Reviews</h1>
+
+          <button className={"sliderArro leftArrow"} onClick={scrollLeft}>
+            <MdKeyboardArrowLeft />
+          </button>
+
+          <div className="slidi">
+            {Array.isArray(reviewsInfo.reviews) &&
+            reviewsInfo.reviews.length > 0 ? (
+              reviewsInfo.reviews.map((review) => (
+                <div key={review._id} className="slid">
+                  <img
+                    src={review.User_id.image}
+                    alt={review.User_id.firstName}
+                    className="baI"
+                  />
+                  <div className="comment">
+                    <h3> {review.User_id.firstName}</h3>
+                    <p className="stars">
+                      {[...Array(5)].map((_, index) => (
+                        <IoMdStar
+                          key={index}
+                          className={
+                            index < review.rating
+                              ? "star-filled"
+                              : "star-outline"
+                          }
+                        />
+                      ))}
+                    </p>
+
+                    <p> {review.opinion}</p>
+                    {/* Otros campos de revisión aquí */}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="comment">No hay reseñas disponibles.</p>
+            )}
+            <p className="comment">
+              <button className="show-table-button">
+                  <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
+                </button> {reviewsInfo.averageRating}
+            </p>
+          </div>
+
+          <button className={"sliderArro rightArrow"} onClick={scrollRight}>
+            <MdKeyboardArrowRight />
+          </button>
+        </div>
+
         <TopSales />
         <BeMember />
         <Footer />
