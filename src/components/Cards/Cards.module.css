@@ -162,6 +162,30 @@
   height: auto;
 }
 
+.outStock{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 900px;
+  height: 400px;
+}
+
+.outStock h3{
+  font-family: MontHeavy;
+  font-size: 90px;
+}
+
+.outStock h2{
+  font-family: MontBold;
+}
+
+.outStock h4{
+  font-family: MontHeavy;
+  font-size: 20px;
+}
+
+
 /* Estilos para los botones de paginación */
 
 .notFoundMessage {

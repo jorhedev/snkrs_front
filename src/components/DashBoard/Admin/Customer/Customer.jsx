@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import styleDashBoard from '../../DashBoard.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllUser } from '../../../../redux/user'
 import styles from "./Customer.module.css";
 import { ICONS, MENU_ADMIN } from '../../../../const'
 import { ModalDataDelete } from '../../../Alerts'
+import axiosInstance from '../../../../utils/axiosInstance';
+import FilterHorizontalUser from '../../../FilterHorizontalUser/FilterHorizontalUser';
+
+const MySwal = withReactContent(Swal);
+
 
 const Customer = () => {
     const dispatch = useDispatch();
@@ -18,12 +26,88 @@ const Customer = () => {
 
     
     const handlerAddBrand = () => {
-
-    }
+        Swal.fire({
+            title: 'Crear Nuevo Usuario',
+            html: `
+                <form id="userForm">
+                    <input type="text" id="firstName" placeholder="First Name" required />
+                    <input type="text" id="lastName" placeholder="Last Name" required />
+                    <input type="email" id="email" placeholder="Email" required />
+                    <input type="password" id="password" placeholder="Password" required />
+                    <select id="status">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="banned">Banned</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+            `,
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: 'Cerrar',
+            didOpen: () => {
+                const userForm = document.getElementById('userForm');
+                userForm.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(userForm);
+                    const newUser = {};
+                    for (let pair of formData.entries()) {
+                        newUser[pair[0]] = pair[1];
+                    }
+                    console.log('Nuevo usuario:', newUser);
+    
+                    try {
+                        const response = await axiosInstance.post('/auth/sign-up', {
+                            ...newUser,
+                        });
+                        console.log('Respuesta de creación de usuario:', response.data);
+                        // Aquí puedes manejar la lógica después de crear el nuevo usuario
+                    } catch (error) {
+                        console.error('Error al crear el usuario:', error);
+                        // Aquí puedes manejar los errores de la solicitud de creación de usuario
+                    }
+                });
+            }
+        });
+    };
+    
 
     const handlerUpdateBrand = (id) => {
-        console.log(id)
-    }
+        MySwal.fire({
+            title: 'Change User Status',
+            html: (
+                <select id="swal-select" className="swal2-select">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="banned">Banned</option>
+                </select>
+            ),
+            confirmButtonText: 'Save',
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const selectValue = document.getElementById('swal-select').value;
+                console.log('Nuevo estado:', selectValue);
+                axiosInstance.put(`admin/user/${id}`, { status: selectValue })
+                    .then(response => {
+                        console.log('Respuesta de actualización:', response.data);
+                        dispatch(fetchAllUser());
+                        Swal.fire({
+                            title: 'successful edit!',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error al actualizar el estado:', error);
+                    });
+            }
+        });
+    };
+    
+
+
+    
 
     const handlerDeleteBrand = (id) => {
         ModalDataDelete('Brand', id, '/brand')
@@ -43,6 +127,7 @@ const Customer = () => {
         <div className={styleDashBoard.DashBoardContainer}>
             <div className={styles.TableContainer}>
                 <label className={styles.TitleTable}><h1>{MENU_ADMIN.customer.icon}</h1>USERS...</label>
+                <FilterHorizontalUser/>
                 <div className={styles.TableData}>
                     <table>
                         <thead>

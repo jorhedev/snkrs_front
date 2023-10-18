@@ -7,81 +7,50 @@ import BeMember from "../../components/BeMember/BeMember";
 import Banner1 from "../../components/banner1/Banner1";
 import styles from "./HomeViews.module.css";
 import Home from "../../components/Home/Home";
-import DataZapatilla from "../../assets/zapatillas.json";
 import logo from "../../assets/Image/Logo.png";
-import Search from "../../components/Seach/Search";
 import Carousel from "react-bootstrap/Carousel";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData, setResults } from "../../redux/resultsMen";
-import { addFavorites, removeFavorites } from "../../redux/favorites";
 import Cards from "../../components/Cards/Cards";
+import { fetchProducts, setProducts } from "../../redux/products";
+import axiosInstance from "../../utils/axiosInstance";
+import Paginated from "../../components/Paginated/Paginated";
+import TopSales from "../../components/TopSales/TopSales";
 
-const itemsPerPage = 9;
 
 const HomeViews = () => {
+  const { pathname } = useLocation();
+  const [pageGender, setPageGender] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [showNotFoundMessage, setShowNotFoundMessage] = useState(false);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [modelSearchResults, setModelSearchResults] = useState([]); // Nuevo estado para resultados de búsqueda por modelo
 
-  useEffect(() => {
-    dispatch(fetchData());
+  const stocks = useSelector(({ products }) => {
+    return products.products
+})
 
-  }, [dispatch]);
+const pages = useSelector(({ products }) => products.pages);
 
-  // Declare results here after fetching data from Redux
-  const results = useSelector((state) => state.results.results);
+console.log(stocks);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+useEffect (()=>{
+  dispatch(fetchProducts({ gender: "", page: pageGender }))
+},[dispatch, pathname, pageGender])
 
-  const currentItems = results.slice(indexOfFirstItem, indexOfLastItem);
+const handlerChangePage = (page) => {
+  setPageGender(page);
+};
 
-  const totalPages = Math.ceil(results.length / itemsPerPage);
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const handleFilterProducts = (searchQuery) => {
-    const filteredResults = results.filter((zapa) =>
-      zapa.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    setFilteredProducts(filteredResults);
-    setCurrentPage(1);
-    setShowNotFoundMessage(filteredResults.length === 0);
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  // Función para buscar por modelo
-  const handleSearchByModel = (model) => {
-    // Realiza la solicitud a la API para buscar por modelo
-    axios
-      .get(`http://localhost:3001/products?limit=1000&model=${model}`)
-      .then((response) => {
-        const data = response.data;
-        // Actualiza el estado de los resultados de búsqueda por modelo
-        dispatch(setResults(data.products));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+const handleSearch = () => {
+  axiosInstance.get(`/products?brand=${searchTerm}`)
+    .then(response => {
+      const data = response; 
+      dispatch(setProducts({ products: data.products, pages: data.pages })); 
+    })
+    .catch(error => {
+      console.error("Error fetching products:", error);
+    });
+};
 
   return (
     <>
@@ -125,29 +94,36 @@ const HomeViews = () => {
         </Carousel>
       </div>
 
-      <Search
-        products={DataZapatilla}
-        onFilter={handleFilterProducts}
-        onSearchByModel={handleSearchByModel}
-      />
 
-      {showNotFoundMessage && (
-        <div className={styles.notFoundMessage}>
-          <h1>Sneaker not found.</h1>
-        </div>
-      )}
 
       <div className={styles.tarjetas}>
-        <Cards products={results} />
 
+        
+      <div className={styles.searchBar}>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      </div>
+      
+        <Cards products={stocks} />
+
+        <Paginated
+            currentPage={pages.currentPage}
+            totalPages={pages.totalPages}
+            onChangePage={handlerChangePage}
+          />
       </div>
 
 
 
-      <div className={styles.container}>
-        <h1 className={styles.title}>Featured</h1>
         <div className={styles.homer}>
-          <Home />
+          <TopSales />
         </div>
 
         <div>
@@ -157,9 +133,25 @@ const HomeViews = () => {
 
         <Newsletter />
         <Footer />
-      </div>
     </>
   );
 };
 
 export default HomeViews;
+
+
+  // // Función para buscar por modelo
+  // const handleSearchByModel = (model) => {
+  //   // Realiza la solicitud a la API para buscar por modelo
+  //   axiosInstance
+  //     .get(`/products?model=${model}`)
+  //     .then((response) => {
+  //       const data = response.data;
+  //       // Actualiza el estado de los resultados de búsqueda por modelo
+  //       dispatch(setProducts(data.products));
+  //       console.log('hggg', + data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
