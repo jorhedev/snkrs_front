@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Swal from 'sweetalert2';
 import { fetchAllSales } from "../../../../redux/salesSlice";
 import styles from './Sales.module.css'
-import styleDashBoard from '../../Dashboard.module.css';
+import styleDashBoard from '../../DashBoard.module.css'
 import { MENU_ADMIN } from "../../../../const";
 
 const AppSALESview = () => {
