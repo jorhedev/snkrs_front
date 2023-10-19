@@ -19,12 +19,17 @@ const Customer = () => {
     const [isHovered, setIsHovered] = useState({ 0: { edit: false, trash: false }, add: false })
     const users = useSelector(({ user }) => user.user)
     console.log(users);
+    const [filter, setFilter] = useState();
 
     useEffect (()=>{
-        dispatch(fetchAllUser())
-    },[dispatch])
+        dispatch(fetchAllUser({...filter}))
+    },[dispatch, filter])
 
-    
+    const handleFilter = (data) => {
+        setFilter(data);
+        console.log("es data", data);
+      };
+
     const handlerAddBrand = () => {
         Swal.fire({
             title: 'Crear Nuevo Usuario',
@@ -127,7 +132,7 @@ const Customer = () => {
         <div className={styleDashBoard.DashBoardContainer}>
             <div className={styles.TableContainer}>
                 <label className={styles.TitleTable}><h1>{MENU_ADMIN.customer.icon}</h1>USERS...</label>
-                <FilterHorizontalUser/>
+                <FilterHorizontalUser onChangeFilter={handleFilter}/>
                 <div className={styles.TableData}>
                     <table>
                         <thead>
