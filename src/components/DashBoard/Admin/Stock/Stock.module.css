@@ -175,3 +175,24 @@ td {
     font-family: MontHeavy;
     font-size: 20px;
   }
+
+
+  .filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+.filter  .searchBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 300px;
+    background: #D9D9D9;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
+    border-radius: 0 10px 10px 0;
+
+}

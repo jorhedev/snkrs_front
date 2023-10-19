@@ -19,7 +19,7 @@ import {
 import { GENDER } from "../../const";
 
 const initFilters = {
-  sort: "",
+  sortPrice: "",
   brand: "",
   type: "",
   size: "",
@@ -78,19 +78,18 @@ const Filter = ({ path, onChangeFilter }) => {
         <div className={styles.DataInputsProducts}>
           <span className={styles.KeyData}>SORT</span>
           <select
-            name="sort"
+            name="sortPrice"
             style={{
               width: "200px",
               borderBottom: "5px solid black",
               borderInlineEnd: "2px solid black",
             }}
-            value={selectedOptions.sort}
-            onChange={(e) => handleFilterChange('sort', e.target.value)}
+            value={selectedOptions.sortPrice}
+            onChange={(e) => handleFilterChange('sortPrice', e.target.value)}
           >
             <option value="">--Select option--</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="descending">Descendent Price</option>
+            <option value="ascending">Ascendent Price</option>
           </select>
         </div>
         <div className={styles.DataInputsProducts}>

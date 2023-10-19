@@ -20,7 +20,8 @@ import { GENDER } from "../../const";
 import axiosInstance from "../../utils/axiosInstance";
 
 
-const initFilters = {
+// eslint-disable-next-line react-refresh/only-export-components
+export const initFilters = {
   sort: "",
   brand: "",
   type: "",
@@ -73,16 +74,6 @@ const FilterHorizontal = ({ onChangeFilter }) => {
     console.log(updatedOptions);
   };
 
-  const handleSearch = () => {
-    axiosInstance.get(`/products?brand=${searchTerm}`)
-      .then(response => {
-        const data = response; 
-        dispatch(setProducts({ products: data.products, pages: data.pages })); 
-      })
-      .catch(error => {
-        console.error("Error fetching products:", error);
-      });
-  };
 
   return (
     <div className={styles.filter}>
@@ -100,9 +91,8 @@ const FilterHorizontal = ({ onChangeFilter }) => {
             onChange={(e) => handleFilterChange('sort', e.target.value)}
           >
             <option value="">Select option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="option1">Descendent Price</option>
+            <option value="option2">Ascendent Price</option>
           </select>
         </div>
         <div className={styles.DataInputsProducts}>
@@ -185,17 +175,6 @@ const FilterHorizontal = ({ onChangeFilter }) => {
             ))}
           </select>
         </div>
-        <div className={styles.searchBar}>
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button onClick={handleSearch}>Search</button>
-        </div>
-      </div>
     </div>
   );
 };
