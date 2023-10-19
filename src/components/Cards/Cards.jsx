@@ -113,7 +113,7 @@ const Cards = ({ products }) => {
         ) : (
           <div className={styles.outStock}>
             <h3>Out of Stock</h3>
-            <h2>perform another search in the filter</h2>
+            <h2>perform another search</h2>
             <h4>-SNKRS-</h4>
           </div>
         )}

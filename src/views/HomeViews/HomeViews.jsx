@@ -22,6 +22,7 @@ const HomeViews = () => {
   const { pathname } = useLocation();
   const [pageGender, setPageGender] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [page, setPage] = useState(1); // Cambiado a una única variable de página
 
   const dispatch = useDispatch();
 
@@ -34,22 +35,25 @@ const pages = useSelector(({ products }) => products.pages);
 console.log(stocks);
 
 useEffect (()=>{
-  dispatch(fetchProducts({ gender: "", page: pageGender }))
-},[dispatch, pathname, pageGender])
-
-const handlerChangePage = (page) => {
-  setPageGender(page);
-};
+  if (searchTerm === '') {
+    dispatch(fetchProducts({ gender: "", page: page }));
+  } else {
+    dispatch(fetchProducts({ search: searchTerm, page: page }));
+  }
+}, [dispatch, pathname, page, searchTerm]);
 
 const handleSearch = () => {
-  axiosInstance.get(`/products?brand=${searchTerm}`)
-    .then(response => {
-      const data = response; 
-      dispatch(setProducts({ products: data.products, pages: data.pages })); 
-    })
-    .catch(error => {
-      console.error("Error fetching products:", error);
-    });
+  setPage(1); 
+};
+
+
+const handlerChangePage = (newPage) => {
+  setPage(newPage); 
+};
+
+const clearSearch = () => {
+  setSearchTerm(''); // Limpia el término de búsqueda
+  setPage(1); // Restablece la página a 1
 };
 
   return (
@@ -108,6 +112,9 @@ const handleSearch = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button onClick={handleSearch}>Search</button>
+          {searchTerm && (
+            <button onClick={clearSearch}>Clear Search</button>
+          )}
         </div>
       </div>
       
