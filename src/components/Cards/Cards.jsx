@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import logo from "../../assets/Image/Logo.png";
@@ -70,17 +72,14 @@ const Cards = ({ products, style }) => {
                     </div>
                   </div>
 
-                  <div className={styles.type}>
-                    <span className={styles.letra}>{zapa?.model}</span>
+                    <div className={styles.type}>
+                      <span className={styles.letra}>{zapa?.model}</span>
 
-                    <p>{zapa.type}</p>
-                    <br />
-                  </div>
-                  <div className={styles.Data}>
-                    <Link className={styles.start}>
-                      <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                      <FaStarHalfAlt />
-                    </Link>
+                      <p>{zapa.type}</p>
+                      <br />
+                    </div>
+                  <div className={styles.colores}>
+
                     <div className={styles.ColorsCard}>
                       {[
                         ...new Set(
@@ -125,7 +124,6 @@ const Cards = ({ products, style }) => {
       </div>
     </>
   );
-
 };
 
 Cards.propTypes = {
