@@ -61,7 +61,7 @@ const Genders = () => {
         <div className={styles.searchBar}>
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search all products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
