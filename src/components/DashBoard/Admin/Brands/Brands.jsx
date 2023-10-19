@@ -13,7 +13,7 @@ const Brands = () => {
     const brands = useSelector(({ filters }) => filters.detail.brands)
 
     useEffect(() => {
-        dispatch(fetchBrands('detail'))
+        dispatch(fetchBrands())
     }, [dispatch])
 
     const handlerAddBrand = () => {
@@ -21,7 +21,6 @@ const Brands = () => {
     }
 
     const handlerUpdateBrand = (id) => {
-        console.log(id)
     }
 
     const handlerDeleteBrand = (id) => {
