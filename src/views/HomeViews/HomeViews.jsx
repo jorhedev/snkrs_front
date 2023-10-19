@@ -104,18 +104,16 @@ const clearSearch = () => {
 
         
       <div className={styles.searchBar}>
-        <div className="search-bar">
           <input
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          {/* <button onClick={handleSearch}>Search</button> */}
           {searchTerm && (
             <button onClick={clearSearch}>Clear Search</button>
           )}
-        </div>
       </div>
       
         <Cards products={stocks} />
