@@ -137,20 +137,20 @@ const clearSearch = () => {
             </button>
           </div
       <div className={styles.searchBar}>
-        <div className="search-bar">
           <input
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
+          {/* <button onClick={handleSearch}>Search</button> */}
           {searchTerm && (
             <button onClick={clearSearch}>Clear Search</button>
           )}
-        </div>
 
-        <Cards products={stocks} />
+      </div>
+      
+<Cards products={stocks} />
 
         <Paginated
           currentPage={pages.currentPage}
