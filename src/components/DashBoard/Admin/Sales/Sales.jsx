@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from 'sweetalert2';
 import { fetchAllSales } from "../../../../redux/salesSlice";
-import styles from './sales.module.css'
+import styles from './Sales.module.css'
 import styleDashBoard from '../../Dashboard.module.css';
 import { MENU_ADMIN } from "../../../../const";
 
