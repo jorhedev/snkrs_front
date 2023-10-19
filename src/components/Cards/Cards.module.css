@@ -107,11 +107,15 @@
 }
 
 .data {
+ 
   font-family: MontHeavy;
   text-decoration: none;
   color: #000;
 }
-
+.colores{
+  display: flex;
+  justify-content: space-between;
+}
 .letra {
   font-family: MontLight;
   text-decoration: none;

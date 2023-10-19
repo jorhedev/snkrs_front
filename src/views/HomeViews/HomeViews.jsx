@@ -16,7 +16,7 @@ import { fetchProducts, setProducts } from "../../redux/products";
 import axiosInstance from "../../utils/axiosInstance";
 import Paginated from "../../components/Paginated/Paginated";
 import TopSales from "../../components/TopSales/TopSales";
-
+import { FaSearch } from "react-icons/fa";
 
 const HomeViews = () => {
   const { pathname } = useLocation();
@@ -27,33 +27,30 @@ const HomeViews = () => {
   const dispatch = useDispatch();
 
   const stocks = useSelector(({ products }) => {
-    return products.products
-})
+    return products.products;
+  });
 
-const pages = useSelector(({ products }) => products.pages);
+  const pages = useSelector(({ products }) => products.pages);
 
-console.log(stocks);
+  console.log(stocks);
 
 useEffect (()=>{
-  if (searchTerm === '') {
-    dispatch(fetchProducts({ gender: "", page: page }));
-  } else {
-    dispatch(fetchProducts({ search: searchTerm, page: page }));
-  }
-}, [dispatch, pathname, page, searchTerm]);
+  dispatch(fetchProducts({ gender: "", page: pageGender }))
+},[dispatch, pathname, pageGender])
+
+const handlerChangePage = (page) => {
+  setPageGender(page);
+};
 
 const handleSearch = () => {
-  setPage(1); 
-};
-
-
-const handlerChangePage = (newPage) => {
-  setPage(newPage); 
-};
-
-const clearSearch = () => {
-  setSearchTerm(''); // Limpia el término de búsqueda
-  setPage(1); // Restablece la página a 1
+  axiosInstance.get(`/products?brand=${searchTerm}`)
+    .then(response => {
+      const data = response; 
+      dispatch(setProducts({ products: data.products, pages: data.pages })); 
+    })
+    .catch(error => {
+      console.error("Error fetching products:", error);
+    });
 };
 
   return (
@@ -98,8 +95,6 @@ const clearSearch = () => {
         </Carousel>
       </div>
 
-
-
       <div className={styles.tarjetas}>
 
         
@@ -112,53 +107,47 @@ const clearSearch = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button onClick={handleSearch}>Search</button>
-          {searchTerm && (
-            <button onClick={clearSearch}>Clear Search</button>
-          )}
         </div>
       </div>
       
         <Cards products={stocks} />
 
         <Paginated
-            currentPage={pages.currentPage}
-            totalPages={pages.totalPages}
-            onChangePage={handlerChangePage}
-          />
+          currentPage={pages.currentPage}
+          totalPages={pages.totalPages}
+          onChangePage={handlerChangePage}
+        />
       </div>
 
+      <div className={styles.homer}>
+        <TopSales />
+      </div>
 
+      <div>
+        <Banner1 />
+      </div>
+      <BeMember />
 
-        <div className={styles.homer}>
-          <TopSales />
-        </div>
-
-        <div>
-          <Banner1 />
-        </div>
-        <BeMember />
-
-        <Newsletter />
-        <Footer />
+      <Newsletter />
+      <Footer />
     </>
   );
 };
 
 export default HomeViews;
 
-
-  // // Función para buscar por modelo
-  // const handleSearchByModel = (model) => {
-  //   // Realiza la solicitud a la API para buscar por modelo
-  //   axiosInstance
-  //     .get(`/products?model=${model}`)
-  //     .then((response) => {
-  //       const data = response.data;
-  //       // Actualiza el estado de los resultados de búsqueda por modelo
-  //       dispatch(setProducts(data.products));
-  //       console.log('hggg', + data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
+// // Función para buscar por modelo
+// const handleSearchByModel = (model) => {
+//   // Realiza la solicitud a la API para buscar por modelo
+//   axiosInstance
+//     .get(`/products?model=${model}`)
+//     .then((response) => {
+//       const data = response.data;
+//       // Actualiza el estado de los resultados de búsqueda por modelo
+//       dispatch(setProducts(data.products));
+//       console.log('hggg', + data);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
