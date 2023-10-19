@@ -22,7 +22,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const initFilters = {
-  sort: "",
+  sortPrice: "",
   brand: "",
   type: "",
   gender: "",
@@ -75,7 +75,6 @@ const FilterHorizontal = ({ onChangeFilter }) => {
     const updatedOptions = { ...selectedOptions, [key]: value };
     setSelectedOptions(updatedOptions);
     onChangeFilter(updatedOptions); // Llama a onChangeFilter con las opciones actualizadas
-    console.log(updatedOptions);
   };
 
 
@@ -85,14 +84,14 @@ const FilterHorizontal = ({ onChangeFilter }) => {
       <div className={styles.DataInputsProducts}>
         <span className={styles.KeyData}>SORT</span>
         <select
-          name="sort"
+          name="sortPrice"
           className={styles.data}
-          value={selectedOptions.sort}
-          onChange={(e) => handleFilterChange('sort', e.target.value)}
+          value={selectedOptions.sortPrice}
+          onChange={(e) => handleFilterChange('sortPrice', e.target.value)}
         >
           <option value="">Select option</option>
-          <option value="option1">Descendent Price</option>
-          <option value="option2">Ascendent Price</option>
+          <option value="descending">Descendent Price</option>
+          <option value="ascending">Ascendent Price</option>
         </select>
       </div>
       <div className={styles.DataInputsProducts}>
@@ -123,22 +122,6 @@ const FilterHorizontal = ({ onChangeFilter }) => {
           {types.map((type, index) => (
             <option key={index} value={type}>
               {type.toUpperCase()}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.DataInputsProducts}>
-        <span className={styles.KeyData}>GENDER</span>
-        <select
-          name="gender"
-          className={styles.data}
-          value={selectedOptions.gender}
-          onChange={(e) => handleFilterChange('gender', e.target.value)}
-        >
-          <option value="">Select gender</option>
-          {genders.map((gender, index) => (
-            <option key={index} value={gender}>
-              {gender}
             </option>
           ))}
         </select>
