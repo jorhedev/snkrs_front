@@ -483,8 +483,8 @@
 /* info */
 .slidi {
   position: relative;
-  overflow: hidden;
   width: 100%;
+  overflow: hidden;
   margin: 20px 0;
   text-align: center;
   margin-top: 90px;
@@ -528,12 +528,15 @@
 }
 
 .slideTrack {
-  display: flex;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  display: flex; /* Hacer que las tarjetas se muestren en una fila horizontal */
+  overflow-x: scroll; /* Permitir el desplazamiento horizontal */
   padding-bottom: 20px;
-  margin: 20px 30px;
+  margin: 20px 0;
+  white-space: nowrap; /* Evitar saltos de línea */
 }
+
+/* Otras reglas CSS permanecen iguales */
+
 
 .start {
   display: flex;
