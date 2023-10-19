@@ -8,6 +8,7 @@ import {
   FaCity,
   FaMapPin,
   FaPhone,
+  FaPlus
 } from "react-icons/fa";
 import { BsPersonBoundingBox } from "react-icons/bs";
 import { GoMail } from "react-icons/go";
@@ -21,7 +22,6 @@ import { fetchCity, fetchCountry, fetchState } from "../../../../redux/country";
 import { InputSelect } from "../../../Inputs";
 
 const Profile = () => {
-
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   console.log("Información del usuario:", user);
@@ -179,11 +179,18 @@ const Profile = () => {
                   src={imageUrl}
                   alt="User Image"
                 />
-                <input
-                  name="newImageUser"
-                  type="file"
-                  onChange={(event) => handleProfilePictureClick(event)}
-                />
+                {isEditing && (
+                  <input
+                    id="archivo"
+                    name="newImageUser"
+                    type="file"
+                    onChange={(event) => handleProfilePictureClick(event)}
+                    className={styles.fancyFile}
+                  />
+                  )}
+                <label htmlFor="archivo">
+                  <span className={styles.fancyFileButton}><FaPlus/> </span>
+                </label>
               </div>
             </div>
             <div className={styles.contentTextWithButton}>
