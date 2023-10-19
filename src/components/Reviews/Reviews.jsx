@@ -21,7 +21,7 @@ const Reviews = ({ Product_id, brand, images, model }) => {
   // Estados locales para la revisión
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(true);
-  const [review, setReview] = useState("");
+  const [review, setReview] = useState({});
   const [opinion, setopinion] = useState("");
   const [aboutSize, setaboutSize] = useState("fine");
   const [serviceComment, setServiceComment] = useState("");
@@ -107,6 +107,22 @@ const Reviews = ({ Product_id, brand, images, model }) => {
       
     }
   };
+useEffect(() => {
+
+
+  if(!rating){
+     (async () => {
+
+       const data = await axiosInstance.get(`/review/${id}`)
+
+       if(data){
+        console.log("adentro", data)
+        setReview(data)
+       }
+    })();
+  }
+}, [])
+ console.log("Review=",review.review)
   useEffect(() => {
     dispatch(fetchUserById());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,10 +134,10 @@ const Reviews = ({ Product_id, brand, images, model }) => {
   }, [user])
   useEffect(() => {
     // Realiza una solicitud HTTP para obtener los detalles de la zapatilla
-    axiosInstance
-      .get(`/products/${id}`)
+    axios
+      .get(`http://localhost:3001/products/${id}`)
       .then((response) => {
-        setZapatilla(response);
+        setZapatilla(response.data);
       })
       .catch((error) => {
         console.error("Error al obtener los datos de zapatilla:", error);
@@ -263,7 +279,7 @@ const Reviews = ({ Product_id, brand, images, model }) => {
           </p>
         </div>
         <div>
-      <h2>Select your satisfaction status:</h2>
+      {/* <h2>Select your satisfaction status:</h2>
       <div className="selector">
         <div
           className={`cara ${selectedFace === 'very_dissatisfied' ? 'selected' : ''}`}
@@ -284,7 +300,13 @@ const Reviews = ({ Product_id, brand, images, model }) => {
           <p className="emoji"><BsEmojiSmile/></p> <p>Very satisfied</p> 
         </div>
       </div>
-      <p>Selection: {selectedFace}</p>
+      <p>Selection: {selectedFace}</p> */}
+      <h2>Tu calificación anterior</h2>
+      <p>Rating:{review?.review?.rating}</p>
+      <p>Recomend:{review?.review?.recommend ? "yes" : "no"}</p>
+      <p>About size: {review?.review?.aboutSize}</p>
+      <p>Opinion: {review?.review?.opinion}</p>
+      <p>Service comment: {review?.review?.serviceComment}</p>
     </div>
       </div>
     </div>

@@ -2,14 +2,27 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import DashBoard from "../../DashBoard.module.css";
 import styles from "./Record.module.css";
 import { fetchRecord } from "../../../../redux/recordSlice";
 import { Link } from "react-router-dom";
-import { setSortingMethod } from "../../../../redux/recordSlice";
+import { setSortingMethod} from "../../../../redux/recordSlice";
 import { ICONS } from "../../../../const";
+
+
 const Record = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const [rating, setRating] = useState(0);
+  const [recommend, setRecommend] = useState(true);
+  const [review, setReview] = useState("");
+  const [opinion, setopinion] = useState("");
+  const [aboutSize, setaboutSize] = useState("fine");
+  const [serviceComment, setServiceComment] = useState("");
+  const zapatillas = useSelector((state) => state.record.record);
+  const [selectedFace, setSelectedFace] = useState('according');
+  const [imageUrl, setImageUrl] = useState("");
 
   const [sorting, setSorting] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +33,11 @@ const Record = () => {
     );
     return state.record.record;
   });
+
+
   
+
+
 
   console.log(record);
   useEffect(() => {
@@ -31,6 +48,7 @@ const Record = () => {
     const selectedSorting = e.target.value;
     setSorting(selectedSorting);
     dispatch(setSortingMethod(selectedSorting));
+    
   };
   const getPaginatedRecord = () => {
     const itemsPerPage = 3;
@@ -89,7 +107,7 @@ const Record = () => {
                         <td>
                           <img
                             src={product?.image}
-                            alt={product.model}
+                            alt={product?.model}
                             style={{ maxWidth: "100px" }}
                           />
                         </td>
@@ -102,6 +120,7 @@ const Record = () => {
                           <Link
                             to={`/reviews/${product.Product_id}`}
                             className={styles.reviewButton}
+                           
                           >
                             Review
                           </Link>
