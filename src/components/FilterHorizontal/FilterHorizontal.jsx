@@ -25,6 +25,7 @@ export const initFilters = {
   sort: "",
   brand: "",
   type: "",
+  gender: "",
   size: "",
   color: "",
 };
@@ -62,9 +63,12 @@ const FilterHorizontal = ({ onChangeFilter }) => {
   useEffect(() => {
     dispatch(fetchBrands());
     dispatch(fetchTypes("shoes"));
-    dispatch(fetchSizes("men"));
     dispatch(fetchColors());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchSizes(selectedOptions.gender));
+
+  }, [dispatch, selectedOptions.gender])
 
 
   const handleFilterChange = (key, value) => {
@@ -78,84 +82,100 @@ const FilterHorizontal = ({ onChangeFilter }) => {
   return (
     <div className={styles.filter}>
 
-        <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>SORT</span>
-          <select
-            name="sort"
-            className={styles.data}
-            value={selectedOptions.sort}
-            onChange={(e) => handleFilterChange('sort', e.target.value)}
-          >
-            <option value="">Select option</option>
-            <option value="option1">Descendent Price</option>
-            <option value="option2">Ascendent Price</option>
-          </select>
-        </div>
-        <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>BRAND</span>
-          <select
-            name="brand"
-            className={styles.data}
-            value={selectedOptions.brand}
-            onChange={(e) => handleFilterChange('brand', e.target.value)}
-          >
-            <option value="">Select brand</option>
-            {brands.map((brand, index) => (
-              <option key={index} value={brand}>
-                {brand.toUpperCase()}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>TYPE</span>
-          <select
-            name="type"
-            className={styles.data}
-            value={selectedOptions.type}
-            onChange={(e) => handleFilterChange('type', e.target.value)}
-          >
-            <option value="">Select type</option>
-            {types.map((type, index) => (
-              <option key={index} value={type}>
-                {type.toUpperCase()}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>SIZE</span>
-          <select
-            name="size"
-            className={styles.data}
-            value={selectedOptions.size}
-            onChange={(e) => handleFilterChange('size', e.target.value)}
-          >
-            <option value="">Select size</option>
-            {sizes.map((size, index) => (
-              <option key={index} value={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.DataInputsProducts}>
-          <span className={styles.KeyData}>COLOR</span>
-          <select
-            name="color"
-            className={styles.data}
+      <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>SORT</span>
+        <select
+          name="sort"
+          className={styles.data}
+          value={selectedOptions.sort}
+          onChange={(e) => handleFilterChange('sort', e.target.value)}
+        >
+          <option value="">Select option</option>
+          <option value="option1">Descendent Price</option>
+          <option value="option2">Ascendent Price</option>
+        </select>
+      </div>
+      <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>BRAND</span>
+        <select
+          name="brand"
+          className={styles.data}
+          value={selectedOptions.brand}
+          onChange={(e) => handleFilterChange('brand', e.target.value)}
+        >
+          <option value="">Select brand</option>
+          {brands.map((brand, index) => (
+            <option key={index} value={brand}>
+              {brand.toUpperCase()}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>TYPE</span>
+        <select
+          name="type"
+          className={styles.data}
+          value={selectedOptions.type}
+          onChange={(e) => handleFilterChange('type', e.target.value)}
+        >
+          <option value="">Select type</option>
+          {types.map((type, index) => (
+            <option key={index} value={type}>
+              {type.toUpperCase()}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>GENDER</span>
+        <select
+          name="gender"
+          className={styles.data}
+          value={selectedOptions.gender}
+          onChange={(e) => handleFilterChange('gender', e.target.value)}
+        >
+          <option value="">Select gender</option>
+          {genders.map((gender, index) => (
+            <option key={index} value={gender}>
+              {gender}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>SIZE</span>
+        <select
+          name="size"
+          className={styles.data}
+          value={selectedOptions.size}
+          onChange={(e) => handleFilterChange('size', e.target.value)}
+        >
+          <option value="">Select size</option>
+          {sizes.map((size, index) => (
+            <option key={index} value={size}>
+              {size}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>COLOR</span>
+        <select
+          name="color"
+          className={styles.data}
 
-            value={selectedOptions.color}
-            onChange={(e) => handleFilterChange('color', e.target.value)}
-          >
-            <option value="">Select color</option>
-            {colors.map((color, index) => (
-              <option key={index} value={color.name}>
-                {color.name.toUpperCase()}
-              </option>
-            ))}
-          </select>
-        </div>
+          value={selectedOptions.color}
+          onChange={(e) => handleFilterChange('color', e.target.value)}
+        >
+          <option value="">Select color</option>
+          {colors.map((color, index) => (
+            <option key={index} value={color.name}>
+              {color.name.toUpperCase()}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
