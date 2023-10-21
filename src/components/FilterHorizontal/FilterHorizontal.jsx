@@ -127,6 +127,22 @@ const FilterHorizontal = ({ onChangeFilter }) => {
         </select>
       </div>
       <div className={styles.DataInputsProducts}>
+        <span className={styles.KeyData}>GENDER</span>
+        <select
+          name="gender"
+          className={styles.data}
+          value={selectedOptions.gender}
+          onChange={(e) => handleFilterChange('gender', e.target.value)}
+        >
+          <option value="">Select gender</option>
+          {genders.map((gender, index) => (
+            <option key={index} value={gender}>
+              {gender}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.DataInputsProducts}>
         <span className={styles.KeyData}>SIZE</span>
         <select
           name="size"
