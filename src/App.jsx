@@ -17,6 +17,10 @@ import Page404 from './views/Page404/Page404';
 
 import Genders from './views/Genders/Genders';
 import Views from './components/Reviews/Reviews';
+import Team from './views/Team/Team';
+import Sustainability from './views/Sustainability/Sustainability';
+import PaymentOptions from './views/PaymentOptions/PaymentOptions';
+
 
 
 function App() {
@@ -48,7 +52,11 @@ function App() {
         <Route path="/checkout" element={<Payment />} />
         <Route path="/payment-succes" element={<PaymentSucces />} />
         <Route path="/reviews/:id" element={<Views />} />
+        <Route path="/team" element={<Team/>} />
+        <Route path="/Sustainability" element={<Sustainability/>} />
+        <Route path="/Payment-Options" element={<PaymentOptions/>} />
 
+        
         {/* <Route path="/user" element={<DashboardUser />} /> */}
 
         {/* //?Routes USER */}
