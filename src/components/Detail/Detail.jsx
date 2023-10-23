@@ -39,7 +39,7 @@ const Detail = () => {
   const [isStock, setIsColor] = useState({});
   const favorites = useSelector(({ favorites }) => favorites.favorites);
   const zapatilla = useSelector(({ products }) => products.detail);
-  console.log("🚀 ~ file: Detail.jsx:32 ~ Detail ~ zapatilla:", zapatilla);
+  const topSales = useSelector(({ products }) => products.sales)
   const colors = useSelector(({ filters }) => filters.data.colors);
   const sizes = useSelector(({ filters }) => filters.data.sizes);
   const cookie = readCookieSession();
@@ -88,7 +88,6 @@ const Detail = () => {
   };
 
   const handleColorClick = (color) => {
-    console.log("🚀 ~ file: Detail.jsx:69 ~ handleColorClick ~ color:", color);
     const currentColor = color;
     if (currentColor !== selectedColor) {
       return setSelectedColor(color);
@@ -215,6 +214,12 @@ const Detail = () => {
             <div className="info">
               <h1 className="name">{zapatilla?.brand?.brand}</h1>
               <h2>{zapatilla?.model}</h2>
+              <h2 className="show-table-button">
+                <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
+              </h2>{" "}
+
+
+
               <p className="type"> {zapatilla?.type}</p>
               <p className="price"> $ {zapatilla?.price}</p>
               <div className="SelectProps">
@@ -333,7 +338,7 @@ const Detail = () => {
                           />
                         ))}
                       </p>
-                      <p> {review.opinion}</p>
+                      <textarea value={review?.opinion} className="comment-message" disabled />
                     </div>
                   </div>
                 ))
@@ -341,13 +346,6 @@ const Detail = () => {
                 <p className="comment">No hay reseñas disponibles.</p>
               )}
             </div>
-
-            <p className="comment">
-              <button className="show-table-button">
-                <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
-              </button>{" "}
-              {reviewsInfo?.averageRating}
-            </p>
           </div>
 
           <button className={"sliderArro rightArrow"} onClick={scrollRight}>
@@ -355,7 +353,7 @@ const Detail = () => {
           </button>
         </div>
 
-        <TopSales onClickTopSales={scrollToTop} />
+        <TopSales topSales={topSales} onClickTopSales={scrollToTop} />
         <BeMember />
         <Footer />
       </div>

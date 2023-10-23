@@ -15,6 +15,8 @@ import axiosInstance from "../../utils/axiosInstance";
 import Paginated from "../../components/Paginated/Paginated";
 import TopSales from "../../components/TopSales/TopSales";
 import { setBrand } from "../../redux/filters";
+import { MdOutlineFilterFrames } from "react-icons/md";
+import Filters from "../../components/Filters/Filters";
 
 
 const HomeViews = () => {
@@ -127,7 +129,7 @@ const HomeViews = () => {
               <button onClick={clearSearch}>Clear Search</button>
             )}
           </div>
-
+          {/* <Filters /> */}
           <Cards products={stocks} />
 
           <Paginated
