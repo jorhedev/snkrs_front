@@ -26,6 +26,7 @@ const HomeViews = () => {
   const [pageGender, setPageGender] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1); // Cambiado a una única variable de página
+
   const brandFilter = useSelector(({ filters }) => filters.brand)
   const pages = useSelector(({ products }) => products.pages);
   const stocks = useSelector(({ products }) => products.products)
@@ -58,6 +59,7 @@ const HomeViews = () => {
     scrollSearchSection()
     setPage(1);
   };
+
 
 
   const handlerChangePage = (newPage) => {
@@ -137,6 +139,7 @@ const HomeViews = () => {
             totalPages={pages.totalPages}
             onChangePage={handlerChangePage}
           />
+
         </div>
       </section>
 

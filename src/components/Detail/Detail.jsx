@@ -45,6 +45,23 @@ const Detail = () => {
   const cookie = readCookieSession();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [images, setImages] = useState(zapatilla?.image || []);
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  const handleClickImage = (index) => {
+    if (index === selectedImage) return; // No hagas nada si se hace clic en la imagen seleccionada.
+
+    const clickedImage = images[index];
+    const currentImage = images[selectedImage];
+
+    const updatedImages = [...images];
+    updatedImages[selectedImage] = clickedImage;
+    updatedImages[index] = currentImage;
+
+    setImages(updatedImages);
+    setSelectedImage(index);
+  };
+
   const slideTrackRef = useRef(null);
   const [reviewsInfo, setReviewsInfo] = useState([]);
   const [error, setError] = useState(null);
@@ -64,6 +81,7 @@ const Detail = () => {
       behavior: "smooth",
     });
   };
+  
 
   useEffect(() => {
     scrollToTop();
@@ -191,13 +209,15 @@ const Detail = () => {
       <div className="detail-container">
         <div className="product">
           <div className="imagenes">
-            {/* Aquí puedes renderizar las imágenes de la zapatilla */}
             <div className="product-images">
-              {/* Aquí puedes renderizar las imágenes de la zapatilla, excluyendo la primera */}
-              {zapatilla?.image?.slice(1).map((image, index) => (
-                <div className={`im${index + 1}`} key={index}>
+              {zapatilla?.image?.slice(0).map((image, index) => (
+                <div
+                  className={`im${index + 0}`}
+                  key={index}
+                  onClick={() => handleClickImage(index + 0)}
+                >
                   <img
-                    className={`img${index + 1}`}
+                    className={`img${index + 0}`}
                     src={image?.src}
                     alt={zapatilla?.model}
                   />
@@ -207,12 +227,28 @@ const Detail = () => {
           </div>
 
           <div className="product-main-image">
-            <img src={zapatilla?.image?.[0].src} alt={zapatilla?.model} />
+            <img
+              className="im4"
+              src={zapatilla?.image?.[selectedImage].src}
+              alt={zapatilla?.model}
+            />
           </div>
 
           <div className="product-info">
             <div className="info">
-              <h1 className="name">{zapatilla?.brand?.brand}</h1>
+              <dir className="zapas">
+                <h1 className="name">{zapatilla?.brand?.brand}</h1>
+                <div>
+                  
+                <p className="comment">
+                  <button className="show-table-button">
+                    <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
+                    <FaStarHalfAlt />{" "}
+                  </button>{" "}
+                  {reviewsInfo?.averageRating}
+                </p>
+                </div>
+              </dir>
               <h2>{zapatilla?.model}</h2>
               <h2 className="show-table-button">
                 <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
