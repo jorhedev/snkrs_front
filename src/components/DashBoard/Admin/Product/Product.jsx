@@ -3,13 +3,13 @@ import DashBoard from '../../DashBoard.module.css'
 import styles from './Product.module.css';
 import InfoProduct from "./InfoProduct/InfoProduct";
 import StockProduct from "./StockProduct/StockProduct";
-import { ICONS, MENU_ADMIN, NAVBAR_LINKS, NAV_ADMIN, PRODUCT_STORAGE } from "../../../../const";
+import { ICONS, MENU_ADMIN, NAVBAR_LINKS, NAV_ADMIN, PRODUCT_STORAGE, SESSION_NOT_COOKIE } from "../../../../const";
 import ViewProduct from "./ViewProduct/ViewProduct";
 import hasEmptyFields from "./Components/hasEmptyFields";
 import { ConfirmCreateProduct, ErrorProduct, FieldsEmpty, NonDataStock, NonImageSelected, ProductSuccess } from "../../../Alerts";
 import { useSelector } from "react-redux";
 import getIdByName from "./Components/getIdByName";
-import { Navigate } from "react-router-dom";
+import { Navigate, redirect } from "react-router-dom";
 import axiosInstance from "../../../../utils/axiosInstance";
 
 const initProduct = {
@@ -44,10 +44,6 @@ const Product = () => {
 
 
   useEffect(() => {
-    localStorage.removeItem(PRODUCT_STORAGE)
-  }, [success])
-
-  useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem(PRODUCT_STORAGE));
     if (storedData) {
       setProduct({ ...product, ...storedData });
@@ -55,9 +51,16 @@ const Product = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (success) {
+      setProduct(initProduct);
+      setSteps(1);
+      setSuccess(false);
+    }
+  }, [success]);
+
   const handlerPreview = () => {
     setSteps(steps - 1);
-
   }
 
   const handlerNext = () => {
@@ -96,7 +99,8 @@ const Product = () => {
       })
 
       const { _id } = await axiosInstance.post(`/products`, ProductCreate)
-      const data = await axiosInstance.put(`/products/images/${_id}`, formData)
+      await axiosInstance.put(`/products/images/${_id}`, formData)
+      localStorage.removeItem(PRODUCT_STORAGE)
       ProductSuccess()
       setSuccess(true)
 
@@ -105,16 +109,13 @@ const Product = () => {
     }
   }
 
+
   const handlerChangeProduct = (data) => {
     let currentValue = {}
     steps == 1 ? currentValue = { ...product, ...data } : null
     steps == 2 ? currentValue = { ...product, stock: [...data] } : null
     setProduct(currentValue)
     localStorage.setItem(PRODUCT_STORAGE, JSON.stringify(currentValue));
-  }
-
-  const onRedirect = (data) => {
-    setSuccess(data)
   }
 
   return (

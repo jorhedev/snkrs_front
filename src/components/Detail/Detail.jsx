@@ -39,7 +39,7 @@ const Detail = () => {
   const [isStock, setIsColor] = useState({});
   const favorites = useSelector(({ favorites }) => favorites.favorites);
   const zapatilla = useSelector(({ products }) => products.detail);
-  console.log("🚀 ~ file: Detail.jsx:32 ~ Detail ~ zapatilla:", zapatilla);
+  const topSales = useSelector(({ products }) => products.sales)
   const colors = useSelector(({ filters }) => filters.data.colors);
   const sizes = useSelector(({ filters }) => filters.data.sizes);
   const cookie = readCookieSession();
@@ -106,7 +106,6 @@ const Detail = () => {
   };
 
   const handleColorClick = (color) => {
-    console.log("🚀 ~ file: Detail.jsx:69 ~ handleColorClick ~ color:", color);
     const currentColor = color;
     if (currentColor !== selectedColor) {
       return setSelectedColor(color);
@@ -204,6 +203,7 @@ const Detail = () => {
       NotLogin();
     }
   };
+
   return (
     <>
       <div className="detail-container">
@@ -250,6 +250,12 @@ const Detail = () => {
                 </div>
               </dir>
               <h2>{zapatilla?.model}</h2>
+              <h2 className="show-table-button">
+                <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />{" "}
+              </h2>{" "}
+
+
+
               <p className="type"> {zapatilla?.type}</p>
               <p className="price"> $ {zapatilla?.price}</p>
               <div className="SelectProps">
@@ -295,9 +301,8 @@ const Detail = () => {
                               ? () => handleColorClick(name)
                               : null
                           }
-                          className={`${
-                            selectedColor === name ? "SelectedColor" : ""
-                          } `}
+                          className={`${selectedColor === name ? "SelectedColor" : ""
+                            } `}
                           style={{
                             opacity: !isColorAvailable ? 0.3 : 1,
                             cursor: !isColorAvailable
@@ -347,7 +352,7 @@ const Detail = () => {
           <div className="slidi">
             <div className="slideTrack">
               {Array.isArray(reviewsInfo?.reviews) &&
-              reviewsInfo?.reviews?.length > 0 ? (
+                reviewsInfo?.reviews?.length > 0 ? (
                 reviewsInfo?.reviews?.map((review) => (
                   <div key={review._id} className="slid">
                     <img
@@ -369,7 +374,7 @@ const Detail = () => {
                           />
                         ))}
                       </p>
-                      <p> {review.opinion}</p>
+                      <textarea value={review?.opinion} className="comment-message" disabled />
                     </div>
                   </div>
                 ))
@@ -384,7 +389,7 @@ const Detail = () => {
           </button>
         </div>
 
-        <TopSales />
+        <TopSales topSales={topSales} onClickTopSales={scrollToTop} />
         <BeMember />
         <Footer />
       </div>

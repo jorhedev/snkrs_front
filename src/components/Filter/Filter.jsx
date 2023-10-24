@@ -48,6 +48,11 @@ const Filter = ({ path, onChangeFilter }) => {
   );
 
 
+  const clearFilters = () => {
+    setSelectedOptions(initFilters);
+    onChangeFilter("")
+  };
+
 
   ////////////////////////////////////////////SELECTS
   const genders = GENDER;
@@ -60,9 +65,9 @@ const Filter = ({ path, onChangeFilter }) => {
   useEffect(() => {
     dispatch(fetchBrands());
     dispatch(fetchTypes("shoes"));
-    dispatch(fetchSizes("men"));
+    dispatch(fetchSizes(pathname.slice(1)));
     dispatch(fetchColors());
-  }, [dispatch]);
+  }, [dispatch, pathname]);
 
 
   const handleFilterChange = (key, value) => {
@@ -74,16 +79,16 @@ const Filter = ({ path, onChangeFilter }) => {
 
   return (
     <div className={styles.filter}>
+      <div className={styles.title}>
+        <h3>FILTER:</h3>
+      </div>
       <div className={styles.filter1}>
         <div className={styles.DataInputsProducts}>
           <span className={styles.KeyData}>SORT</span>
           <select
             name="sortPrice"
-            style={{
-              width: "200px",
-              borderBottom: "5px solid black",
-              borderInlineEnd: "2px solid black",
-            }}
+            className={styles.data}
+
             value={selectedOptions.sortPrice}
             onChange={(e) => handleFilterChange('sortPrice', e.target.value)}
           >
@@ -96,11 +101,8 @@ const Filter = ({ path, onChangeFilter }) => {
           <span className={styles.KeyData}>BRAND</span>
           <select
             name="brand"
-            style={{
-              width: "200px",
-              borderBottom: "5px solid black",
-              borderInlineEnd: "2px solid black",
-            }}
+            className={styles.data}
+
             value={selectedOptions.brand}
             onChange={(e) => handleFilterChange('brand', e.target.value)}
           >
@@ -116,11 +118,8 @@ const Filter = ({ path, onChangeFilter }) => {
           <span className={styles.KeyData}>TYPE</span>
           <select
             name="type"
-            style={{
-              width: "200px",
-              borderBottom: "5px solid black",
-              borderInlineEnd: "2px solid black",
-            }}
+            className={styles.data}
+
             value={selectedOptions.type}
             onChange={(e) => handleFilterChange('type', e.target.value)}
           >
@@ -136,11 +135,8 @@ const Filter = ({ path, onChangeFilter }) => {
           <span className={styles.KeyData}>SIZE</span>
           <select
             name="size"
-            style={{
-              width: "200px",
-              borderBottom: "5px solid black",
-              borderInlineEnd: "2px solid black",
-            }}
+            className={styles.data}
+
             value={selectedOptions.size}
             onChange={(e) => handleFilterChange('size', e.target.value)}
           >
@@ -156,11 +152,8 @@ const Filter = ({ path, onChangeFilter }) => {
           <span className={styles.KeyData}>COLOR</span>
           <select
             name="color"
-            style={{
-              width: "200px",
-              borderBottom: "5px solid black",
-              borderInlineEnd: "2px solid black",
-            }}
+            className={styles.data}
+
             value={selectedOptions.color}
             onChange={(e) => handleFilterChange('color', e.target.value)}
           >
@@ -172,6 +165,9 @@ const Filter = ({ path, onChangeFilter }) => {
             ))}
           </select>
         </div>
+              <div className={styles.searchBar}>
+        <button onClick={clearFilters}>Clear</button>
+      </div>
       </div>
     </div>
   );
@@ -182,26 +178,26 @@ export default Filter;
 
 
 
-  // const handleSelectChange = (event, stateKey) => {
-  //   const queryParams = {};
-  //   const { value } = event.target;
-  //   // JSON.stringify(color)
+// const handleSelectChange = (event, stateKey) => {
+//   const queryParams = {};
+//   const { value } = event.target;
+//   // JSON.stringify(color)
 
-  //   const currentSelect = {
-  //     ...selectedOptions,
-  //     [stateKey]: value,
-  //   };
+//   const currentSelect = {
+//     ...selectedOptions,
+//     [stateKey]: value,
+//   };
 
-  //   setSelectedOptions(currentSelect);
+//   setSelectedOptions(currentSelect);
 
-  //   console.log("selected", selectedOptions);
+//   console.log("selected", selectedOptions);
 
-  //   Object.keys(currentSelect).forEach((key) => {
-  //     const value = currentSelect[key];
-  //     if (value) {
-  //       queryParams[key] = value;
-  //     }
-  //   });
+//   Object.keys(currentSelect).forEach((key) => {
+//     const value = currentSelect[key];
+//     if (value) {
+//       queryParams[key] = value;
+//     }
+//   });
 
-  //   onChangeFilter(queryParams);
-  // };
+//   onChangeFilter(queryParams);
+// };
