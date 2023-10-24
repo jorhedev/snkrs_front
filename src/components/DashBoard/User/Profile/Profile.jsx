@@ -159,10 +159,10 @@ const Profile = () => {
           <>
             <span className={styles.progressMessage}>
               {profileCompletion === 100
-                ? "Perfil Completo"
-                : `Perfil ${profileCompletion.toFixed(
+                ? "complete profile"
+                : `profile ${profileCompletion.toFixed(
                     0
-                  )}% completado, por favor completa los campos faltantes`}
+                  )}% completed, please complete the missing fields`}
             </span>
             <div className={styles.progressBar}>
               <div

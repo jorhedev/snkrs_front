@@ -99,6 +99,7 @@ const Reviews = ({ Product_id, brand, images, model }) => {
           window.location.href = "/home";
         }
       });
+
     }
   };
   useEffect(() => {
@@ -114,6 +115,7 @@ const Reviews = ({ Product_id, brand, images, model }) => {
     }
   }, []);
   console.log("Review=", review.review);
+
   useEffect(() => {
     dispatch(fetchUserById());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,6 +153,7 @@ const Reviews = ({ Product_id, brand, images, model }) => {
             <p className="datos">
               {user.firstName} {user.lastName}
             </p>
+
           </div>
         </div>
         <div className="rating-section">
@@ -248,6 +251,7 @@ const Reviews = ({ Product_id, brand, images, model }) => {
         </button>
       </div>
       <div className="producto">
+
         <div className="zapa" key={zapatilla?._id}>
           <img src={zapatilla?.image?.[0]?.src} alt="" />
           <div className="data">
@@ -332,12 +336,12 @@ const Reviews = ({ Product_id, brand, images, model }) => {
   );
 };
 Reviews.propTypes = {
-  Product_id: PropTypes.string.isRequired,
-  brand: PropTypes.string.isRequired,
+  Product_id: PropTypes.string,
+  brand: PropTypes.string,
   images: PropTypes.arrayOf(
-    PropTypes.shape({ src: PropTypes.string.isRequired })
+    PropTypes.shape({ src: PropTypes.string })
   ),
-  model: PropTypes.string.isRequired,
+  model: PropTypes.string,
 };
 
 export default Reviews;

@@ -21,8 +21,12 @@ import { FaSearch } from "react-icons/fa";
 const HomeViews = () => {
   const { pathname } = useLocation();
   const [pageGender, setPageGender] = useState(1);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1); // Cambiado a una única variable de página
+
 
   const dispatch = useDispatch();
 
@@ -30,9 +34,30 @@ const HomeViews = () => {
     return products.products;
   });
 
+
   const pages = useSelector(({ products }) => products.pages);
 
   console.log(stocks);
+
+  useEffect(() => {
+    dispatch(fetchProducts({ gender: "", page: pageGender }));
+  }, [dispatch, pathname, pageGender]);
+
+  const handlerChangePage = (page) => {
+    setPageGender(page);
+  };
+
+  const handleSearch = () => {
+    axiosInstance
+      .get(`/products?brand=${searchTerm}`)
+      .then((response) => {
+        const data = response;
+        dispatch(setProducts({ products: data.products, pages: data.pages }));
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  };
 
 useEffect (()=>{
   dispatch(fetchProducts({ gender: "", page: pageGender }))
@@ -52,6 +77,7 @@ const handleSearch = () => {
       console.error("Error fetching products:", error);
     });
 };
+
 
   return (
     <>
@@ -96,21 +122,34 @@ const handleSearch = () => {
       </div>
 
       <div className={styles.tarjetas}>
-
-        
+        <div className={styles.searchBar}>
+          <div className={styles.search_bar}>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button onClick={handleSearch}>
+              <FaSearch className={styles.search_icon} /> {/* Ícono de lupa */}
+            </button>
+          </div
       <div className={styles.searchBar}>
-        <div className="search-bar">
           <input
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button onClick={handleSearch}>Search</button>
-        </div>
+
+          {/* <button onClick={handleSearch}>Search</button> */}
+          {searchTerm && (
+            <button onClick={clearSearch}>Clear Search</button>
+          )}
+
       </div>
       
-        <Cards products={stocks} />
+<Cards products={stocks} />
 
         <Paginated
           currentPage={pages.currentPage}
